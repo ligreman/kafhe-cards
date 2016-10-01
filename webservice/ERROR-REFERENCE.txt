@@ -1,0 +1,60 @@
+errUserPassNotValid - Usuario o contraseña no válidos
+errSession - Error en la sesión
+errMongo - Error de mongo
+errMongoSave - Error al salvar un objeto en Mongo
+
+errGameDataNotFound - Error al recuperar los datos del sistema
+errGameStatusNotAllowed - No se puede realizar esta acción en esta fase de la partida
+
+errLogout - Error al salir
+errOrderList - Error obteniendo la lista de usuarios con sus pedidos
+errOrderNewParams - Error al hacer nuevo pedido ya que faltan parámetros
+errOrderNewUnknown - Error inesperado ya que no viene el meal o drink que se quiere pedir
+errOrderNewNotFound - No se ha encontrado el meal o drink que se quiere pedir
+errOrderAllNotFound - Error al buscar las meals o drinks en Mongo
+errOrderNotBothIto - O meal o drink no pueden ser ITO
+
+errCharacterHireStatus - No se puede contratar en este momento
+errCharacterHireNoMoney - No tienes dinero para contratar
+errCharacterNotFound - No hay personaje
+errCharacterCantChangeName - No puedes cambiar el nombre del personaje más veces
+errCharacterWrongNewName - Nuevo nombre no válido
+errCharacterNameAlreadyExists - El nombre ya existe
+errCharacterNotEnoughTalentPoints - No tienes suficientes puntos de talento
+errCharacterTalentNotFound - No existe alguno de los talentos
+errCharacterTalentDependencyFail - Ya tenías alguno de los talentos o no cumples los requisitos para adquirirlos
+errCharacterEquipNotFound - No se ha encontrado el equipo
+errCharacterWrongUnequip - Error desequipando un elemento (object o skill)
+
+errWeaponNoMoney - No tienes dinero para comprar
+
+errRetrievingSystemData - Error al obtener los datos del sistema
+
+--------------------------
+
+errProfileNoValidData - No había datos válidos de perfil que actualizar
+errSkillListNotFound - Error al buscar la lista de habilidades del juego
+errSkillList - Error al recuperar habilidades
+errAdminNewUserNoUsername - No se ha enviado el parámetro username en la petición de crear nuevo usuario
+
+errMongoDuplicatedUsername - Ya existe otro usuario con ese username
+errNoFormulae - No existe alguna de las fórmulas en la habilidad
+
+errSkillNoParams - No se han enviado los parámetros necesarios
+errSkillNotFound - No tengo esa habilidad
+errSkillNoActionPoints - No tengo puntos de acción para ejecutar esa habilidad
+errSkillNoMoreUses - No puedo usar la habilidad más
+errSkillNoTargetNumber - No has seleccionado el número de objetivos correcto
+errSkillTargetsNotFound - No se han encontrado todos los objetivos seleccionados
+errSkillTargetAfk - Alguno de los objetivos seleccionados no está activo y por lo tanto no es un objetivo válido
+
+errShopList - Error al obtener la lista de objetos de la tienda
+errShopItemNotFound - No se ha encontrado el objeto a comprar
+errShopFindItem - Error al buscar en mongo el objeto
+errShopBuyItemNotFound - No se encuentra el objeto en Mongo
+errShopBuyItemNoStock - No hay stock en la tienda
+errShopBuyItemNoMinLevel - No tienes nivel suficiente para comprar este objeto
+errShopBuyNoTostolares - No tienes tostólares suficientes
+
+errNotificationUser - Error al crear una notificación para el usuario
+errNotificationGame - Error al crear una notificación para la partida
