@@ -4,7 +4,6 @@
 module.exports = function (mongoose) {
     // var skillSchema = require('./skillSchema')(mongoose);
     var notificationSchema = require('./notificationSchema')(mongoose);
-    var cardSchema = require('./cardSchema')(mongoose);
 
     //Modelo para los usuarios, coleccion Users
     var UserSchema = mongoose.Schema({
@@ -22,14 +21,38 @@ module.exports = function (mongoose) {
             tostolares: {type: Number, default: 0},
             fame: {type: Number, default: 0},
             packs: {type: Number, default: 0},
-            cards: [cardSchema],
+            collection: [{
+                card: {type: String, default: null},
+                level: Number
+            }],
             schedule: {
-                weapons: [cardSchema],
-                armors: [cardSchema],
-                skills: [cardSchema],
-                places: [cardSchema],
-                encounters: [cardSchema],
-                events: [cardSchema]
+                weapons: [{
+                    card: {type: String, default: null},
+                    level: Number
+                }],
+                armors: [{
+                    card: {type: String, default: null},
+                    level: Number
+                }],
+                skills: [{
+                    card: {type: String, default: null},
+                    level: Number
+                }],
+                places: [{
+                    card: {type: String, default: null},
+                    level: Number
+                }],
+                encounters: [{
+                    card: {type: String, default: null},
+                    level: Number
+                }],
+                events: [{
+                    card: {type: String, default: null},
+                    level: Number
+                }]
+            },
+            journal: {
+                places: [String]
             },
             afk: {type: Boolean, default: false},
             last_activity: {type: Number, default: 0},

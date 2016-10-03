@@ -7,8 +7,20 @@ module.exports = function (mongoose) {
         'type': {type: String, enum: ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'], required: true},
         element: {type: String, enum: ['fire', 'water', 'earth', 'air'], required: true},
         level: {type: Number, default: 1},
-        effects: [String]
+        effects: [String],
+        data: {
+            place: {
+                name: String,
+                lat: Number,
+                long: Number,
+                region: String,
+                'type': {type: String, enum: ['town', 'city', 'zone', 'dungeon']},
+                adjacent_places: [String]
+            }
+        }
     }, {versionKey: false});
 
-    return CardSchema;
+    // el String de adjacent_places es el id de la carta de lugar adyacente
+
+    return mongoose.model('Card', CardSchema);
 };

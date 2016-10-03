@@ -7,16 +7,16 @@ module.exports = function (mongoose) {
     return {
         Game: mongoose.model('Game'),
         User: mongoose.model('User'),
-        Character: mongoose.model('Character'),
+        // Character: mongoose.model('Character'),
         Admin: mongoose.model('Admin'),
         Session: mongoose.model('Session'),
         Meal: mongoose.model('Meal'),
         Drink: mongoose.model('Drink'),
-        Skill: mongoose.model('Skill'),
+        Card: mongoose.model('Card'),
         Talent: mongoose.model('Talent'),
-        Object: mongoose.model('Object'),
-        Weapon: mongoose.model('Weapon'),
-        System: mongoose.model('System'),
-        Place: mongoose.model('Place')
+        // Object: mongoose.model('Object'),
+        // Weapon: mongoose.model('Weapon'),
+        System: mongoose.model('System')
+        // Place: mongoose.model('Place')
     };
 };

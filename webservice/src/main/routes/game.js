@@ -28,17 +28,15 @@ module.exports = function (app) {
     gameRouter.get('/data', function (req, res, next) {
         console.log("DATATA");
         //Proceso y devuelvo los resultados
-        var answer = function (skills, talents, objects, places, meals, drinks) {
-            if (!skills || !talents || !objects || !places || !meals || !drinks) {
+        var answer = function (cards, talents, meals, drinks) {
+            if (!cards || !talents || !meals || !drinks) {
                 console.tag('MONGO').error(err);
                 utils.error(res, 400, 'errGameDataNotFound');
                 return;
             }
 
             responseUtils.responseJson(res, {
-                "skills": skills,
-                "objects": objects,
-                "places": places,
+                "cards": cards,
                 "talents": talents,
                 "meals": meals,
                 "drinks": drinks
@@ -47,10 +45,8 @@ module.exports = function (app) {
 
         // Lanzo las dos consultas a Mongo
         Q.all([
-            models.Skill.find({}).exec(),
+            models.Card.find({}).exec(),
             models.Talent.find({}).exec(),
-            models.Object.find({}).exec(),
-            models.Place.find({}).exec(),
             models.Meal.find({}).exec(),
             models.Drink.find({}).exec()
         ]).spread(answer);
