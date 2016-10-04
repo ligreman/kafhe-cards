@@ -3,9 +3,8 @@
 module.exports = function (mongoose) {
     var CardSchema = mongoose.Schema({
         id: {type: String, index: true},
-        title: {type: String, required: true},
         'type': {type: String, enum: ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'], required: true},
-        element: {type: String, enum: ['fire', 'water', 'earth', 'air'], required: true},
+        element: {type: String, enum: ['none', 'fire', 'water', 'earth', 'air'], default: 'none'},
         level: {type: Number, default: 1},
         effects: [String],
         data: {
@@ -14,7 +13,7 @@ module.exports = function (mongoose) {
                 lat: Number,
                 long: Number,
                 region: String,
-                'type': {type: String, enum: ['town', 'city', 'zone', 'dungeon']},
+                'type': {type: String, enum: ['town', 'capital', 'zone', 'dungeon']},
                 adjacent_places: [String]
             }
         }

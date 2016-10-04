@@ -20,7 +20,10 @@ module.exports = function (mongoose) {
             rank: {type: Number, default: 1},
             tostolares: {type: Number, default: 0},
             fame: {type: Number, default: 0},
-            packs: {type: Number, default: 0},
+            packs: [{
+                amount: {type: Number, default: 0},
+                place: {type: String, default: 0}
+            }],
             collection: [{
                 card: {type: String, default: null},
                 level: Number

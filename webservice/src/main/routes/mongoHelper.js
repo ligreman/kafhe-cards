@@ -41,16 +41,43 @@ module.exports = function (app) {
 
     var cards = [
         {
-            name: 'Ataque de pértiga', description: 'Salchichonio 86',
-            action: 'skill01', uses: 1, id: 'skill0'
+            id: '1', title: 'Pistola', 'type': 'weapon', element: 'none', level: 1, effects: []
         },
         {
-            name: 'Que te pego leche', description: 'Un salchipapa in the face',
-            action: 'skill02', uses: 2, id: 'skill1'
+            id: '2', title: 'Casa Manolo', 'type': 'place', element: 'none', level: 1, effects: [],
+            data: {
+                place: {
+                    lat: -49.85,
+                    long: -107.2,
+                    region: 'Booooo',
+                    'type': 'capital',
+                    adjacent_places: ['3', '4']
+                }
+            }
         },
         {
-            name: 'Ataque elemental de fuego', description: 'Fogonazo',
-            action: 'skill03', uses: 3, id: 'skill2'
+            id: '3', title: 'Ciudad jarl', 'type': 'place', element: 'none', level: 1, effects: [],
+            data: {
+                place: {
+                    lat: -49.05,
+                    long: -103.16,
+                    region: 'Booooo',
+                    'type': 'town',
+                    adjacent_places: ['2']
+                }
+            }
+        },
+        {
+            id: '4', title: 'Lago malo', 'type': 'place', element: 'none', level: 1, effects: [],
+            data: {
+                place: {
+                    lat: -51.74,
+                    long: -106.92,
+                    region: 'Booooo',
+                    'type': 'zone',
+                    adjacent_places: ['2']
+                }
+            }
         }
     ];
 
@@ -110,7 +137,8 @@ module.exports = function (app) {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 character: characters[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
-                collection: [],
+                collection: [{card: '1', level: 1}, {card: '2', level: 1}],
+                packs: [{amount: 2, place: '2'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: [
