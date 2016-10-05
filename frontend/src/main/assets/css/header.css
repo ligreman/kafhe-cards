@@ -1,0 +1,52 @@
+header .md-toolbar-tools {
+    padding: 0;
+}
+
+header .logotipo {
+    padding: 5px;
+    /*min-width: 24px;*/
+}
+
+header .logotipo img {
+    width: 100%;
+}
+
+header .button md-icon {
+    vertical-align: middle;
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+header .button .btn-text {
+    transition: all 0.3s ease;
+    font-size: 0rem;
+    opacity: 0;
+}
+
+header .button:hover .btn-text, header .button.active .btn-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    opacity: 1;
+}
+
+header .button:hover {
+    background: #43A047;
+    cursor: pointer;
+}
+
+header .button.active {
+    background: #43A047;
+}
+
+.custom-avatar-button {
+    border: 2px solid #43A047;
+}
+
+.custom-avatar-button img {
+    width: 26px;
+}
+
+.md-button.md-icon-button.custom-avatar-button {
+    padding: 5px 8px 8px 5px;
+}

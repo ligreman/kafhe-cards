@@ -15,6 +15,9 @@ var config = require('../modules/config'),
  * @returns {*}
  */
 var censureUser = function (user) {
+    user._id = null;
+    user.game.gamedata._id = null;
+
     if (!config.SERVER.censure_user) {
         return user;
     }

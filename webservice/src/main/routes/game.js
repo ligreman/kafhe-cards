@@ -45,10 +45,10 @@ module.exports = function (app) {
 
         // Lanzo las dos consultas a Mongo
         Q.all([
-            models.Card.find({}).exec(),
-            models.Talent.find({}).exec(),
-            models.Meal.find({}).exec(),
-            models.Drink.find({}).exec()
+            models.Card.find({}).select('-_id').exec(),
+            models.Talent.find({}).select('-_id').exec(),
+            models.Meal.find({}).select('-_id').exec(),
+            models.Drink.find({}).select('-_id').exec()
         ]).spread(answer);
     });
 

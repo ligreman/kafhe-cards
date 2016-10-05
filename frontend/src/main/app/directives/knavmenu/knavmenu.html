@@ -1,0 +1,44 @@
+<md-content id="nav-menu" flex="5" flex-md="10" flex-sm="15"
+            ng-show="$root.kUserLogged" layout="column"
+            layout-align="start center"
+            layout-align-sm="">
+
+    <div class="semibackground"></div>
+
+    <!--<a ng-click="goToPage('home')" class="menu-button" ng-class="{'active': isCurrentPage('home') }">
+        <md-icon md-svg-icon="../../../assets/img/crossed-swords.svg"></md-icon>
+
+        <p>Batalla</p>
+    </a>
+    <a ng-click="goToPage('breakfast')" class="menu-button" ng-class="{'active': isCurrentPage('breakfast') }">
+        <md-icon md-svg-icon="../../../assets/img/burn.svg"></md-icon>
+
+        <p>Desayuno</p>
+    </a>
+    <a ng-click="goToPage('forge')" class="menu-button" ng-class="{'active': isCurrentPage('forge') }">
+        <md-icon md-svg-icon="../../../assets/img/anvil.svg"></md-icon>
+
+        <p>Forja</p>
+    </a>-->
+
+
+    <md-button ng-click="goToPage('home')" class="md-fab md-primary md-hue-2 menu-button"
+               ng-class="{'md-accent': isCurrentPage('home') }" aria-label="home">
+        <md-icon class="" md-svg-icon="../../../assets/img/crossed-swords.svg"></md-icon>
+        <!--<md-tooltip md-direction="right" md-delay="1000" class="menu-nav">Batalla</md-tooltip>-->
+    </md-button>
+
+
+    <md-button ng-click="goToPage('breakfast')" class="md-fab md-primary md-hue-2 menu-button breakfast"
+               ng-class="{'md-accent': isCurrentPage('breakfast') }" aria-label="breakfast">
+        <md-icon class="" md-svg-icon="../../../assets/img/burn.svg"></md-icon>
+        <!--<md-tooltip md-direction="right" md-delay="1000" class="menu-nav">Pedido</md-tooltip>-->
+    </md-button>
+
+
+    <md-button ng-click="goToPage('forge')" class="md-fab md-primary md-hue-2 menu-button"
+               ng-class="{'md-accent': isCurrentPage('forge') }" aria-label="forge">
+        <md-icon class="" md-svg-icon="../../../assets/img/anvil.svg"></md-icon>
+        <!--<md-tooltip md-direction="right" md-delay="1000" class="menu-nav">Forja</md-tooltip>-->
+    </md-button>
+</md-content>

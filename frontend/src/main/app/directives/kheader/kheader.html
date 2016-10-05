@@ -1,0 +1,68 @@
+<header>
+    <md-toolbar class="md-whiteframe-4dp md-primary" flex="none">
+        <div class="md-toolbar-tools" layout-align="start center">
+            <div flex="5" layout="row" layout-align="center center" class="logotipo">
+                <img src="../../../assets/img/k256.png" flex="none"/>
+            </div>
+
+            <div flex layout-fill layout="row" layout-align="center center" class="button"
+                 ng-class="{'active': isCurrentPage('home')}" ng-click="goToPage('home')">
+                <span><md-icon>bubble_chart</md-icon>
+                    <span class="btn-text" hide show-gt-sm> {{ 'menuGames' | translate }}</span></span>
+                <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuGames' | translate }}</md-tooltip>
+            </div>
+            <div flex layout-fill layout="row" layout-align="center center" class="button"
+                 ng-class="{'active': isCurrentPage('explore')}" ng-click="goToPage('explore')">
+                <span><md-icon>explore</md-icon>
+                <span class="btn-text" hide
+                      show-gt-sm> {{ 'menuExplore' | translate }}</span></span>
+                <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuExplore' | translate }}</md-tooltip>
+            </div>
+            <div flex layout-fill layout="row" layout-align="center center" class="button"
+                 ng-class="{'active': isCurrentPage('team')}" ng-click="goToPage('explore')">
+                <span><md-icon>face</md-icon>
+                <span class="btn-text" hide
+                      show-gt-sm> {{ 'menuTeam' | translate }}</span></span>
+                <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuTeam' | translate }}</md-tooltip>
+            </div>
+            <div flex layout-fill layout="row" layout-align="center center" class="button"
+                 ng-class="{'active': isCurrentPage('breakfast')}" ng-click="goToPage('breakfast')">
+                <span><md-icon>local_cafe</md-icon>
+                    <span class="btn-text" hide show-gt-sm> {{ 'menuBreakfast' | translate }}</span></span>
+                <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuBreakfast' | translate }}</md-tooltip>
+            </div>
+
+            <div flex="10" layout="row" layout-align="center center">
+                <md-menu md-position-mode="target-right target">
+                    <md-button aria-label="Open demo menu" class="md-icon-button custom-avatar-button"
+                               ng-click="$mdOpenMenu($event)">
+                        <img ng-src="{{ global.user.avatar }}"/>
+                    </md-button>
+
+                    <md-menu-content width="3">
+                        <md-menu-item>
+                            <!--ng-click="goToPage('profile')"-->
+                            <md-button>
+                                <div layout="row" flex>
+                                    <p class="kafhe-white" flex>{{ 'menuProfile' | translate }}</p>
+                                    <md-icon md-menu-align-target>account_circle</md-icon>
+                                </div>
+                                <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuProfile' | translate }}</md-tooltip>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="logout()">
+                                <div layout="row" flex>
+                                    <p class="kafhe-white" flex>{{ 'headerLogout' | translate }}</p>
+                                    <md-icon md-menu-align-target>exit_to_app</md-icon>
+                                </div>
+                                <md-tooltip md-delay="1000">Desconectar</md-tooltip>
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+        </div>
+    </md-toolbar>
+</header>
+

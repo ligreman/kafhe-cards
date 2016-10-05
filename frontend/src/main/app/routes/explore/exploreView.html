@@ -1,0 +1,48 @@
+<section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-1dp"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-primary md-hue-3">
+            <div class="md-toolbar-tools">
+                <h2>Actividad</h2>
+                <span flex></span>
+                <md-button ng-click="close('left')" class="md-icon-button" hide-gt-md flex="none">
+                    <md-icon>clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout-padding ng-controller="LeftCtrl">
+            <p>
+                This sidenav is locked open on your device. To go back to the default behavior,
+                narrow your display.
+            </p>
+        </md-content>
+    </md-sidenav>
+
+    <md-content flex layout="row" layout-align="center start" ng-cloak>
+        <div class="md-padding" flex>
+            <p>Mapa</p>
+            <a ng-click="toggle('left')">Left</a>
+            <a ng-click="toggle('right')">Right</a>
+        </div>
+    </md-content>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-1dp"
+                md-component-id="right"
+                md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-primary md-hue-3">
+            <div class="md-toolbar-tools">
+                <h2>Personaje</h2>
+                <span flex></span>
+                <md-button ng-click="close('right')" class="md-icon-button" hide-gt-md flex="none">
+                    <md-icon>clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content layout="column" layout-padding ng-controller="RightCtrl">
+            <div class="md-whiteframe-1dp kafhe-white-background" layout-margin>
+                <p class="character-name">{{ global.character.name }}</p>
+            </div>
+        </md-content>
+    </md-sidenav>
+</section>

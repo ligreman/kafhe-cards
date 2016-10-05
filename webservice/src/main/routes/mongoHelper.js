@@ -135,7 +135,6 @@ module.exports = function (app) {
             avatar: 'http://findicons.com/files/icons/1072/face_avatars/300/j01.png',
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
-                character: characters[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Character'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
                 collection: [{card: '1', level: 1}, {card: '2', level: 1}],
                 packs: [{amount: 2, place: '2'}],
@@ -144,10 +143,10 @@ module.exports = function (app) {
                 notifications: [
                     {
                         message: 'nForgeWeapon#' + JSON.stringify({"name": "Arma de todos los tiempos"}),
-                        type: 'forge', timestamp: date.getTime() + 10500
+                        type: 'system', timestamp: date.getTime() + 10500
                     }, {
                         message: 'nEquipDestroyArmor#' + JSON.stringify({"name": "Armadura caca", "tostem": "fuego"}),
-                        type: 'equipment', timestamp: date.getTime() + 1500
+                        type: 'skill', timestamp: date.getTime() + 1500
                     }
                 ]
             }
