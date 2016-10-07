@@ -90,13 +90,21 @@ md-tooltip {
     color: #f5f5f5;
 }
 
-.kafhe-white-background {
+.kafhe-background-primary-hue-3 {
+    background: #1B5E20;
+}
+
+.kafhe-background-white {
     background-color: #f5f5f5 !important;
     color: #222;
 }
 
 .kafhe-warn {
     color: #F44336 !important;
+}
+
+.kafhe-border-yellow {
+    border-color: #FDD835 !important;
 }
 
 .white {

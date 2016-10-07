@@ -21,8 +21,8 @@
             'textContinue': 'Continuar',
             'textYes': 'Sí',
             'textNo': 'No',
-            'tostem': 'Tostem',
-            'rune': 'Runa',
+            'fame': 'Fama',
+            'tostolares': 'Tostólares',
 
             // TIPOS
             'bladed': 'Cortante',

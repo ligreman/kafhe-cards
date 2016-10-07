@@ -1,5 +1,6 @@
-<section layout="row" flex>
+<section id="explore-page" layout="row" flex>
     <md-sidenav class="md-sidenav-left md-whiteframe-1dp"
+                ng-class="{ 'sidenav-small-screen': isSmallScreen() }"
                 md-component-id="left"
                 md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-primary md-hue-3">
@@ -12,10 +13,23 @@
             </div>
         </md-toolbar>
         <md-content layout-padding ng-controller="LeftCtrl">
-            <p>
-                This sidenav is locked open on your device. To go back to the default behavior,
-                narrow your display.
-            </p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your display.</p>
+            <p>This sidenav is locked open on your device. To go back to the default behavior, narrow your last.</p>
         </md-content>
     </md-sidenav>
 
@@ -28,6 +42,7 @@
     </md-content>
 
     <md-sidenav class="md-sidenav-right md-whiteframe-1dp"
+                ng-class="{ 'sidenav-small-screen': isSmallScreen() }"
                 md-component-id="right"
                 md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-primary md-hue-3">
@@ -40,7 +55,7 @@
             </div>
         </md-toolbar>
         <md-content layout="column" layout-padding ng-controller="RightCtrl">
-            <div class="md-whiteframe-1dp kafhe-white-background" layout-margin>
+            <div class="md-whiteframe-1dp kafhe-background-white" layout-margin>
                 <p class="character-name">{{ global.character.name }}</p>
             </div>
         </md-content>

@@ -5,6 +5,11 @@ header .md-toolbar-tools {
 header .logotipo {
     padding: 5px;
     /*min-width: 24px;*/
+    background-image: url(../img/k256.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
 }
 
 header .logotipo img {
@@ -16,6 +21,12 @@ header .button md-icon {
     font-size: 48px;
     width: 48px;
     height: 48px;
+}
+
+header .button md-icon.small-icon {
+    font-size: 36px;
+    width: 36px;
+    height: 36px;
 }
 
 header .button .btn-text {
@@ -49,4 +60,12 @@ header .button.active {
 
 .md-button.md-icon-button.custom-avatar-button {
     padding: 5px 8px 8px 5px;
+}
+
+.custom-mini-toolbar {
+    min-height: 40px;
+}
+
+.custom-mini-toolbar .md-toolbar-tools {
+    height: 40px;
 }

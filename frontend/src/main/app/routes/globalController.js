@@ -4,9 +4,9 @@
     //Controlador principal de todo el sistema.
     angular.module('kafhe.controllers')
         .controller('GlobalController',
-            ['$scope', '$rootScope', '$translate', '$location', '$cookies',
+            ['$scope', '$rootScope', '$translate', '$location', '$cookies', '$mdMedia',
                 'CONFIG', 'ROUTES', 'growl', 'KGame', '$log', 'API',
-                function ($scope, $rootScope, $translate, $location, $cookies,
+                function ($scope, $rootScope, $translate, $location, $cookies, $mdMedia,
                           CONFIG, ROUTES, growl, KGame, $log, API) {
                     // Objeto que almacena la información básica. Lo inicializo
                     $scope.global = {};
@@ -35,6 +35,8 @@
                     $scope.changeLang = fnChangeLang;
                     $scope.growlNotification = fnGrowlNotification;
                     $scope.toggleProfileMenu = fnToggleProfile;
+                    $scope.isUserLeader = fnIsUserLeader;
+                    $scope.isSmallScreen = fnIsSmallScreen;
                     // $scope.pageRoute = fnPageRoute;
 
                     /************* FUNCIONES *************/
@@ -52,21 +54,22 @@
                             if (response) {
                                 nextVersion = response.data.version;
 
+                                $log.debug(" -> local version VS server version: " + $scope.version + " VS " + nextVersion);
+                                $log.debug(" -> data loaded? ... " + $scope.global.loaded);
+
                                 if (nextVersion !== $scope.version) {
                                     $log.debug("...new version of data...");
                                     $scope.global.loaded = false;
                                 }
 
                                 // Cargo los datos
-                                if (!$scope.global.loaded || !$scope.global.user || !$scope.global.gamedata.meals || !$scope.global.gamedata.drinks || !$scope.global.gamedata.skills || !$scope.global.gamedata.talents || !$scope.global.gamedata.objects || !$scope.global.gamedata.places) {
-                                    KGame.getGameData(function (user, meals, drinks, skills, talents, places, objects) {
+                                if (!$scope.global.loaded || !$scope.global.user || !$scope.global.gamedata.meals || !$scope.global.gamedata.drinks || !$scope.global.gamedata.talents) {
+                                    KGame.getGameData(function (user, meals, drinks, talents, cards) {
                                         // Actualizo las variables de información general
                                         $scope.global.gamedata.meals = meals;
                                         $scope.global.gamedata.drinks = drinks;
-                                        $scope.global.gamedata.skills = skills;
+                                        $scope.global.gamedata.cards = cards;
                                         $scope.global.gamedata.talents = talents;
-                                        $scope.global.gamedata.places = places;
-                                        $scope.global.gamedata.objects = objects;
                                         $scope.global.loaded = true;
 
                                         // Ahora actualizo y proceso los datos del usuario
@@ -143,9 +146,9 @@
                         // Variables para pintar en el front
                         // Reputación
                         //$scope.global.print.toastPoints = $scope.Math.floor(user.game.stats.reputation / CONFIG.constReputationToToastProportion);
-                        $scope.global.print.tostolares = user.game.tostolares;
-                        $scope.global.print.fame = user.game.fame;
-                        $scope.global.print.rank = user.game.rank;
+                        // $scope.global.print.tostolares = user.game.tostolares;
+                        // $scope.global.print.fame = user.game.fame;
+                        // $scope.global.print.rank = user.game.rank;
 
                         $scope.global.user = user;
                         $scope.global.leader = user.leader;
@@ -309,5 +312,19 @@
                         $scope.showProfileMenu = !$scope.showProfileMenu;
                     }
 
+                    /**
+                     * Devuelve si el usuario es lider
+                     */
+                    function fnIsUserLeader() {
+                        return $scope.global.leader;
+                    }
+
+
+                    /**
+                     * Devuelve si la pantalla es pequeña o no
+                     */
+                    function fnIsSmallScreen() {
+                        return !$mdMedia('gt-sm');
+                    }
                 }]);
 })();

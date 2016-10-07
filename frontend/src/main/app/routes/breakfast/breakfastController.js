@@ -16,7 +16,10 @@
 
 
                     function fnHasOrdered() {
-                        return $scope.global.user.game.order.meal !== null || $scope.global.user.game.order.drink !== null;
+                        if ($scope.global.user && $scope.global.user.game) {
+                            return $scope.global.user.game.order.meal !== null || $scope.global.user.game.order.drink !== null;
+                        }
+                        return false;
                     }
 
                     // Actualizamos mis datos de partida en caso de que haga falta

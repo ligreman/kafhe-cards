@@ -3,3 +3,11 @@
     font-weight: bold;
     font-size: 1.1rem;
 }
+
+#explore-page md-sidenav {
+    top: 104px;
+}
+
+#explore-page md-sidenav.sidenav-small-screen {
+    top: 88px;
+}
