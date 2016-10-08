@@ -101,8 +101,8 @@
                      */
                     function fnUpdateUserObject(user) {
                         //Sacar del objeto user el personaje
-                        $scope.global.character = user.game.character;
-                        user.game.character = null;
+                        // $scope.global.character = user.game.character;
+                        // user.game.character = null;
 
                         /*
                          // Saco el arma equipado
@@ -149,6 +149,13 @@
                         // $scope.global.print.fame = user.game.fame;
                         // $scope.global.print.rank = user.game.rank;
 
+                        // Datos de las cartas
+                        var miColeccion = [];
+                        user.game.collection.forEach(function (card) {
+                            miColeccion.push($scope.global.gamedata.cards[card.card]);
+                        });
+                        user.game.collection = miColeccion;
+
                         $scope.global.user = user;
                         $scope.global.leader = user.leader;
 
@@ -157,6 +164,7 @@
                         $scope.global.gamedata.caller = user.game.gamedata.caller;
                         $scope.global.gamedata.repeat = user.game.gamedata.repeat;
                         user.game.gamedata = null;
+
 
                         /*var cantidad = user.game.stats.reputation % CONFIG.constReputationToToastProportion;
                          // Lo paso de (0 a config) a un valor 0-100%
@@ -299,6 +307,7 @@
                                 repeat: null,
                                 meals: [],
                                 drinks: [],
+                                cards: [],
                                 talents: []
                             },
                             print: {},

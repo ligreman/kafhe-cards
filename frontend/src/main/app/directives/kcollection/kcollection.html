@@ -1,0 +1,68 @@
+<md-content>
+    <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar">
+        <div class="md-toolbar-tools"><span>Lugares</span></div>
+    </md-toolbar>
+
+    <md-grid-list
+            md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5"
+            md-row-height="2:3"
+            md-gutter="8px" md-gutter-gt-sm="4px">
+
+        <md-grid-tile ng-repeat="card in collection | filter:isPlace"
+                      md-rowspan="1"
+                      md-colspan="1"
+                      ng-class="">
+            <md-icon>android</md-icon>
+            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+        </md-grid-tile>
+
+        <md-grid-tile ng-repeat="card in collection track by $index"
+                      md-rowspan="1"
+                      md-colspan="1"
+                      ng-class="">
+            <md-icon>android</md-icon>
+            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+        </md-grid-tile>
+        <md-grid-tile ng-repeat="card in collection track by $index"
+                      md-rowspan="1"
+                      md-colspan="1"
+                      ng-class="">
+            <md-icon>android</md-icon>
+            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
+
+    <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar margin-top-20">
+        <div class="md-toolbar-tools"><span>Lugares</span></div>
+    </md-toolbar>
+
+    <md-grid-list
+            md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5"
+            md-row-height="2:3"
+            md-gutter="8px" md-gutter-gt-sm="4px">
+
+        <md-grid-tile ng-repeat="card in collection | filter:isPlace"
+                      md-rowspan="1"
+                      md-colspan="1"
+                      ng-class="">
+            <md-icon>android</md-icon>
+            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+        </md-grid-tile>
+
+        <md-grid-tile ng-repeat="card in collection track by $index"
+                      md-rowspan="1"
+                      md-colspan="1"
+                      ng-class="">
+            <md-icon>android</md-icon>
+            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+        </md-grid-tile>
+        <md-grid-tile ng-repeat="card in collection track by $index"
+                      md-rowspan="1"
+                      md-colspan="1"
+                      ng-class="">
+            <md-icon>android</md-icon>
+            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
+
+</md-content>

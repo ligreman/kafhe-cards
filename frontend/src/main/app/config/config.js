@@ -33,6 +33,9 @@
                 explore: 2,// durante la semana, mientras se ejecutan los juegos. También meter y modificar tu pedido.
                 resolution: 3,// una vez lanzado el desayuno, se muestran los resultados. No puedes hacer nada, ni modificar pedido, ni forja, habilidades...
                 closed: 4 //
+            },
+            cardTypes: {
+                place: 'place'
             }
         });
 })();
