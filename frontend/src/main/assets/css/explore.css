@@ -11,3 +11,20 @@
 #explore-page md-sidenav.sidenav-small-screen {
     top: 88px;
 }
+
+.character-opener {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 0 10px 10px;
+    border-bottom: 5px solid #1B5E20;
+    border-bottom-left-radius: 50px;
+}
+
+#planning-page md-card {
+
+}
+
+#planning-page md-card md-card-title {
+    padding: 0 16px 8px 16px;
+}

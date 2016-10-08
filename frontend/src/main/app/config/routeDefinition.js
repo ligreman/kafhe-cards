@@ -7,6 +7,7 @@
             loginValidation: '/login',
             error: '/error',
             home: '/home',
+            planning: '/planning',
             explore: '/explore',
             team: '/team',
             breakfast: '/breakfast',

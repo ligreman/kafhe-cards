@@ -9,7 +9,10 @@
             replace: 'true',
             scope: true,
             templateUrl: 'app/directives/kheader/kheader.html',
-            controller: ['$scope', 'API', 'KSession', function ($scope, API, KSession) {
+            controller: ['$scope', 'API', 'KSession', 'CONSTANTS', function ($scope, API, KSession, CONSTANTS) {
+
+                // Variables publicadas
+                $scope.gameStatuses = CONSTANTS.gameStatuses;
 
                 // Funciones publicadas
                 // $scope.btnProfileMenu = fnBtnProfileMenu;

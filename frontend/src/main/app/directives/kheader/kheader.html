@@ -5,23 +5,36 @@
 
             <div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-class="{'active': isCurrentPage('home')}" ng-click="goToPage('home')">
-                <span><md-icon ng-class="{ 'small-icon': isSmallScreen() }">bubble_chart</md-icon>
-                    <span class="btn-text" hide show-gt-sm> {{ 'menuGames' | translate }}</span></span>
+                <span>
+                    <md-icon ng-class="{ 'small-icon': isSmallScreen() }">bubble_chart</md-icon>
+                    <span class="btn-text" hide show-gt-sm> {{ 'menuGames' | translate }}</span>
+                </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuGames' | translate }}</md-tooltip>
             </div>
             <div flex layout-fill layout="row" layout-align="center center" class="button"
+                 ng-if="global.gamedata.status === gameStatuses.planning"
+                 ng-class="{'active': isCurrentPage('planning')}" ng-click="goToPage('planning')">
+                <span>
+                    <md-icon ng-class="{ 'small-icon': isSmallScreen() }">hourglass_empty</md-icon>
+                    <span class="btn-text" hide show-gt-sm> {{ 'menuPlanning' | translate }}</span>
+                </span>
+                <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuPlanning' | translate }}</md-tooltip>
+            </div>
+            <div flex layout-fill layout="row" layout-align="center center" class="button"
+                 ng-if="global.gamedata.status === gameStatuses.explore"
                  ng-class="{'active': isCurrentPage('explore')}" ng-click="goToPage('explore')">
-                <span><md-icon ng-class="{ 'small-icon': isSmallScreen() }">explore</md-icon>
-                <span class="btn-text" hide
-                      show-gt-sm> {{ 'menuExplore' | translate }}</span></span>
+                <span>
+                    <md-icon ng-class="{ 'small-icon': isSmallScreen() }">explore</md-icon>
+                    <span class="btn-text" hide show-gt-sm> {{ 'menuExplore' | translate }}</span>
+                </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuExplore' | translate }}</md-tooltip>
             </div>
             <div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-class="{'active': isCurrentPage('team')}" ng-click="goToPage('explore')">
-                <span><md-icon ng-class="{ 'small-icon': isSmallScreen() }">face</md-icon>
-                <span class="btn-text" hide
-                      show-gt-sm> {{ 'menuTeam' | translate }}</span></span>
-                <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuTeam' | translate }}</md-tooltip>
+                <span><md-icon ng-class="{ 'small-icon': isSmallScreen() }">view_comfy</md-icon>
+                    <span class="btn-text" hide
+                          show-gt-sm> {{ 'menuCollection' | translate }}</span></span>
+                <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuCollection' | translate }}</md-tooltip>
             </div>
             <div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-class="{'active': isCurrentPage('breakfast')}" ng-click="goToPage('breakfast')">

@@ -5,9 +5,9 @@
     angular.module('kafhe.controllers')
         .controller('GlobalController',
             ['$scope', '$rootScope', '$translate', '$location', '$cookies', '$mdMedia',
-                'CONFIG', 'ROUTES', 'growl', 'KGame', '$log', 'API',
+                'CONFIG', 'ROUTES', 'growl', 'KGame', '$log', 'API', 'CONSTANTS',
                 function ($scope, $rootScope, $translate, $location, $cookies, $mdMedia,
-                          CONFIG, ROUTES, growl, KGame, $log, API) {
+                          CONFIG, ROUTES, growl, KGame, $log, API, CONSTANTS) {
                     // Objeto que almacena la información básica. Lo inicializo
                     $scope.global = {};
                     fnClearGlobalVars();
@@ -37,7 +37,6 @@
                     $scope.toggleProfileMenu = fnToggleProfile;
                     $scope.isUserLeader = fnIsUserLeader;
                     $scope.isSmallScreen = fnIsSmallScreen;
-                    // $scope.pageRoute = fnPageRoute;
 
                     /************* FUNCIONES *************/
                     /**
@@ -152,6 +151,12 @@
 
                         $scope.global.user = user;
                         $scope.global.leader = user.leader;
+
+                        $scope.global.gamedata.players = user.game.gamedata.players;
+                        $scope.global.gamedata.status = user.game.gamedata.status;
+                        $scope.global.gamedata.caller = user.game.gamedata.caller;
+                        $scope.global.gamedata.repeat = user.game.gamedata.repeat;
+                        user.game.gamedata = null;
 
                         /*var cantidad = user.game.stats.reputation % CONFIG.constReputationToToastProportion;
                          // Lo paso de (0 a config) a un valor 0-100%
@@ -288,12 +293,13 @@
                             character: {},
                             leader: false,
                             gamedata: {
+                                players: [],
+                                caller: null,
+                                status: null,
+                                repeat: null,
                                 meals: [],
                                 drinks: [],
-                                skills: [],
-                                talents: [],
-                                places: [],
-                                objects: []
+                                talents: []
                             },
                             print: {},
                             skills: [],
@@ -326,5 +332,6 @@
                     function fnIsSmallScreen() {
                         return !$mdMedia('gt-sm');
                     }
+
                 }]);
 })();

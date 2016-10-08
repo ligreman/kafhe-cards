@@ -26,6 +26,15 @@
                     }
                 })
 
+                .when(ROUTES.planning, {
+                    templateUrl: 'app/routes/planning/planningView.html',
+                    controller: 'PlanningController',
+                    access: {
+                        //Requiere login para acceder
+                        loginRequired: true
+                    }
+                })
+
                 .when(ROUTES.explore, {
                     templateUrl: 'app/routes/explore/exploreView.html',
                     controller: 'ExploreController',
@@ -36,13 +45,13 @@
                 })
 
                 /*.when(ROUTES.team, {
-                    templateUrl: 'app/routes/team/teamView.html',
-                    controller: 'TeamController',
-                    access: {
-                        //Requiere login para acceder
-                        loginRequired: true
-                    }
-                })*/
+                 templateUrl: 'app/routes/team/teamView.html',
+                 controller: 'TeamController',
+                 access: {
+                 //Requiere login para acceder
+                 loginRequired: true
+                 }
+                 })*/
 
                 .when(ROUTES.breakfast, {
                     templateUrl: 'app/routes/breakfast/breakfastView.html',

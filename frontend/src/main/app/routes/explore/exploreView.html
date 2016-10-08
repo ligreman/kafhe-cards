@@ -1,4 +1,5 @@
 <section id="explore-page" layout="row" flex>
+    <!-- PANEL IZQUIERDO -->
     <md-sidenav class="md-sidenav-left md-whiteframe-1dp"
                 ng-class="{ 'sidenav-small-screen': isSmallScreen() }"
                 md-component-id="left"
@@ -33,23 +34,31 @@
         </md-content>
     </md-sidenav>
 
+    <!-- CONTENIDO -->
     <md-content flex layout="row" layout-align="center start" ng-cloak>
         <div class="md-padding" flex>
             <p>Mapa</p>
             <a ng-click="toggle('left')">Left</a>
-            <a ng-click="toggle('right')">Right</a>
+
+
+            <div class="character-opener">
+                <md-button ng-click="toggle('right')" class="md-icon-button">
+                    <md-icon>face</md-icon>
+                </md-button>
+                <md-tooltip md-direction="left" md-delay="1000">Personaje</md-tooltip>
+            </div>
         </div>
     </md-content>
 
+    <!-- PANEL DERECHO -->
     <md-sidenav class="md-sidenav-right md-whiteframe-1dp"
                 ng-class="{ 'sidenav-small-screen': isSmallScreen() }"
-                md-component-id="right"
-                md-is-locked-open="$mdMedia('gt-md')">
+                md-component-id="right">
         <md-toolbar class="md-primary md-hue-3">
             <div class="md-toolbar-tools">
                 <h2>Personaje</h2>
                 <span flex></span>
-                <md-button ng-click="close('right')" class="md-icon-button" hide-gt-md flex="none">
+                <md-button ng-click="close('right')" class="md-icon-button" flex="none">
                     <md-icon>clear</md-icon>
                 </md-button>
             </div>

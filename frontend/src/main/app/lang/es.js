@@ -7,8 +7,8 @@
             // MENU
             'menuGames': 'Juegos',
             'menuExplore': 'Explorar',
-            'menuTeam': 'Equipo',
-            'menuStorage': 'Taller',
+            "menuCollection": 'Colección',
+            'menuPlanning': 'Preparativos',
             'menuShop': 'Tienda',
             'menuBreakfast': 'Cafetería',
             'menuProfile': 'Perfil',

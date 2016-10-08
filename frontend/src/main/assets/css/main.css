@@ -131,6 +131,14 @@ md-tooltip {
     background: #1B5E20;
 }
 
+.y-scroll {
+    overflow-y: auto;
+}
+
+.x-scroll {
+    overflow-x: auto;
+}
+
 /***************************** HOME ******************************/
 
 .shopTitle {
