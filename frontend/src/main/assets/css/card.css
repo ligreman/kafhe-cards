@@ -1,0 +1,55 @@
+md-grid-list.card-list md-grid-tile figure {
+    border: 4px solid #808080;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+    opacity: 0.8;
+}
+
+md-grid-list.card-list md-grid-tile figure:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    opacity: 1;
+}
+
+md-grid-list.card-list md-grid-tile figure img {
+    /*max-width: 100%;*/
+    /*height: auto;*/
+    max-height: 100%;
+    width: auto;
+    filter: grayscale(100%);
+}
+
+md-grid-list.card-list md-grid-tile figure:hover img {
+    filter: none;
+}
+
+md-grid-list.card-list md-grid-tile.fire figure {
+    border-color: #B71C1C;
+}
+
+md-grid-list.card-list md-grid-tile.ice figure {
+    border-color: #136bc9;
+}
+
+md-grid-list.card-list md-grid-tile.poison figure {
+    border-color: #2E7D32;
+}
+
+md-grid-list.card-list md-grid-tile.electricity figure {
+    border-color: #9C27B0;
+}
+
+md-grid-list md-grid-tile md-grid-tile-footer {
+    background: rgba(0, 0, 0, .60);
+}
+
+md-grid-tile-header, md-grid-tile-footer {
+    z-index: 10;
+}
+
+md-grid-tile-header figcaption, md-grid-tile-footer figcaption {
+    text-align: center;
+    width: 100%;
+}

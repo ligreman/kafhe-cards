@@ -41,14 +41,15 @@ module.exports = function (app) {
 
     var cards = [
         {
-            id: '1', title: 'Pistola', 'type': 'weapon', element: 'none', level: 1, effects: []
+            id: '1', name: 'Pistola', 'type': 'weapon', element: 'fire', effects: []
         },
         {
-            id: '2', title: 'Casa Manolo', 'type': 'place', element: 'none', level: 1, effects: [],
+            id: '2', name: 'Casa Manolo', 'type': 'place', element: 'none', effects: [],
             data: {
                 place: {
                     lat: -49.85,
                     long: -107.2,
+                    level: 1,
                     region: 'Booooo',
                     'type': 'capital',
                     adjacent_places: ['3', '4']
@@ -56,11 +57,12 @@ module.exports = function (app) {
             }
         },
         {
-            id: '3', title: 'Ciudad jarl', 'type': 'place', element: 'none', level: 1, effects: [],
+            id: '3', name: 'Ciudad jarl', 'type': 'place', element: 'none', effects: [],
             data: {
                 place: {
                     lat: -49.05,
                     long: -103.16,
+                    level: 2,
                     region: 'Booooo',
                     'type': 'town',
                     adjacent_places: ['2']
@@ -68,12 +70,13 @@ module.exports = function (app) {
             }
         },
         {
-            id: '4', title: 'Lago malo', 'type': 'place', element: 'none', level: 1, effects: [],
+            id: '4', name: 'Lago malo', 'type': 'place', element: 'none', effects: [],
             data: {
                 place: {
                     lat: -51.74,
                     long: -106.92,
                     region: 'Booooo',
+                    level: 1,
                     'type': 'zone',
                     adjacent_places: ['2']
                 }

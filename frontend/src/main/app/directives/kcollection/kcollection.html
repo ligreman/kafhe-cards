@@ -1,32 +1,35 @@
 <md-content>
-    <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar">
+    <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar margin-bottom-10">
         <div class="md-toolbar-tools"><span>Lugares</span></div>
     </md-toolbar>
 
-    <md-grid-list
-            md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5"
-            md-row-height="2:3"
-            md-gutter="8px" md-gutter-gt-sm="4px">
+    <md-grid-list class="card-list"
+                  md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5"
+                  md-row-height="2:3"
+                  md-gutter="8px">
 
         <md-grid-tile ng-repeat="card in collection | filter:isPlace"
                       md-rowspan="1"
                       md-colspan="1"
-                      ng-class="">
-            <md-icon>android</md-icon>
-            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+                      ng-class="card.element">
+            <md-grid-tile-header>{{card.name}}</md-grid-tile-header>
+            <img ng-src="assets/img/cards/{{card.id}}.jpg">
+            <md-grid-tile-footer>{{card.name}}</md-grid-tile-footer>
         </md-grid-tile>
+
+        <!--{"id":"2","type":"place","effects":[],"level":1,"element":"none","data":{"place":{"lat":-49.85,"long":-107.2,"region":"Booooo","type":"capital","adjacent_places":["3","4"]}}}-->
 
         <md-grid-tile ng-repeat="card in collection track by $index"
                       md-rowspan="1"
                       md-colspan="1"
-                      ng-class="">
+                      ng-class="card.element">
             <md-icon>android</md-icon>
             <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
         </md-grid-tile>
         <md-grid-tile ng-repeat="card in collection track by $index"
                       md-rowspan="1"
                       md-colspan="1"
-                      ng-class="">
+                      ng-class="card.element">
             <md-icon>android</md-icon>
             <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
         </md-grid-tile>

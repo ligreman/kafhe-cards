@@ -144,6 +144,10 @@ md-tooltip {
     margin-top: 20px;
 }
 
+.margin-bottom-10 {
+    margin-bottom: 10px;
+}
+
 /******************* MATERIAL RE-DESIGN ********************************/
 md-toolbar.slim-toolbar {
     height: 36px;
