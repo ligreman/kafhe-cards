@@ -305,6 +305,7 @@ module.exports = function (grunt) {
         if (grunt.option('allow-remote')) {
             grunt.config.set('connect.options.hostname', '0.0.0.0');
         }
+        grunt.config.set('connect.options.hostname', '0.0.0.0');
 
         grunt.task.run([
             'clean:server',

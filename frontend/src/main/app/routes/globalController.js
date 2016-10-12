@@ -152,7 +152,9 @@
                         // Datos de las cartas
                         var miColeccion = [];
                         user.game.collection.forEach(function (card) {
-                            miColeccion.push($scope.global.gamedata.cards[card.card]);
+                            var el = $scope.global.gamedata.cards[card.card];
+                            el.level = card.level;
+                            miColeccion.push(el);
                         });
                         user.game.collection = miColeccion;
 

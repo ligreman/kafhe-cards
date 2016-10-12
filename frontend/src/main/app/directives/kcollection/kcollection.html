@@ -12,26 +12,31 @@
                       md-rowspan="1"
                       md-colspan="1"
                       ng-class="card.element">
-            <md-grid-tile-header>{{card.name}}</md-grid-tile-header>
-            <img ng-src="assets/img/cards/{{card.id}}.jpg">
-            <md-grid-tile-footer>{{card.name}}</md-grid-tile-footer>
+            <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+            <div class="card-level">{{ roman[card.level] }}</div>
+            <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+            <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
         </md-grid-tile>
 
         <!--{"id":"2","type":"place","effects":[],"level":1,"element":"none","data":{"place":{"lat":-49.85,"long":-107.2,"region":"Booooo","type":"capital","adjacent_places":["3","4"]}}}-->
 
-        <md-grid-tile ng-repeat="card in collection track by $index"
+        <md-grid-tile ng-repeat="card in collection"
                       md-rowspan="1"
                       md-colspan="1"
                       ng-class="card.element">
-            <md-icon>android</md-icon>
-            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+            <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+            <div class="card-level">{{ roman[card.level] }}</div>
+            <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+            <md-grid-tile-footer>{{card.name}}</md-grid-tile-footer>
         </md-grid-tile>
-        <md-grid-tile ng-repeat="card in collection track by $index"
+        <md-grid-tile ng-repeat="card in collection"
                       md-rowspan="1"
                       md-colspan="1"
                       ng-class="card.element">
-            <md-icon>android</md-icon>
-            <md-grid-tile-footer><h3>{{card.id}}</h3></md-grid-tile-footer>
+            <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+            <div class="card-level">{{card.level}}</div>
+            <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+            <md-grid-tile-footer>{{card.name}}</md-grid-tile-footer>
         </md-grid-tile>
     </md-grid-list>
 

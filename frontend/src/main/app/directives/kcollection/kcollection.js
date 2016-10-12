@@ -10,6 +10,8 @@
          };*/
 
         var controller = ['$scope', 'CONSTANTS', function ($scope, CONSTANTS) {
+            $scope.roman = CONSTANTS.roman;
+            console.log($scope.roman[2]);
             console.log($scope.collection);
             $scope.a = 987;
 
