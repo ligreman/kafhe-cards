@@ -22,8 +22,8 @@ var corsOptions = {
     //methods: ['GET', 'POST', 'OPTIONS'],
     //allowedHeaders: ['Connection', 'Cache-Control', 'Pragma', 'Host', 'Origin', 'Referer', 'Content-Type', 'Accept', 'User-Agent', 'Authorization', 'WWW-Authenticate']
 };
-//app.options('*', cors());
-app.use(cors(corsOptions));
+app.options('*', cors());
+app.use(cors());
 
 
 /*app.use(function (req, res, next) {

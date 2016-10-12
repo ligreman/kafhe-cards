@@ -9,16 +9,33 @@
          console.log(scope.collection);
          };*/
 
-        var controller = ['$scope', 'CONSTANTS', function ($scope, CONSTANTS) {
+        var controller = ['$scope', 'CONSTANTS', '$mdDialog', function ($scope, CONSTANTS, $mdDialog) {
             $scope.roman = CONSTANTS.roman;
             console.log($scope.roman[2]);
             console.log($scope.collection);
             $scope.a = 987;
 
-            $scope.isPlace = function (card) {
-                return card.type === CONSTANTS.cardTypes.place;
-            };
+            $scope.isPlace = fnIsPlace;
+            $scope.showCardDialog = fnShowCardDialog;
 
+            /** FUNCIONES **/
+
+            function fnIsPlace(card) {
+                return card.type === CONSTANTS.cardTypes.place;
+            }
+
+            function fnShowCardDialog(event) {
+                $mdDialog.show({
+                    locals: {},
+                    controller: 'ShowCard',
+                    templateUrl: 'app/components/dialogs/showCard/show-card.html',
+                    scope: $scope,
+                    preserveScope: true,
+                    clickOutsideToClose: true,
+                    escapeToClose: true,
+                    targetEvent: event
+                });
+            }
 
             // var cardsDB = TAFFY($scope.cardsDatabase);
         }];

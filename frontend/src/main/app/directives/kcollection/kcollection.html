@@ -9,8 +9,8 @@
                   md-gutter="8px">
 
         <md-grid-tile ng-repeat="card in collection | filter:isPlace"
-                      md-rowspan="1"
-                      md-colspan="1"
+                      md-rowspan="1" md-colspan="1"
+                      ng-click="showCardDialog($event)"
                       ng-class="card.element">
             <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
             <div class="card-level">{{ roman[card.level] }}</div>
