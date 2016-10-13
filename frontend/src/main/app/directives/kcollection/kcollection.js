@@ -24,15 +24,17 @@
                 return card.type === CONSTANTS.cardTypes.place;
             }
 
-            function fnShowCardDialog(event) {
+            function fnShowCardDialog(event, card) {
                 $mdDialog.show({
-                    locals: {},
                     controller: 'ShowCard',
                     templateUrl: 'app/components/dialogs/showCard/show-card.html',
                     scope: $scope,
                     preserveScope: true,
                     clickOutsideToClose: true,
                     escapeToClose: true,
+                    locals: {
+                        card: card
+                    },
                     targetEvent: event
                 });
             }
