@@ -41,16 +41,19 @@ module.exports = function (app) {
 
     var cards = [
         {
-            id: '1', name: 'Pistola', 'type': 'weapon', element: 'fire', effects: []
+            id: '1', name: 'Pistola', 'type': 'weapon', element: 'fire', effects: [],
+            contained_in_packs: [{category: 'place1', frequency: 50}]
         },
         {
             id: '2', name: 'Casa Manolo', 'type': 'place', element: 'none', effects: [],
+            contained_in_packs: [{category: 'general', frequency: 90}],
             data: {
                 place: {
                     lat: -49.85,
                     long: -107.2,
                     level: 1,
                     region: 'Booooo',
+                    pack_reward: 'general',
                     'type': 'capital',
                     adjacent_places: ['3', '4']
                 }
@@ -58,12 +61,14 @@ module.exports = function (app) {
         },
         {
             id: '3', name: 'Ciudad jarl', 'type': 'place', element: 'none', effects: [],
+            contained_in_packs: [{category: 'place1', frequency: 30}],
             data: {
                 place: {
                     lat: -49.05,
                     long: -103.16,
                     level: 2,
                     region: 'Booooo',
+                    pack_reward: 'place1',
                     'type': 'town',
                     adjacent_places: ['2']
                 }
@@ -71,12 +76,14 @@ module.exports = function (app) {
         },
         {
             id: '4', name: 'Lago malo', 'type': 'place', element: 'none', effects: [],
+            contained_in_packs: [{category: 'place1', frequency: 30}],
             data: {
                 place: {
                     lat: -51.74,
                     long: -106.92,
                     region: 'Booooo',
                     level: 1,
+                    pack_reward: 'place1',
                     'type': 'zone',
                     adjacent_places: ['2']
                 }
@@ -140,7 +147,7 @@ module.exports = function (app) {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
                 collection: [{card: '1', level: 1}, {card: '2', level: 1}],
-                packs: [{amount: 2, place: '2'}],
+                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: [

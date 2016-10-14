@@ -2,11 +2,12 @@ errUserPassNotValid - Usuario o contraseña no válidos
 errSession - Error en la sesión
 errMongo - Error de mongo
 errMongoSave - Error al salvar un objeto en Mongo
+errLogout - Error al salir
+errParamsNotFound - Faltan parámetros obligatorios en la petición
 
 errGameDataNotFound - Error al recuperar los datos del sistema
 errGameStatusNotAllowed - No se puede realizar esta acción en esta fase de la partida
 
-errLogout - Error al salir
 errOrderList - Error obteniendo la lista de usuarios con sus pedidos
 errOrderNewParams - Error al hacer nuevo pedido ya que faltan parámetros
 errOrderNewUnknown - Error inesperado ya que no viene el meal o drink que se quiere pedir
@@ -14,17 +15,22 @@ errOrderNewNotFound - No se ha encontrado el meal o drink que se quiere pedir
 errOrderAllNotFound - Error al buscar las meals o drinks en Mongo
 errOrderNotBothIto - O meal o drink no pueden ser ITO
 
-errCharacterHireStatus - No se puede contratar en este momento
-errCharacterHireNoMoney - No tienes dinero para contratar
 errCharacterNotFound - No hay personaje
-errCharacterCantChangeName - No puedes cambiar el nombre del personaje más veces
-errCharacterWrongNewName - Nuevo nombre no válido
-errCharacterNameAlreadyExists - El nombre ya existe
 errCharacterNotEnoughTalentPoints - No tienes suficientes puntos de talento
 errCharacterTalentNotFound - No existe alguno de los talentos
 errCharacterTalentDependencyFail - Ya tenías alguno de los talentos o no cumples los requisitos para adquirirlos
-errCharacterEquipNotFound - No se ha encontrado el equipo
-errCharacterWrongUnequip - Error desequipando un elemento (object o skill)
+errCharacterWrongGroup - El jugador destino de la acción no pertenece a tu grupo
+errCharacterDontHaveCard - No tienes esa carta en tu colección
+errCharacterNoSpaceSchedule - No puedes asignar más cartas de ese tipo al jugador
+
+errCardWrong - La carta no es correcta
+errCollectionDontHaveCards - No tienes las cartas en tu colección
+errCollectionCardsCantFuse - No puedes fusionar esas cartas, porque la carta o su nivel no coinciden
+errCollectionCardsCantLevelUp - No puedes fusionar esas cartas porque no pueden subir más de nivel
+
+errPacksNotFound - No tienes sobres de ese tipo
+errPacksErrorOpeningPack - Error al abrir el sobre
+errPackCategoryNotFound - No existe esa categoría de sobres
 
 errWeaponNoMoney - No tienes dinero para comprar
 

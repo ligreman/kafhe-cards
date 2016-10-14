@@ -169,7 +169,7 @@ module.exports = function (app) {
             order = req.body;
 
         // Compruebo el estado de la partida, si es 1 ó 2. Si no, error
-        if (user.game.gamedata.status !== 1 && user.game.gamedata.status !== 2) {
+        if (user.game.gamedata.status !== config.GAME_STATUS.planning && user.game.gamedata.status !== config.GAME_STATUS.explore) {
             console.tag('ORDER-DELETE').error('No se permite esta acción en el estado actual de la partida');
             responseUtils.responseError(res, 400, 'errGameStatusNotAllowed');
             return;

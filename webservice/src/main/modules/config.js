@@ -22,6 +22,24 @@ var DEFAULTS = {
     character: {
         stats_starting_value: 5,
         hire_cost: 1000 // Tostólares que cuesta
+    },
+
+    // Límites de cartas por personaje
+    schedule_limits: {
+        // A tu personaje
+        weapon: 1,
+        armor: 1,
+        skill: 3,
+        place: 1,
+        // Pones al enemigo
+        encounter: 1,
+        event: 1
+    },
+
+    // Colección de cartas
+    collection: {
+        card_max_level: 3,
+        pack_categories: ['']
     }
 };
 
@@ -34,31 +52,15 @@ var GAME_STATUS = {
     closed: 4// el viernes a las tantas se cierra la partida y se crea una nueva si era "recursiva"
 };
 
-// Tabla de ganancias de reputación
-var REPUTATION = {
-    // Reputación que se pierde al morir
-    lost_dead: 100,
-    // Reputación ganada por cada punto de acción al usar una habilidad
-    win_toast_point: 10,
-    // Reputación ganada por cada nivel de la habilidad usada
-    win_skill_level: 10,
-    // Reputación ganada por bloquear un ataque con éxito
-    win_parry_success: 10
-};
+var CARD_TYPES = ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'];
 
-var CAUSE = {
-    skill: 'skill',
-    damage: 'damage',
-    protection: 'protection'
-};
 
 //Exporto las funciones de la librería utils para que puedan accederse desde fuera
 module.exports = {
     SERVER: SERVER,
     GAME_STATUS: GAME_STATUS,
-    CAUSE: CAUSE,
-    REPUTATION: REPUTATION,
     DEFAULTS: DEFAULTS,
+    CARD_TYPES: CARD_TYPES,
     REGEXP: REGEXP
 };
 

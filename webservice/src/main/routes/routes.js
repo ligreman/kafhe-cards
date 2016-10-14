@@ -8,7 +8,8 @@ module.exports = function (app) {
 
     //Cargo los diferentes ficheros de rutas
     require('./admin')(app);
-    // require('./character')(app);
+    require('./character')(app);
+    require('./collection')(app);
     require('./game')(app);
     require('./login')(app);
     require('./order')(app);

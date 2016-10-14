@@ -5,7 +5,10 @@ module.exports = function (mongoose) {
         id: {type: String, index: true},
         name: {type: String, required: true},
         'type': {type: String, enum: ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'], required: true},
-        packs: [String],
+        contained_in_packs: [{
+            category: String,
+            frequency: Number
+        }],
         element: {type: String, enum: ['none', 'fire', 'ice', 'poison', 'electricity'], default: 'none'},
         effects: [String],
         data: {
@@ -14,6 +17,7 @@ module.exports = function (mongoose) {
                 long: Number,
                 region: String,
                 level: Number,
+                pack_reward: String,
                 'type': {type: String, enum: ['town', 'capital', 'zone', 'dungeon']},
                 adjacent_places: [String]
             }

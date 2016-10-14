@@ -22,34 +22,34 @@ module.exports = function (mongoose) {
             fame: {type: Number, default: 0},
             packs: [{
                 amount: {type: Number, default: 0},
-                place: {type: String, default: 0}
+                category: {type: String, default: 0}
             }],
             collection: [{
                 card: {type: String, default: null},
                 level: Number
             }],
             schedule: {
-                weapons: [{
+                weapon: [{
                     card: {type: String, default: null},
                     level: Number
                 }],
-                armors: [{
+                armor: [{
                     card: {type: String, default: null},
                     level: Number
                 }],
-                skills: [{
+                skill: [{
                     card: {type: String, default: null},
                     level: Number
                 }],
-                places: [{
+                place: [{
                     card: {type: String, default: null},
                     level: Number
                 }],
-                encounters: [{
+                encounter: [{
                     card: {type: String, default: null},
                     level: Number
                 }],
-                events: [{
+                event: [{
                     card: {type: String, default: null},
                     level: Number
                 }]
