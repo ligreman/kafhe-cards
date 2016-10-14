@@ -152,16 +152,6 @@ md-tooltip {
     margin-bottom: 10px;
 }
 
-/******************* MATERIAL RE-DESIGN ********************************/
-md-toolbar.slim-toolbar {
-    height: 36px;
-    min-height: 36px;
-}
-
-md-toolbar.slim-toolbar .md-toolbar-tools {
-    height: 36px;
-}
-
 /***************************** HOME ******************************/
 
 .shopTitle {

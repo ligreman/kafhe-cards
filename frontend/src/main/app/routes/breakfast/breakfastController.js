@@ -13,7 +13,7 @@
                     };
 
                     $scope.hasOrdered = fnHasOrdered;
-
+                    $scope.hasOrderedPreviously = fnHasOrderedPreviously;
 
                     function fnHasOrdered() {
                         if ($scope.global.user && $scope.global.user.game) {
@@ -22,11 +22,24 @@
                         return false;
                     }
 
+                    function fnHasOrderedPreviously() {
+                        if ($scope.global.user && $scope.global.user.game) {
+                            return $scope.global.user.game.last_order.meal !== null || $scope.global.user.game.last_order.drink !== null;
+                        }
+                        return false;
+                    }
+
                     // Actualizamos mis datos de partida en caso de que haga falta
                     $scope.updateGameData(function () {
-                        if ($scope.global.user.game.order && $scope.global.user.game.order.meal && $scope.global.user.game.order.drink) {
+                        if ($scope.global.user.game.order && $scope.global.user.game.order.meal) {
                             $scope.selection.meal = $scope.global.user.game.order.meal.id;
+                        }
+
+                        if ($scope.global.user.game.order && $scope.global.user.game.order.drink) {
                             $scope.selection.drink = $scope.global.user.game.order.drink.id;
+                        }
+
+                        if ($scope.global.user.game.order && $scope.global.user.game.order.ito) {
                             $scope.selection.ito = $scope.global.user.game.order.ito;
                         }
                     });
@@ -94,10 +107,18 @@
 
                     // Lo del otro día
                     $scope.btnLastDayOrder = function () {
-                        if ($scope.global.user.game.last_order && $scope.global.user.game.last_order.meal) {
-                            $scope.selection.meal = $scope.global.user.game.last_order.meal.id;
-                            $scope.selection.drink = $scope.global.user.game.last_order.drink.id;
-                            $scope.selection.ito = $scope.global.user.game.last_order.ito;
+                        if ($scope.global.user.game.last_order) {
+                            if ($scope.global.user.game.last_order.meal) {
+                                $scope.selection.meal = $scope.global.user.game.last_order.meal.id;
+                            }
+
+                            if ($scope.global.user.game.last_order.drink) {
+                                $scope.selection.drink = $scope.global.user.game.last_order.drink.id;
+                            }
+
+                            if ($scope.global.user.game.last_order.ito) {
+                                $scope.selection.ito = $scope.global.user.game.last_order.ito;
+                            }
                         } else {
                             $scope.growlNotification('warning', 'textNoLastOrder');
                         }

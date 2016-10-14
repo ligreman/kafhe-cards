@@ -51,7 +51,7 @@
             {{ (hasOrdered() ? 'textChangeOrder' : 'textNewOrder') | translate }}
         </md-button>
 
-        <md-button class="md-accent md-hue-1 md-raised" ng-click="btnLastDayOrder()" ng-show="hasOrdered()">
+        <md-button class="md-accent md-hue-1 md-raised" ng-click="btnLastDayOrder()" ng-show="hasOrderedPreviously()">
             <md-icon class="">event</md-icon>
             {{ 'textLastDayOrder' | translate }}
         </md-button>
