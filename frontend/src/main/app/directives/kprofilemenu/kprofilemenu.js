@@ -21,7 +21,7 @@
                     $mdDialog.show({
                         locals: {},
                         controller: 'LeaderPanel',
-                        templateUrl: 'app/components/dialogs/leaderPanel/leader-panel.html',
+                        templateUrl: '../../components/dialogs/profile/profile.html',
                         scope: $scope,
                         preserveScope: true,
                         clickOutsideToClose: true,

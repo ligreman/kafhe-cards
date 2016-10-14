@@ -58,13 +58,14 @@
                                     <md-icon class="md-accent md-hue-3">school</md-icon>
                                 </p>
                                 <p class="kafhe-white text-bold" flex>{{ global.user.alias }}</p>
-                                <p class="kafhe-white text-bold" flex="none">{{ global.user.game.rank }}</p>
+                                <p class="kafhe-white text-bold" flex="none">{{ global.user.game.rank }}
+                                    <md-tooltip md-direction="left" md-delay="700">Rango</md-tooltip>
+                                </p>
                             </div>
                         </md-menu-item>
                         <md-divider></md-divider>
                         <md-menu-item>
-                            <!--ng-click="goToPage('profile')"-->
-                            <md-button>
+                            <md-button ng-click="btnProfile($event)">
                                 <div layout="row" flex>
                                     <p class="kafhe-white" flex>{{ 'menuProfile' | translate }}</p>
                                     <md-icon md-menu-align-target>account_circle</md-icon>

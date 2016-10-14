@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('kafhe.controllers')
-        .controller('LeaderPanel',
+        .controller('Profile',
             ['$scope', '$rootScope', '$translate', '$mdDialog',
                 function ($scope, $rootScope, $translate, $mdDialog) {
 
