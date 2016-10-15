@@ -300,7 +300,6 @@
                     function fnClearGlobalVars() {
                         $scope.global = {
                             user: {},
-                            character: {},
                             leader: false,
                             gamedata: {
                                 players: [],

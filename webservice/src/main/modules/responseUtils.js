@@ -2,6 +2,7 @@
 
 var config = require('../modules/config'),
     console = process.console,
+    TAFFY = require('taffy'),
     math = require('mathjs');
 
 
@@ -15,12 +16,21 @@ var config = require('../modules/config'),
  * @returns {*}
  */
 var censureUser = function (user) {
-    user._id = null;
+    // user._id = null;
     user.game.gamedata._id = null;
 
     if (!config.SERVER.censure_user) {
         return user;
     }
+
+    // Schedule
+    var db = TAFFY(user.game.schedule.encounter);
+    var encuentros = db({player: user._id}).get();
+    user.game.schedule.encounter = encuentros;
+
+    db = TAFFY(user.game.schedule.event);
+    var events = db({player: user._id}).get();
+    user.game.schedule.event = events;
 
     return user;
 

@@ -34,3 +34,55 @@
 #planning-page md-card md-card-title {
     padding: 0 16px 8px 16px;
 }
+
+/*** SCHEDULE ***/
+md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title {
+    font-size: 1.3rem;
+}
+
+.schedule-container {
+}
+
+.schedule-card-header {
+    color: #616161;
+    font-weight: bold;
+    text-align: center;
+}
+
+.schedule-card-holder {
+    margin: 3px;
+    border: 4px dashed #616161;
+    border-radius: 10px;
+    overflow: hidden;
+    /*height: 100%;*/
+}
+
+.schedule-card-holder:hover {
+    cursor: pointer;
+}
+
+.schedule-card-holder p {
+    display: none;
+    font-size: 1.5rem;
+    color: #616161;
+}
+
+.schedule-card-holder p.small-font {
+    font-size: 1rem;
+}
+
+.schedule-card-holder:hover p {
+    display: block;
+}
+
+.schedule-card-holder md-icon {
+    margin: 25% 0;
+}
+
+.schedule-card-holder:hover md-icon {
+    display: none;
+}
+
+.schedule-card-holder img {
+    width: 100%;
+}

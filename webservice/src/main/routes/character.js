@@ -32,8 +32,13 @@ module.exports = function (app) {
             models.User.findOne({"username": params.username}).exec(),
             models.Card.find().exec()
         ]).spread(function (player, cards) {
+            var soyYoMismo = false;
+            if (player.username === myself.username) {
+                soyYoMismo = true;
+            }
+
             // Vienen todos los parámetros
-            if (!params.username || ! params.cardId) {
+            if (!params.username || !params.cardId) {
                 console.tag('CHARACTER-SCHEDULE').error('Faltan parámetros obligatorios en la petición');
                 responseUtils.responseError(res, 400, 'errParamsNotFound');
                 return;
@@ -67,10 +72,19 @@ module.exports = function (app) {
             var dbCards = TAFFY(cards);
             var cardInDB = dbCards({id: cardInCollection.card}).first();
 
-            if (config.CARD_TYPES.indexOf(cardInDB.type) === -1) {
-                console.tag('CHARACTER-SCHEDULE').error('La carta no es correcta');
-                responseUtils.responseError(res, 400, 'errCardWrong');
-                return;
+            // Según sea yo el pj destino o no, permito una carta u otra
+            if (soyYoMismo) {
+                if (config.CARD_TYPES_OWN.indexOf(cardInDB.type) === -1) {
+                    console.tag('CHARACTER-SCHEDULE').error('La carta no es correcta');
+                    responseUtils.responseError(res, 400, 'errCardWrong');
+                    return;
+                }
+            } else {
+                if (config.CARD_TYPES_ENEMY.indexOf(cardInDB.type) === -1) {
+                    console.tag('CHARACTER-SCHEDULE').error('La carta no es correcta');
+                    responseUtils.responseError(res, 400, 'errCardWrong');
+                    return;
+                }
             }
 
             // Ha de tener disponible hueco para ese tipo de carta
@@ -82,7 +96,15 @@ module.exports = function (app) {
             }
 
             // Una vez validado todo, añado la carta al usuario
-            player.game.schedule[cardInDB.type].push({card: cardInCollection.id, level: cardInCollection.level});
+            if (soyYoMismo) {
+                myself.game.schedule[cardInDB.type].push({card: cardInCollection.id, level: cardInCollection.level});
+            } else {
+                player.game.schedule[cardInDB.type].push({
+                    player: myself._id,
+                    card: cardInCollection.id,
+                    level: cardInCollection.level
+                });
+            }
 
             // La elimino de mi colección
             var newCollection = [];
@@ -95,16 +117,20 @@ module.exports = function (app) {
             myself.game.collection = newCollection;
 
             // Guardo el jugador y a mi mísmo
-            player.save(function (err) {
-                if (err) {
-                    console.tag('MONGO').error(err);
-                    // console.error(err);
-                    responseUtils.responseError(res, 400, 'errMongoSave');
-                } else {
-                    // A mí y termino
-                    responseUtils.saveUserAndResponse(res, myself, req.authInfo.access_token);
-                }
-            });
+            if (soyYoMismo) {
+                responseUtils.saveUserAndResponse(res, myself, req.authInfo.access_token);
+            } else {
+                player.save(function (err) {
+                    if (err) {
+                        console.tag('MONGO').error(err);
+                        // console.error(err);
+                        responseUtils.responseError(res, 400, 'errMongoSave');
+                    } else {
+                        // A mí y termino
+                        responseUtils.saveUserAndResponse(res, myself, req.authInfo.access_token);
+                    }
+                });
+            }
         });
     });
 

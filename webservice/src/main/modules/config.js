@@ -53,6 +53,8 @@ var GAME_STATUS = {
 };
 
 var CARD_TYPES = ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'];
+var CARD_TYPES_OWN = ['weapon', 'armor', 'skill', 'place'];
+var CARD_TYPES_ENEMY = ['encounter', 'event'];
 
 
 //Exporto las funciones de la librería utils para que puedan accederse desde fuera
@@ -61,6 +63,8 @@ module.exports = {
     GAME_STATUS: GAME_STATUS,
     DEFAULTS: DEFAULTS,
     CARD_TYPES: CARD_TYPES,
+    CARD_TYPES_OWN: CARD_TYPES_OWN,
+    CARD_TYPES_ENEMY: CARD_TYPES_ENEMY,
     REGEXP: REGEXP
 };
 

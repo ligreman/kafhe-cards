@@ -19,17 +19,18 @@
         </md-grid-tile>
 
         <!--{"id":"2","type":"place","effects":[],"level":1,"element":"none","data":{"place":{"lat":-49.85,"long":-107.2,"region":"Booooo","type":"capital","adjacent_places":["3","4"]}}}-->
+        <!---->
 
         <md-grid-tile ng-repeat="card in collection"
-                      md-rowspan="1"
-                      md-colspan="1"
+                      md-rowspan="1" md-colspan="1"
                       ng-click="showCardDialog($event, card)"
                       ng-class="card.element">
             <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
             <div class="card-level">{{ roman[card.level] }}</div>
             <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-            <md-grid-tile-footer>{{card.name}}</md-grid-tile-footer>
+            <md-grid-tile-footer>{{ card.name | limitTo:30 }}</md-grid-tile-footer>
         </md-grid-tile>
+
         <md-grid-tile ng-repeat="card in collection"
                       md-rowspan="1"
                       md-colspan="1"

@@ -46,10 +46,12 @@ module.exports = function (mongoose) {
                     level: Number
                 }],
                 encounter: [{
+                    player: {type: String, default: null},
                     card: {type: String, default: null},
                     level: Number
                 }],
                 event: [{
+                    player: {type: String, default: null},
                     card: {type: String, default: null},
                     level: Number
                 }]

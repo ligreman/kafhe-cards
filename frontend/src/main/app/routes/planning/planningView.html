@@ -3,42 +3,99 @@
     <!-- CONTENIDO -->
     <md-content layout="column" layout-gt-sm="row" ng-cloak layout-fill>
         <div class="y-scroll" flex layout-fill layout-padding>
+
             <md-card class="md-hue-3">
                 <md-card-header>
                     <md-card-avatar>
-                        <img src="img/logo.svg"/>
+                        <img ng-src="{{ global.user.avatar }}"/>
                     </md-card-avatar>
                     <md-card-header-text>
-                        <span class="md-title">Angular</span>
-                        <span class="md-subhead">Material</span>
+                        <span class="md-title big-title">{{global.user.alias}}</span>
+                        <span class="md-subhead">{{global.user.game.rank}}</span>
                     </md-card-header-text>
                 </md-card-header>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">Card header</span>
+                        <span class="md-headline">Equipo</span>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as
-                        well...
-                    </p>
+                <md-card-content class="schedule-container">
+                    <div layout="row" class="schedule-card-header">
+                        <div flex><p>Arma</p></div>
+                        <div flex><p>Armadura</p></div>
+                        <div flex><p>GPS</p></div>
+                    </div>
+                    <div layout="row">
+                        <div flex class="schedule-card-holder" layout-align="center center" layout="row">
+                            <img ng-if="global.user.game.schedule.weapon[0]"
+                                 ng-src="assets/img/cards/{{global.user.game.schedule.weapon[0].card}}.jpg"/>
+                            <md-icon ng-if="!global.user.game.schedule.weapon[0]"
+                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
+                                {{ 'textPlanningSelectCard' |translate }}
+                            </p>
+                        </div>
+                        <div flex class="schedule-card-holder" layout-align="center center" layout="row">
+                            <img ng-if="global.user.game.schedule.armor[0]"
+                                 ng-src="assets/img/cards/{{global.user.game.schedule.armor[0].card}}.jpg"/>
+                            <md-icon ng-if="!global.user.game.schedule.armor[0]"
+                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
+                                {{ 'textPlanningSelectCard' |translate }}
+                            </p>
+                        </div>
+                        <div flex class="schedule-card-holder" layout-align="center center" layout="row">
+                            <!--<img src="assets/img/cards/card-placeholder.jpg"/>-->
+                            <img ng-if="global.user.game.schedule.place[0]"
+                                 ng-src="assets/img/cards/{{global.user.game.schedule.place[0].card}}.jpg"/>
+                            <md-icon ng-if="!global.user.game.schedule.place[0]"
+                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
+                                {{ 'textPlanningSelectCard' |translate }}
+                            </p>
+                        </div>
+                    </div>
                 </md-card-content>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">Card header</span>
+                        <span class="md-headline">Habilidades</span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as
-                        well...
-                    </p>
+                    <div layout="row">
+                        <div flex class="schedule-card-holder" layout-align="center center" layout="row">
+                            <img ng-if="global.user.game.schedule.skill[0]"
+                                 ng-src="assets/img/cards/{{global.user.game.schedule.skill[0].card}}.jpg"/>
+                            <md-icon ng-if="!global.user.game.schedule.skill[0]"
+                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
+                                {{ 'textPlanningSelectCard' |translate }}
+                            </p>
+                        </div>
+                        <div flex class="schedule-card-holder" layout-align="center center" layout="row">
+                            <img ng-if="global.user.game.schedule.skill[1]"
+                                 ng-src="assets/img/cards/{{global.user.game.schedule.skill[1].card}}.jpg"/>
+                            <md-icon ng-if="!global.user.game.schedule.skill[1]"
+                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
+                                {{ 'textPlanningSelectCard' |translate }}
+                            </p>
+                        </div>
+                        <div flex class="schedule-card-holder" layout-align="center center" layout="row">
+                            <!--<img src="assets/img/cards/card-placeholder.jpg"/>-->
+                            <img ng-if="global.user.game.schedule.skill[2]"
+                                 ng-src="assets/img/cards/{{global.user.game.schedule.skill[2].card}}.jpg"/>
+                            <md-icon ng-if="!global.user.game.schedule.skill[2]"
+                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
+                                {{ 'textPlanningSelectCard' |translate }}
+                            </p>
+                        </div>
+                    </div>
                 </md-card-content>
             </md-card>
 
+            <!-- OPONENTES -->
             <md-card class="md-hue-1">
                 <md-card-header>
                     <md-card-avatar>
