@@ -32,12 +32,13 @@ module.exports = function (app) {
      */
     userRouter.get('/list', function (req, res, next) {
         // Saco la lista de jugadores de la partida
-        var players = req.user.game.gamedata.players;
+        var players = req.user.game.gamedata.players,
+            user = req.user;
 
         // Hago una búsqueda de esa lista de usuarios
         models.User
             .find({"_id": {"$in": players}})
-            .select('username alias avatar leader game.afk game.stats.fame game.rank -_id')
+            .select('username alias avatar leader game.afk game.stats.fame game.rank -_id game.schedule')
             .exec(function (error, playerList) {
                 if (error) {
                     console.tag('MONGO').error(error);
@@ -45,6 +46,29 @@ module.exports = function (app) {
                     utils.error(res, 400, 'errUserListNotFound');
                     return;
                 }
+
+                // Censuro el schedule de los usuarios mostrando sólo lo que me interesa
+                playerList.forEach(function (jugador) {
+                    // Si soy yo quito eventos y encuentros
+                    if (jugador.username === user.username) {
+                        jugador.game.schedule.encounter = null;
+                        jugador.game.schedule.event = null;
+                    } else {
+                        // Dejo los encounter y event del usuario que solicita la lista, y el resto fuera
+                        jugador.game.schedule.weapon = null;
+                        jugador.game.schedule.armor = null;
+                        jugador.game.schedule.place = null;
+                        jugador.game.schedule.skill = null;
+
+                        var db = TAFFY(jugador.game.schedule.encounter);
+                        var encuentros = db({player: user._id}).get();
+                        jugador.game.schedule.encounter = encuentros;
+
+                        db = TAFFY(jugador.game.schedule.event);
+                        var events = db({player: user._id}).get();
+                        jugador.game.schedule.event = events;
+                    }
+                });
 
                 responseUtils.responseJson(res, {"players": playerList}, req.authInfo.access_token);
             });

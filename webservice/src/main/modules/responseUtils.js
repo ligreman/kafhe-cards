@@ -24,13 +24,13 @@ var censureUser = function (user) {
     }
 
     // Schedule
-    var db = TAFFY(user.game.schedule.encounter);
-    var encuentros = db({player: user._id}).get();
-    user.game.schedule.encounter = encuentros;
+    // var db = TAFFY(user.game.schedule.encounter);
+    // var encuentros = db({player: user._id}).get();
+    user.game.schedule.encounter = null;
 
-    db = TAFFY(user.game.schedule.event);
-    var events = db({player: user._id}).get();
-    user.game.schedule.event = events;
+    // db = TAFFY(user.game.schedule.event);
+    // var events = db({player: user._id}).get();
+    user.game.schedule.event = null;
 
     return user;
 

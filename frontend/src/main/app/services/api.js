@@ -61,6 +61,23 @@
                 });
             },
 
+            // API de User
+            'character': function () {
+                var access_token = $cookies.get(CONFIG.sessionCookieName);
+
+                return $resource(CONFIG.webServiceUrl + 'character/:endpoint', {endpoint: ''}, {
+
+                    // Obtener la información del usuario actual y su partida
+                    schedule: {
+                        method: 'POST',
+                        headers: {'Authorization': 'Bearer ' + access_token},
+                        params: {
+                            endpoint: 'schedule'
+                        }
+                    }
+                });
+            },
+
             // API de Game
             'game': function () {
                 var access_token = $cookies.get(CONFIG.sessionCookieName);
