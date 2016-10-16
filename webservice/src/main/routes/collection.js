@@ -40,8 +40,8 @@ module.exports = function (app) {
 
             // Debo tener las cartas en mi colección
             var collection = TAFFY(user.game.collection);
-            var cardAInCollection = collection({_id: params.cardIdA}).first();
-            var cardBInCollection = collection({_id: params.cardIdB}).first();
+            var cardAInCollection = collection({_id: {like:params.cardIdA}}).first();
+            var cardBInCollection = collection({_id: {like:params.cardIdB}}).first();
 
             if (!cardAInCollection || !cardBInCollection) {
                 console.tag('COLLECTION-FUSION').error('No tienes las cartas en tu colección');

@@ -74,6 +74,11 @@
             'textShopBuy': '¿Quieres comprar {{name}} por {{points}} tostólares?',
             'textShopButtonBuy': 'Comprar por {{cost}} tostólares',
             'textPlanningSelectCard': 'Click para asignar carta',
+            'textPlanningWeapon': 'Arma',
+            'textPlanningArmor': 'Vestimenta',
+            'textPlanningGPS': 'GPS',
+            'textPlanningTeam': 'Equipo',
+            'textPlanningSkills': 'Habilidades',
 
             // INTERFAZ - HABILIDADES
             'textDuration': 'Duración',

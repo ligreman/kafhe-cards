@@ -165,7 +165,7 @@ md-grid-list.card-list md-grid-tile .card-level {
 .card-image-container .card-name {
     position: absolute;
     bottom: 0;
-    left: 0%;
+    left: 0;
     border-top: 6px solid #808080;
     width: 100%;
     text-align: center;

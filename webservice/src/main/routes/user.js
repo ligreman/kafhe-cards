@@ -9,6 +9,7 @@ module.exports = function (app) {
         responseUtils = require('../modules/responseUtils'),
         userRouter = express.Router(),
         mongoose = require('mongoose'),
+        TAFFY = require('taffy'),
         models = require('../models/models')(mongoose);
 
     //**************** USER ROUTER **********************
@@ -61,11 +62,11 @@ module.exports = function (app) {
                         jugador.game.schedule.skill = null;
 
                         var db = TAFFY(jugador.game.schedule.encounter);
-                        var encuentros = db({player: user._id}).get();
+                        var encuentros = db({player: {like: user._id}}).get();
                         jugador.game.schedule.encounter = encuentros;
 
                         db = TAFFY(jugador.game.schedule.event);
-                        var events = db({player: user._id}).get();
+                        var events = db({player: {like: user._id}}).get();
                         jugador.game.schedule.event = events;
                     }
                 });

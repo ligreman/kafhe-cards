@@ -60,7 +60,7 @@ module.exports = function (app) {
 
             // Debo tener la carta en mi colección
             var collection = TAFFY(myself.game.collection);
-            var cardInCollection = collection({_id: params.cardId}).first();
+            var cardInCollection = collection({_id: {like:params.cardId}}).first();
 
             if (!cardInCollection) {
                 console.tag('CHARACTER-SCHEDULE').error('No tienes esa carta en tu colección');

@@ -9,6 +9,7 @@
                 $scope.selectingOwn = {};
                 $scope.selectionEnemy = {};
                 $scope.selectingEnemy = {};
+                $scope.enemies = [];
 
                 $scope.cardSelection = fnCardSelection;
 
@@ -47,6 +48,7 @@
                     API.user().list({}, function (response) {
                         if (response) {
                             $scope.updateUserObject(response.data.user);
+                            $scope.enemies = response.data.players;
                             processData(response.data);
                         }
                     });

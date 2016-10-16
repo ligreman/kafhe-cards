@@ -45,6 +45,10 @@ module.exports = function (app) {
             contained_in_packs: [{category: 'place1', frequency: 50}]
         },
         {
+            id: '5', name: 'Encuentro', 'type': 'encounter', element: 'fire', effects: [],
+            contained_in_packs: [{category: 'place1', frequency: 50}]
+        },
+        {
             id: '2', name: 'Casa Manolo', 'type': 'place', element: 'none', effects: [],
             contained_in_packs: [{category: 'general', frequency: 90}],
             data: {
@@ -112,13 +116,15 @@ module.exports = function (app) {
 
     var date = new Date();
     var userId = new mongoose.Types.ObjectId;
+    var userId2 = new mongoose.Types.ObjectId;
+    var userId3 = new mongoose.Types.ObjectId;
 
     var game = [{
         _id: new mongoose.Types.ObjectId,
         repeat: true,
         status: 1,
         caller: null,
-        players: [userId]
+        players: [userId, userId2, userId3]
         /*notifications: [{
          message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
          type: 'fury', timestamp: date.getTime() + 10000
@@ -159,6 +165,41 @@ module.exports = function (app) {
                         type: 'skill', timestamp: date.getTime() + 1500
                     }
                 ]
+            }
+        },
+        {
+            _id: userId2,
+            username: 'pepe2',
+            password: "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", //1234
+            alias: 'Antoñete2', leader: true, times: 2, calls: 50, group: 1,
+            avatar: 'http://findicons.com/files/icons/1072/face_avatars/300/j02.png',
+            game: {
+                gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
+                rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
+                collection: [{card: '1', level: 1}, {card: '2', level: 1}],
+                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
+                order: {meal: null, drink: null, ito: true},
+                last_order: {meal: null, drink: null, ito: false},
+                notifications: [],
+                schedule: {
+                    encounter: [{player: userId, card: '5', level: 1}, {player: userId2, card: '5', level: 1}]
+                }
+            }
+        },
+        {
+            _id: userId3,
+            username: 'pepe3',
+            password: "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", //1234
+            alias: 'Antoñete3', leader: true, times: 2, calls: 50, group: 1,
+            avatar: 'http://findicons.com/files/icons/1072/face_avatars/300/j03.png',
+            game: {
+                gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
+                rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
+                collection: [{card: '1', level: 1}, {card: '2', level: 1}],
+                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
+                order: {meal: null, drink: null, ito: true},
+                last_order: {meal: null, drink: null, ito: false},
+                notifications: []
             }
         }
     ];
