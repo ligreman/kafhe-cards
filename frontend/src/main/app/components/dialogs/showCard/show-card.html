@@ -1,4 +1,4 @@
-<md-dialog class="dark-footer" ng-cloak>
+<md-dialog class="dark-footer">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>{{ card.name }}</h2>
@@ -19,7 +19,7 @@
                     <div class="card-level"><p>{{ roman[card.level] }}</p></div>
                 </div>
             </div>
-            <div flex layout-padding>
+            <div flex layout-padding class="card-detail">
                 <p class="text-bold">{{ card.name }}</p>
                 <p>{{ roman[card.level] }}</p>
                 <p>{{ card.type }}</p>

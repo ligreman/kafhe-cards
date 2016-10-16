@@ -14,7 +14,7 @@
                 $scope.cardSelection = fnCardSelection;
 
                 // Actualizo los datos del juego si hace falta
-                $scope.updateGameData(afterUpdate());
+                $scope.updateGameData(afterUpdate);
 
                 // Escucho el seleccionado de carta
                 KShare.listenData('card-scheduled', $scope, function (data) {
@@ -47,8 +47,6 @@
                     // Recupero del API los datos de todos los jugadores
                     API.user().list({}, function (response) {
                         if (response) {
-                            $scope.updateUserObject(response.data.user);
-                            $scope.enemies = response.data.players;
                             processData(response.data);
                         }
                     });
@@ -71,7 +69,8 @@
                                 skill: [false, false, false]
                             };
                         } else {
-                            // enemigos.push(player);
+                            $scope.enemies.push(player);
+
                             $scope.selectionEnemy[player.username] = {
                                 encounter: player.game.schedule.encounter,
                                 event: player.game.schedule.event
@@ -80,6 +79,7 @@
                                 encounter: [false, false],
                                 event: [false]
                             };
+                            console.log($scope.selectionEnemy);
                         }
                     });
                 }
@@ -88,23 +88,43 @@
                  * Envía evento de seleccion de cartas a la directiva collection
                  */
                 function fnCardSelection(username, type, index) {
+                    // Selecciono si no estoy seleccionando el mismo de nuevo (en cuyo caso quería deseleccionar)
                     if (username === $scope.global.user.username) {
-                        // Si ya estoy seleccionando una carta, "deselecciono"
-                        if ($scope.selectingOwn[type][index]) {
-                            $scope.selectingOwn[type][index] = false;
-                            KShare.sendData('card-deselection', {});
-                        } else {
+                        if (!$scope.selectingOwn[type][index]) {
+                            //primero he de deseleccionar todo
+                            deselectAll();
                             $scope.selectingOwn[type][index] = true;
                             KShare.sendData('card-selection', {"type": type, "username": username, "index": index});
+                        } else {
+                            deselectAll();
                         }
                     } else {
-                        // Si ya estoy seleccionando una carta, "deselecciono"
-                        if ($scope.selectingEnemy[username][type][index]) {
-                            $scope.selectingEnemy[username][type][index] = false;
-                            KShare.sendData('card-deselection', {});
-                        } else {
+                        if (!$scope.selectingEnemy[username][type][index]) {
+                            //primero he de deseleccionar todo
+                            deselectAll();
                             $scope.selectingEnemy[username][type][index] = true;
                             KShare.sendData('card-selection', {"type": type, "username": username, "index": index});
+                        } else {
+                            deselectAll();
+                        }
+                    }
+                }
+
+                /**
+                 * Deselecciona todo
+                 */
+                function deselectAll() {
+                    KShare.sendData('card-deselection', {});
+                    $scope.selectingOwn = {
+                        weapon: [false],
+                        armor: [false],
+                        place: [false],
+                        skill: [false, false, false]
+                    };
+
+                    for (var enemy in $scope.selectingEnemy) {
+                        if ($scope.selectingEnemy.hasOwnProperty(enemy)) {
+                            $scope.selectingEnemy[enemy] = {encounter: [false, false], event: [false]};
                         }
                     }
                 }

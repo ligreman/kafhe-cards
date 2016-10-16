@@ -30,22 +30,6 @@ md-grid-list.card-list md-grid-tile figure:hover img {
     filter: none;
 }
 
-md-grid-list.card-list md-grid-tile.fire figure, .card-image-container.fire {
-    border-color: #B71C1C;
-}
-
-md-grid-list.card-list md-grid-tile.ice figure, .card-image-container.ice {
-    border-color: #136bc9;
-}
-
-md-grid-list.card-list md-grid-tile.poison figure, .card-image-container.poison {
-    border-color: #2E7D32;
-}
-
-md-grid-list.card-list md-grid-tile.electricity figure, .card-image-container.electricity {
-    border-color: #9C27B0;
-}
-
 md-grid-list md-grid-tile md-grid-tile-footer {
     background: rgba(0, 0, 0, .60);
 }
@@ -100,22 +84,6 @@ md-grid-list.card-list md-grid-tile .card-level {
     background: #000;
 }
 
-.card-image-container.fire .card-type {
-    border-color: #B71C1C;
-}
-
-.card-image-container.ice .card-type {
-    border-color: #136bc9;
-}
-
-.card-image-container.poison .card-type {
-    border-color: #2E7D32;
-}
-
-.card-image-container.electricity .card-type {
-    border-color: #9C27B0;
-}
-
 .card-image-container .card-type img {
     width: 36px;
     height: 36px;
@@ -146,22 +114,6 @@ md-grid-list.card-list md-grid-tile .card-level {
     text-align: center;
 }
 
-.card-image-container.fire .card-level {
-    border-color: #B71C1C;
-}
-
-.card-image-container.ice .card-level {
-    border-color: #136bc9;
-}
-
-.card-image-container.poison .card-level {
-    border-color: #2E7D32;
-}
-
-.card-image-container.electricity .card-level {
-    border-color: #9C27B0;
-}
-
 .card-image-container .card-name {
     position: absolute;
     bottom: 0;
@@ -176,18 +128,22 @@ md-grid-list.card-list md-grid-tile .card-level {
     font-size: 1.1rem;
 }
 
-.card-image-container.fire .card-name {
+md-grid-list.card-list md-grid-tile.fire figure, .card-image-container.fire, .card-image-container.fire .card-name, .card-image-container.fire .card-level, .card-image-container.fire .card-type {
     border-color: #B71C1C;
 }
 
-.card-image-container.ice .card-name {
+md-grid-list.card-list md-grid-tile.ice figure, .card-image-container.ice, .card-image-container.ice .card-name, .card-image-container.ice .card-level, .card-image-container.ice .card-type {
     border-color: #136bc9;
 }
 
-.card-image-container.poison .card-name {
+md-grid-list.card-list md-grid-tile.poison figure, .card-image-container.poison, .card-image-container.poison .card-name, .card-image-container.poison .card-level, .card-image-container.poison .card-type {
     border-color: #2E7D32;
 }
 
-.card-image-container.electricity .card-name {
+md-grid-list.card-list md-grid-tile.electricity figure, .card-image-container.electricity, .card-image-container.electricity .card-name, .card-image-container.electricity .card-level, .card-image-container.electricity .card-type {
     border-color: #9C27B0;
+}
+
+.card-detail p {
+    color: #222222
 }

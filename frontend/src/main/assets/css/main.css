@@ -6,6 +6,10 @@ body {
     overflow-x: hidden;
 }
 
+* {
+    outline: none;
+}
+
 .text-center {
     text-align: center;
 }
@@ -100,6 +104,10 @@ md-tooltip {
 
 .kafhe-background-primary-hue-3 {
     background: #1B5E20;
+}
+
+.kafhe-background-black {
+    background: #000;
 }
 
 .kafhe-background-white {

@@ -79,6 +79,9 @@
             'textPlanningGPS': 'GPS',
             'textPlanningTeam': 'Equipo',
             'textPlanningSkills': 'Habilidades',
+            'textPlanningEncountersEvents': 'Encuentros y adversidades',
+            'textPlanningEvent': 'Adversidad',
+            'textPlanningEncounters': 'Encuentros',
 
             // INTERFAZ - HABILIDADES
             'textDuration': 'Duración',

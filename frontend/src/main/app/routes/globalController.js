@@ -80,6 +80,7 @@
                                         $scope.version = nextVersion;
 
                                         if (typeof callback === 'function') {
+                                            $log.debug("** calling callback");
                                             callback();
                                         }
                                     });
@@ -87,6 +88,7 @@
                                     $log.debug("...don't need it.");
 
                                     if (typeof callback === 'function') {
+                                        $log.debug("** calling callback");
                                         callback();
                                     }
                                 }
@@ -157,7 +159,8 @@
                             miColeccion.push(el);
                         });
                         user.game.collection = miColeccion;
-
+                        console.log("Actualizo el usuario");
+                        console.log(user);
                         $scope.global.user = user;
                         $scope.global.leader = user.leader;
 

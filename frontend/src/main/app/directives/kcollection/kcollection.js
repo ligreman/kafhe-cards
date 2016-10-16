@@ -11,9 +11,6 @@
 
         var controller = ['$scope', 'CONSTANTS', '$mdDialog', function ($scope, CONSTANTS, $mdDialog) {
             $scope.roman = CONSTANTS.roman;
-            console.log($scope.roman[2]);
-            console.log($scope.collection);
-            $scope.a = 987;
 
             $scope.isPlace = fnIsPlace;
             $scope.showCardDialog = fnShowCardDialog;
@@ -38,8 +35,6 @@
                     targetEvent: event
                 });
             }
-
-            // var cardsDB = TAFFY($scope.cardsDatabase);
         }];
 
         return {
