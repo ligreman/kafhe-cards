@@ -56,8 +56,23 @@ module.exports = function (mongoose) {
                     level: Number
                 }]
             },
-            journal: {
-                places: [String]
+            journal: [{
+                date: Number,
+                place: {
+                    id: String,
+                    latitude: Number,
+                    longitude: Number
+                },
+                skills: [Boolean],
+                log: [String]
+            }],
+            rewards: {
+                packs: [{
+                    amount: {type: Number, default: 0},
+                    category: {type: String, default: 0}
+                }],
+                tostolates: Number,
+                fame: Number
             },
             afk: {type: Boolean, default: false},
             last_activity: {type: Number, default: 0},
