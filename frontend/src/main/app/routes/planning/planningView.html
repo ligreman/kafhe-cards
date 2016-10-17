@@ -52,7 +52,6 @@
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
                              ng-click="cardSelection(global.user.username, 'place', 0)"
                              ng-class="{ 'selected': selectingOwn.place[0] }">
-                            <!--<img src="assets/img/cards/card-placeholder.jpg"/>-->
                             <img ng-if="selectionOwn.place[0]"
                                  ng-src="assets/img/cards/{{selectionOwn.place[0].card}}.jpg"/>
                             <md-icon ng-if="!selectionOwn.place[0]"

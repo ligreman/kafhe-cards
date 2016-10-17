@@ -25,6 +25,7 @@ module.exports = function (mongoose) {
                 category: {type: String, default: 0}
             }],
             collection: [{
+                _id: String,
                 card: {type: String, default: null},
                 level: Number
             }],

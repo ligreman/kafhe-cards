@@ -70,7 +70,10 @@
                     // Obtener la información del usuario actual y su partida
                     schedule: {
                         method: 'POST',
-                        headers: {'Authorization': 'Bearer ' + access_token},
+                        headers: {
+                            'Authorization': 'Bearer ' + access_token,
+                            'Content-Type': 'application/json'
+                        },
                         params: {
                             endpoint: 'schedule'
                         }

@@ -1,3 +1,7 @@
+.card-list-block {
+    margin-bottom: 15px;
+}
+
 md-grid-list.card-list md-grid-tile figure, .card-image-container {
     border: 4px solid #808080;
     border-radius: 10px;
@@ -145,5 +149,5 @@ md-grid-list.card-list md-grid-tile.electricity figure, .card-image-container.el
 }
 
 .card-detail p {
-    color: #222222
+    /*color: #222222*/
 }

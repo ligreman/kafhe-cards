@@ -18,6 +18,7 @@
 
                 // Escucho el seleccionado de carta
                 KShare.listenData('card-scheduled', $scope, function (data) {
+                    console.log(data);
                     // Llamo al API con estos datos y si va todo bien termino la selección de la carta
                     API.character().schedule({
                         username: data.username,
@@ -53,6 +54,8 @@
                 }
 
                 function processData(data) {
+                    $scope.enemies = [];
+
                     // Cojo los enemigos
                     data.players.forEach(function (player) {
                         if (player.username === $scope.global.user.username) {

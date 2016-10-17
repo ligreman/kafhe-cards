@@ -30,7 +30,7 @@
             'textSkill': 'Habilidad',
             'textSkills': 'Habilidades',
             'textEvent': 'Adversidad',
-            'textEvents': 'Adversidaded',
+            'textEvents': 'Adversidades',
             'textEncounter': 'Encuentro',
             'textEncounters': 'Encuentros',
             'textPlace': 'Lugar',

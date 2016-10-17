@@ -156,6 +156,7 @@
                         user.game.collection.forEach(function (card) {
                             var el = $scope.global.gamedata.cards[card.card];
                             el.level = card.level;
+                            el._id = card._id;
                             miColeccion.push(el);
                         });
                         user.game.collection = miColeccion;

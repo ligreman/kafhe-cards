@@ -6,14 +6,17 @@ module.exports = function (app) {
     var express = require('express'),
         passport = require('passport'),
         responseUtils = require('../modules/responseUtils'),
+        bodyParser = require('body-parser'),
         config = require('../modules/config'),
         characterRouter = express.Router(),
         mongoose = require('mongoose'),
         models = require('../models/models')(mongoose),
+        TAFFY = require('taffy'),
         Q = require('q');
 
     //**************** USER ROUTER **********************
     //Middleware para estas rutas
+    characterRouter.use(bodyParser.json());
     characterRouter.use(passport.authenticate('bearer', {
         session: false
     }));
@@ -52,7 +55,7 @@ module.exports = function (app) {
             }
 
             // La partida ha de estar en el estado correcto
-            if (user.game.gamedata.status !== config.GAME_STATUS.planning) {
+            if (myself.game.gamedata.status !== config.GAME_STATUS.planning) {
                 console.tag('CHARACTER-SCHEDULE').error('No se permite esta acción en el estado actual de la partida');
                 responseUtils.responseError(res, 400, 'errGameStatusNotAllowed');
                 return;
@@ -60,7 +63,7 @@ module.exports = function (app) {
 
             // Debo tener la carta en mi colección
             var collection = TAFFY(myself.game.collection);
-            var cardInCollection = collection({_id: {like:params.cardId}}).first();
+            var cardInCollection = collection({_id: {like: params.cardId}}).first();
 
             if (!cardInCollection) {
                 console.tag('CHARACTER-SCHEDULE').error('No tienes esa carta en tu colección');
@@ -89,7 +92,7 @@ module.exports = function (app) {
 
             // Ha de tener disponible hueco para ese tipo de carta
             var espacio = player.game.schedule[cardInDB.type];
-            if (espacio.length < config.DEFAULTS.schedule_limits[cardInDB.type]) {
+            if (espacio.length >= config.DEFAULTS.schedule_limits[cardInDB.type]) {
                 console.tag('CHARACTER-SCHEDULE').error('No puedes asignar más cartas de ese tipo al jugador');
                 responseUtils.responseError(res, 400, 'errCharacterNoSpaceSchedule');
                 return;
@@ -97,11 +100,11 @@ module.exports = function (app) {
 
             // Una vez validado todo, añado la carta al usuario
             if (soyYoMismo) {
-                myself.game.schedule[cardInDB.type].push({card: cardInCollection.id, level: cardInCollection.level});
+                myself.game.schedule[cardInDB.type].push({card: cardInCollection.card, level: cardInCollection.level});
             } else {
                 player.game.schedule[cardInDB.type].push({
                     player: myself._id,
-                    card: cardInCollection.id,
+                    card: cardInCollection.card,
                     level: cardInCollection.level
                 });
             }

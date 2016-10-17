@@ -152,7 +152,7 @@ module.exports = function (app) {
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
-                collection: [{card: '1', level: 1}, {card: '2', level: 1}],
+                collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
                 packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
@@ -176,7 +176,7 @@ module.exports = function (app) {
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
-                collection: [{card: '1', level: 1}, {card: '2', level: 1}],
+                collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
                 packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
@@ -195,7 +195,7 @@ module.exports = function (app) {
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
-                collection: [{card: '1', level: 1}, {card: '2', level: 1}],
+                collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
                 packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
