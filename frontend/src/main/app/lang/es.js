@@ -7,7 +7,7 @@
             // MENU
             'menuGames': 'Juegos',
             'menuExplore': 'Explorar',
-            "menuCollection": 'Colección',
+            'menuCollection': 'Colección',
             'menuPlanning': 'Preparativos',
             'menuShop': 'Tienda',
             'menuBreakfast': 'Cafetería',
@@ -23,6 +23,18 @@
             'textNo': 'No',
             'fame': 'Fama',
             'tostolares': 'Tostólares',
+            'textWeapon': 'Arma',
+            'textWeapons': 'Armas',
+            'textArmor': 'Vestimenta',
+            'textArmors': 'Vestimentas',
+            'textSkill': 'Habilidad',
+            'textSkills': 'Habilidades',
+            'textEvent': 'Adversidad',
+            'textEvents': 'Adversidaded',
+            'textEncounter': 'Encuentro',
+            'textEncounters': 'Encuentros',
+            'textPlace': 'Lugar',
+            'textPlaces': 'Lugares',
 
             // TIPOS
             'bladed': 'Cortante',
@@ -74,14 +86,9 @@
             'textShopBuy': '¿Quieres comprar {{name}} por {{points}} tostólares?',
             'textShopButtonBuy': 'Comprar por {{cost}} tostólares',
             'textPlanningSelectCard': 'Click para asignar carta',
-            'textPlanningWeapon': 'Arma',
-            'textPlanningArmor': 'Vestimenta',
             'textPlanningGPS': 'GPS',
             'textPlanningTeam': 'Equipo',
-            'textPlanningSkills': 'Habilidades',
             'textPlanningEncountersEvents': 'Encuentros y adversidades',
-            'textPlanningEvent': 'Adversidad',
-            'textPlanningEncounters': 'Encuentros',
 
             // INTERFAZ - HABILIDADES
             'textDuration': 'Duración',

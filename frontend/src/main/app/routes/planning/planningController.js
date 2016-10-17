@@ -30,7 +30,7 @@
                             // He de actualizar los objetos de los enemigos
                             afterUpdate();
 
-                            // Finalizo la selección
+                            // Finalizo la selección aquí
                             if (data.username === $scope.global.user.username) {
                                 $scope.selectingOwn[data.type][data.index] = false;
                             } else {
