@@ -28,6 +28,7 @@ module.exports = function (mongoose) {
                 card: {type: String, default: null},
                 level: Number
             }],
+            unlocked: [String],
             schedule: {
                 weapon: [{
                     card: {type: String, default: null},
