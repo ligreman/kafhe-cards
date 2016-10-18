@@ -6,6 +6,7 @@
 
 #explore-page md-sidenav {
     top: 104px;
+    z-index: 999;
 }
 
 #explore-page md-sidenav.sidenav-small-screen {
@@ -125,4 +126,27 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
 
 .schedule-card-holder img {
     width: 100%;
+}
+
+/** MAPA **/
+.map-container {
+    padding-top: 40px;
+}
+
+#mapid {
+    height: 800px;
+    width: 1200px;
+}
+
+#mapid.leaflet-container {
+    background: #303030;
+}
+
+#mapid .leaflet-control-attribution {
+    display: none;
+}
+
+#mapid p.sleep-note {
+    font-weight: bold;
+    color: #000;
 }

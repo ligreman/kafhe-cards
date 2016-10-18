@@ -36,9 +36,13 @@
 
     <!-- CONTENIDO -->
     <md-content flex layout="row" layout-align="center start" ng-cloak>
-        <div class="md-padding" flex>
-            <p>Mapa</p>
+        <div flex>
+
             <a ng-click="toggle('left')">Left</a>
+
+            <div class="map-container">
+                <div id="mapid"></div>
+            </div>
 
 
             <div class="character-opener">
