@@ -27,35 +27,52 @@
                         <div flex><p>{{ 'textPlanningGPS' |translate }}</p></div>
                     </div>
                     <div layout="row">
+                        <!-- Arma -->
+                        <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                             ng-if="selectionOwn.weapon[0]"
+                             ng-class="global.gamedata.cards[selectionOwn.weapon[0].card].element">
+                            <img ng-src="assets/img/cards/{{selectionOwn.weapon[0].card}}.jpg"/>
+                            <span>{{global.gamedata.cards[selectionOwn.weapon[0].card].name}}</span>
+                        </div>
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
                              ng-click="cardSelection(global.user.username, 'weapon', 0)"
-                             ng-class="{ 'selected': selectingOwn.weapon[0] }">
-                            <img ng-if="selectionOwn.weapon[0]"
-                                 ng-src="assets/img/cards/{{selectionOwn.weapon[0].card}}.jpg"/>
-                            <md-icon ng-if="!selectionOwn.weapon[0]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                             ng-class="{ 'selected': selectingOwn.weapon[0] }"
+                             ng-if="!selectionOwn.weapon[0]">
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
                             <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
+                        </div>
+
+                        <!-- Vestimenta -->
+                        <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                             ng-if="selectionOwn.armor[0]"
+                             ng-class="global.gamedata.cards[selectionOwn.armor[0].card].element">
+                            <img ng-src="assets/img/cards/{{selectionOwn.armor[0].card}}.jpg"/>
+                            <span>{{global.gamedata.cards[selectionOwn.armor[0].card].name}}</span>
                         </div>
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
                              ng-click="cardSelection(global.user.username, 'armor', 0)"
-                             ng-class="{ 'selected': selectingOwn.armor[0] }">
-                            <img ng-if="selectionOwn.armor[0]"
-                                 ng-src="assets/img/cards/{{selectionOwn.armor[0].card}}.jpg"/>
-                            <md-icon ng-if="!selectionOwn.armor[0]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                             ng-class="{ 'selected': selectingOwn.armor[0] }"
+                             ng-if="!selectionOwn.armor[0]">
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
                             <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
                         </div>
+
+                        <!-- Lugar -->
+                        <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                             ng-if="selectionOwn.place[0]"
+                             ng-class="global.gamedata.cards[selectionOwn.place[0].card].element">
+                            <img ng-src="assets/img/cards/{{selectionOwn.place[0].card}}.jpg"/>
+                            <span>{{global.gamedata.cards[selectionOwn.place[0].card].name}}</span>
+                        </div>
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
                              ng-click="cardSelection(global.user.username, 'place', 0)"
-                             ng-class="{ 'selected': selectingOwn.place[0] }">
-                            <img ng-if="selectionOwn.place[0]"
-                                 ng-src="assets/img/cards/{{selectionOwn.place[0].card}}.jpg"/>
-                            <md-icon ng-if="!selectionOwn.place[0]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                             ng-class="{ 'selected': selectingOwn.place[0] }"
+                             ng-if="!selectionOwn.place[0]">
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
                             <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
@@ -70,35 +87,52 @@
                 </md-card-title>
                 <md-card-content>
                     <div layout="row">
+                        <!-- Habilidad 1 -->
+                        <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                             ng-if="selectionOwn.skill[0]"
+                             ng-class="global.gamedata.cards[selectionOwn.skill[0].card].element">
+                            <img ng-src="assets/img/cards/{{selectionOwn.skill[0].card}}.jpg"/>
+                            <span>{{global.gamedata.cards[selectionOwn.skill[0].card].name}}</span>
+                        </div>
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
+                             ng-if="!selectionOwn.skill[0]"
                              ng-click="cardSelection(global.user.username, 'skill', 0)"
                              ng-class="{ 'selected': selectingOwn.skill[0] }">
-                            <img ng-if="selectionOwn.skill[0]"
-                                 ng-src="assets/img/cards/{{selectionOwn.skill[0].card}}.jpg"/>
-                            <md-icon ng-if="!selectionOwn.skill[0]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
                             <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
                         </div>
+
+                        <!-- Habilidad 2 -->
+                        <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                             ng-if="selectionOwn.skill[1]"
+                             ng-class="global.gamedata.cards[selectionOwn.skill[1].card].element">
+                            <img ng-src="assets/img/cards/{{selectionOwn.skill[1].card}}.jpg"/>
+                            <span>{{global.gamedata.cards[selectionOwn.skill[1].card].name}}</span>
+                        </div>
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
+                             ng-if="!selectionOwn.skill[1]"
                              ng-click="cardSelection(global.user.username, 'skill', 1)"
                              ng-class="{ 'selected': selectingOwn.skill[1] }">
-                            <img ng-if="selectionOwn.skill[1]"
-                                 ng-src="assets/img/cards/{{selectionOwn.skill[1].card}}.jpg"/>
-                            <md-icon ng-if="!selectionOwn.skill[1]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
                             <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
                         </div>
+
+                        <!-- Habilidad 3 -->
+                        <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                             ng-if="selectionOwn.skill[2]"
+                             ng-class="global.gamedata.cards[selectionOwn.skill[2].card].element">
+                            <img ng-src="assets/img/cards/{{selectionOwn.skill[2].card}}.jpg"/>
+                            <span>{{global.gamedata.cards[selectionOwn.skill[2].card].name}}</span>
+                        </div>
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
+                             ng-if="!selectionOwn.skill[2]"
                              ng-click="cardSelection(global.user.username, 'skill', 2)"
                              ng-class="{ 'selected': selectingOwn.skill[2] }">
-                            <img ng-if="selectionOwn.skill[2]"
-                                 ng-src="assets/img/cards/{{selectionOwn.skill[2].card}}.jpg"/>
-                            <md-icon ng-if="!selectionOwn.skill[2]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
                             <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
@@ -130,13 +164,18 @@
                         <div flex="66"><p>{{ 'textEncounters' |translate }}</p></div>
                     </div>
                     <div layout="row">
+                        <!-- Adversidad -->
+                        <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                             ng-if="selectionEnemy[enemy.username].event[0]"
+                             ng-class="global.gamedata.cards[selectionEnemy[enemy.username].event[0].card].element">
+                            <img ng-src="assets/img/cards/{{selectionEnemy[enemy.username].event[0].card}}.jpg"/>
+                            <span>{{global.gamedata.cards[selectionEnemy[enemy.username].event[0].card].name}}</span>
+                        </div>
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
                              ng-click="cardSelection(enemy.username, 'event', 0)"
-                             ng-class="{ 'selected': selectingEnemy[enemy.username].event[0] }">
-                            <img ng-if="selectionEnemy[enemy.username].event[0]"
-                                 ng-src="assets/img/cards/{{selectionEnemy[enemy.username].event[0].card}}.jpg"/>
-                            <md-icon ng-if="!selectionEnemy[enemy.username].event[0]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                             ng-class="{ 'selected': selectingEnemy[enemy.username].event[0] }"
+                             ng-if="!selectionEnemy[enemy.username].event[0]">
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
                             <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
@@ -153,24 +192,24 @@
                              ng-click="cardSelection(enemy.username, 'encounter', 0)"
                              ng-class="{ 'selected': selectingEnemy[enemy.username].encounter[0] }"
                              ng-if="!selectionEnemy[enemy.username].encounter[0]">
-                            <img ng-if="selectionEnemy[enemy.username].encounter[0]"
-                                 ng-src="assets/img/cards/{{selectionEnemy[enemy.username].encounter[0].card}}.jpg"/>
-                            <md-icon ng-if="!selectionEnemy[enemy.username].encounter[0]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
-                            <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }"
-                               ng-if="!selectionEnemy[enemy.username].encounter[0]">
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                            <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
                         </div>
 
                         <!-- Encuentro 2 -->
+                        <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                             ng-if="selectionEnemy[enemy.username].encounter[1]"
+                             ng-class="global.gamedata.cards[selectionEnemy[enemy.username].encounter[1].card].element">
+                            <img ng-src="assets/img/cards/{{selectionEnemy[enemy.username].encounter[1].card}}.jpg"/>
+                            <span>{{global.gamedata.cards[selectionEnemy[enemy.username].encounter[1].card].name}}</span>
+                        </div>
                         <div flex class="schedule-card-holder" layout-align="center center" layout="row"
                              ng-click="cardSelection(enemy.username, 'encounter', 1)"
-                             ng-class="{ 'selected': selectingEnemy[enemy.username].encounter[1] }">
-                            <img ng-if="selectionEnemy[enemy.username].encounter[1]"
-                                 ng-src="assets/img/cards/{{selectionEnemy[enemy.username].encounter[1].card}}.jpg"/>
-                            <md-icon ng-if="!selectionEnemy[enemy.username].encounter[1]"
-                                     md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
+                             ng-class="{ 'selected': selectingEnemy[enemy.username].encounter[1] }"
+                             ng-if="!selectionEnemy[enemy.username].encounter[1]">
+                            <md-icon md-svg-src="assets/img/cards/card-placeholder.svg" layout-fill></md-icon>
                             <p flex="none" class="text-center" ng-class="{ 'small-font': isSmallScreen() }">
                                 {{ 'textPlanningSelectCard' |translate }}
                             </p>
