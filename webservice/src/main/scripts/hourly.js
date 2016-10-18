@@ -81,6 +81,18 @@ switch (dia) {
                 console.error(error);
             });
         }
+
+        // 11:00 AM
+        if (hora === 11) {
+            Q.all([
+                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
+            ]).spread(function (result) {
+                console.log('Partidas en estado planning del Lunes se ponen en estado explore.');
+                salir();
+            }).fail(function (error) {
+                console.error(error);
+            });
+        }
         break;
 
     /**
@@ -131,9 +143,6 @@ switch (dia) {
                 salir();
             }
         );
-        break;
-    case 6: //sabado
-        gameFridayCloseAndCreate();
         break;
     default:
         salir();
