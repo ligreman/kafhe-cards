@@ -48,8 +48,8 @@ var GAME_STATUS = {
     weekend: 0,// fin de semana. Se pone así cuando se crea una partida nueva.
     planning: 1,// durante la semana, tiempo de espera entre juegos. Permite contratar. También meter y modificar tu pedido.
     explore: 2,// durante la semana, mientras se ejecutan los juegos. También meter y modificar tu pedido.
-    resolution: 3,// una vez lanzado el desayuno, se muestran los resultados. No puedes hacer nada, ni modificar pedido, ni forja, habilidades...
-    closed: 4// el viernes a las tantas se cierra la partida y se crea una nueva si era "recursiva"
+    resolution: 3,// El viernes cuando se termina la última exploración. No puedes hacer nada, ni modificar pedido, ni forja, habilidades...
+    closed: 4//  una vez lanzado el desayuno, se muestran los resultados. se cierra la partida y se crea una nueva si era "recursiva"
 };
 
 var CARD_TYPES = ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'];

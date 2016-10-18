@@ -15,6 +15,7 @@ mongoose.connect(mongoHost, {});
 var Game = require(basePath + 'src/main/models/game')(mongoose),
     User = require(basePath + 'src/main/models/user')(mongoose),
     config = require(basePath + 'src/main/modules/config'),
+    gameDao = require(__dirname + '/modules/dao/gameDao'),
     events = require('events'),
     Q = require('q');
 
@@ -22,26 +23,99 @@ var Game = require(basePath + 'src/main/models/game')(mongoose),
 var eventEmitter = new events.EventEmitter();
 
 // Esto se ejecutará a la 1 de la mañana
-hora = 1;
-if (hora !== 1) {
-    salir();
-}
-dia = 6;
-switch (dia) {
-    case 1: // Los lunes pongo las partidas en estado batalla, las que están en estado WEEKEND
-        Game.update({"status": config.GAME_STATUS.WEEKEND}, {"status": config.GAME_STATUS.BATTLE}, {multi: true},
-            function (error, num) {
-                if (error) {
-                    console.error(error);
-                    salir();
-                }
+// hora = 1;
+/*if (hora !== 1) {
+ salir();
+ }*/
+// dia = 6;
+/*
+ + Reseteo de cartas para juegos diario:
+ - Borro todas las de schedule.
+ - Borro todas las de collection de tipo 'place::capital', 'place::town' y 'skill'
+ - Añado una carta por cada una en unlocked, que se compone de 'place' de tipo capital y town y 'skill'
+ - Limpiar el journal
 
-                console.log('Partidas en estado WEEKEND después del fin de semana se ponen en BATALLA.');
+ + Al cerrar el game (lanzar el desayuno):
+ - Dar recompensas
+ - Sube de rank de toda la gente
+ - Sube times de toda la gente
+ - Al llamador se aplica el reset por llamar
+
+ + Reseteo por llamar:
+ - rank =1
+ - calls +1
+ - fame =0
+ - packs =[]
+ - collection =[]
+
+ + Reseteo entre desayunos:
+ - Borro todas las de schedule.
+ - Borro todas las de collection de tipo 'place' y 'skill'
+ - Borro todas las de unlocked.
+ - Borra el journal
+ - Borra rewards
+ - Borra notifications de user
+ - Borra notifications de game
+ - Añado las capitales a unlocked
+ - Añado una carta por cada una en unlocked
+ - Order pasa a last order, y order se limpia
+ */
+
+
+switch (dia) {
+    /**
+     * LUNES
+     *  - A la 1:00am pongo las partidas en estado planning, las que están en estado weekend
+     *  - A las 8:00am pongo a todos afk = false
+     *  - A las 11:00am inicio los primeros juegos de la semana, pongo el estado en explore
+     */
+    case 1:
+        // 1:00 AM
+        if (hora === 1) {
+            Q.all([
+                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.weekend, config.GAME_STATUS.planning)
+            ]).spread(function (result) {
+                console.log('Partidas en estado weekend después del fin de semana se ponen en estado planning.');
                 salir();
-            }
-        );
+            }).fail(function (error) {
+                console.error(error);
+            });
+        }
         break;
-    case 5: //viernes pongo las partidas en negociacion
+
+    /**
+     * MARTES
+     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo de cartas y otros parámetros
+     *  - A las 11:00am inicio los segundos juegos de la semana, pongo el estado en explore
+     */
+    case 2:
+        break;
+    /**
+     * MIÉRCOLES
+     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo de cartas y otros parámetros
+     *  - A las 11:00am inicio los terceros juegos de la semana, pongo el estado en explore
+     */
+    case 3:
+        break;
+    /**
+     * JUEVES
+     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo de cartas y otros parámetros
+     *  - A las 11:00am inicio los terceros juegos de la semana
+     */
+    case 4:
+        break;
+    /**
+     * VIERNES
+     *  - A la 1:00am cierro los juegos anteriores (estado planning) y pongo las partidas en resolution
+     *
+     *  - Si se lanza el desayuno, se pone en estado cerrado. Se otorgan las recompensas en ese caso.
+     *
+     *  - A las 15:00 pongo las cerradas en weekend, si tienen el repeat. Limpio el caller.
+     *    Pongo las que sigan en resolution (no se han lanzado) en modo weekend para jugar la semana siguiente. reseteo.
+     *
+     *  En ambos casos reseteo la partida en cuanto a cartas, jugadores, etc.
+     */
+    case 5:
         Game.update({"status": config.GAME_STATUS.BATTLE}, {"status": config.GAME_STATUS.BUSINESS}, {multi: true},
             function (error, num) {
                 if (error) {
@@ -196,6 +270,7 @@ function gameFridayCloseAndCreate() {
                         };
                         jugador.game.notifications = [];
 
+                        //TODO esto no funcionará porque estoy dentro de una función async metiendo un promise...
                         promises.push(jugador.save());
                     });
                 });
