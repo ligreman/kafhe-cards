@@ -33,9 +33,28 @@ var generateId = function () {
     return shasum.digest('hex');
 };
 
+/**
+ * Clona un objeto
+ */
+function cloneObject(obj) {
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+
+    var temp = obj.constructor();
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            temp[key] = cloneObject(obj[key]);
+        }
+    }
+
+    return temp;
+}
+
 //Exporto las funciones de la librería utils para que puedan accederse desde fuera
 module.exports = {
     randomInt: randomInt,
     dice100: dice100,
-    generateId: generateId
+    generateId: generateId,
+    cloneObject: cloneObject
 };

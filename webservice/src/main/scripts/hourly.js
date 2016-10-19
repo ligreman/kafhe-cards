@@ -48,17 +48,22 @@ var eventEmitter = new events.EventEmitter();
  - packs =[]
  - collection =[]
 
- + Reseteo entre desayunos:
+ + Reseteo entre desayunos de usuario:
  - Borro todas las de schedule.
- - Borro todas las de collection de tipo 'place' y 'skill'
+ - Borro todas las de collection de tipo 'place::capital', 'place::town' y 'skill'
  - Borro todas las de unlocked.
  - Borra el journal
  - Borra rewards
  - Borra notifications de user
- - Borra notifications de game
  - Añado las capitales a unlocked
  - Añado una carta por cada una en unlocked
  - Order pasa a last order, y order se limpia
+
+ + Reseteo entre desayunos de game:
+ - Borra notifications de game
+ - Borra caller
+ - Estado a weekend
+
  */
 
 

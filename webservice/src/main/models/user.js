@@ -73,8 +73,8 @@ module.exports = function (mongoose) {
                     amount: {type: Number, default: 0},
                     category: {type: String, default: 0}
                 }],
-                tostolates: Number,
-                fame: Number
+                tostolates: {type: Number, default: 0},
+                fame: {type: Number, default: 0}
             },
             afk: {type: Boolean, default: false},
             last_activity: {type: Number, default: 0},
