@@ -42,6 +42,14 @@
                         marker = L.marker([-67.5, 0]).addTo(map);
                         marker = L.marker([-77.5, 0]).addTo(map);
                         marker = L.marker([-87.5, 0]).addTo(map);
+
+                        /*var polyline = L.polyline([...]).addTo(map);
+                         var decorator = L.polylineDecorator(polyline, {
+                         patterns: [
+                         // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+                         {offset: 0, repeat: 20, symbol: L.Symbol.dash({pixelSize: 10})}
+                         ]
+                         }).addTo(map);*/
                     }
 
                     /**
