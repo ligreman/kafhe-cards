@@ -16,6 +16,7 @@ var Game = require(basePath + 'src/main/models/game')(mongoose),
     User = require(basePath + 'src/main/models/user')(mongoose),
     config = require(basePath + 'src/main/modules/config'),
     gameDao = require(__dirname + '/modules/dao/gameDao'),
+    userDao = require(__dirname + '/modules/dao/userDao'),
     events = require('events'),
     Q = require('q');
 
@@ -47,16 +48,15 @@ var eventEmitter = new events.EventEmitter();
  - fame =0
  - packs =[]
  - collection =[]
+ - unlocked =[]
+ - talents =[]
+ - Añadir a unlocked las capitales
 
  + Reseteo entre desayunos de usuario:
  - Borro todas las de schedule.
- - Borro todas las de collection de tipo 'place::capital', 'place::town' y 'skill'
- - Borro todas las de unlocked.
  - Borra el journal
  - Borra rewards
  - Borra notifications de user
- - Añado las capitales a unlocked
- - Añado una carta por cada una en unlocked
  - Order pasa a last order, y order se limpia
 
  + Reseteo entre desayunos de game:
@@ -70,7 +70,7 @@ var eventEmitter = new events.EventEmitter();
 switch (dia) {
     /**
      * LUNES
-     *  - A la 1:00am pongo las partidas en estado planning, las que están en estado weekend
+     *  - A la 1:00am pongo las partidas en estado planning, las que están en estado weekend y reseteo diario
      *  - A las 8:00am pongo a todos afk = false
      *  - A las 11:00am inicio los primeros juegos de la semana, pongo el estado en explore
      */
@@ -78,7 +78,8 @@ switch (dia) {
         // 1:00 AM
         if (hora === 1) {
             Q.all([
-                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.weekend, config.GAME_STATUS.planning)
+                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.weekend, config.GAME_STATUS.planning),
+                userDao.usersDailyReset('all')
             ]).spread(function (result) {
                 console.log('Partidas en estado weekend después del fin de semana se ponen en estado planning.');
                 salir();
@@ -86,6 +87,8 @@ switch (dia) {
                 console.error(error);
             });
         }
+
+        // 8:00 AM
 
         // 11:00 AM
         if (hora === 11) {
@@ -102,21 +105,21 @@ switch (dia) {
 
     /**
      * MARTES
-     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo de cartas y otros parámetros
+     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo diario
      *  - A las 11:00am inicio los segundos juegos de la semana, pongo el estado en explore
      */
     case 2:
         break;
     /**
      * MIÉRCOLES
-     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo de cartas y otros parámetros
+     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo diario
      *  - A las 11:00am inicio los terceros juegos de la semana, pongo el estado en explore
      */
     case 3:
         break;
     /**
      * JUEVES
-     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo de cartas y otros parámetros
+     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo diario
      *  - A las 11:00am inicio los terceros juegos de la semana
      */
     case 4:

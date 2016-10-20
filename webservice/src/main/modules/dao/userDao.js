@@ -7,27 +7,7 @@ var console = process.console,
     cardUtils = require(__dirname + '/modules/cardUtils'),
     mongoose = require('mongoose'),
     TAFFY = require('taffy'),
-    modelos = require(__dirname + '/models/models')(mongoose);
-
-var gameUpdateAllByStatus = function (oldStatus, newStatus) {
-    var deferred = Q.defer(),
-        condition = {};
-
-    if (oldStatus) {
-        condition = {"status": oldStatus};
-    }
-
-    modelos.Game.update(condition, {$set: {"status": newStatus}}, {multi: true},
-        function (error, numAffected) {
-            if (error) {
-                deferred.reject(error);
-            }
-            deferred.resolve(numAffected);
-        }
-    );
-
-    return deferred.promise;
-};
+    models = require(__dirname + '/models/models')(mongoose);
 
 var userCallerReset = function (username) {
     /*-rank = 1
@@ -37,26 +17,26 @@ var userCallerReset = function (username) {
      - collection = []*/
 };
 
-var usersBreakfastReset = function (group) {
-    /*
-     - Borro todas las de schedule.
-     - Borro todas las de collection de tipo 'place::capital', 'place::town' y 'skill'
-     - Borro todas las de unlocked.
-     - Borra el journal
-     - Borra rewards
-     - Borra notifications de user
-     - Añado las capitales a unlocked
-     - Añado una carta por cada una en unlocked
-     - Order pasa a last order, y order se limpia
-     */
+/** Reseteo de cartas para juegos diario:
+ - Borro todas las de schedule.
+ - Borro todas las de collection de tipo 'place::capital', 'place::town' y 'skill'
+ - Añado una carta por cada una en unlocked, que se compone de 'place' de tipo capital y town y 'skill'
+ - Limpiar el journal
+ * @params group ID del grupo, o 'all' para todos los grupos
+ */
+var usersDailyReset = function (group) {
     var deferred = Q.defer();
+    var condition = {};
 
     if (!group) {
         deferred.reject('Group not provided');
     }
+    if (group !== 'all') {
+        condition = {"group": group};
+    }
 
     Q.all([
-        models.User.find({"group": group}).exec(),
+        models.User.find(condition).exec(),
         models.Card.find().exec()
     ]).spread(function (users, cards) {
         var promises = [];
@@ -67,14 +47,95 @@ var usersBreakfastReset = function (group) {
                 weapon: [], armor: [], skill: [],
                 place: [], encounter: [], event: []
             };
+
             // - Borro todas las de collection de tipo 'place::capital', 'place::town' y 'skill'
-            //TODO
-            // - Borro todas las de unlocked.
-            //TODO realmente no tengo que resetear las unlocked, ni los talentos ni nada entre desayunos. Sólo es si te toca llamar
-            //TODO añadir al usuario algo para guardar los talentos que ha ido cogiendo
-            user.game.unlocked = [];
+            var newCollection = [];
+            user.game.collection.forEach(function (card) {
+                // Si no es place o skill la mantengo seguro
+                if (card.type !== 'skill' && card.type !== 'place') {
+                    newCollection.push(card);
+                }
+
+                // Si es place, y no es capital o town la mantengo
+                if (card.type === 'place' && (card.data.place.type !== 'capital' && card.data.place.type !== 'town')) {
+                    newCollection.push(card);
+                }
+            });
+            user.game.collection = newCollection;
+
+
+            // - Añado una carta por cada una en unlocked, que son las 'place::capital', 'place::town' y 'skill'
+            var collectionUnlocked = [];
+            var unlockedCards = cardUtils.findCards(cards, user.game.unlocked);
+            unlockedCards.forEach(function (card) {
+                collectionUnlocked.push({
+                    _id: utils.generateId(),
+                    card: card.id,
+                    level: card.data.place.level
+                })
+            });
+            user.game.collection = user.game.collection.concat(collectionUnlocked);
+
             // - Borra el journal
             user.game.journal = [];
+        });
+
+        Q.allSettled(promises).then(function (results) {
+            var resultado = true, razon = '';
+            results.forEach(function (result) {
+                if (result.state !== "fulfilled") {
+                    resultado = result.value;
+                    razon = result.reason;
+                }
+            });
+
+            if (resultado !== true) {
+                deferred.reject(razon);
+            } else {
+                deferred.resolve();
+            }
+        });
+    });
+
+    return deferred.promise;
+};
+
+//TODO añadir al usuario algo para guardar los talentos que ha ido cogiendo
+
+/** Reseteo entre desayunos de usuario:
+ - Borro todas las de schedule.
+ - Borra el journal
+ - Borra rewards
+ - Borra notifications de user
+ - Order pasa a last order, y order se limpia
+ * @params group ID del grupo, o 'all' para todos los grupos
+ */
+var usersBreakfastReset = function (group) {
+    var deferred = Q.defer();
+    var condition = {};
+
+    if (!group) {
+        deferred.reject('Group not provided');
+    }
+    if (group !== 'all') {
+        condition = {"group": group};
+    }
+
+    Q.all([
+        models.User.find(condition).exec()
+    ]).spread(function (users) {
+        var promises = [];
+
+        users.forEach(function (user) {
+            // - Borro todas las de schedule.
+            user.game.schedule = {
+                weapon: [], armor: [], skill: [],
+                place: [], encounter: [], event: []
+            };
+
+            // - Borra el journal
+            user.game.journal = [];
+
             // - Borra rewards
             user.game.rewards = {
                 packs: [],
@@ -83,21 +144,6 @@ var usersBreakfastReset = function (group) {
             };
             // - Borra notifications de user
             user.game.notifications = [];
-            // - Añado las capitales a unlocked
-            var capitales = cardUtils.getCapitals(cards, false);
-            var idCapitales = [], collectionCapitales = [];
-            capitales.forEach(function (card) {
-                idCapitales.push(card.id);
-                collectionCapitales.push({
-                    _id: utils.generateId(),
-                    card: card.id,
-                    level: card.data.place.level
-                })
-            });
-            user.game.unlocked = idCapitales;
-
-            // - Añado una carta por cada una en unlocked, que son las capitales
-            user.game.collection = user.game.collection.concat(collectionCapitales);
 
             // - Order pasa a last order, y order se limpia
             user.game.last_order = utils.cloneObject(user.game.order);
@@ -127,5 +173,6 @@ var usersBreakfastReset = function (group) {
 
 module.exports = {
     userCallerReset: userCallerReset,
+    usersDailyReset: usersDailyReset,
     usersBreakfastReset: usersBreakfastReset
 };

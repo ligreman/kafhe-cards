@@ -4,7 +4,7 @@ var console = process.console,
     Q = require('q'),
     config = require(__dirname + '/modules/config'),
     mongoose = require('mongoose'),
-    modelos = require(__dirname + '/models/models')(mongoose);
+    models = require(__dirname + '/models/models')(mongoose);
 
 var gameUpdateAllByStatus = function (oldStatus, newStatus) {
     var deferred = Q.defer(),
@@ -14,7 +14,7 @@ var gameUpdateAllByStatus = function (oldStatus, newStatus) {
         condition = {"status": oldStatus};
     }
 
-    modelos.Game.update(condition, {$set: {"status": newStatus}}, {multi: true},
+    models.Game.update(condition, {$set: {"status": newStatus}}, {multi: true},
         function (error, numAffected) {
             if (error) {
                 deferred.reject(error);

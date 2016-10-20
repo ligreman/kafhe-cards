@@ -46,7 +46,20 @@ var getCapitals = function (cards, onlyIds) {
     return result;
 };
 
+/**
+ * Busca una lista de ids de cartas en el global de todas las cartas
+ * @param cards
+ * @param cardIds
+ */
+var findCards = function (cards, cardIds) {
+    var cardsTAFFY = TAFFY(cards);
+    var cartas = cardsTAFFY({'id': cardIds}).get();
+
+    return cartas;
+};
+
 module.exports = {
     openPack: openPack,
-    getCapitals: getCapitals
+    getCapitals: getCapitals,
+    findCards: findCards
 };
