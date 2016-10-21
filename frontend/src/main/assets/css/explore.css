@@ -18,9 +18,11 @@
     top: 0;
     right: 0;
     padding: 0 0 10px 10px;
+    background: #303030;
     border-bottom: 5px solid #2E7D32;
     border-bottom-left-radius: 50px;
     transition: all 0.5s;
+    z-index: 990;
 }
 
 .character-opener:hover {
@@ -55,6 +57,10 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
     border: 4px dashed #616161;
     border-radius: 10px;
     overflow: hidden;
+}
+
+#planning-page.wide .schedule-card-holder {
+    margin: 15px;
 }
 
 .schedule-card-holder:hover {
@@ -131,12 +137,13 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
 /** MAPA **/
 #map-container {
     /*padding-top: 40px;*/
+    overflow: hidden;
 }
 
 #mapid {
     /*height: 800px;*/
     /*width: 1200px;*/
-    background: red;
+    /*background: red;*/
 }
 
 #mapid.leaflet-container {
