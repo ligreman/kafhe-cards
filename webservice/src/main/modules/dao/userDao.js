@@ -100,6 +100,32 @@ var usersDailyReset = function (group) {
     return deferred.promise;
 };
 
+/**
+ * Cambia el estado AFK de los usuarios de un grupo o todos
+ */
+var usersAFK = function (group, status) {
+    var deferred = Q.defer();
+    var condition = {};
+
+    if (!group || !status) {
+        deferred.reject('Params not provided');
+    }
+    if (group !== 'all') {
+        condition = {"group": group};
+    }
+
+    models.User.update(condition, {"game.afk": status}, {multi: true},
+        function (error, numAffected) {
+            if (error) {
+                deferred.reject(error)
+            }
+            deferred.resolve(numAffected);
+        }
+    );
+
+    return deferred.promise;
+};
+
 //TODO añadir al usuario algo para guardar los talentos que ha ido cogiendo
 
 /** Reseteo entre desayunos de usuario:
@@ -174,5 +200,6 @@ var usersBreakfastReset = function (group) {
 module.exports = {
     userCallerReset: userCallerReset,
     usersDailyReset: usersDailyReset,
-    usersBreakfastReset: usersBreakfastReset
+    usersBreakfastReset: usersBreakfastReset,
+    usersAFK: usersAFK
 };

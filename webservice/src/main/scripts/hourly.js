@@ -82,6 +82,7 @@ switch (dia) {
                 userDao.usersDailyReset('all')
             ]).spread(function (result) {
                 console.log('Partidas en estado weekend después del fin de semana se ponen en estado planning.');
+                console.log('Jugadores de todos los grupos reseteados (daily).');
                 salir();
             }).fail(function (error) {
                 console.error(error);
@@ -89,13 +90,23 @@ switch (dia) {
         }
 
         // 8:00 AM
+        if (hora === 8) {
+            Q.all([
+                userDao.usersAFK('all', false)
+            ]).spread(function (result) {
+                console.log('Jugadores de todos los grupos afk=false.');
+                salir();
+            }).fail(function (error) {
+                console.error(error);
+            });
+        }
 
         // 11:00 AM
         if (hora === 11) {
             Q.all([
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
             ]).spread(function (result) {
-                console.log('Partidas en estado planning del Lunes se ponen en estado explore.');
+                console.log('Partidas en estado planning del lunes se ponen en estado explore.');
                 salir();
             }).fail(function (error) {
                 console.error(error);
@@ -104,25 +115,38 @@ switch (dia) {
         break;
 
     /**
-     * MARTES
-     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo diario
+     * MARTES, MIÉRCOLES y JUEVES
+     *  - A la 1:00am cierro los juegos anteriores (pongo en estado planning los de estado explore) y reseteo diario
      *  - A las 11:00am inicio los segundos juegos de la semana, pongo el estado en explore
      */
     case 2:
-        break;
-    /**
-     * MIÉRCOLES
-     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo diario
-     *  - A las 11:00am inicio los terceros juegos de la semana, pongo el estado en explore
-     */
     case 3:
-        break;
-    /**
-     * JUEVES
-     *  - A la 1:00am cierro los juegos anteriores (estado planning) y reseteo diario
-     *  - A las 11:00am inicio los terceros juegos de la semana
-     */
     case 4:
+        // 1:00 AM
+        if (hora === 1) {
+            Q.all([
+                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.weekend),
+                userDao.usersDailyReset('all')
+            ]).spread(function (result) {
+                console.log('Partidas en estado explore pasan a estado planning en la madrugada.');
+                console.log('Jugadores de todos los grupos reseteados (daily).');
+                salir();
+            }).fail(function (error) {
+                console.error(error);
+            });
+        }
+
+        // 11:00 AM
+        if (hora === 11) {
+            Q.all([
+                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
+            ]).spread(function (result) {
+                console.log('Partidas en estado planning se ponen en estado explore.');
+                salir();
+            }).fail(function (error) {
+                console.error(error);
+            });
+        }
         break;
     /**
      * VIERNES
@@ -136,21 +160,28 @@ switch (dia) {
      *  En ambos casos reseteo la partida en cuanto a cartas, jugadores, etc.
      */
     case 5:
-        Game.update({"status": config.GAME_STATUS.BATTLE}, {"status": config.GAME_STATUS.BUSINESS}, {multi: true},
-            function (error, num) {
-                if (error) {
-                    console.error(error);
-                    salir();
-                }
-
-                console.log('Partidas en estado BATALLA el viernes se ponen en NEGOCIACION.');
-
-                //Ahora hago la conversión reputación a tostólares para los jugadores
-                givePlayersTostolares();
-
+        // 1:00 AM
+        if (hora === 1) {
+            Q.all([
+                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.resolution)
+            ]).spread(function (result) {
+                console.log('Partidas en estado explore pasan a estado resolution para el viernes.');
                 salir();
-            }
-        );
+            }).fail(function (error) {
+                console.error(error);
+            });
+        }
+
+        // 15:00 PM
+        if (hora === 15) {
+            Q.all([
+            ]).spread(function (result) {
+                console.log('.');
+                salir();
+            }).fail(function (error) {
+                console.error(error);
+            });
+        }
         break;
     default:
         salir();
