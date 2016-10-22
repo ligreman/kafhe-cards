@@ -89,6 +89,7 @@ module.exports = function (app) {
                     level: 1,
                     pack_reward: 'place1',
                     'type': 'zone',
+                    subtype: 'forest',
                     adjacent_places: ['2']
                 }
             }

@@ -10,6 +10,7 @@ module.exports = function (mongoose) {
         description: {type: String, required: true},
         branch: {type: String, required: true, enum: ['combat', 'exploration', 'survival']},
         skills: [String], // Array de ids de skills que otorga este talento
+        level: {type: Number, required: true}, // Nivel que hay q tener de esta rama para coger este talento
         required: [String] // Array de ids de talentos requeridos
     }, {versionKey: false});
 
