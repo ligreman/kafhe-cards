@@ -98,19 +98,19 @@ module.exports = function (app) {
 
     var talents = [
         {
-            id: 'talent00', name: 'Talento 0', description: 'Er talento 0',
+            id: 'talent00', name: 'Talento 0', description: 'Er talento 0', level: 0,
             branch: 'combat', cards: ['skill01'], required: []
         },
         {
-            id: 'talent01', name: 'Talento 1', description: 'Er talento 1',
+            id: 'talent01', name: 'Talento 1', description: 'Er talento 1', level: 0,
             branch: 'exploration', cards: [], required: []
         },
         {
-            id: 'talent02', name: 'Talento 2', description: 'Er talento 2',
+            id: 'talent02', name: 'Talento 2', description: 'Er talento 2', level: 0,
             branch: 'exploration', cards: ['skill02'], required: ['talent01']
         },
         {
-            id: 'talent03', name: 'Talento 3', description: 'Er talento 3',
+            id: 'talent03', name: 'Talento 3', description: 'Er talento 3', level: 0,
             branch: 'exploration', cards: ['skill03'], required: ['talent01', 'talent02']
         }
     ];

@@ -6,7 +6,7 @@
 
 #explore-page md-sidenav {
     top: 104px;
-    z-index: 9999;
+    z-index: 999;
 }
 
 #explore-page md-sidenav.sidenav-small-screen {
@@ -19,7 +19,7 @@
     background: #303030;
     border-bottom: 5px solid #2E7D32;
     transition: all 0.5s;
-    z-index: 9990;
+    z-index: 990;
 }
 
 .journal-opener {

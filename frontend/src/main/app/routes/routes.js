@@ -44,14 +44,14 @@
                     }
                 })
 
-                /*.when(ROUTES.team, {
-                 templateUrl: 'app/routes/team/teamView.html',
-                 controller: 'TeamController',
-                 access: {
-                 //Requiere login para acceder
-                 loginRequired: true
-                 }
-                 })*/
+                .when(ROUTES.character, {
+                    templateUrl: 'app/routes/character/characterView.html',
+                    controller: 'CharacterController',
+                    access: {
+                        //Requiere login para acceder
+                        loginRequired: true
+                    }
+                })
 
                 .when(ROUTES.breakfast, {
                     templateUrl: 'app/routes/breakfast/breakfastView.html',

@@ -1,0 +1,35 @@
+<section id="character-page" flex ng-class="{ 'wide': !isSmallScreen() }" layout="column">
+    <md-toolbar class="kafhe-background-black" flex="none">
+        <div class="md-toolbar-tools">
+            <md-button class="md-raissed md-primary md-hue-1" aria-label=""
+                       ng-click="toggle()" ng-hide="viewing === 'talents'">
+                <md-icon>navigate_before</md-icon>
+                Talentos
+                <md-icon>device_hub</md-icon>
+            </md-button>
+
+            <h2 flex class="text-center">
+                Toolbar with Disabled/Enabled Icon Buttons
+            </h2>
+
+            <md-button class="md-raissed md-primary md-hue-1" aria-label=""
+                       ng-click="toggle()" ng-hide="viewing === 'collection'">
+                <md-icon>view_comfy</md-icon>
+                Colección de cartas
+                <md-icon>navigate_next</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content flex layout-padding>
+        <!-- COLECCIÓN -->
+        <div id="character-collection" class="y-scroll" ng-hide="viewing === 'talents'">
+            <k-collection card-collection="global.user.game.collection"></k-collection>
+        </div>
+
+        <!-- TALENTOS -->
+        <div id="character-talents" ng-hide="viewing === 'collection'">
+            <p>Talentos</p>
+        </div>
+    </md-content>
+</section>

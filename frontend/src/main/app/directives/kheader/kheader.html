@@ -30,10 +30,9 @@
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuExplore' | translate }}</md-tooltip>
             </div>
             <div flex layout-fill layout="row" layout-align="center center" class="button"
-                 ng-class="{'active': isCurrentPage('team')}" ng-click="goToPage('explore')">
+                 ng-class="{'active': isCurrentPage('character')}" ng-click="goToPage('character')">
                 <span><md-icon ng-class="{ 'small-icon': isSmallScreen() }">directions_run</md-icon>
-                    <span class="btn-text" hide
-                          show-gt-sm> {{ 'menuCharacter' | translate }}</span></span>
+                    <span class="btn-text" hide show-gt-sm> {{ 'menuCharacter' | translate }}</span></span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuCharacter' | translate }}</md-tooltip>
             </div>
             <div flex layout-fill layout="row" layout-align="center center" class="button"

@@ -1,114 +1,237 @@
-<md-content>
-    <!-- ARMAS -->
-    <div ng-show="showing==='all' || showing==='weapon'" class="card-list-block">
-        <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar margin-bottom-10">
-            <div class="md-toolbar-tools"><span>{{ 'textWeapons' | translate }}</span></div>
-        </md-toolbar>
-        <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
-                      md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-            <md-grid-tile ng-repeat="card in collection | filter:isWeapon"
-                          md-rowspan="1" md-colspan="1" ng-class="card.element"
-                          ng-click="cardClick($event, card)">
-                <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
-                <div class="card-level">{{ roman[card.level] }}</div>
-                <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-                <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
+<section>
+    <md-content ng-if="!fullWideMode">
+        <!-- ARMAS -->
+        <div ng-show="showing==='all' || showing==='weapon'" class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textWeapons' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isWeapon"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
 
-    <!-- VESTIMENTAS -->
-    <div ng-show="showing==='all' || showing==='armor'" class="card-list-block">
-        <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar margin-bottom-10">
-            <div class="md-toolbar-tools"><span>{{ 'textArmors' | translate }}</span></div>
-        </md-toolbar>
-        <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
-                      md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-            <md-grid-tile ng-repeat="card in collection | filter:isArmor"
-                          md-rowspan="1" md-colspan="1" ng-class="card.element"
-                          ng-click="cardClick($event, card)">
-                <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
-                <div class="card-level">{{ roman[card.level] }}</div>
-                <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-                <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
+        <!-- VESTIMENTAS -->
+        <div ng-show="showing==='all' || showing==='armor'" class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textArmors' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isArmor"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
 
-    <!-- HABILIDADES -->
-    <div ng-show="showing==='all' || showing==='skill'" class="card-list-block">
-        <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar margin-bottom-10">
-            <div class="md-toolbar-tools"><span>{{ 'textSkills' | translate }}</span></div>
-        </md-toolbar>
-        <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
-                      md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-            <md-grid-tile ng-repeat="card in collection | filter:isSkill"
-                          md-rowspan="1" md-colspan="1" ng-class="card.element"
-                          ng-click="cardClick($event, card)">
-                <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
-                <div class="card-level">{{ roman[card.level] }}</div>
-                <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-                <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
+        <!-- HABILIDADES -->
+        <div ng-show="showing==='all' || showing==='skill'" class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textSkills' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isSkill"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
 
-    <!-- LUGARES -->
-    <div ng-show="showing==='all' || showing==='place'" class="card-list-block">
-        <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar margin-bottom-10">
-            <div class="md-toolbar-tools"><span>Lugares</span></div>
-        </md-toolbar>
+        <!-- LUGARES -->
+        <div ng-show="showing==='all' || showing==='place'" class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>Lugares</span></div>
+            </md-toolbar>
 
-        <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
-                      md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
 
-            <md-grid-tile ng-repeat="card in collection | filter:isPlace"
-                          md-rowspan="1" md-colspan="1" ng-class="card.element"
-                          ng-click="cardClick($event, card)">
-                <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
-                <div class="card-level">{{ roman[card.level] }}</div>
-                <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-                <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
-            </md-grid-tile>
+                <md-grid-tile ng-repeat="card in collection | filter:isPlace"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
 
-            <!--{"id":"2","type":"place","effects":[],"level":1,"element":"none","data":{"place":{"lat":-49.85,"long":-107.2,"region":"Booooo","type":"capital","adjacent_places":["3","4"]}}}-->
-            <!---->
-        </md-grid-list>
-    </div>
+                <!--{"id":"2","type":"place","effects":[],"level":1,"element":"none","data":{"place":{"lat":-49.85,"long":-107.2,"region":"Booooo","type":"capital","adjacent_places":["3","4"]}}}-->
+                <!---->
+            </md-grid-list>
+        </div>
 
-    <!-- ENCUENTROS -->
-    <div ng-show="showing==='all' || showing==='encounter'" class="card-list-block">
-        <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar margin-bottom-10">
-            <div class="md-toolbar-tools"><span>{{ 'textEncounters' | translate }}</span></div>
-        </md-toolbar>
-        <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
-                      md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-            <md-grid-tile ng-repeat="card in collection | filter:isEncounter"
-                          md-rowspan="1" md-colspan="1" ng-class="card.element"
-                          ng-click="cardClick($event, card)">
-                <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
-                <div class="card-level">{{ roman[card.level] }}</div>
-                <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-                <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
+        <!-- ENCUENTROS -->
+        <div ng-show="showing==='all' || showing==='encounter'" class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textEncounters' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isEncounter"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
 
-    <!-- EVENTOS -->
-    <div ng-show="showing==='all' || showing==='event'" class="card-list-block">
-        <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar margin-bottom-10">
-            <div class="md-toolbar-tools"><span>{{ 'textEvents' | translate }}</span></div>
-        </md-toolbar>
-        <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
-                      md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-            <md-grid-tile ng-repeat="card in collection | filter:isEvent"
-                          md-rowspan="1" md-colspan="1" ng-class="card.element"
-                          ng-click="cardClick($event, card)">
-                <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
-                <div class="card-level">{{ roman[card.level] }}</div>
-                <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-                <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
-</md-content>
+        <!-- EVENTOS -->
+        <div ng-show="showing==='all' || showing==='event'" class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textEvents' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isEvent"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
+    </md-content>
+
+    <!---->
+    <!---->
+    <!-- MODO PANTALLA COMPLETA -->
+    <!---->
+    <!---->
+
+    <md-content ng-if="fullWideMode">
+        <!-- ARMAS -->
+        <div class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textWeapons' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="16px"
+                          md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-xl="10">
+                <md-grid-tile ng-repeat="card in collection | filter:isWeapon"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
+
+        <!-- VESTIMENTAS -->
+        <div class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textArmors' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isArmor"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
+
+        <!-- HABILIDADES -->
+        <div class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textSkills' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isSkill"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
+
+        <!-- LUGARES -->
+        <div class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>Lugares</span></div>
+            </md-toolbar>
+
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+
+                <md-grid-tile ng-repeat="card in collection | filter:isPlace"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+
+                <!--{"id":"2","type":"place","effects":[],"level":1,"element":"none","data":{"place":{"lat":-49.85,"long":-107.2,"region":"Booooo","type":"capital","adjacent_places":["3","4"]}}}-->
+                <!---->
+            </md-grid-list>
+        </div>
+
+        <!-- ENCUENTROS -->
+        <div class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textEncounters' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isEncounter"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
+
+        <!-- EVENTOS -->
+        <div class="card-list-block">
+            <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
+                <div class="md-toolbar-tools"><span>{{ 'textEvents' | translate }}</span></div>
+            </md-toolbar>
+            <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
+                <md-grid-tile ng-repeat="card in collection | filter:isEvent"
+                              md-rowspan="1" md-colspan="1" ng-class="card.element"
+                              ng-click="cardClick($event, card)">
+                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
+    </md-content>
+</section>

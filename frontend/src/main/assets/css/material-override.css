@@ -12,6 +12,11 @@ md-toolbar.slim-toolbar .md-toolbar-tools {
     height: 36px;
 }
 
+md-toolbar.transparent-toolbar {
+    background-color: transparent !important;
+}
+
 md-tooltip {
     color: #F5F5F5;
 }
+

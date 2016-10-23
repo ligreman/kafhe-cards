@@ -107,7 +107,7 @@ md-tooltip {
 }
 
 .kafhe-background-black {
-    background: #000;
+    background: #000 !important;
 }
 
 .kafhe-background-white {

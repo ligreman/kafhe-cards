@@ -9,8 +9,7 @@
             home: '/home',
             planning: '/planning',
             explore: '/explore',
-            team: '/team',
-            breakfast: '/breakfast',
-            profile: '/profile'
+            character: '/character',
+            breakfast: '/breakfast'
         });
 })();

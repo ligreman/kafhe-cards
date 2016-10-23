@@ -9,8 +9,10 @@
          console.log(scope.collection);
          };*/
 
-        var controller = ['$scope', 'CONSTANTS', '$mdDialog', 'KShare', '$log',
-            function ($scope, CONSTANTS, $mdDialog, KShare, $log) {
+        var controller = ['$scope', 'CONSTANTS', '$mdDialog', 'KShare', '$log', '$location', 'ROUTES',
+            function ($scope, CONSTANTS, $mdDialog, KShare, $log, $location, ROUTES) {
+                $scope.fullWideMode = ($location.path() === ROUTES.character);
+
                 $scope.roman = CONSTANTS.roman;
 
                 $scope.isPlace = fnIsPlace;
