@@ -8,6 +8,7 @@
             'menuGames': 'Juegos',
             'menuExplore': 'Explorar',
             'menuCollection': 'Colección',
+            'menuCharacter': 'Personaje',
             'menuPlanning': 'Preparativos',
             'menuShop': 'Tienda',
             'menuBreakfast': 'Cafetería',

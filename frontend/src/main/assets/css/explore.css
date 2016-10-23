@@ -6,26 +6,35 @@
 
 #explore-page md-sidenav {
     top: 104px;
-    z-index: 999;
+    z-index: 9999;
 }
 
 #explore-page md-sidenav.sidenav-small-screen {
     top: 88px;
 }
 
-.character-opener {
+.character-opener, .journal-opener {
     position: absolute;
     top: 0;
-    right: 0;
-    padding: 0 0 10px 10px;
     background: #303030;
     border-bottom: 5px solid #2E7D32;
-    border-bottom-left-radius: 50px;
     transition: all 0.5s;
-    z-index: 990;
+    z-index: 9990;
 }
 
-.character-opener:hover {
+.journal-opener {
+    left: 0;
+    padding: 0 10px 10px 0;
+    border-bottom-right-radius: 50px;
+}
+
+.character-opener {
+    right: 0;
+    padding: 0 0 10px 10px;
+    border-bottom-left-radius: 50px;
+}
+
+.character-opener:hover, .journal-opener:hover {
     background: #616161;
     border-color: #4CAF50;
 }

@@ -3,8 +3,8 @@
 
     // Controlador de la pantalla de login
     angular.module('kafhe.controllers').controller('PlanningController',
-        ['$scope', '$translate', 'API', '$log', 'KShare',
-            function ($scope, $translate, API, $log, KShare) {
+        ['$scope', '$translate', 'API', '$log', 'KShare', '$location', 'CONSTANTS',
+            function ($scope, $translate, API, $log, KShare, $location, CONSTANTS) {
                 $scope.selectionOwn = {};
                 $scope.selectingOwn = {};
                 $scope.selectionEnemy = {};
@@ -45,12 +45,18 @@
                 });
 
                 function afterUpdate() {
-                    // Recupero del API los datos de todos los jugadores
-                    API.user().list({}, function (response) {
-                        if (response) {
-                            processData(response.data);
-                        }
-                    });
+                    // Si el estado de la partida no es planning, redirijo a home
+                    if ($scope.global.gamedata.status !== CONSTANTS.gameStatuses.planning) {
+                        //TODO activar
+                        // $location.path("/home");
+                    } else {
+                        // Recupero del API los datos de todos los jugadores
+                        API.user().list({}, function (response) {
+                            if (response) {
+                                processData(response.data);
+                            }
+                        });
+                    }
                 }
 
                 function processData(data) {

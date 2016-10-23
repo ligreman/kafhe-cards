@@ -4,16 +4,23 @@
     // Controlador de la pantalla de login
     angular.module('kafhe.controllers')
         .controller('ExploreController',
-            ['$scope', '$translate', 'API', '$mdSidenav', '$log', '$timeout',
-                function ($scope, $translate, API, $mdSidenav, $log, $timeout) {
+            ['$scope', '$translate', 'API', '$mdSidenav', '$log', '$timeout', '$location', 'CONSTANTS',
+                function ($scope, $translate, API, $mdSidenav, $log, $timeout, $location, CONSTANTS) {
 
-                    $scope.toggle = fnBuildToggler;
+                    $scope.toggle = fnToggle;
                     $scope.close = fnClose;
 
                     // Actualizo los datos del juego si hace falta
                     $scope.updateGameData(updateDone);
 
                     function updateDone() {
+                        // Si no estoy en modo explore salgo de aquí y voy a home
+                        if ($scope.global.gamedata.status !== CONSTANTS.gameStatuses.explore) {
+                            //TODO activar
+                            // $location.path("/home");
+                            // return;
+                        }
+
                         // Calculo el ancho del div contenedor #map-container
                         $timeout(function () {
                             var w = document.getElementById('map-container').offsetWidth,
@@ -37,7 +44,8 @@
                             var map = L.map('mapid', {
                                 // center: [51.505, -0.09],
                                 maxBounds: [[5, -180], [-81, 65]],
-                                layers: [mapaBase, cities]
+                                layers: [mapaBase, cities],
+                                zoomControl: false
                                 // sleep: false
                                 /*sleep: true,
                                  sleepTime: 750,
@@ -55,7 +63,12 @@
 
                             var baseMaps = {"Jare": mapaBase};
                             var overlayMaps = {"Cities": cities};
-                            L.control.layers({}, overlayMaps).setPosition('topleft').addTo(map);
+                            L.control.layers({}, overlayMaps).setPosition('bottomright').addTo(map);
+
+                            //add zoom control with your options
+                            L.control.zoom({
+                                position: 'bottomleft'
+                            }).addTo(map);
 
 
                             var greenIcon = L.icon({
@@ -111,8 +124,10 @@
                     /**
                      * Build handler to open/close a SideNav
                      */
-                    function fnBuildToggler(navID) {
+                    function fnToggle(navID) {
                         // Component lookup should always be available since we are not using `ng-if`
+                        fnClose('left');
+                        fnClose('right');
                         $mdSidenav(navID).toggle();
                     }
 

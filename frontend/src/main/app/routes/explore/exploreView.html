@@ -1,9 +1,9 @@
 <section id="explore-page" layout="row" flex>
     <!-- PANEL IZQUIERDO -->
-    <md-sidenav class="md-sidenav-left md-whiteframe-1dp"
+    <md-sidenav class="md-whiteframe-1dp"
                 ng-class="{ 'sidenav-small-screen': isSmallScreen() }"
                 md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-md')">
+                md-is-locked-open="!isSmallScreen()">
         <md-toolbar class="md-primary md-hue-3">
             <div class="md-toolbar-tools">
                 <h2>Actividad</h2>
@@ -37,13 +37,16 @@
     <!-- CONTENIDO -->
     <md-content flex layout="row" layout-align="center start" ng-cloak>
         <div flex layout-fill>
-
-            <!--<a ng-click="toggle('left')">Left</a>-->
+            <div class="journal-opener" ng-hide="!isSmallScreen()">
+                <md-button ng-click="toggle('left')" class="md-icon-button">
+                    <md-icon>import_contacts</md-icon>
+                </md-button>
+                <md-tooltip md-direction="right" md-delay="1000">Historial</md-tooltip>
+            </div>
 
             <div id="map-container" layout-fill>
                 <div id="mapid"></div>
             </div>
-
 
             <div class="character-opener">
                 <md-button ng-click="toggle('right')" class="md-icon-button">
