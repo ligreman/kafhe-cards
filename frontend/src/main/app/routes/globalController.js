@@ -160,8 +160,6 @@
                             miColeccion.push(el);
                         });
                         user.game.collection = miColeccion;
-                        console.log("Actualizo el usuario");
-                        console.log(user);
                         $scope.global.user = user;
                         $scope.global.leader = user.leader;
 
