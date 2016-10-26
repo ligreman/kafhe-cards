@@ -20,11 +20,17 @@ module.exports = function (mongoose) {
                 pack_reward: String,
                 'type': {type: String, enum: ['town', 'capital', 'zone', 'dungeon']},
                 subtype: {type: String, enum: ['forest', 'mountain', 'lake', 'desert', 'swamp']},
-                adjacent_places: [String]
+                adjacent_places: [String],
+                capital: String
             }
         }
     }, {versionKey: false});
 
+    // contained_in_packs indica en qué tipos de sobres sale y con qué frecuencia. Si el id es 'all' es que sale en cualquier sobre.
+    // las 'zonas' no salen en ningún sobre, porque no son cartas como tal, aunque se almacenen como si fueran.
+    // Tampoco las capitales ya que las tienes siempre
+
+    // pack_reward indica qué tipos de sobres de recompesa da.
     // el String de adjacent_places es el id de la carta de lugar adyacente
 
     return mongoose.model('Card', CardSchema);
