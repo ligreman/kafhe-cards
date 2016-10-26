@@ -57,6 +57,26 @@
                         params: {
                             endpoint: 'list'
                         }
+                    },
+                });
+            },
+
+            // API de Profile
+            'profile': function () {
+                var access_token = $cookies.get(CONFIG.sessionCookieName);
+
+                return $resource(CONFIG.webServiceUrl + 'profile/:endpoint', {endpoint: ''}, {
+
+                    // Guarda el perfil
+                    update: {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + access_token,
+                            'Content-Type': 'application/json'
+                        },
+                        params: {
+                            endpoint: ''
+                        }
                     }
                 });
             },

@@ -18,6 +18,7 @@
             'textError': 'Error',
             'textErrors': 'Errores',
             'textCancel': 'Cancelar',
+            'textSave': 'Guardar',
             'textAccept': 'Aceptar',
             'textContinue': 'Continuar',
             'textYes': 'Sí',

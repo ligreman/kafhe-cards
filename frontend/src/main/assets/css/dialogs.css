@@ -2,3 +2,7 @@ md-dialog.dark-footer md-dialog-actions {
     background: #616161;
 }
 
+#profile-dialog {
+    min-width: 60vw;
+    min-height: 50vh;
+}
