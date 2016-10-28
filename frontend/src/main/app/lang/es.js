@@ -20,6 +20,7 @@
             'textCancel': 'Cancelar',
             'textSave': 'Guardar',
             'textAccept': 'Aceptar',
+            'textAssignCard': 'Asignar carta',
             'textContinue': 'Continuar',
             'textYes': 'Sí',
             'textNo': 'No',
@@ -99,19 +100,9 @@
             'textCost': 'Coste en puntos de tueste',
             'textExecute': 'Ejecutar habilidad',
 
-            // INTERFAZ - PANTALLA FORJA
-            'textCombineTostemsInFurnace': 'Hornear tostems',
-            'textCombineRunesInFurnace': 'Hornear runas',
-            'textForgeWeapon': 'Forjar arma',
-            'textForgeArmor': 'Forjar armadura',
-
-            'okFurnaceTostems': 'Tostem horneado con éxito',
-            'okFurnaceRunes': 'Runa horneada con éxito',
-            'okForgeWeapon': 'Arma forjada con éxito',
-            'okForgeArmor': 'Armadura forjada con éxito',
-            'errFurnaceNoValidTostems': 'No has seleccionado dos tostem válidos',
-            'errFurnaceNoValidRunes': 'No has seleccionado dos runas válidas',
-            'errForgeNoValidParams': 'No has seleccionado todos los ingredientes necesarios',
+            // INTERFAZ - Colección
+            'selectCardTitle': '¿Asignar esta carta?',
+            'selectCardContent': 'Confirma que quieres asignar la carta "{{card}}" al hueco seleccionado.',
 
             // ERRORES - GENERAL
             'errGenericException': 'Ocurrió un error desconocido',

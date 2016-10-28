@@ -16,6 +16,9 @@
                         $mdDialog.hide();
                     };
 
+                    $scope.isPlace = function (card) {
+                        return card.type === CONSTANTS.cardTypes.place;
+                    }
                 }
             ]);
 })();

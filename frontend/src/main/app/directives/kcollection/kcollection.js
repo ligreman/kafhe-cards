@@ -9,8 +9,8 @@
          console.log(scope.collection);
          };*/
 
-        var controller = ['$scope', 'CONSTANTS', '$mdDialog', 'KShare', '$log', '$location', 'ROUTES',
-            function ($scope, CONSTANTS, $mdDialog, KShare, $log, $location, ROUTES) {
+        var controller = ['$scope', 'CONSTANTS', '$mdDialog', 'KShare', '$log', '$location', 'ROUTES', '$translate',
+            function ($scope, CONSTANTS, $mdDialog, KShare, $log, $location, ROUTES, $translate) {
                 $scope.fullWideMode = ($location.path() === ROUTES.character);
 
                 $scope.roman = CONSTANTS.roman;
@@ -21,6 +21,8 @@
                 $scope.isSkill = fnIsSkill;
                 $scope.isEncounter = fnIsEncounter;
                 $scope.isEvent = fnIsEvent;
+                $scope.cardImage = fnCardImage;
+                $scope.getNumber = fnGetNumber;
 
                 $scope.cardClick = fnCardClick;
                 $scope.showCardDialog = fnShowCardDialog;
@@ -69,21 +71,37 @@
                     return card.type === CONSTANTS.cardTypes.event;
                 }
 
+                function fnCardImage(card) {
+                    var tipo = '';
+                    if ($scope.isPlace(card)) {
+                        tipo = card.data.place.type;
+
+                        if (card.data.place.subtype) {
+                            tipo += card.data.place.subtype;
+                        }
+                    } else {
+                        tipo = card.type;
+                    }
+
+                    return tipo;
+                }
+
+                function fnGetNumber(num) {
+                    return new Array(num);
+                }
+
                 function fnCardClick(event, card) {
-                    console.log($scope.selecting);
                     // Si estoy seleccionando en página de planning, hago una cosa y si no otra
                     if ($scope.selecting) {
                         //Confirmo que quiero seleccionar esta carta
                         var confirm = $mdDialog.confirm()
-                            .title('Would you like to delete your debt?')
-                            .textContent('All of the banks have agreed to forgive you your debts.')
+                            .title($translate.instant('selectCardTitle'))
+                            .textContent($translate.instant('selectCardContent', {card: card.name}))
                             .targetEvent(event)
-                            .ok('Please do it!')
-                            .cancel('Sounds like a scam');
+                            .ok($translate.instant('textAssignCard'))
+                            .cancel($translate.instant('textCancel'));
 
                         $mdDialog.show(confirm).then(function () {
-                            console.log("La carta es");
-                            console.log(card);
                             // Le digo a planning que he elegido esto
                             KShare.sendData('card-scheduled', {
                                 "type": $scope.selectingData.type,

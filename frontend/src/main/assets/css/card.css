@@ -76,6 +76,15 @@ md-grid-list.card-list md-grid-tile .card-level {
     text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
+md-grid-list.card-list md-grid-tile .card-level-place {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    z-index: 11;
+}
+
 .card-image-container .card-type {
     position: absolute;
     top: 0;
@@ -116,6 +125,12 @@ md-grid-list.card-list md-grid-tile .card-level {
     font-size: 1.4rem;
     text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     text-align: center;
+}
+
+.card-image-container .card-level-place {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .card-image-container .card-name {

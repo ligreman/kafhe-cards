@@ -157,6 +157,10 @@ footer {
     opacity: 1;
 }
 
+md-grid-tile-footer figcaption {
+    line-height: 1.5rem;
+}
+
 md-grid-tile-footer.width100 figcaption {
     width: 100%;
 }
