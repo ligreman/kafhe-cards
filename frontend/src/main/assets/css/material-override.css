@@ -20,3 +20,6 @@ md-tooltip {
     color: #F5F5F5;
 }
 
+md-icon.icon-size-inherit {
+    font-size: inherit;
+}

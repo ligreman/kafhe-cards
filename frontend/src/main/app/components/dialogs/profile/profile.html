@@ -1,7 +1,7 @@
 <md-dialog id="profile-dialog" ng-cloak class="md-whiteframe-1dp">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>Panel de líder</h2>
+            <h2>{{'profileTitle' | translate}}</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cancel()">
                 <md-icon>clear</md-icon>
@@ -12,22 +12,22 @@
     <md-dialog-content layout-margin>
         <form name="userForm" layout-padding novalidate>
             <md-input-container class="md-block">
-                <label>Alias</label>
+                <label>{{'profileAlias' | translate}}</label>
                 <input ng-model="user.alias"/>
             </md-input-container>
 
             <md-input-container class="md-block">
-                <label>Avatar</label>
+                <label>{{'profileAvatar' | translate}}</label>
                 <input ng-model="user.avatar"/>
             </md-input-container>
 
             <md-input-container class="md-block">
-                <label>Password</label>
+                <label>{{'profilePassword' | translate}}</label>
                 <input ng-model="user.password" type="password"/>
             </md-input-container>
 
             <md-input-container class="md-block">
-                <label>RePassword</label>
+                <label>{{'profileRepassword' | translate}}</label>
                 <input ng-model="user.repassword" type="password"/>
             </md-input-container>
         </form>

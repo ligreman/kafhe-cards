@@ -1,23 +1,40 @@
 <section id="character-page" flex ng-class="{ 'wide': !isSmallScreen() }" layout="column">
     <md-toolbar class="kafhe-background-black" flex="none">
-        <div class="md-toolbar-tools">
-            <md-button class="md-raissed md-primary md-hue-1" aria-label=""
-                       ng-click="toggle()" ng-hide="viewing === 'talents'">
-                <md-icon>navigate_before</md-icon>
-                Talentos
-                <md-icon>device_hub</md-icon>
-            </md-button>
+        <div class="md-toolbar-tools" layout-align="space-around center">
+            <div flex="20">
+                <md-button class="md-raissed md-primary md-hue-1" aria-label=""
+                           ng-show="!isSmallScreen() && (viewing === 'collection')"
+                           ng-click="toggle()">
+                    <md-icon>navigate_before</md-icon>
+                    <span>Talentos</span>
+                </md-button>
+                <div ng-show="isSmallScreen() && (viewing === 'collection')" ng-click="toggle()">
+                    <md-icon>navigate_before</md-icon>
+                    <md-icon>device_hub</md-icon>
+                </div>
+            </div>
 
-            <h2 flex class="text-center">
-                Toolbar with Disabled/Enabled Icon Buttons
+            <h2 flex="noshrink" class="text-center" ng-show="viewing === 'talents'">
+                <md-icon class="icon-size-inherit" ng-hide="isSmallScreen()">device_hub</md-icon>
+                Talentos del personaje
+            </h2>
+            <h2 flex="noshrink" class="text-center" ng-show="viewing === 'collection'">
+                <md-icon class="icon-size-inherit" ng-hide="isSmallScreen()">view_comfy</md-icon>
+                Colección de cartas
             </h2>
 
-            <md-button class="md-raissed md-primary md-hue-1" aria-label=""
-                       ng-click="toggle()" ng-hide="viewing === 'collection'">
-                <md-icon>view_comfy</md-icon>
-                Colección de cartas
-                <md-icon>navigate_next</md-icon>
-            </md-button>
+            <div flex="20" layout="row" layout-align="end center">
+                <md-button class="md-raissed md-primary md-hue-1" aria-label=""
+                           ng-show="!isSmallScreen() && (viewing === 'talents')"
+                           ng-click="toggle()">
+                    <span>Colección de cartas</span>
+                    <md-icon>navigate_next</md-icon>
+                </md-button>
+                <div ng-show="isSmallScreen() && (viewing === 'talents')" ng-click="toggle()">
+                    <md-icon>view_comfy</md-icon>
+                    <md-icon>navigate_next</md-icon>
+                </div>
+            </div>
         </div>
     </md-toolbar>
 

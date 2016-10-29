@@ -12,7 +12,7 @@
             'menuPlanning': 'Preparativos',
             'menuShop': 'Tienda',
             'menuBreakfast': 'Cafetería',
-            'menuProfile': 'Perfil',
+            'menuProfile': 'Cuenta',
 
             // TEXTOS - GENERAL
             'textError': 'Error',
@@ -71,6 +71,11 @@
             'loginSignInButton': 'Entrar',
             'loginUserLabel': 'Usuario',
             'loginPasswordLabel': 'Contraseña',
+            'profileTitle': 'Modifica tu cuenta',
+            'profileAvatar': 'Avatar',
+            'profileAlias': 'Alias',
+            'profilePassword': 'Introduce la nueva contraseña',
+            'profileRepassword': 'Repite la nueva contraseña',
 
             // INTERFAZ - PANTALLA DESAYUNO
             'textNewOrder': 'Hacer pedido',

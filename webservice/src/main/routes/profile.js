@@ -6,6 +6,7 @@ module.exports = function (app) {
     var express = require('express'),
         passport = require('passport'),
         validator = require('validator'),
+        config = require('../modules/config'),
         utils = require('../modules/utils'),
         responseUtils = require('../modules/responseUtils'),
         profileRouter = express.Router(),
@@ -30,7 +31,7 @@ module.exports = function (app) {
         var usuario = req.user,
             params = req.body,
             changes = false;
-
+        console.log("blblbl");
         // Actualizo los campos del usuario
         if (params.password && validator.isHexadecimal(params.password) && params.password.length === 128) {
             usuario.password = params.password;
@@ -75,5 +76,5 @@ module.exports = function (app) {
     });
 
     // Asigno los router a sus rutas
-    app.use('/profile', profileRouter);
+    app.use('/api/profile', profileRouter);
 };
