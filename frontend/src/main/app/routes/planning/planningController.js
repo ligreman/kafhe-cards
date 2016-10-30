@@ -46,16 +46,17 @@
 
                 function afterUpdate() {
                     // Si el estado de la partida no es planning, redirijo a home
-                    if ($scope.global.gamedata.status !== CONSTANTS.gameStatuses.planning) {
-                        //TODO activar
-                        // $location.path("/home");
-                    } else {
+                    if ($scope.global.gamedata.status === CONSTANTS.gameStatuses.explore) {
+                        $location.path("/explore");
+                    } else if ($scope.global.gamedata.status === CONSTANTS.gameStatuses.planning) {
                         // Recupero del API los datos de todos los jugadores
                         API.user().list({}, function (response) {
                             if (response) {
                                 processData(response.data);
                             }
                         });
+                    } else {
+                        $location.path("/home");
                     }
                 }
 

@@ -4,21 +4,39 @@
     // Controlador de la pantalla de login
     angular.module('kafhe.controllers')
         .controller('ExploreController',
-            ['$scope', '$translate', 'API', '$mdSidenav', '$log', '$timeout', '$location', 'CONSTANTS',
-                function ($scope, $translate, API, $mdSidenav, $log, $timeout, $location, CONSTANTS) {
+            ['$scope', '$translate', 'API', '$mdSidenav', '$log', '$timeout', '$location', 'CONSTANTS', 'KCommon',
+                function ($scope, $translate, API, $mdSidenav, $log, $timeout, $location, CONSTANTS, KCommon) {
+                    var $this = this;
 
                     $scope.toggle = fnToggle;
                     $scope.close = fnClose;
+                    $this.getPlaceMarkers = fnGetPlaceMarkers;
+                    $this.getPlayerMarkers = fnGetPlayerMarkers;
+                    $this.generatePlaceIcon = fnGeneratePlaceIcon;
+                    $this.generatePlayerIcon = fnGeneratePlayerIcon;
+                    $this.users = null;
 
                     // Actualizo los datos del juego si hace falta
-                    $scope.updateGameData(updateDone);
+                    $scope.updateGameData(getUsersData);
+
+                    // Saco la info de todos los jugadores para colocarlos en el mapa
+                    function getUsersData() {
+                        API.user().list({}, function (response) {
+                            if (response) {
+                                $this.users = response.data.players;
+                                updateDone();
+                            }
+                        });
+                    }
 
                     function updateDone() {
                         // Si no estoy en modo explore salgo de aquí y voy a home
-                        if ($scope.global.gamedata.status !== CONSTANTS.gameStatuses.explore) {
-                            //TODO activar
-                            // $location.path("/home");
-                            // return;
+                        if ($scope.global.gamedata.status === CONSTANTS.gameStatuses.planning) {
+                            $location.path("/planning");
+                            return;
+                        } else if ($scope.global.gamedata.status !== CONSTANTS.gameStatuses.explore) {
+                            $location.path("/home");
+                            return;
                         }
 
                         // Calculo el ancho del div contenedor #map-container
@@ -30,21 +48,24 @@
                             document.getElementById('mapid').style.width = w + 'px';
                             document.getElementById('mapid').style.height = h + 'px';
 
-                            var marker1 = L.marker([-67.5, 0]);
-                            var marker2 = L.marker([-77.5, 0]);
-                            var marker3 = L.marker([-87.5, 0]);
-                            var cities = L.layerGroup([marker1, marker2, marker3]);
+                            // Creo la capa de marcadores de ciudades
+                            var cities = L.layerGroup($this.getPlaceMarkers());
 
+                            // La capa del mapa base
                             var mapaBase = L.tileLayer('assets/img/map/{z}/{x}/{y}.jpg', {
                                 minZoom: 3,
                                 maxZoom: 6,
                                 tms: true
                             });
 
+                            // Capa con los marcadores de los jugadores
+                            var players = L.layerGroup($this.getPlayerMarkers());
+
+                            // Creo el objeto map
                             var map = L.map('mapid', {
                                 // center: [51.505, -0.09],
                                 maxBounds: [[5, -180], [-81, 65]],
-                                layers: [mapaBase, cities],
+                                layers: [mapaBase, cities, players],
                                 zoomControl: false
                                 // sleep: false
                                 /*sleep: true,
@@ -61,8 +82,10 @@
                                  sleepOpacity: .7*/
                             }).setView([-70, -80], 3);
 
-                            var baseMaps = {"Jare": mapaBase};
-                            var overlayMaps = {"Cities": cities};
+
+                            // var baseMaps = {"Jare": mapaBase};
+                            // Control de capas
+                            var overlayMaps = {"Cities": cities, "Players": players};
                             L.control.layers({}, overlayMaps).setPosition('bottomright').addTo(map);
 
                             //add zoom control with your options
@@ -71,42 +94,42 @@
                             }).addTo(map);
 
 
-                            var greenIcon = L.icon({
-                                iconUrl: 'assets/img/leaflet/b.png',
-                                shadowUrl: 'assets/img/leaflet/marker-shadow.png',
-                                iconSize: [25, 41], // size of the icon
-                                shadowSize: [41, 41], // size of the shadow
-                                iconAnchor: [12, 40], // point of the icon which will correspond to marker's location
-                                shadowAnchor: [12, 41],  // the same for the shadow
-                                popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-                            });
-                            var greenIcon2 = L.icon({
-                                iconUrl: 'assets/img/leaflet/c.png',
-                                shadowUrl: 'assets/img/leaflet/marker-shadow.png',
-                                iconSize: [25, 41], // size of the icon
-                                shadowSize: [41, 41], // size of the shadow
-                                iconAnchor: [12, 40], // point of the icon which will correspond to marker's location
-                                shadowAnchor: [12, 41],  // the same for the shadow
-                                popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-                            });
+                            /* var greenIcon = L.icon({
+                             iconUrl: 'assets/img/leaflet/b.png',
+                             shadowUrl: 'assets/img/leaflet/marker-shadow.png',
+                             iconSize: [25, 41], // size of the icon
+                             shadowSize: [41, 41], // size of the shadow
+                             iconAnchor: [12, 40], // point of the icon which will correspond to marker's location
+                             shadowAnchor: [12, 41],  // the same for the shadow
+                             popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+                             });
+                             var greenIcon2 = L.icon({
+                             iconUrl: 'assets/img/leaflet/c.png',
+                             shadowUrl: 'assets/img/leaflet/marker-shadow.png',
+                             iconSize: [25, 41], // size of the icon
+                             shadowSize: [41, 41], // size of the shadow
+                             iconAnchor: [12, 40], // point of the icon which will correspond to marker's location
+                             shadowAnchor: [12, 41],  // the same for the shadow
+                             popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+                             });
 
-                            // var marker = L.marker([-47.5, 0]).addTo(map);
+                             // var marker = L.marker([-47.5, 0]).addTo(map);
 
-                            var marker = L.marker([-57.5, 0], {
-                                icon: greenIcon,
-                                title: 'manolo',
-                                opacity: 0.9,
-                                zIndexOffset: 100
-                            }).addTo(map).bindPopup("I am a green leaf.");
+                             var marker = L.marker([-57.5, 0], {
+                             icon: greenIcon,
+                             title: 'manolo',
+                             opacity: 0.9,
+                             zIndexOffset: 100
+                             }).addTo(map).bindPopup("I am a green leaf.");
 
-                            marker = L.marker([-47.5, 0], {
-                                icon: greenIcon2,
-                                title: 'manolo',
-                                opacity: 0.9,
-                                zIndexOffset: 100
-                            }).addTo(map).bindPopup("I am a green leaf.");
+                             marker = L.marker([-47.5, 0], {
+                             icon: greenIcon2,
+                             title: 'manolo',
+                             opacity: 0.9,
+                             zIndexOffset: 100
+                             }).addTo(map).bindPopup("I am a green leaf.");*/
 
-                            marker = L.marker([5, -180]).addTo(map);
+                            // var marker = L.marker([-51.82, -105.21]).addTo(map);
                         }, 0);
 
                         //TODO centrarlo en la posición del jugador
@@ -140,9 +163,37 @@
                     }
 
                     /**
+                     * Crea los marcadores de los lugares
+                     */
+                    function fnGetPlaceMarkers() {
+                        var db = TAFFY(KCommon.objToArray($scope.global.gamedata.cards));
+                        var places = db({'type': CONSTANTS.cardTypes.place}).get();
+
+                        var marker, markers = [];
+                        places.forEach(function (card) {
+                            var tipo = card.data.place.type;
+
+                            if (tipo === CONSTANTS.placeTypes.zone) {
+                                tipo += '-' + card.data.place.subtype;
+                            }
+
+                            marker = L.marker([card.data.place.lat, card.data.place.long], {
+                                icon: $this.generatePlaceIcon(tipo),
+                                title: card.name,
+                                opacity: 0.9,
+                                zIndexOffset: 100
+                            }).bindPopup("I am a green leaf.");
+
+                            markers.push(marker);
+                        });
+
+                        return markers;
+                    }
+
+                    /**
                      * Crea los iconos de los lugares
                      */
-                    function createPlacesIcons() {
+                    function fnGeneratePlaceIcon(place) {
                         var baseUrl = 'assets/img/leaflet/';
 
                         var MyLeafIcon = L.Icon.extend({
@@ -156,13 +207,50 @@
                             }
                         });
 
-                        var icons = {
-                            capital: new LeafIcon({iconUrl: baseUrl + 'place-capital.png'}),
-                            town: new LeafIcon({iconUrl: baseUrl + 'place-town.png'}),
-                            dungeon: new LeafIcon({iconUrl: baseUrl + 'place-dungeon.png'})
-                        };
+                        return new MyLeafIcon({iconUrl: baseUrl + 'place-' + place + '.png'});
+                    }
 
-                        return icons;
+                    /**
+                     * Genera los marcadores de los jugadores
+                     */
+                    function fnGetPlayerMarkers() {
+                        var marker, markers = [];
+                        $this.users.forEach(function (user) {
+                            if (!user.game.schedule.place) {
+                                return;
+                            }
+
+                            var lugar = user.game.schedule.place[0].card;
+                            var carta = $scope.global.gamedata.cards[lugar];
+
+                            marker = L.marker([carta.data.place.lat, carta.data.place.long], {
+                                icon: $this.generatePlayerIcon(user.avatar),
+                                title: user.alias,
+                                opacity: 0.9,
+                                zIndexOffset: 100
+                            }).bindPopup("I am a green leaf.");
+
+                            markers.push(marker);
+                        });
+
+                        return markers;
+                    }
+
+                    function fnGeneratePlayerIcon(avatar) {
+                        var baseUrl = 'assets/img/leaflet/';
+
+                        var MyLeafIcon = L.Icon.extend({
+                            options: {
+                                shadowUrl: baseUrl + 'marker-shadow-player.png',
+                                iconSize: [48, 48], // size of the icon
+                                shadowSize: [48, 48], // size of the shadow
+                                iconAnchor: [24, 64], // point of the icon which will correspond to marker's location
+                                shadowAnchor: [24, 48],  // the same for the shadow
+                                popupAnchor: [0, -48] // point from which the popup should open relative to the iconAnchor
+                            }
+                        });
+
+                        return new MyLeafIcon({iconUrl: avatar});
                     }
                 }])
         .controller('LeftCtrl', ['$scope', '$log', function ($scope, $log) {

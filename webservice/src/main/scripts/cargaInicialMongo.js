@@ -193,8 +193,8 @@ var places = [
         contained_in_packs: [],
         data: {
             place: {
-                lat: -54.74,
-                long: -106.92,
+                lat: -51.82,
+                long: -105.21,
                 region: 'Orgoth',
                 level: 1,
                 pack_reward: 'pack010',
