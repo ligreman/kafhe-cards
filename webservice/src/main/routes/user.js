@@ -5,6 +5,7 @@ module.exports = function (app) {
 
     var express = require('express'),
         passport = require('passport'),
+        config = require('../modules/config'),
         utils = require('../modules/utils'),
         responseUtils = require('../modules/responseUtils'),
         userRouter = express.Router(),
@@ -55,11 +56,15 @@ module.exports = function (app) {
                         jugador.game.schedule.encounter = null;
                         jugador.game.schedule.event = null;
                     } else {
-                        // Dejo los encounter y event del usuario que solicita la lista, y el resto fuera
+                        // Dejo los encounter y event y el place de los demás
                         jugador.game.schedule.weapon = null;
                         jugador.game.schedule.armor = null;
-                        jugador.game.schedule.place = null;
                         jugador.game.schedule.skill = null;
+
+                        // Si la partida está en exploración permito ver los place de todos
+                        if (user.game.gamedata.status !== config.GAME_STATUS.explore) {
+                            jugador.game.schedule.place = null;
+                        }
 
                         var db = TAFFY(jugador.game.schedule.encounter);
                         var encuentros = db({player: {like: user._id}}).get();

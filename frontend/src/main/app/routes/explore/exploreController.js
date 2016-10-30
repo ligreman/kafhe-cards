@@ -65,7 +65,7 @@
                             var map = L.map('mapid', {
                                 // center: [51.505, -0.09],
                                 maxBounds: [[5, -180], [-81, 65]],
-                                layers: [mapaBase, cities, players],
+                                layers: [mapaBase, players],
                                 zoomControl: false
                                 // sleep: false
                                 /*sleep: true,
@@ -129,19 +129,32 @@
                              zIndexOffset: 100
                              }).addTo(map).bindPopup("I am a green leaf.");*/
 
-                            // var marker = L.marker([-51.82, -105.21]).addTo(map);
+                            var marker = L.marker([-51.82, -105.21]).addTo(map);
+
+
+                            // var polyline = L.polyline([[-51.82, -105.21], [-51.82, -100.21], [-41.82, -100.21]]).addTo(map);
+                            var decorator = L.polylineDecorator([[-45.98, -137.04], [-47.96, -141.77], [-50.25, -138.49], [-55.9, -154.47]], {
+                                patterns: [
+                                    // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+                                    {
+                                        offset: 12,
+                                        repeat: 25,
+                                        symbol: L.Symbol.dash({
+                                            pixelSize: 10,
+                                            pathOptions: {color: '#616161', weight: 4}
+                                        })
+                                    },
+                                    {
+                                        offset: 0,
+                                        repeat: 25,
+                                        symbol: L.Symbol.dash({
+                                            pixelSize: 0,
+                                            pathOptions: {color: '#1B5E20', weight: 4}
+                                        })
+                                    }
+                                ]
+                            }).addTo(map);
                         }, 0);
-
-                        //TODO centrarlo en la posición del jugador
-
-
-                        /*var polyline = L.polyline([...]).addTo(map);
-                         var decorator = L.polylineDecorator(polyline, {
-                         patterns: [
-                         // defines a pattern of 10px-wide dashes, repeated every 20px on the line
-                         {offset: 0, repeat: 20, symbol: L.Symbol.dash({pixelSize: 10})}
-                         ]
-                         }).addTo(map);*/
                     }
 
                     /**
@@ -182,7 +195,7 @@
                                 title: card.name,
                                 opacity: 0.9,
                                 zIndexOffset: 100
-                            }).bindPopup("I am a green leaf.");
+                            }).bindPopup(card.data.place.lat + ' // ' + card.data.place.long);
 
                             markers.push(marker);
                         });
@@ -215,19 +228,28 @@
                      */
                     function fnGetPlayerMarkers() {
                         var marker, markers = [];
+                        console.log($this.users);
                         $this.users.forEach(function (user) {
-                            if (!user.game.schedule.place) {
+
+                            console.log("miro " + user.username);
+                            if (!user.game.schedule.place || user.game.schedule.place.length === 0) {
                                 return;
                             }
+                            console.log("coloco");
+                            var lugar = user.game.schedule.place[0].card,
+                                carta = $scope.global.gamedata.cards[lugar],
+                                enemy = true;
 
-                            var lugar = user.game.schedule.place[0].card;
-                            var carta = $scope.global.gamedata.cards[lugar];
+                            //Si soy yo o no
+                            if (user.username === $scope.global.user.username) {
+                                enemy = false;
+                            }
 
                             marker = L.marker([carta.data.place.lat, carta.data.place.long], {
-                                icon: $this.generatePlayerIcon(user.avatar),
-                                title: user.alias,
+                                icon: $this.generatePlayerIcon(user.avatar, enemy),
+                                title: user.alias + ' está explorando ' + carta.name,
                                 opacity: 0.9,
-                                zIndexOffset: 100
+                                zIndexOffset: 90
                             }).bindPopup("I am a green leaf.");
 
                             markers.push(marker);
@@ -236,17 +258,21 @@
                         return markers;
                     }
 
-                    function fnGeneratePlayerIcon(avatar) {
-                        var baseUrl = 'assets/img/leaflet/';
+                    function fnGeneratePlayerIcon(avatar, enemy) {
+                        var baseUrl = 'assets/img/leaflet/', extra = '';
+
+                        if (enemy) {
+                            extra = '-enemy';
+                        }
 
                         var MyLeafIcon = L.Icon.extend({
                             options: {
-                                shadowUrl: baseUrl + 'marker-shadow-player.png',
+                                shadowUrl: baseUrl + 'marker-shadow-player' + extra + '.png',
                                 iconSize: [48, 48], // size of the icon
-                                shadowSize: [48, 48], // size of the shadow
-                                iconAnchor: [24, 64], // point of the icon which will correspond to marker's location
-                                shadowAnchor: [24, 48],  // the same for the shadow
-                                popupAnchor: [0, -48] // point from which the popup should open relative to the iconAnchor
+                                shadowSize: [36, 36], // size of the shadow
+                                iconAnchor: [24, 66], // point of the icon which will correspond to marker's location
+                                shadowAnchor: [18, 26],  // the same for the shadow
+                                popupAnchor: [0, -66] // point from which the popup should open relative to the iconAnchor
                             }
                         });
 
