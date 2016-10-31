@@ -131,29 +131,39 @@
 
                             var marker = L.marker([-51.82, -105.21]).addTo(map);
 
+                            // Mi ruta seguida
+                            var ruta = [];
+                            if ($scope.global.user.game.journal.length > 1) {
+                                var dbRuta = TAFFY($scope.global.user.game.journal);
+                                var rutaSeguida = dbRuta().order('date asec').get();
+                                rutaSeguida.forEach(function (punto) {
+                                    console.log(punto);
+                                    var carta = $scope.global.gamedata.cards[punto.place];
+                                    ruta.push([carta.data.place.lat, carta.data.place.long]);
+                                });
 
-                            // var polyline = L.polyline([[-51.82, -105.21], [-51.82, -100.21], [-41.82, -100.21]]).addTo(map);
-                            var decorator = L.polylineDecorator([[-45.98, -137.04], [-47.96, -141.77], [-50.25, -138.49], [-55.9, -154.47]], {
-                                patterns: [
-                                    // defines a pattern of 10px-wide dashes, repeated every 20px on the line
-                                    {
-                                        offset: 12,
-                                        repeat: 25,
-                                        symbol: L.Symbol.dash({
-                                            pixelSize: 10,
-                                            pathOptions: {color: '#616161', weight: 4}
-                                        })
-                                    },
-                                    {
-                                        offset: 0,
-                                        repeat: 25,
-                                        symbol: L.Symbol.dash({
-                                            pixelSize: 0,
-                                            pathOptions: {color: '#1B5E20', weight: 4}
-                                        })
-                                    }
-                                ]
-                            }).addTo(map);
+                                L.polylineDecorator(ruta, {
+                                    patterns: [
+                                        // defines a pattern of 10px-wide dashes, repeated every 20px on the line
+                                        {
+                                            offset: 12,
+                                            repeat: 25,
+                                            symbol: L.Symbol.dash({
+                                                pixelSize: 10,
+                                                pathOptions: {color: '#616161', weight: 4}
+                                            })
+                                        },
+                                        {
+                                            offset: 0,
+                                            repeat: 25,
+                                            symbol: L.Symbol.dash({
+                                                pixelSize: 0,
+                                                pathOptions: {color: '#1B5E20', weight: 4}
+                                            })
+                                        }
+                                    ]
+                                }).addTo(map);
+                            }
                         }, 0);
                     }
 
@@ -228,14 +238,12 @@
                      */
                     function fnGetPlayerMarkers() {
                         var marker, markers = [];
-                        console.log($this.users);
                         $this.users.forEach(function (user) {
 
-                            console.log("miro " + user.username);
                             if (!user.game.schedule.place || user.game.schedule.place.length === 0) {
                                 return;
                             }
-                            console.log("coloco");
+
                             var lugar = user.game.schedule.place[0].card,
                                 carta = $scope.global.gamedata.cards[lugar],
                                 enemy = true;
@@ -247,7 +255,7 @@
 
                             marker = L.marker([carta.data.place.lat, carta.data.place.long], {
                                 icon: $this.generatePlayerIcon(user.avatar, enemy),
-                                title: user.alias + ' está explorando ' + carta.name,
+                                title: user.alias + ' está en ' + carta.name,
                                 opacity: 0.9,
                                 zIndexOffset: 90
                             }).bindPopup("I am a green leaf.");

@@ -80,7 +80,7 @@ module.exports = function (app) {
     var game = [{
         _id: new mongoose.Types.ObjectId,
         repeat: true,
-        status: 1,
+        status: 2,
         caller: null,
         players: [userId, userId2, userId3]
         /*notifications: [{
@@ -131,6 +131,12 @@ module.exports = function (app) {
                         message: 'nEquipDestroyArmor#' + JSON.stringify({"name": "Armadura caca", "tostem": "fuego"}),
                         type: 'skill', timestamp: date.getTime() + 1500
                     }
+                ],
+                journal: [
+                    {date: 1477929730018, place: '3', log: ['Log 1', 'Log 2']},
+                    {date: 1477929740018, place: '2', log: ['Log 12', 'Log 22']},
+                    {date: 1477929750018, place: '4', log: ['Log 13', 'Log 23']},
+                    {date: 1477929760018, place: '5', log: ['Log 14', 'Log 24']}
                 ]
             }
         },
@@ -149,8 +155,15 @@ module.exports = function (app) {
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: [],
                 schedule: {
-                    encounter: [{player: userId, card: '5', level: 1}, {player: userId2, card: '5', level: 1}]
-                }
+                    encounter: [{player: userId, card: '5', level: 1}, {player: userId2, card: '5', level: 1}],
+                    place: [{card: '3', level: 2}]
+                },
+                journal: [
+                    {date: 1477929730018, place: '3', log: ['Log 1', 'Log 2']},
+                    {date: 1477929740018, place: '2', log: ['Log 12', 'Log 22']},
+                    {date: 1477929750018, place: '6', log: ['Log 13', 'Log 23']},
+                    {date: 1477929760018, place: '5', log: ['Log 14', 'Log 24']}
+                ]
             }
         },
         {

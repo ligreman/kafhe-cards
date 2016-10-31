@@ -46,7 +46,8 @@ module.exports = function (mongoose) {
                 }],
                 skill: [{
                     card: {type: String, default: null},
-                    level: Number
+                    level: Number,
+                    used: {type: Boolean, default: false}
                 }],
                 place: [{
                     card: {type: String, default: null},
@@ -65,12 +66,7 @@ module.exports = function (mongoose) {
             },
             journal: [{
                 date: Number,
-                place: {
-                    id: String,
-                    latitude: Number,
-                    longitude: Number
-                },
-                skills: [Boolean],
+                place: String,
                 log: [String]
             }],
             rewards: {
