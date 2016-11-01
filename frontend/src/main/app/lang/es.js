@@ -76,6 +76,7 @@
             'profileAlias': 'Alias',
             'profilePassword': 'Introduce la nueva contraseña',
             'profileRepassword': 'Repite la nueva contraseña',
+            'profileChangePassword': 'Cambia tu contraseña',
 
             // INTERFAZ - PANTALLA DESAYUNO
             'textNewOrder': 'Hacer pedido',

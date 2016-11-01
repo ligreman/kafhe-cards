@@ -16,24 +16,31 @@
                 <input ng-model="user.alias"/>
             </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>{{'profileAvatar' | translate}}</label>
-                <input ng-model="user.avatar"/>
-            </md-input-container>
+            <p>{{'profileChangePassword' | translate}}</p>
 
-            <md-input-container class="md-block">
-                <label>{{'profilePassword' | translate}}</label>
-                <input ng-model="user.password" type="password"/>
-            </md-input-container>
+                <md-input-container class="md-block">
+                    <label>{{'profilePassword' | translate}}</label>
+                    <input ng-model="user.password" type="password"/>
+                </md-input-container>
 
-            <md-input-container class="md-block">
-                <label>{{'profileRepassword' | translate}}</label>
-                <input ng-model="user.repassword" type="password"/>
-            </md-input-container>
+                <md-input-container class="md-block">
+                    <label>{{'profileRepassword' | translate}}</label>
+                    <input ng-model="user.repassword" type="password"/>
+                </md-input-container>
+
+            <p>{{'profileAvatar' | translate}}</p>
+            <md-grid-list
+                    md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-gt-lg="10"
+                    md-row-height="1:1" md-gutter="24px" md-gutter-gt-sm="12px">
+                <md-grid-tile class="avatar-tile" ng-repeat="id in range(1,maxAvatarNumber)" ng-click="selectAvatar(id)"
+                              ng-class="{'selected': user.avatar === id}" id="avatar{{id}}">
+                    <img ng-src="assets/img/avatars/{{id}}.png"/>
+                </md-grid-tile>
+            </md-grid-list>
         </form>
     </md-dialog-content>
 
-    <div class="md-actions" layout="row">
+    <md-dialog-actions layout="row">
         <md-button ng-click="cancel()" type="button" class="md-warn md-hue">
             {{'textCancel' | translate}}
         </md-button>
@@ -41,5 +48,5 @@
         <md-button type="button" class="md-raised md-primary" ng-click="saveUser()">
             {{'textSave' | translate}}
         </md-button>
-    </div>
+    </md-dialog-actions>
 </md-dialog>

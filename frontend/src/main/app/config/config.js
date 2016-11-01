@@ -20,13 +20,10 @@
             //Códigos de error de sesión, que provocarán que se eche al usuario a la página de login
             errorCodesSession: [
                 'errUserPassNotValid', 'errSession'
-            ],
-
-            // CONSTANTES
-            constReputationToToastProportion: 100,
-            constCommonSkills: 'common'
+            ]
         })
         .constant('CONSTANTS', {
+            maxAvatarNumber: 52,
             gameStatuses: {
                 weekend: 0,// fin de semana. Se pone así cuando se crea una partida nueva.
                 planning: 1,// durante la semana, tiempo de espera entre juegos. Permite contratar. También meter y modificar tu pedido.

@@ -284,7 +284,7 @@
                             }
                         });
 
-                        return new MyLeafIcon({iconUrl: avatar});
+                        return new MyLeafIcon({iconUrl: 'assets/img/avatars/' + avatar + '.png'});
                     }
                 }])
         .controller('LeftCtrl', ['$scope', '$log', function ($scope, $log) {

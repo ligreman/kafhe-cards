@@ -1,0 +1,12 @@
+.avatar-tile {
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+
+.avatar-tile.selected {
+    border: 3px solid #daa520;
+}
+
+.avatar-tile img {
+    width: 100%;
+}

@@ -41,7 +41,7 @@ module.exports = function (app) {
             usuario.alias = params.alias;
             changes = true;
         }
-        if (params.avatar && validator.isURL(params.avatar, {protocols: ['http', 'https'], require_protocol: true})) {
+        if (params.avatar && validator.isNumeric("" + params.avatar)) {
             usuario.avatar = params.avatar;
             changes = true;
         }

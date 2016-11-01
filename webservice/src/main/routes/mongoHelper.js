@@ -106,7 +106,7 @@ module.exports = function (app) {
             username: 'pepe1',
             password: "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", //1234
             alias: 'Antoñete', leader: true, times: 2, calls: 50, group: 1,
-            avatar: 'http://findicons.com/files/icons/1072/face_avatars/300/j01.png',
+            avatar: '3',
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
@@ -145,7 +145,7 @@ module.exports = function (app) {
             username: 'pepe2',
             password: "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", //1234
             alias: 'Antoñete2', leader: true, times: 2, calls: 50, group: 1,
-            avatar: 'http://findicons.com/files/icons/1072/face_avatars/300/j02.png',
+            avatar: '1',
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
@@ -171,7 +171,7 @@ module.exports = function (app) {
             username: 'pepe3',
             password: "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", //1234
             alias: 'Antoñete3', leader: true, times: 2, calls: 50, group: 1,
-            avatar: 'http://findicons.com/files/icons/1072/face_avatars/300/j03.png',
+            avatar: '2',
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
