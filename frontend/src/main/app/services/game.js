@@ -6,8 +6,8 @@
 
     //Defino el servicio concreto del Game
     authModule.factory('KGame',
-        ['$rootScope', '$cookies', '$location', '$translate', 'API', '$q',
-            function ($rootScope, $cookies, $location, $translate, API, $q) {
+        ['$rootScope', '$cookies', '$location', '$translate', 'API', '$q', 'CONSTANTS',
+            function ($rootScope, $cookies, $location, $translate, API, $q, CONSTANTS) {
                 /**
                  * Pide al webservice los datos de la partida y la información de pedidos y habilidades
                  * @param callback Función callback. Se le pasa la info de: user, meals, drinks, skills
@@ -57,9 +57,29 @@
                     });
                 };
 
+                /**
+                 * Obtiene la imagen del tipo de carta
+                 * @param card Objeto carta
+                 */
+                var cardTypeImage = function (card) {
+                    var tipo = '';
+                    if (card.type === CONSTANTS.cardTypes.place) {
+                        tipo = card.data.place.type;
+
+                        if (card.data.place.subtype) {
+                            tipo += card.data.place.subtype;
+                        }
+                    } else {
+                        tipo = card.type;
+                    }
+
+                    return tipo;
+                };
+
                 //Expongo los métodos del servicio
                 return {
-                    getGameData: getGameData
+                    getGameData: getGameData,
+                    cardTypeImage: cardTypeImage
                 };
             }
         ]);

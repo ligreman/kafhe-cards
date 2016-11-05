@@ -15,7 +15,7 @@
                 <div class="card-image-container" ng-class="card.element">
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <div class="card-name"><p>{{ card.name }}</p></div>
-                    <div class="card-type"><img src="assets/img/cardtype/{{card.type}}.png"/></div>
+                    <div class="card-type"><img src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level" ng-if="!isPlace(card)"><p>{{ roman[card.level] }}</p></div>
                     <div class="card-level-place" ng-if="isPlace(card)" layout="column" layout-align="center center">
                         <md-icon class="md-accent md-hue-3"

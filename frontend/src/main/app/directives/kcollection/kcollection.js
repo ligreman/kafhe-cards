@@ -9,8 +9,8 @@
          console.log(scope.collection);
          };*/
 
-        var controller = ['$scope', 'CONSTANTS', '$mdDialog', 'KShare', '$log', '$location', 'ROUTES', '$translate',
-            function ($scope, CONSTANTS, $mdDialog, KShare, $log, $location, ROUTES, $translate) {
+        var controller = ['$scope', 'CONSTANTS', '$mdDialog', 'KShare', 'KGame', '$log', '$location', 'ROUTES', '$translate',
+            function ($scope, CONSTANTS, $mdDialog, KShare, KGame, $log, $location, ROUTES, $translate) {
                 $scope.fullWideMode = ($location.path() === ROUTES.character);
 
                 $scope.roman = CONSTANTS.roman;
@@ -21,7 +21,7 @@
                 $scope.isSkill = fnIsSkill;
                 $scope.isEncounter = fnIsEncounter;
                 $scope.isEvent = fnIsEvent;
-                $scope.cardImage = fnCardImage;
+                $scope.cardTypeImage = KGame.cardTypeImage;
                 $scope.getNumber = fnGetNumber;
 
                 $scope.cardClick = fnCardClick;
@@ -69,21 +69,6 @@
 
                 function fnIsEvent(card) {
                     return card.type === CONSTANTS.cardTypes.event;
-                }
-
-                function fnCardImage(card) {
-                    var tipo = '';
-                    if ($scope.isPlace(card)) {
-                        tipo = card.data.place.type;
-
-                        if (card.data.place.subtype) {
-                            tipo += card.data.place.subtype;
-                        }
-                    } else {
-                        tipo = card.type;
-                    }
-
-                    return tipo;
                 }
 
                 function fnGetNumber(num) {

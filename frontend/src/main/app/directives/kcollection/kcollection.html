@@ -10,7 +10,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isWeapon"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -28,7 +28,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isArmor"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -46,7 +46,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isSkill"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -66,7 +66,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isPlace"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level-place" layout="column" layout-align="center center">
                         <md-icon class="md-accent md-hue-3"
                                  ng-repeat="i in getNumber(card.data.place.level) track by $index">star
@@ -91,7 +91,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isEncounter"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -109,7 +109,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isEvent"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -135,7 +135,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isWeapon"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -153,7 +153,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isArmor"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -171,7 +171,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isSkill"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -190,7 +190,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isPlace"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level-place" layout="column" layout-align="center center">
                         <md-icon class="md-accent md-hue-3"
                                  ng-repeat="i in getNumber(card.data.place.level) track by $index">star
@@ -215,7 +215,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isEncounter"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
@@ -233,7 +233,7 @@
                 <md-grid-tile ng-repeat="card in collection | filter:isEvent"
                               md-rowspan="1" md-colspan="1" ng-class="card.element"
                               ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardImage(card)}}.png"/></div>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>

@@ -87,13 +87,15 @@ md-grid-list.card-list md-grid-tile .card-level-place {
 
 .card-image-container .card-type {
     position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 0 0 50px 0;
-    border-right: 6px solid #808080;
-    border-bottom: 3px solid #808080;
+    top: -7px;
+    left: -7px;
+    /*border-radius: 0 0 50px 0;*/
+    /*border-right: 6px solid #808080;*/
+    /*border-bottom: 3px solid #808080;*/
+    border-radius: 50px;
+    border: 5px inset #808080;
     overflow: hidden;
-    padding: 0 7px 7px 0;
+    /*padding: 0 7px 7px 0;*/
     background: #000;
 }
 
@@ -105,14 +107,17 @@ md-grid-list.card-list md-grid-tile .card-level-place {
 
 .card-image-container .card-level {
     position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 0 0 0 50px;
-    border-left: 6px solid #808080;
-    border-bottom: 3px solid #808080;
+    top: -7px;
+    right: -7px;
+    /*border-radius: 0 0 0 50px;*/
+    /*border-left: 6px solid #808080;*/
+    /*border-bottom: 3px solid #808080;*/
+    border-radius: 50px;
+    border: 5px outset #808080;
     overflow: hidden;
-    padding: 0 0 7px 7px;
+    /*padding: 0 0 7px 7px;*/
     background: #000;
+    transform: rotate(-90deg);
 }
 
 .card-image-container .card-level p {
@@ -125,6 +130,7 @@ md-grid-list.card-list md-grid-tile .card-level-place {
     font-size: 1.4rem;
     text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     text-align: center;
+    transform: rotate(90deg);
 }
 
 .card-image-container .card-level-place {
