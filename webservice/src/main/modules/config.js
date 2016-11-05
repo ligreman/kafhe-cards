@@ -15,8 +15,8 @@ var REGEXP = {
 
 // Valores por defecto
 var DEFAULTS = {
-    toast_points: 10,
-    reputation_to_tostolares_conversion: 100, // 100 de repu = 1 tostólar,
+    max_variacion_probabilidad_fama: 35, //Porcentaje máximo de probabilidad que se puede ganar o perder por la fama
+    fame_to_tostolares_conversion: 100, // 100 de fame = 1 tostólar,
 
     // Personajes
     character: {

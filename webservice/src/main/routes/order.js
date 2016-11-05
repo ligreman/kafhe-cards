@@ -121,7 +121,7 @@ module.exports = function (app) {
                 // Recorro la lista de usuarios y extraigo sus pedidos
                 playerList.forEach(function (player) {
                     var breakfast = false;
-                    if (player.game.order.meal !== null && player.game.order.drink !== null) {
+                    if (player.game.order.meal !== null || player.game.order.drink !== null) {
                         breakfast = true;
                     }
 
