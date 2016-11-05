@@ -52,14 +52,14 @@ var eventEmitter = new events.EventEmitter();
  - talents =[]
  - Añadir a unlocked las capitales
 
- + Reseteo entre desayunos de usuario:
+ + Reseteo entre desayunos de usuario si se ha llamado:
  - Borro todas las de schedule.
  - Borra el journal
  - Borra rewards
  - Borra notifications de user
  - Order pasa a last order, y order se limpia
 
- + Reseteo entre desayunos de game:
+ + Reseteo entre desayunos de game tanto si se ha llamado como si no:
  - Borra notifications de game
  - Borra caller
  - Estado a weekend
@@ -125,7 +125,7 @@ switch (dia) {
         // 1:00 AM
         if (hora === 1) {
             Q.all([
-                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.weekend),
+                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.planning),
                 userDao.usersDailyReset('all')
             ]).spread(function (result) {
                 console.log('Partidas en estado explore pasan a estado planning en la madrugada.');
@@ -150,14 +150,15 @@ switch (dia) {
         break;
     /**
      * VIERNES
-     *  - A la 1:00am cierro los juegos anteriores (estado planning) y pongo las partidas en resolution
+     *  - A la 1:00am cierro los juegos anteriores (estado explore) y pongo las partidas en resolution
      *
-     *  - Si se lanza el desayuno, se pone en estado cerrado. Se otorgan las recompensas en ese caso.
+     *  - Si se lanza el desayuno, se pone en estado cerrado (cerrar desayuno). Reseteo de todos los jugadores por desayuno finalizado,
+     *      y reseteo del caller.
      *
-     *  - A las 15:00 pongo las cerradas en weekend, si tienen el repeat. Limpio el caller.
-     *    Pongo las que sigan en resolution (no se han lanzado) en modo weekend para jugar la semana siguiente. reseteo.
+     *  - A las 15:00 pongo las cerradas en weekend, si tienen el repeat. Limpio el caller y log.
+     *    Pongo las que sigan en resolution (no se han lanzado) en modo weekend para jugar la semana siguiente.
+     *    Reseteo entre desayunos de game.
      *
-     *  En ambos casos reseteo la partida en cuanto a cartas, jugadores, etc.
      */
     case 5:
         // 1:00 AM
@@ -175,8 +176,10 @@ switch (dia) {
         // 15:00 PM
         if (hora === 15) {
             Q.all([
+                gameDao.gameBreakfastReset()
+                // gameDao.gameUpdateAllByStatus(config.GAME_STATUS.resolution, config.GAME_STATUS.weekend)
             ]).spread(function (result) {
-                console.log('.');
+                console.log('Partidas finalizadas y no lanzadas puestas a weekend para la semana que viene.');
                 salir();
             }).fail(function (error) {
                 console.error(error);

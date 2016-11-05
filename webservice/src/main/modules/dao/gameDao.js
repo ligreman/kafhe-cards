@@ -26,6 +26,40 @@ var gameUpdateAllByStatus = function (oldStatus, newStatus) {
     return deferred.promise;
 };
 
+/**
+ * Reseteo de game entre desayunos
+ * Borra notifications de game
+ * Borra caller
+ * Estado a weekend si está cerrado y repeat true; o si está en resolution
+ */
+var gameBreakfastReset = function () {
+    var deferred = Q.defer(),
+        condition = {
+            $or: [
+                {"status": config.GAME_STATUS.resolution},
+                {
+                    $and: [
+                        {"status": config.GAME_STATUS.closed},
+                        {"repeat": true}
+                    ]
+                }
+            ]
+        };
+
+    //TODO de momento no borro notificaciones
+    models.Game.update(condition, {$set: {"status": config.GAME_STATUS.weekend, "caller": null}}, {multi: true},
+        function (error, numAffected) {
+            if (error) {
+                deferred.reject(error);
+            }
+            deferred.resolve(numAffected);
+        }
+    );
+
+    return deferred.promise;
+};
+
 module.exports = {
-    gameUpdateAllByStatus: gameUpdateAllByStatus
+    gameUpdateAllByStatus: gameUpdateAllByStatus,
+    gameBreakfastReset: gameBreakfastReset
 };
