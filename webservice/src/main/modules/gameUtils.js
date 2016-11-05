@@ -4,6 +4,8 @@ var console = process.console,
     mongoose = require('mongoose'),
     Q = require('q'),
     utils = require('./utils'),
+    gameUtils = require('./gameUtils'),
+    cardDao = require('./dao/cardDao'),
     modelos = require('../models/models')(mongoose);
 
 var calculateUsersProbabilities = fnCalculateUsersProbabilities,
@@ -150,71 +152,95 @@ function fnLaunchBreakfast(idGame) {
     // Calculo quién llama
     var caller;
 
-    Q.all([calculateUsersProbabilities(idGame)])
-        .spread(function (result) {
-            var probs = result.probabilities;
-            var users = result.users;
+    Q.all([
+        calculateUsersProbabilities(idGame),
+        cardDao.getCards('capital', true)
+    ]).spread(function (result, capitalsIds) {
+        var probs = result.probabilities;
+        var users = result.users;
 
-            // Lanzo el "dado" de 100 caras 1 vez
-            var tirada = utils.rollDice(1, 100);
+        // Lanzo el "dado" de 100 caras 1 vez
+        var tirada = utils.rollDice(1, 100);
 
-            var anterior = 0;
-            probs.forEach(function (valor, userId) {
-                if (valor == 0) {
-                    return;
-                }
-
-                if (((anterior + 1) <= tirada) && (tirada <= (anterior + valor))) {
-                    caller = userId;
-                }
-
-                anterior += valor;
-            });
-
-            if (!caller) {
-                defer.reject();
+        var anterior = 0;
+        probs.forEach(function (valor, userId) {
+            if (valor == 0) {
+                return;
             }
 
-            // Una vez lo sé procedo a gestionar el cierre del desayuno
-            users.forEach(function (user) {
-                if (user._id === caller) {
-                    // Llamador
-                    user.game.rank = 1;
-                    user.calls = user.calls + 1;
-                    user.game.packs = [];
-                    user.game.collection = [];
-                    user.game.unlocked = [];
-                    user.game.talents = [];
-                    /*
-                     - rank =1
-                     - calls +1
-                     - packs =[]
-                     - collection =[]
-                     - unlocked =[]
-                     - talents =[]
-                     - Añadir a unlocked las capitales
-                     */
-                } else {
-                    // No llamador
-                    /*
-                     Dar recompensas
-                     - Sube de rank de toda la gente
-                     */
-                }
+            if (((anterior + 1) <= tirada) && (tirada <= (anterior + valor))) {
+                caller = userId;
+            }
 
-                // Todos
-                user.times = user.times + 1;
-                user.fame = 0;
-                /*
-                 + Reseteo entre desayunos de usuario si se ha llamado:
-                 - Borro todas las de schedule.
-                 - Borra el journal
-                 - Borra rewards
-                 - Borra notifications de user
-                 - Order pasa a last order, y order se limpia
-                 */
-            });
+            anterior += valor;
         });
+
+        if (!caller) {
+            defer.reject();
+        }
+
+        // Una vez lo sé procedo a gestionar el cierre del desayuno
+        var promesas = [];
+        users.forEach(function (user) {
+            if (user._id === caller) {
+                // Llamador
+                user.game.rank = 1;
+                user.calls = user.calls + 1;
+                user.game.packs = [];
+                user.game.collection = [];
+                // Reseteo unlocked a sólo las capitales
+                user.game.unlocked = capitalsIds;
+                user.game.talents = [];
+            } else {
+                // No llamador, sube de rango
+                user.game.rank = user.game.rank + 1;
+            }
+
+            // Todos Los jugadores se resetean para el nuevo desayuno
+            user.times = user.times + 1;
+            user.fame = 0;
+
+            // - Borro todas las de schedule.
+            user.game.schedule = {
+                weapon: [], armor: [], skill: [],
+                place: [], encounter: [], event: []
+            };
+
+            // - Borra el journal
+            user.game.journal = [];
+
+            // - Borra rewards
+            user.game.rewards = {
+                packs: [],
+                tostolares: 0,
+                fame: 0
+            };
+            // - Borra notifications de user
+            user.game.notifications = [];
+
+            // - Order pasa a last order, y order se limpia
+            user.game.last_order = utils.cloneObject(user.game.order);
+            user.game.order = {meal: null, drink: null, ito: false};
+
+            promesas.push(user.save());
+        });
+
+        Q.allSettled(promesas).then(function (results) {
+            var resultado = true, razon = '';
+            results.forEach(function (result) {
+                if (result.state !== "fulfilled") {
+                    resultado = result.value;
+                    razon = result.reason;
+                }
+            });
+
+            if (resultado !== true) {
+                defer.reject(razon);
+            }
+
+            defer.resolve();
+        });
+    });
 
     return defer.promise;
 }

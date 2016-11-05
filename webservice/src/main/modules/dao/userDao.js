@@ -9,19 +9,13 @@ var console = process.console,
     TAFFY = require('taffy'),
     models = require(__dirname + '/models/models')(mongoose);
 
-var userCallerReset = function (username) {
-    /*-rank = 1
-     - calls + 1
-     - fame = 0
-     - packs = []
-     - collection = []*/
-};
 
-/** Reseteo de cartas para juegos diario:
+/** Reseteo para juegos diario:
  - Borro todas las de schedule.
  - Borro todas las de collection de tipo 'place::capital', 'place::town' y 'skill'
  - Añado una carta por cada una en unlocked, que se compone de 'place' de tipo capital y town y 'skill'
  - Limpiar el journal
+ - Doy recompensas si hay
  * @params group ID del grupo, o 'all' para todos los grupos
  */
 var usersDailyReset = function (group) {
@@ -78,6 +72,20 @@ var usersDailyReset = function (group) {
 
             // - Borra el journal
             user.game.journal = [];
+
+            // Doy recompensas
+            if (user.game.rewards.packs.length > 0) {
+                user.game.packs = user.game.packs.concat(user.game.rewards.packs);
+            }
+            if (user.game.rewards.fame > 0) {
+                user.game.fame += user.game.rewards.fame;
+            }
+            if (user.game.rewards.tostolates > 0) {
+                user.game.tostolares += user.game.rewards.tostolates;
+            }
+
+            // Limpio recompensas
+            user.game.rewards = {packs: [], tostolares: 0, fame: 0};
         });
 
         Q.allSettled(promises).then(function (results) {
@@ -125,8 +133,6 @@ var usersAFK = function (group, status) {
 
     return deferred.promise;
 };
-
-//TODO añadir al usuario algo para guardar los talentos que ha ido cogiendo
 
 /** Reseteo entre desayunos de usuario:
  - Borro todas las de schedule.
@@ -198,7 +204,6 @@ var usersBreakfastReset = function (group) {
 };
 
 module.exports = {
-    userCallerReset: userCallerReset,
     usersDailyReset: usersDailyReset,
     usersBreakfastReset: usersBreakfastReset,
     usersAFK: usersAFK
