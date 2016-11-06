@@ -28,5 +28,7 @@
                         $scope.viewing = 'collection';
                     }
                 }
+
+
             }]);
 })();

@@ -1,9 +1,22 @@
 <section>
-    <md-content ng-if="!fullWideMode">
+    <!---->
+    <!---->
+    <!-- MODO PANTALLA PARTIDA -->
+    <!---->
+    <!---->
+    <md-content ng-if="!fullWideMode && collectionViewAsGrid">
         <!-- ARMAS -->
         <div ng-show="showing==='all' || showing==='weapon'" class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textWeapons' | translate }}</span></div>
+                <div class="md-toolbar-tools">
+                    <span>{{ 'textWeapons' | translate }}</span>
+                    <span flex></span>
+                    <md-button ng-show="collectionViewAsGrid" ng-click="toggleView()"
+                               class="md-icon-button" aria-label="">
+                        <md-icon>list</md-icon>
+                        <md-tooltip md-delay="500">Ver como lista</md-tooltip>
+                    </md-button>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
                           md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
@@ -124,11 +137,19 @@
     <!---->
     <!---->
 
-    <md-content ng-if="fullWideMode">
+    <md-content ng-if="fullWideMode && collectionViewAsGrid">
         <!-- ARMAS -->
         <div class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textWeapons' | translate }}</span></div>
+                <div class="md-toolbar-tools">
+                    <span>{{ 'textWeapons' | translate }}</span>
+                    <span flex></span>
+                    <md-button ng-show="collectionViewAsGrid" ng-click="toggleView()"
+                               class="md-icon-button" aria-label="">
+                        <md-icon>list</md-icon>
+                        <md-tooltip md-delay="500">Ver como lista</md-tooltip>
+                    </md-button>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="16px"
                           md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-xl="10">
@@ -240,5 +261,98 @@
                 </md-grid-tile>
             </md-grid-list>
         </div>
+    </md-content>
+
+    <!---->
+    <!---->
+    <!-- MODO LISTA -->
+    <!---->
+    <!---->
+    <md-content ng-if="!collectionViewAsGrid">
+        <div layout="row" layout-align="end center">
+            <md-button ng-show="!collectionViewAsGrid" ng-click="toggleView()"
+                       class="md-icon-button" aria-label="">
+                <md-icon>view_module</md-icon>
+                <md-tooltip md-delay="500">Ver como imágenes</md-tooltip>
+            </md-button>
+        </div>
+        <md-list flex id="collection-list">
+            <!-- ARMAS -->
+            <md-subheader class="md-no-sticky">{{ 'textWeapons' | translate }}</md-subheader>
+            <md-list-item class="md-2-line" ng-repeat="card in collection | filter:isWeapon"
+                          ng-click="cardClick($event, card)">
+                <div class="tinter" ng-class="card.element"></div>
+                <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ card.name }}</h3>
+                    <p>Nivel {{ roman[card.level] }}</p>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <!-- VESTIMENTAS -->
+            <md-subheader class="md-no-sticky">{{ 'textArmors' | translate }}</md-subheader>
+            <md-list-item class="md-2-line" ng-repeat="card in collection | filter:isArmor"
+                          ng-click="cardClick($event, card)">
+                <div class="tinter" ng-class="card.element"></div>
+                <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
+                <div class="md-list-item-text">
+                    <h3>{{ card.name }}</h3>
+                    <p>Nivel {{ roman[card.level] }}</p>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <!-- HABILIDADES -->
+            <md-subheader class="md-no-sticky">{{ 'textSkills' | translate }}</md-subheader>
+            <md-list-item class="md-2-line" ng-repeat="card in collection | filter:isSkill"
+                          ng-click="cardClick($event, card)">
+                <div class="tinter" ng-class="card.element"></div>
+                <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
+                <div class="md-list-item-text">
+                    <h3>{{ card.name }}</h3>
+                    <p>Nivel {{ roman[card.level] }}</p>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <!-- LUGARES -->
+            <md-subheader class="md-no-sticky">{{ 'textPlaces' | translate }}</md-subheader>
+            <md-list-item class="md-2-line" ng-repeat="card in collection | filter:isPlace"
+                          ng-click="cardClick($event, card)">
+                <div class="tinter" ng-class="card.element"></div>
+                <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
+                <div class="md-list-item-text">
+                    <h3>{{ card.name }}</h3>
+                    <p>
+                        <md-icon class="md-accent md-hue-3"
+                                 ng-repeat="i in getNumber(card.data.place.level) track by $index">star
+                        </md-icon>
+                    </p>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <!-- ENCUENTROS -->
+            <md-subheader class="md-no-sticky">{{ 'textEncounters' | translate }}</md-subheader>
+            <md-list-item class="md-2-line" ng-repeat="card in collection | filter:isEncounter"
+                          ng-click="cardClick($event, card)">
+                <div class="tinter" ng-class="card.element"></div>
+                <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
+                <div class="md-list-item-text">
+                    <h3>{{ card.name }}</h3>
+                    <p>Nivel {{ roman[card.level] }}</p>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+            <!-- EVENTOS -->
+            <md-subheader class="md-no-sticky">{{ 'textEvents' | translate }}</md-subheader>
+            <md-list-item class="md-2-line" ng-repeat="card in collection | filter:isEvent"
+                          ng-click="cardClick($event, card)">
+                <div class="tinter" ng-class="card.element"></div>
+                <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
+                <div class="md-list-item-text">
+                    <h3>{{ card.name }}</h3>
+                    <p>Nivel {{ roman[card.level] }}</p>
+                </div>
+            </md-list-item>
+            <md-divider></md-divider>
+        </md-list>
     </md-content>
 </section>

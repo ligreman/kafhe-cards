@@ -12,6 +12,7 @@
         var controller = ['$scope', 'CONSTANTS', '$mdDialog', 'KShare', 'KGame', '$log', '$location', 'ROUTES', '$translate',
             function ($scope, CONSTANTS, $mdDialog, KShare, KGame, $log, $location, ROUTES, $translate) {
                 $scope.fullWideMode = ($location.path() === ROUTES.character);
+                $scope.collectionViewAsGrid = true;
 
                 $scope.roman = CONSTANTS.roman;
 
@@ -23,6 +24,7 @@
                 $scope.isEvent = fnIsEvent;
                 $scope.cardTypeImage = KGame.cardTypeImage;
                 $scope.getNumber = fnGetNumber;
+                $scope.toggleView = fnToggleView;
 
                 $scope.cardClick = fnCardClick;
                 $scope.showCardDialog = fnShowCardDialog;
@@ -119,6 +121,10 @@
                         },
                         targetEvent: event
                     });
+                }
+
+                function fnToggleView() {
+                    $scope.collectionViewAsGrid = !$scope.collectionViewAsGrid;
                 }
             }];
 

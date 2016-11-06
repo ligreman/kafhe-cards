@@ -172,3 +172,36 @@ md-grid-list.card-list md-grid-tile.electricity figure, .card-image-container.el
 .card-detail p {
     /*color: #222222*/
 }
+
+#collection-list {
+    padding: 0;
+}
+
+#collection-list .md-subheader-content {
+    font-size: 20px;
+    color: white;
+}
+
+#collection-list .tinter {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    border-radius: 100px;
+    mix-blend-mode: multiply;
+}
+
+#collection-list .tinter.fire {
+    background: #B71C1C;
+}
+
+#collection-list .tinter.ice {
+    background: #136bc9;
+}
+
+#collection-list .tinter.poison {
+    background: #2E7D32;
+}
+
+#collection-list .tinter.electricity {
+    background: #9C27B0;
+}
