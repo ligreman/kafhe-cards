@@ -7,14 +7,14 @@ var fecha = new Date(),
     hora = fecha.getHours(), //0-23
     dia = fecha.getDay(); //0-6 siendo 0 domingo
 
-var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0\\development\\webservice\\';
+// var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0\\development\\webservice\\';
 var mongoose = require('mongoose');
 var mongoHost = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/kafhe';
 mongoose.connect(mongoHost, {});
 
-var config = require(basePath + 'src/main/modules/config'),
-    gameDao = require(__dirname + '/modules/dao/gameDao'),
-    userDao = require(__dirname + '/modules/dao/userDao'),
+var config = require('../modules/config'),
+    gameDao = require('../modules/dao/gameDao'),
+    userDao = require('../modules/dao/userDao'),
     events = require('events'),
     Q = require('q');
 

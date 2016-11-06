@@ -2,12 +2,12 @@
 
 var console = process.console,
     Q = require('q'),
-    config = require(__dirname + '/modules/config'),
-    utils = require(__dirname + '/modules/utils'),
-    cardUtils = require(__dirname + '/modules/cardUtils'),
+    config = require('../config'),
+    utils = require('../utils'),
+    cardUtils = require('../cardUtils'),
     mongoose = require('mongoose'),
     TAFFY = require('taffy'),
-    models = require(__dirname + '/models/models')(mongoose);
+    models = require('../../models/models')(mongoose);
 
 
 /** Reseteo para juegos diario:

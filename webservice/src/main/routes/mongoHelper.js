@@ -63,11 +63,11 @@ module.exports = function (app) {
             branch: 'exploration', cards: [], required: []
         },
         {
-            id: 'talent02', name: 'Talento 2', description: 'Er talento 2', level: 0,
+            id: 'talent02', name: 'Talento 2', description: 'Er talento 2', level: 1,
             branch: 'exploration', cards: ['skill02'], required: ['talent01']
         },
         {
-            id: 'talent03', name: 'Talento 3', description: 'Er talento 3', level: 0,
+            id: 'talent03', name: 'Talento 3', description: 'Er talento 3', level: 2,
             branch: 'exploration', cards: ['skill03'], required: ['talent01', 'talent02']
         }
     ];

@@ -12,7 +12,6 @@ module.exports = function (app) {
         loginRouter = express.Router(),
         logoutRouter = express.Router();
 
-
     //**************** LOGIN ROUTER **********************
     //Middleware para estas rutas
     loginRouter.use(bodyParser.urlencoded({extended: false}));

@@ -3,7 +3,7 @@
 var console = process.console,
     Q = require('q'),
     mongoose = require('mongoose'),
-    models = require(__dirname + '/models/models')(mongoose);
+    models = require('../../models/models')(mongoose);
 
 
 var getCards = function (type, onlyIds) {

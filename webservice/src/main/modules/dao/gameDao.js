@@ -2,9 +2,9 @@
 
 var console = process.console,
     Q = require('q'),
-    config = require(__dirname + '/modules/config'),
+    config = require('../config'),
     mongoose = require('mongoose'),
-    models = require(__dirname + '/models/models')(mongoose);
+    models = require('../../models/models')(mongoose);
 
 var gameUpdateAllByStatus = function (oldStatus, newStatus) {
     var deferred = Q.defer(),
