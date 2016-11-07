@@ -3,7 +3,8 @@
 module.exports = function (mongoose) {
     var CardSchema = mongoose.Schema({
         id: {type: String, index: true},
-        name: {type: String, required: true},
+        name: {type: String, default: ''},
+        description: {type: String, required: true},
         'type': {type: String, enum: ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'], required: true},
         contained_in_packs: [{
             category: String,

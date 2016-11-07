@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('kafhe.controllers')
-        .controller('ShowCard',
-            ['$scope', '$rootScope', '$translate', '$mdDialog', 'card', 'CONSTANTS',
-                function ($scope, $rootScope, $translate, $mdDialog, card, CONSTANTS) {
+        .controller('OpenPackage',
+            ['$scope', '$rootScope', '$translate', '$mdDialog', 'CONSTANTS',
+                function ($scope, $rootScope, $translate, $mdDialog, CONSTANTS) {
 
                     $scope.roman = CONSTANTS.roman;
-                    $scope.card = card;
+                    // $scope.card = card;
                     $scope.isPlace = fnIsPlace;
                     $scope.isWeapon = fnIsWeapon;
                     $scope.isArmor = fnIsArmor;

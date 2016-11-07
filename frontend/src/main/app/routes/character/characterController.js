@@ -3,11 +3,13 @@
 
     // Controlador de la pantalla de login
     angular.module('kafhe.controllers').controller('CharacterController',
-        ['$scope', '$translate', 'API', '$log', 'KShare', '$location', 'CONSTANTS',
-            function ($scope, $translate, API, $log, KShare, $location, CONSTANTS) {
+        ['$scope', '$log', 'KShare', '$mdDialog',
+            function ($scope, $log, KShare, $mdDialog) {
                 $scope.viewing = 'talents';
 
                 $scope.toggle = fnToggle;
+                $scope.cardLevelUpDialog = fnCardLevelUpDialog;
+                $scope.openPackageDialog = fnOpenPackageDialog;
 
                 // Actualizo los datos del juego si hace falta
                 $scope.updateGameData(afterUpdate);
@@ -27,6 +29,32 @@
                     } else {
                         $scope.viewing = 'collection';
                     }
+                }
+
+                function fnCardLevelUpDialog(event) {
+                    $mdDialog.show({
+                        controller: 'CardLevelUp',
+                        templateUrl: 'app/components/dialogs/cardLevelUp/card-level-up.html',
+                        scope: $scope,
+                        preserveScope: true,
+                        clickOutsideToClose: true,
+                        escapeToClose: true,
+                        locals: {},
+                        targetEvent: event
+                    });
+                }
+
+                function fnOpenPackageDialog(event) {
+                    $mdDialog.show({
+                        controller: 'OpenPackage',
+                        templateUrl: 'app/components/dialogs/openPackage/open-package.html',
+                        scope: $scope,
+                        preserveScope: true,
+                        clickOutsideToClose: true,
+                        escapeToClose: true,
+                        locals: {},
+                        targetEvent: event
+                    });
                 }
 
 

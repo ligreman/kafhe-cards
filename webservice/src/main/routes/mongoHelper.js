@@ -42,7 +42,7 @@ module.exports = function (app) {
 
     var cards = [
         {
-            id: '100', name: 'Pistola', 'type': 'weapon', element: 'fire', effects: [],
+            id: '100', name: 'Pistola', 'type': 'weapon', element: 'fire', effects: [], description: 'Es una pistola',
             contained_in_packs: [{category: 'place1', frequency: 50}]
         },
         {

@@ -37,11 +37,13 @@
                     <md-icon>navigate_next</md-icon>
                 </div>
                 <div ng-show="(viewing === 'collection')" layout="row">
-                    <md-button class="md-icon-button md-accent md-hue-3" aria-label="">
+                    <md-button class="md-icon-button md-accent md-hue-3" aria-label=""
+                               ng-click="cardLevelUpDialog($event)">
                         <md-icon>plus_one</md-icon>
                         <md-tooltip md-delay="500">Fusionar cartas</md-tooltip>
                     </md-button>
-                    <md-button class="md-icon-button md-primary md-hue-2" aria-label="">
+                    <md-button class="md-icon-button md-primary md-hue-2" aria-label=""
+                               ng-click="openPackageDialog($event)">
                         <md-icon>view_carousel</md-icon>
                         <md-tooltip md-delay="500">Sobres</md-tooltip>
                     </md-button>

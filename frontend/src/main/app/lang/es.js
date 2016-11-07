@@ -38,6 +38,14 @@
             'textEncounters': 'Encuentros',
             'textPlace': 'Lugar',
             'textPlaces': 'Lugares',
+            'textTown': 'Ciudad',
+            'textZonedesert': 'Desierto',
+            'textZoneforest': 'Bosque',
+            'textZonelake': 'Lago',
+            'textZonemountain': 'Montaña',
+            'textZoneswamp': 'Pantano',
+            'textDifficulty': 'Dificultad',
+            'textCardDetail': 'Detalle de la carta',
 
             // TIPOS
             'bladed': 'Cortante',
@@ -61,7 +69,7 @@
             'uncommon': 'Infrecuente',
             'rare': '{GENDER, select, male{Raro} female{Rara} other{}}',
             'extraordinary': '{GENDER, select, male{Extraordinario} female{Extraordinaria} other{}}',
-            'legendary': '{GENDER, select, male{Extraordinario} female{Extraordinaria} other{}}Legendario',
+            'legendary': '{GENDER, select, male{Legendario} female{Legendaria} other{}}',
 
             // INTERFAZ - HEADER
             'headerUser': 'Usuario: ',
@@ -77,6 +85,17 @@
             'profilePassword': 'Introduce la nueva contraseña',
             'profileRepassword': 'Repite la nueva contraseña',
             'profileChangePassword': 'Cambia tu contraseña',
+
+            'cardLevelDescription': 'de nivel {{level}}',
+            'cardElementDescription-fire': 'ígnea',
+            'cardElementDescription-ice': 'gélida',
+            'cardElementDescription-poison': 'venenosa',
+            'cardElementDescription-electricity': 'eléctrica',
+            'cardElementOf-fire': 'de fuego',
+            'cardElementOf-ice': 'de hielo',
+            'cardElementOf-poison': 'de veneno',
+            'cardElementOf-electricity': 'de electricidad',
+
 
             // INTERFAZ - PANTALLA DESAYUNO
             'textNewOrder': 'Hacer pedido',
