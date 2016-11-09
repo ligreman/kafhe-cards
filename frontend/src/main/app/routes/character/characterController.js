@@ -12,16 +12,7 @@
                 $scope.openPackageDialog = fnOpenPackageDialog;
 
                 // Actualizo los datos del juego si hace falta
-                $scope.updateGameData(afterUpdate);
-
-
-                function afterUpdate() {
-                }
-
-                function processData(data) {
-
-
-                }
+                $scope.updateGameData();
 
                 function fnToggle() {
                     if ($scope.viewing === 'collection') {

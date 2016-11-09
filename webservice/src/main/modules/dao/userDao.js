@@ -6,7 +6,6 @@ var console = process.console,
     utils = require('../utils'),
     cardUtils = require('../cardUtils'),
     mongoose = require('mongoose'),
-    TAFFY = require('taffy'),
     models = require('../../models/models')(mongoose);
 
 
@@ -31,7 +30,7 @@ var usersDailyReset = function (group) {
 
     Q.all([
         models.User.find(condition).exec(),
-        models.Card.find().exec()
+        models.Card.find({}).exec()
     ]).spread(function (users, cards) {
         var promises = [];
 

@@ -52,7 +52,8 @@
                             // skills,
                             talents,
                             // places,
-                            cards
+                            cards,
+                            results[1].data.system
                         );
                     });
                 };

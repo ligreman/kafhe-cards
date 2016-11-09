@@ -7,13 +7,17 @@ module.exports = function (app) {
         passport = require('passport'),
         responseUtils = require('../modules/responseUtils'),
         config = require('../modules/config'),
+        utils = require('../modules/utils'),
         collectionRouter = express.Router(),
         mongoose = require('mongoose'),
+        bodyParser = require('body-parser'),
+        TAFFY = require('taffy'),
         models = require('../models/models')(mongoose),
         Q = require('q');
 
     //**************** USER ROUTER **********************
     //Middleware para estas rutas
+    collectionRouter.use(bodyParser.json());
     collectionRouter.use(passport.authenticate('bearer', {
         session: false
     }));
@@ -21,34 +25,34 @@ module.exports = function (app) {
 
     /**
      * POST /collection/fusion
-     * Fusiona dos cartas para crear una nueva de nivel superior. Params: cardIdA, cardIdB. Ids de las cartas a fusionar
+     * Fusiona dos cartas para crear una nueva de nivel superior. Params: cardIdA, cardIdB. _ids de las cartas a fusionar
      */
     collectionRouter.post('/fusion', function (req, res, next) {
         var params = req.body,
             user = req.user;
 
+        // Vienen dos cartas en parámetros
+        if (!params.cardIdA || !params.cardIdB) {
+            console.tag('COLLECTION-FUSION').error('Faltan parámetros obligatorios en la petición');
+            responseUtils.responseError(res, 400, 'errParamsNotFound');
+            return;
+        }
+
+        // Debo tener las cartas en mi colección
+        var collection = TAFFY(user.game.collection);
+        var cardAInCollection = collection({_id: {like: params.cardIdA}}).first();
+        var cardBInCollection = collection({_id: {like: params.cardIdB}}).first();
+
+        if (!cardAInCollection || !cardBInCollection) {
+            console.tag('COLLECTION-FUSION').error('No tienes las cartas en tu colección');
+            responseUtils.responseError(res, 400, 'errCollectionDontHaveCards');
+            return;
+        }
+
         // Busco al jugador y las cartas
         Q.all([
-            models.Card.find().exec()
+            models.Card.find({}).exec()
         ]).spread(function (cards) {
-            // Vienen dos cartas en parámetros
-            if (!params.cardIdA || !params.cardIdB) {
-                console.tag('COLLECTION-FUSION').error('Faltan parámetros obligatorios en la petición');
-                responseUtils.responseError(res, 400, 'errParamsNotFound');
-                return;
-            }
-
-            // Debo tener las cartas en mi colección
-            var collection = TAFFY(user.game.collection);
-            var cardAInCollection = collection({_id: {like:params.cardIdA}}).first();
-            var cardBInCollection = collection({_id: {like:params.cardIdB}}).first();
-
-            if (!cardAInCollection || !cardBInCollection) {
-                console.tag('COLLECTION-FUSION').error('No tienes las cartas en tu colección');
-                responseUtils.responseError(res, 400, 'errCollectionDontHaveCards');
-                return;
-            }
-
             // Las cartas han de ser las mismas y mismo nivel
             var dbCards = TAFFY(cards);
             var cardAInDB = dbCards({id: cardAInCollection.card}).first();
@@ -70,19 +74,26 @@ module.exports = function (app) {
             // Las elimino de mi colección
             var newCollection = [];
             user.game.collection.forEach(function (carta) {
-                // Si es la carta añadida, no la guardo en la colección
-                if (carta._id !== params.cardId) {
+                // Si es una de las cartas fusionadas, no la guardo en la colección
+                if ((carta._id !== params.cardIdA) && (carta._id !== params.cardIdB)) {
                     newCollection.push(carta);
                 }
             });
 
             // Creo una nueva de nivel superior
-            newCollection.push({card: cardAInCollection.card, level: cardAInCollection.level + 1});
+            newCollection.push({
+                _id: utils.generateId(),
+                card: cardAInCollection.card,
+                level: cardAInCollection.level + 1
+            });
             // Guardo la nueva colección
             user.game.collection = newCollection;
 
             // A mí y termino
             responseUtils.saveUserAndResponse(res, user, req.authInfo.access_token);
+        }).fail(function (err) {
+            console.error("Se produjo un error");
+            console.error(err);
         });
     });
 

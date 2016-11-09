@@ -10,11 +10,14 @@ module.exports = function (app) {
         config = require('../modules/config'),
         packRouter = express.Router(),
         mongoose = require('mongoose'),
+        TAFFY = require('taffy'),
+        bodyParser = require('body-parser'),
         models = require('../models/models')(mongoose),
         Q = require('q');
 
     //**************** USER ROUTER **********************
     //Middleware para estas rutas
+    packRouter.use(bodyParser.json());
     packRouter.use(passport.authenticate('bearer', {
         session: false
     }));

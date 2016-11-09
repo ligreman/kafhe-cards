@@ -6,6 +6,7 @@ module.exports = function (app) {
     var express = require('express'),
         passport = require('passport'),
         utils = require('../modules/utils'),
+        config = require('../modules/config'),
         responseUtils = require('../modules/responseUtils'),
         gameRouter = express.Router(),
         bodyParser = require('body-parser'),
@@ -26,7 +27,6 @@ module.exports = function (app) {
      * Obtiene la información general del juego
      */
     gameRouter.get('/data', function (req, res, next) {
-        console.log("DATATA");
         //Proceso y devuelvo los resultados
         var answer = function (cards, talents, meals, drinks) {
             if (!cards || !talents || !meals || !drinks) {
@@ -35,11 +35,17 @@ module.exports = function (app) {
                 return;
             }
 
+            // Ahora genero el objeto con datos de system que serán constantes predefinidas del juego
+            var system = {
+                maxCardLevel: config.DEFAULTS.collection.card_max_level
+            };
+
             responseUtils.responseJson(res, {
                 "cards": cards,
                 "talents": talents,
                 "meals": meals,
-                "drinks": drinks
+                "drinks": drinks,
+                "system": system
             }, req.authInfo.access_token);
         };
 

@@ -3,47 +3,32 @@
 
     angular.module('kafhe.controllers')
         .controller('CardLevelUp',
-            ['$scope', '$rootScope', '$translate', '$mdDialog',  'CONSTANTS',
-                function ($scope, $rootScope, $translate, $mdDialog,  CONSTANTS) {
+            ['$scope', '$rootScope', '$translate', 'CONSTANTS',
+                function ($scope, $rootScope, $translate, CONSTANTS) {
 
-                    $scope.roman = CONSTANTS.roman;
-                    // $scope.card = card;
-                    $scope.isPlace = fnIsPlace;
-                    $scope.isWeapon = fnIsWeapon;
-                    $scope.isArmor = fnIsArmor;
-                    $scope.isSkill = fnIsSkill;
-                    $scope.isEncounter = fnIsEncounter;
-                    $scope.isEvent = fnIsEvent;
+                    $scope.candidates = [];
 
-                    /*********************************************************************/
-                    /*********************** FUNCIONES ***********************************/
+                    // Actualizo los datos del juego si hace falta
+                    $scope.updateGameData(afterUpdate);
 
-                    $scope.accept = function accept() {
-                        $mdDialog.hide();
-                    };
+                    function afterUpdate() {
+                        var yaTengo = [];
 
-                    function fnIsPlace(card) {
-                        return card.type === CONSTANTS.cardTypes.place;
-                    }
-
-                    function fnIsWeapon(card) {
-                        return card.type === CONSTANTS.cardTypes.weapon;
-                    }
-
-                    function fnIsArmor(card) {
-                        return card.type === CONSTANTS.cardTypes.armor;
-                    }
-
-                    function fnIsSkill(card) {
-                        return card.type === CONSTANTS.cardTypes.skill;
-                    }
-
-                    function fnIsEncounter(card) {
-                        return card.type === CONSTANTS.cardTypes.encounter;
-                    }
-
-                    function fnIsEvent(card) {
-                        return card.type === CONSTANTS.cardTypes.event;
+                        // Saco de collection las cartas que son candidatas a subir de nivel
+                        $scope.global.user.game.collection.forEach(function (card) {
+                            var tag = card.id + card.level;
+                            console.log(tag);
+                            // Si no ha aparecido aún la añado a las que ya aparecieron
+                            if (yaTengo.indexOf(tag) === -1) {
+                                yaTengo.push(tag);
+                            } else {
+                                // Si ya apareció, miro si el nivel es máximo y no podría subir más
+                                if (card.level < $scope.global.system.maxCardLevel) {
+                                    // es candidata ya que tengo al menos dos copias y level correcto
+                                    $scope.candidates.push(card);
+                                }
+                            }
+                        });
                     }
                 }
             ]);

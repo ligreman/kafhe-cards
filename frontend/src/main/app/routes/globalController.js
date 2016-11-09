@@ -63,12 +63,13 @@
 
                                 // Cargo los datos
                                 if (!$scope.global.loaded || !$scope.global.user || !$scope.global.gamedata.meals || !$scope.global.gamedata.drinks || !$scope.global.gamedata.talents) {
-                                    KGame.getGameData(function (user, meals, drinks, talents, cards) {
+                                    KGame.getGameData(function (user, meals, drinks, talents, cards, system) {
                                         // Actualizo las variables de información general
                                         $scope.global.gamedata.meals = meals;
                                         $scope.global.gamedata.drinks = drinks;
                                         $scope.global.gamedata.cards = cards;
                                         $scope.global.gamedata.talents = talents;
+                                        $scope.global.system = system;
                                         $scope.global.loaded = true;
 
                                         // Ahora actualizo y proceso los datos del usuario

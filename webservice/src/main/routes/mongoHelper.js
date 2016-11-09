@@ -112,15 +112,20 @@ module.exports = function (app) {
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
                 collection: [
                     {_id: 'mycard1', card: '1', level: 1},
+                    {_id: 'mycard11', card: '1', level: 1},
                     {_id: 'mycard2', card: '2', level: 1},
+                    {_id: 'mycard22', card: '2', level: 1},
                     {_id: 'mycard3', card: '3', level: 1},
+                    {_id: 'mycard33', card: '3', level: 1},
                     {_id: 'mycard4', card: '4', level: 1},
+                    {_id: 'mycard44', card: '4', level: 1},
                     {_id: 'mycard5', card: '5', level: 1},
+                    {_id: 'mycard55', card: '5', level: 1},
                     {_id: 'mycard6', card: '6', level: 1},
                     {_id: 'mycard7', card: '100', level: 1},
                     {_id: 'mycard8', card: '105', level: 1}
                 ],
-                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
+                packs: [{amount: 10, category: ['general']}, {amount: 5, category: ['general', 'place1']}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: [
@@ -150,7 +155,7 @@ module.exports = function (app) {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
                 collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
-                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
+                packs: [{amount: 10, category: ['general']}, {amount: 5, category: ['general', 'place1']}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: [],
@@ -176,7 +181,7 @@ module.exports = function (app) {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
                 collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
-                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'place1'}],
+                packs: [{amount: 10, category: ['general']}, {amount: 5, category: ['general', 'place1']}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: []

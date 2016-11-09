@@ -39,7 +39,7 @@ var DEFAULTS = {
     // Colección de cartas
     collection: {
         card_max_level: 3,
-        pack_categories: ['']
+        pack_categories: ['general']
     }
 };
 
