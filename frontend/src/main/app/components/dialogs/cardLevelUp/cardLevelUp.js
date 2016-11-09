@@ -3,15 +3,15 @@
 
     angular.module('kafhe.controllers')
         .controller('CardLevelUp',
-            ['$scope', '$rootScope', '$translate', 'CONSTANTS',
-                function ($scope, $rootScope, $translate, CONSTANTS) {
+            ['$scope', '$rootScope', '$translate',
+                function ($scope, $rootScope, $translate) {
 
                     $scope.candidates = [];
 
                     // Actualizo los datos del juego si hace falta
-                    $scope.updateGameData(afterUpdate);
+                    cardCollector();
 
-                    function afterUpdate() {
+                    function cardCollector() {
                         var yaTengo = [];
 
                         // Saco de collection las cartas que son candidatas a subir de nivel
