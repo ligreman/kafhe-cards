@@ -81,7 +81,27 @@
                 });
             },
 
-            // API de User
+            // API de Collection
+            'collection': function () {
+                var access_token = $cookies.get(CONFIG.sessionCookieName);
+
+                return $resource(CONFIG.webServiceUrl + 'collection/:endpoint', {endpoint: ''}, {
+
+                    // Obtener la información del usuario actual y su partida
+                    fusion: {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + access_token,
+                            'Content-Type': 'application/json'
+                        },
+                        params: {
+                            endpoint: 'fusion'
+                        }
+                    }
+                });
+            },
+
+            // API de Character
             'character': function () {
                 var access_token = $cookies.get(CONFIG.sessionCookieName);
 

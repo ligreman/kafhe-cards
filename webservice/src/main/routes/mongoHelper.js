@@ -123,7 +123,9 @@ module.exports = function (app) {
                     {_id: 'mycard55', card: '5', level: 1},
                     {_id: 'mycard6', card: '6', level: 1},
                     {_id: 'mycard7', card: '100', level: 1},
-                    {_id: 'mycard8', card: '105', level: 1}
+                    {_id: 'mycard77', card: '100', level: 1},
+                    {_id: 'mycard8', card: '105', level: 1},
+                    {_id: 'mycard88', card: '105', level: 1}
                 ],
                 packs: [{amount: 10, category: ['general']}, {amount: 5, category: ['general', 'place1']}],
                 order: {meal: null, drink: null, ito: true},

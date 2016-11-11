@@ -1,23 +1,33 @@
-<md-dialog class="dark-footer">
+<md-dialog class="dark-footer big-dialog">
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>{{ 'textCardDetail' | translate }}</h2>
+            <h2>{{ 'cardLevelUpTitle' | translate }}</h2>
             <span flex></span>
-            <md-button class="md-icon-button" ng-click="accept()">
+            <md-button class="md-icon-button" ng-click="cancel()">
                 <md-icon>clear</md-icon>
             </md-button>
         </div>
     </md-toolbar>
-
-    <md-dialog-content class="">
-        <p ng-repeat="card in candidates track by $index">
-            {{card.name}}
-        </p>
+    <md-dialog-content class="" layout-padding>
+        <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px" md-gutter-gt-sm="16px"
+                      md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-lg="6" md-cols-gt-lg="8">
+            <md-grid-tile ng-repeat="card in candidates track by $index" class="card-tile-lvlup"
+                          md-rowspan="1" md-colspan="1" ng-class="cardClass(card)" ng-click="cardClick($event, card)">
+                <md-grid-tile-header>Subir a nivel {{ roman[card.level+1] }}</md-grid-tile-header>
+                <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
+                <div class="card-level">{{ roman[card.level] }}</div>
+                <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-        <md-button type="button" class="md-raised md-primary" ng-click="accept()">
-            {{'textAccept' | translate}}
+        <md-button ng-click="cancel()" type="button" class="md-warn md-hue-1">
+            {{'textCancel' | translate}}
+        </md-button>
+        <md-button type="button" class="md-raised md-primary" ng-click="accept()" ng-disabled="!selected">
+            {{'textLevelUp' | translate}}
         </md-button>
     </md-dialog-actions>
 </md-dialog>

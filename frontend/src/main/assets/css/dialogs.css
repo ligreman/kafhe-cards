@@ -6,3 +6,22 @@ md-dialog.dark-footer md-dialog-actions {
     min-width: 60vw;
     min-height: 50vh;
 }
+
+.big-dialog {
+    min-width: 80vw;
+}
+
+.card-tile-lvlup md-grid-tile-header {
+    transition: all 0.5s ease;
+    top: -50px;
+}
+
+.card-tile-lvlup.selected md-grid-tile-header {
+    top: 0;
+    z-index: 99;
+    opacity: 0.8;
+    background: goldenrod;
+    color: black;
+    font-weight: bold;
+    height: 100%;
+}

@@ -46,6 +46,7 @@
             'textZoneswamp': 'Pantano',
             'textDifficulty': 'Dificultad',
             'textCardDetail': 'Detalle de la carta',
+            'textLevelUp': 'Subir de nivel',
 
             // TIPOS
             'bladed': 'Cortante',
@@ -95,6 +96,8 @@
             'cardElementOf-ice': 'de hielo',
             'cardElementOf-poison': 'de veneno',
             'cardElementOf-electricity': 'de electricidad',
+            'cardLevelUpTitle': 'Selecciona la carta a subir de nivel',
+            'textCardLevelUpSucceed': '¡Carta fusionada!',
 
 
             // INTERFAZ - PANTALLA DESAYUNO
