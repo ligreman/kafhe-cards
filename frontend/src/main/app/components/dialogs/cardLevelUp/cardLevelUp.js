@@ -29,11 +29,9 @@
                                 cardIdB: $this.idAssociate[$scope.selected][1]
                             }, function (response) {
                                 if (response) {
-                                    //TODO actualizo los objetos globales con lo que me devuelven
                                     $scope.updateUserObject(response.data.user);
 
                                     $scope.growlNotification('success', 'textCardLevelUpSucceed');
-
                                     $mdDialog.hide();
                                 }
                             });
@@ -54,23 +52,25 @@
                                 return;
                             }
 
+                            // Si ya apareció, miro si el nivel es máximo y no podría subir más
+                            if (card.level >= $scope.global.system.maxCardLevel) {
+                                return;
+                            }
+
+                            if (!$this.idAssociate[card.id]) {
+                                $this.idAssociate[card.id] = [card._id];
+                            } else {
+                                $this.idAssociate[card.id].push(card._id);
+                            }
+
                             var tag = card.id + card.level;
 
                             // Si no ha aparecido aún la añado a las que ya aparecieron
                             if (yaTengo.indexOf(tag) === -1) {
                                 yaTengo.push(tag);
                             } else {
-                                // Si ya apareció, miro si el nivel es máximo y no podría subir más
-                                if (card.level < $scope.global.system.maxCardLevel) {
-                                    // es candidata ya que tengo al menos dos copias y level correcto
-                                    $scope.candidates.push(card);
-
-                                    if (!$this.idAssociate[card.id]) {
-                                        $this.idAssociate[card.id] = [card._id];
-                                    } else {
-                                        $this.idAssociate[card.id].push(card._id);
-                                    }
-                                }
+                                // es candidata ya que tengo al menos dos copias y level correcto
+                                $scope.candidates.push(card);
                             }
                         });
                     }

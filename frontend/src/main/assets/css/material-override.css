@@ -23,3 +23,7 @@ md-tooltip {
 md-icon.icon-size-inherit {
     font-size: inherit;
 }
+
+md-backdrop.md-opaque {
+    opacity: 0.8;
+}

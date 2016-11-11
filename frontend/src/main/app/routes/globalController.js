@@ -154,13 +154,15 @@
 
                         // Datos de las cartas
                         var miColeccion = [];
+
                         user.game.collection.forEach(function (card) {
-                            var el = $scope.global.gamedata.cards[card.card];
+                            var el = angular.copy($scope.global.gamedata.cards[card.card]);
                             el.level = card.level;
                             el._id = card._id;
                             miColeccion.push(el);
                         });
                         user.game.collection = miColeccion;
+
                         $scope.global.user = user;
                         $scope.global.leader = user.leader;
 

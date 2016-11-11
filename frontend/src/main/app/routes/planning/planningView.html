@@ -7,11 +7,11 @@
             <md-card class="kafhe-background-black">
                 <md-card-header>
                     <md-card-avatar>
-                        <img ng-src="{{ global.user.avatar }}"/>
+                        <img ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
                     </md-card-avatar>
                     <md-card-header-text>
                         <span class="md-title big-title">{{global.user.alias}}</span>
-                        <span class="md-subhead">{{global.user.game.rank}}</span>
+                        <span class="md-subhead">{{'rank' | translate}} {{global.user.game.rank}}</span>
                     </md-card-header-text>
                 </md-card-header>
                 <md-card-title>
@@ -142,14 +142,14 @@
             </md-card>
 
             <!-- OPONENTES -->
-            <md-card class="md-hue-1" ng-repeat="enemy in enemies | orderBy: 'username'">
+            <md-card class="md-hue-1" ng-repeat="enemy in enemies | orderBy: '-game.rank'">
                 <md-card-header>
                     <md-card-avatar>
                         <img ng-src="assets/img/avatars/{{ enemy.avatar }}.png"/>
                     </md-card-avatar>
                     <md-card-header-text>
                         <span class="md-title big-title">{{enemy.alias}}</span>
-                        <span class="md-subhead">{{enemy.game.rank}}</span>
+                        <span class="md-subhead">{{'rank' | translate}} {{enemy.game.rank}}</span>
                     </md-card-header-text>
                 </md-card-header>
                 <md-card-title>

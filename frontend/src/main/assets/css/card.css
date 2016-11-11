@@ -205,3 +205,11 @@ md-grid-list.card-list md-grid-tile.electricity figure, .card-image-container.el
 #collection-list .tinter.electricity {
     background: #9C27B0;
 }
+
+.select-one-card {
+    text-align: center;
+    background: #FDD835;
+    padding: 10px 0;
+    color: #000;
+    font-weight: bold;
+}

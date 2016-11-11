@@ -21,6 +21,10 @@
                 };
 
                 $scope.$watch($scope.talents, function (newV) {
+                    if (!$scope.talents) {
+                        return;
+                    }
+
                     $scope.talents.forEach(function (talent) {
                         gameTalents[talent.branch][talent.level] = talent;
                     });

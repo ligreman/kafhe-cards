@@ -32,7 +32,7 @@ var DEFAULTS = {
         skill: 3,
         place: 1,
         // Pones al enemigo
-        encounter: 1,
+        encounter: 2,
         event: 1
     },
 

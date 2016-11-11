@@ -31,8 +31,8 @@ module.exports = function (app) {
         var params = req.body,
             user = req.user;
 
-        // Vienen dos cartas en parámetros
-        if (!params.cardIdA || !params.cardIdB) {
+        // Vienen dos cartas en parámetros diferentes
+        if (!params.cardIdA || !params.cardIdB || (params.cardIdA === params.cardIdB)) {
             console.tag('COLLECTION-FUSION').error('Faltan parámetros obligatorios en la petición');
             responseUtils.responseError(res, 400, 'errParamsNotFound');
             return;

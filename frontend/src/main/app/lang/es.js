@@ -25,6 +25,7 @@
             'textYes': 'Sí',
             'textNo': 'No',
             'fame': 'Fama',
+            'rank': 'Rango',
             'tostolares': 'Tostólares',
             'textWeapon': 'Arma',
             'textWeapons': 'Armas',
