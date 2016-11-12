@@ -54,7 +54,7 @@
                                         <md-select ng-model="forge.weapon.rune" class="md-accent">
                                             <md-option value="{{rune.id}}" class="md-accent"
                                                        ng-repeat="rune in global.inventory.runes | filter:{in_use:false}">
-                                                [{{rune.frecuency | translate}}] {{rune.material | translate}}
+                                                [{{rune.frequency | translate}}] {{rune.material | translate}}
                                             </md-option>
                                         </md-select>
                                     </md-input-container>
@@ -115,7 +115,7 @@
                                         <md-select ng-model="forge.armor.rune" class="md-accent">
                                             <md-option value="{{rune.id}}" class="md-accent"
                                                        ng-repeat="rune in global.inventory.runes | filter:{in_use:false}">
-                                                [{{rune.frecuency | translate}}] {{rune.material | translate}}
+                                                [{{rune.frequency | translate}}] {{rune.material | translate}}
                                             </md-option>
                                         </md-select>
                                     </md-input-container>
@@ -250,7 +250,7 @@
                                         <md-select ng-model="furnace.rune.runeA" class="md-accent">
                                             <md-option value="{{rune.id}}" class="md-accent"
                                                        ng-repeat="rune in global.inventory.runes | filter:{in_use:false}">
-                                                [{{rune.frecuency | translate}}] {{rune.material | translate}}
+                                                [{{rune.frequency | translate}}] {{rune.material | translate}}
                                             </md-option>
                                         </md-select>
                                     </md-input-container>
@@ -265,7 +265,7 @@
                                         <md-select ng-model="furnace.rune.runeB" class="md-accent">
                                             <md-option value="{{rune.id}}" class="md-accent"
                                                        ng-repeat="rune in global.inventory.runes | filter:{in_use:false}">
-                                                [{{rune.frecuency | translate}}] {{rune.material | translate}}
+                                                [{{rune.frequency | translate}}] {{rune.material | translate}}
                                             </md-option>
                                         </md-select>
                                     </md-input-container>
@@ -308,7 +308,7 @@
                               md-colspan="1"
                               md-colspan-sm="1"
                               class="back-{{rune.material}} md-whiteframe-1dp">
-                    <md-grid-tile-header class="text-right">{{rune.frecuency | translate}}</md-grid-tile-header>
+                    <md-grid-tile-header class="text-right">{{rune.frequency | translate}}</md-grid-tile-header>
                     <div class="text-center"
                          ng-drag="true"
                          ng-drag-data="rune"

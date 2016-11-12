@@ -154,8 +154,9 @@ function responseJson(res, data, access_token) {
  * @param res Objeto respuesta
  * @param user Objeto con los datos a devolver
  * @param access_token Token
+ * @param extra Otros datos
  */
-function saveUserAndResponse(res, user, access_token) {
+function saveUserAndResponse(res, user, access_token, extra) {
     user.save(function (err) {
         if (err) {
             console.tag('MONGO').error(err);
@@ -163,7 +164,7 @@ function saveUserAndResponse(res, user, access_token) {
             responseError(res, 400, 'errMongoSave');
         } else {
             // Respondo
-            responseJson(res, {"user": censureUser(user)}, access_token);
+            responseJson(res, {"user": censureUser(user), "extra": extra}, access_token);
         }
     });
 }

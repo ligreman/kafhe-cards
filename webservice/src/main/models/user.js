@@ -27,7 +27,7 @@ module.exports = function (mongoose) {
             },
             packs: [{
                 amount: {type: Number, default: 0},
-                category: [{type: String, default: ''}]
+                category: {type: String, default: ''}
             }],
             collection: [{
                 _id: String,

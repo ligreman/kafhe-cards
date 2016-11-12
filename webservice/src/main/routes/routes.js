@@ -10,6 +10,7 @@ module.exports = function (app) {
     require('./admin')(app);
     require('./character')(app);
     require('./collection')(app);
+    require('./pack')(app);
     require('./game')(app);
     require('./login')(app);
     require('./order')(app);

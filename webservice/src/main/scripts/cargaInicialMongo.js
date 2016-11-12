@@ -8,7 +8,7 @@ var places = [
         'type': 'place',
         contained_in_packs: [{
             category: 'pack002',
-            frequency: 10
+            frequency: 'C'
         }],
         data: {
             place: {
@@ -28,10 +28,10 @@ var places = [
         name: 'Numanaktra',
         'type': 'place',
         contained_in_packs: [
-            {category: 'pack002', frequency: 10},
-            {category: 'pack003', frequency: 10},
-            {category: 'pack004', frequency: 10},
-            {category: 'pack005', frequency: 10}
+            {category: 'pack002', frequency: 'C'},
+            {category: 'pack003', frequency: 'C'},
+            {category: 'pack004', frequency: 'C'},
+            {category: 'pack005', frequency: 'C'}
         ],
         data: {
             place: {
@@ -89,10 +89,10 @@ var places = [
         name: 'Parnamazda',
         'type': 'place',
         contained_in_packs: [
-            {category: 'pack003', frequency: 10},
-            {category: 'pack004', frequency: 10},
-            {category: 'pack005', frequency: 10},
-            {category: 'pack006', frequency: 10}
+            {category: 'pack003', frequency: 'C'},
+            {category: 'pack004', frequency: 'C'},
+            {category: 'pack005', frequency: 'C'},
+            {category: 'pack006', frequency: 'C'}
         ],
         data: {
             place: {
@@ -130,8 +130,8 @@ var places = [
         name: 'Shivaneraya',
         'type': 'place',
         contained_in_packs: [
-            {category: 'pack006', frequency: 10},
-            {category: 'pack007', frequency: 10}
+            {category: 'pack006', frequency: 'C'},
+            {category: 'pack007', frequency: 'C'}
         ],
         data: {
             place: {
@@ -151,9 +151,9 @@ var places = [
         name: 'Magi´Reven',
         'type': 'place',
         contained_in_packs: [
-            {category: 'pack006', frequency: 10},
-            {category: 'pack008', frequency: 10},
-            {category: 'pack009', frequency: 10}
+            {category: 'pack006', frequency: 'C'},
+            {category: 'pack008', frequency: 'C'},
+            {category: 'pack009', frequency: 'C'}
         ],
         data: {
             place: {
@@ -210,10 +210,10 @@ var places = [
         name: 'Bálindor',
         'type': 'place',
         contained_in_packs: [
-            {category: 'pack009', frequency: 10},
-            {category: 'pack011', frequency: 10},
-            {category: 'pack012', frequency: 10},
-            {category: 'pack013', frequency: 10}
+            {category: 'pack009', frequency: 'C'},
+            {category: 'pack011', frequency: 'C'},
+            {category: 'pack012', frequency: 'C'},
+            {category: 'pack013', frequency: 'C'}
         ],
         data: {
             place: {
@@ -252,12 +252,12 @@ var places = [
         name: 'Lumen',
         'type': 'place',
         contained_in_packs: [
-            {category: 'pack009', frequency: 10},
-            {category: 'pack011', frequency: 10},
-            {category: 'pack013', frequency: 10},
-            {category: 'pack014', frequency: 10},
-            {category: 'pack015', frequency: 10},
-            {category: 'pack041', frequency: 10}
+            {category: 'pack009', frequency: 'C'},
+            {category: 'pack011', frequency: 'C'},
+            {category: 'pack013', frequency: 'C'},
+            {category: 'pack014', frequency: 'C'},
+            {category: 'pack015', frequency: 'C'},
+            {category: 'pack041', frequency: 'C'}
         ],
         data: {
             place: {

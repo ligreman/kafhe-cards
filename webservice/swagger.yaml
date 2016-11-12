@@ -929,7 +929,7 @@ definitions:
                     type: string
                   level:
                     type: integer
-                  frecuency:
+                  frequency:
                     type: string
                   stats:
                     type: object
@@ -949,7 +949,7 @@ definitions:
                     type: string
                   level:
                     type: integer
-                  frecuency:
+                  frequency:
                     type: string
                   stats:
                     type: object
@@ -971,7 +971,7 @@ definitions:
                     type: string
                   name:
                     type: string
-                  frecuency:
+                  frequency:
                     type: string
                   stats:
                     type: object
@@ -1000,7 +1000,7 @@ definitions:
                     type: string
                   name:
                     type: string
-                  frecuency:
+                  frequency:
                     type: string
                   stats:
                     type: object

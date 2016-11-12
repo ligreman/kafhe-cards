@@ -38,8 +38,14 @@ var DEFAULTS = {
 
     // Colección de cartas
     collection: {
+        frequency: {
+            'E': 5,
+            'R': 10,
+            'I': 25,
+            'C': 60
+        },
         card_max_level: 3,
-        pack_categories: ['general']
+        cards_per_pack: 3
     }
 };
 

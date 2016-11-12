@@ -70,7 +70,7 @@
                         {
                             "id": "a001",
                             "name": "Al Capa Ra",
-                            "frecuency": "common",
+                            "frequency": "common",
                             "equipped": false,
                             "_id": "563d33420d5ea9dc07afb791",
                             "skills": [
@@ -104,7 +104,7 @@
                         {
                             "id": "w001",
                             "name": "Ten Hedor",
-                            "frecuency": "common",
+                            "frequency": "common",
                             "equipped": true,
                             "_id": "563d33420d5ea9dc07afb795",
                             "skills": [
@@ -136,7 +136,7 @@
                         {
                             "id": "w002",
                             "name": "Sal Chicha",
-                            "frecuency": "legendary",
+                            "frequency": "legendary",
                             "equipped": false,
                             "_id": "563d33420d5ea9dc07afb793",
                             "skills": [
@@ -170,7 +170,7 @@
                         {
                             "id": "r001",
                             "type": "wood",
-                            "frecuency": "common",
+                            "frequency": "common",
                             "equipped": true,
                             "_id": "563d33420d5ea9dc07afb79a",
                             "stats": {
@@ -183,7 +183,7 @@
                         {
                             "id": "r002",
                             "type": "iron",
-                            "frecuency": "common",
+                            "frequency": "common",
                             "equipped": false,
                             "_id": "563d33420d5ea9dc07afb799",
                             "stats": {
@@ -196,7 +196,7 @@
                         {
                             "id": "r003",
                             "type": "steel",
-                            "frecuency": "masterwork",
+                            "frequency": "masterwork",
                             "equipped": false,
                             "_id": "563d33420d5ea9dc07afb798",
                             "stats": {
@@ -209,7 +209,7 @@
                         {
                             "id": "r004",
                             "type": "mithril",
-                            "frecuency": "common",
+                            "frequency": "common",
                             "equipped": false,
                             "_id": "563d33420d5ea9dc07afb797",
                             "stats": {

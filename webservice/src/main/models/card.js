@@ -8,7 +8,7 @@ module.exports = function (mongoose) {
         'type': {type: String, enum: ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'], required: true},
         contained_in_packs: [{
             category: String,
-            frequency: Number
+            frequency: String
         }],
         element: {type: String, enum: ['none', 'fire', 'ice', 'poison', 'electricity'], default: 'none'},
         effects: [String],
