@@ -1,4 +1,4 @@
-<md-dialog class="dark-footer">
+<md-dialog class="dark-footer medium-dialog">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>{{ 'textCardDetail' | translate }}</h2>
@@ -9,38 +9,19 @@
         </div>
     </md-toolbar>
 
-    <md-dialog-content class="card-showroom">
-        <div class="md-dialog-content" layout="column" layout-gt-sm="row">
-            <div flex="none" layout-align="center center" layout="row">
-                <div class="card-image-container" ng-class="card.element">
-                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-                    <div class="card-name"><p>{{ card.name }}</p></div>
-                    <div class="card-type"><img src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
-                    <div class="card-level" ng-if="!isPlace(card)"><p>{{ roman[card.level] }}</p></div>
-                    <div class="card-level-place" ng-if="isPlace(card)" layout="column" layout-align="center center">
-                        <md-icon class="md-accent md-hue-3"
-                                 ng-repeat="i in getNumber(card.data.place.level) track by $index">star
-                        </md-icon>
-                    </div>
+    <md-dialog-content class="">
+        <md-list flex>
+            <md-list-item class="md-2-line" ng-repeat="pack in global.user.game.packs track by $index">
+                <md-icon>stay_current_portrait</md-icon>
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ pack.category }}</h3>
+                    <p>Tienes {{ pack.amount }}</p>
                 </div>
-            </div>
-            <div flex layout-padding class="card-detail">
-                <p class="text-bold">{{ card.name }}</p>
-                <p>
-                    {{ 'text' + cardTypeImage(card).charAt(0).toUpperCase() + cardTypeImage(card).slice(1) | translate}}
-                    <span ng-if="card.element !== 'none' && (isWeapon(card) || isArmor(card) || isSkill(card))"> {{ 'cardElementDescription-'+card.element | translate }}</span>
-                    <span ng-if="card.element !== 'none' && (isEncounter(card) || isEvent(card))"> {{ 'cardElementOf-'+card.element | translate }}</span>
-                    <span ng-if="!isPlace(card)"> {{ 'cardLevelDescription' | translate:{level:roman[card.level]} }}</span>
-                </p>
-                <p ng-if="isPlace(card)">
-                    {{'textDifficulty' | translate}}:
-                    <md-icon class="md-accent md-hue-3"
-                             ng-repeat="i in getNumber(card.data.place.level) track by $index">star
-                    </md-icon>
-                </p>
-                <p>{{ card.description }}</p>
-            </div>
-        </div>
+                <md-button class="md-secondary md-primary md-hue-2" ng-click="open(pack.category)" aria-label="">
+                    Abrir
+                </md-button>
+            </md-list-item>
+        </md-list>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">

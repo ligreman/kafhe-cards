@@ -69,3 +69,12 @@ header .button.active {
 .custom-mini-toolbar .md-toolbar-tools {
     height: 40px;
 }
+
+#login-form .logotipo {
+    height: 15vh;
+    width: 100%;
+    background-image: url(../img/k256-cut.png);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

@@ -1,25 +1,29 @@
-<form name="loginForm" layout="column" layout-align="center center" flex="grow">
+<form id="login-form" name="loginForm" layout="column" layout-align="center center" flex="grow">
+    <div flex="5"></div>
+    <div flex="25" class="logotipo"></div>
+    <div flex="60" flex-gt-sm="50" layout="column" layout-align="center center">
+        <md-input-container>
+            <label>{{ 'loginUserLabel' | translate }}</label>
+            <input required name="username" ng-model="login.username"/>
 
-    <md-input-container>
-        <label>{{ 'loginUserLabel' | translate }}</label>
-        <input required name="username" ng-model="login.username"/>
+            <div ng-messages="loginForm.username.$dirty && loginForm.username.$error">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
 
-        <div ng-messages="loginForm.username.$dirty && loginForm.username.$error">
-            <div ng-message="required">This is required.</div>
-        </div>
-    </md-input-container>
+        <md-input-container>
+            <label>{{ 'loginPasswordLabel' | translate }}</label>
+            <input required name="password" type="password" ng-model="login.password"/>
 
-    <md-input-container>
-        <label>{{ 'loginPasswordLabel' | translate }}</label>
-        <input required name="password" type="password" ng-model="login.password"/>
+            <div ng-messages="loginForm.password.$dirty && loginForm.password.$error" role="alert">
+                <div ng-message="required">This is required.</div>
+            </div>
+        </md-input-container>
 
-        <div ng-messages="loginForm.password.$dirty && loginForm.password.$error" role="alert">
-            <div ng-message="required">This is required.</div>
-        </div>
-    </md-input-container>
-
-    <md-button type="submit" class="md-raised md-primary" ng-click="btnLogin()">
-        <md-icon>perm_identity</md-icon>
-        {{ 'loginSignInButton' | translate }}
-    </md-button>
+        <md-button type="submit" class="md-raised md-primary" ng-click="btnLogin()">
+            <md-icon>perm_identity</md-icon>
+            {{ 'loginSignInButton' | translate }}
+        </md-button>
+    </div>
+    <div flex></div>
 </form>

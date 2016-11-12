@@ -8,8 +8,9 @@
             </md-button>
         </div>
     </md-toolbar>
-    <md-dialog-content class="" layout-padding>
-        <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px" md-gutter-gt-sm="16px"
+    <md-dialog-content layout="row" layout-padding>
+        <div flex="5" ng-if="!isSmallScreen()"></div>
+        <md-grid-list flex class="card-list" md-row-height="2:3" md-gutter="8px" md-gutter-gt-sm="16px"
                       md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-lg="6" md-cols-gt-lg="8">
             <md-grid-tile ng-repeat="card in candidates track by $index" class="card-tile-lvlup"
                           md-rowspan="1" md-colspan="1" ng-class="cardClass(card)" ng-click="cardClick($event, card)">

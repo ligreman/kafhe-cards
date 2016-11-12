@@ -11,8 +11,14 @@
                     /*********************************************************************/
                     /*********************** FUNCIONES ***********************************/
 
-                    $scope.accept = function accept() {
-                        API.collection().
+                    $scope.open = function open(category) {
+                        API.pack().open({
+                            category: category
+                        }, function (response) {
+                        });
+                    };
+
+                    $scope.accept = function () {
                         $mdDialog.hide();
                     };
 

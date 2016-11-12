@@ -7,6 +7,10 @@ md-dialog.dark-footer md-dialog-actions {
     min-height: 50vh;
 }
 
+.medium-dialog {
+    min-width: 50vw;
+}
+
 .big-dialog {
     min-width: 80vw;
 }

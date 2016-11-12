@@ -101,6 +101,26 @@
                 });
             },
 
+            // API de Pack
+            'pack': function () {
+                var access_token = $cookies.get(CONFIG.sessionCookieName);
+
+                return $resource(CONFIG.webServiceUrl + 'pack/:endpoint', {endpoint: ''}, {
+
+                    // Obtener la información del usuario actual y su partida
+                    open: {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + access_token,
+                            'Content-Type': 'application/json'
+                        },
+                        params: {
+                            endpoint: 'open'
+                        }
+                    }
+                });
+            },
+
             // API de Character
             'character': function () {
                 var access_token = $cookies.get(CONFIG.sessionCookieName);
