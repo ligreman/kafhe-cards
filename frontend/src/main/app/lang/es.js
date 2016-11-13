@@ -20,6 +20,7 @@
             'textCancel': 'Cancelar',
             'textSave': 'Guardar',
             'textAccept': 'Aceptar',
+            'textClose': 'Cerrar',
             'textAssignCard': 'Asignar carta',
             'textContinue': 'Continuar',
             'textYes': 'Sí',
@@ -49,6 +50,10 @@
             'textDifficulty': 'Dificultad',
             'textCardDetail': 'Detalle de la carta',
             'textLevelUp': 'Subir de nivel',
+            'textPackDetail': 'Sobres de cartas',
+            'textPacksSource': 'Sobre de',
+            'textPacksAmount': 'Tienes',
+            'textPacksOpen': 'Abrir',
 
             // TIPOS
             'bladed': 'Cortante',

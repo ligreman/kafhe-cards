@@ -22,6 +22,10 @@ body {
     font-weight: bold;
 }
 
+.text-italic {
+    font-style: italic;
+}
+
 .vertical-bottom {
     vertical-align: text-bottom;
 }

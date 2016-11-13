@@ -10,7 +10,7 @@
         <div ng-show="showing==='all' || showing==='weapon'" class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
                 <div class="md-toolbar-tools">
-                    <span>{{ 'textWeapons' | translate }}</span>
+                    <span>{{ 'textWeapons' | translate }}<span class="tag">{{filteredPW.length}}</span></span>
                     <span flex></span>
                     <md-button ng-show="collectionViewAsGrid" ng-click="toggleView()"
                                class="md-icon-button" aria-label="">
@@ -21,9 +21,10 @@
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
                           md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-                <md-grid-tile ng-repeat="card in collection | filter:isWeapon  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isWeapon  | orderBy:'name' as filteredPW track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -35,13 +36,15 @@
         <!-- VESTIMENTAS -->
         <div ng-show="showing==='all' || showing==='armor'" class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textArmors' | translate }}</span></div>
+                <div class="md-toolbar-tools"><span>{{ 'textArmors' | translate }}<span class="tag">{{filteredAA.length}}</span></span>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
                           md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-                <md-grid-tile ng-repeat="card in collection | filter:isArmor  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isArmor  | orderBy:'name' as filteredAA track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -53,13 +56,16 @@
         <!-- HABILIDADES -->
         <div ng-show="showing==='all' || showing==='skill'" class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textSkills' | translate }}</span></div>
+                <div class="md-toolbar-tools">
+                    <span>{{ 'textSkills' | translate }}<span class="tag">{{filteredPS.length}}</span></span>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
                           md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-                <md-grid-tile ng-repeat="card in collection | filter:isSkill  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isSkill  | orderBy:'name' as filteredPS track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -71,15 +77,17 @@
         <!-- LUGARES -->
         <div ng-show="showing==='all' || showing==='place'" class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>Lugares</span></div>
+                <div class="md-toolbar-tools"><span>{{ 'textPlaces' | translate }}<span class="tag">{{filteredPP.length}}</span></span>
+                </div>
             </md-toolbar>
 
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
                           md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
 
-                <md-grid-tile ng-repeat="card in collection | filter:isPlace  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isPlace  | orderBy:'name' as filteredPP track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level-place" layout="column" layout-align="center center">
                         <md-icon class="md-accent md-hue-3"
@@ -90,22 +98,21 @@
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
                 </md-grid-tile>
-
-                <!--{"id":"2","type":"place","effects":[],"level":1,"element":"none","data":{"place":{"lat":-49.85,"long":-107.2,"region":"Booooo","type":"capital","adjacent_places":["3","4"]}}}-->
-                <!---->
             </md-grid-list>
         </div>
 
         <!-- ENCUENTROS -->
         <div ng-show="showing==='all' || showing==='encounter'" class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textEncounters' | translate }}</span></div>
+                <div class="md-toolbar-tools"><span>{{ 'textEncounters' | translate }}<span class="tag">{{filteredPE.length}}</span></span>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
                           md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-                <md-grid-tile ng-repeat="card in collection | filter:isEncounter  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isEncounter  | orderBy:'name' as filteredPE track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -117,13 +124,15 @@
         <!-- EVENTOS -->
         <div ng-show="showing==='all' || showing==='event'" class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textEvents' | translate }}</span></div>
+                <div class="md-toolbar-tools"><span>{{ 'textEvents' | translate }}<span class="tag">{{filteredPV.length}}</span></span>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="8px"
                           md-cols-xs="2" md-cols-sm="3" md-cols-md="3" md-cols-lg="4" md-cols-gt-lg="5">
-                <md-grid-tile ng-repeat="card in collection | filter:isEvent  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isEvent  | orderBy:'name' as filteredPV track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -144,7 +153,7 @@
         <div class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
                 <div class="md-toolbar-tools">
-                    <span>{{ 'textWeapons' | translate }}</span>
+                    <span>{{ 'textWeapons' | translate }}<span class="tag">{{filteredFW.length}}</span></span>
                     <span flex></span>
                     <md-button ng-show="collectionViewAsGrid" ng-click="toggleView()"
                                class="md-icon-button" aria-label="">
@@ -155,9 +164,10 @@
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="16px"
                           md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-xl="10">
-                <md-grid-tile ng-repeat="card in collection | filter:isWeapon  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isWeapon | orderBy:'name' as filteredFW track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -169,13 +179,15 @@
         <!-- VESTIMENTAS -->
         <div class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textArmors' | translate }}</span></div>
+                <div class="md-toolbar-tools"><span>{{ 'textArmors' | translate }}<span class="tag">{{filteredFA.length}}</span></span>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="16px"
                           md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-xl="10">
-                <md-grid-tile ng-repeat="card in collection | filter:isArmor  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isArmor  | orderBy:'name' as filteredFA track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -187,13 +199,15 @@
         <!-- HABILIDADES -->
         <div class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textSkills' | translate }}</span></div>
+                <div class="md-toolbar-tools"><span>{{ 'textSkills' | translate }}<span class="tag">{{filteredFS.length}}</span></span>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="16px"
                           md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-xl="10">
-                <md-grid-tile ng-repeat="card in collection | filter:isSkill  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isSkill  | orderBy:'name' as filteredFS track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -205,14 +219,16 @@
         <!-- LUGARES -->
         <div class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>Lugares</span></div>
+                <div class="md-toolbar-tools"><span>
+                    {{ 'textPlaces' | translate }}<span class="tag">{{filteredFP.length}}</span></span></div>
             </md-toolbar>
 
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="16px"
                           md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-xl="10">
-                <md-grid-tile ng-repeat="card in collection | filter:isPlace | orderBy:'name'  track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isPlace | orderBy:'name' as filteredFP track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level-place" layout="column" layout-align="center center">
                         <md-icon class="md-accent md-hue-3"
@@ -232,13 +248,15 @@
         <!-- ENCUENTROS -->
         <div class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textEncounters' | translate }}</span></div>
+                <div class="md-toolbar-tools"><span>{{ 'textEncounters' | translate }}<span class="tag">{{filteredFE.length}}</span></span>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="16px"
                           md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-xl="10">
-                <md-grid-tile ng-repeat="card in collection | filter:isEncounter  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isEncounter  | orderBy:'name' as filteredFE track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -250,13 +268,15 @@
         <!-- EVENTOS -->
         <div class="card-list-block">
             <md-toolbar layout="row" class="md-accent md-hue-2 slim-toolbar transparent-toolbar margin-bottom-10">
-                <div class="md-toolbar-tools"><span>{{ 'textEvents' | translate }}</span></div>
+                <div class="md-toolbar-tools"><span>{{ 'textEvents' | translate }}<span class="tag">{{filteredFV.length}}</span></span>
+                </div>
             </md-toolbar>
             <md-grid-list class="card-list" md-row-height="2:3" md-gutter="16px"
                           md-cols-xs="3" md-cols-sm="4" md-cols-md="6" md-cols-lg="8" md-cols-xl="10">
-                <md-grid-tile ng-repeat="card in collection | filter:isEvent  | orderBy:'name' track by $index"
-                              md-rowspan="1" md-colspan="1" ng-class="card.element"
-                              ng-click="cardClick($event, card)">
+                <md-grid-tile
+                        ng-repeat="card in collection | filter:isEvent  | orderBy:'name' as filteredFV track by $index"
+                        md-rowspan="1" md-colspan="1" ng-class="card.element"
+                        ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
@@ -283,9 +303,11 @@
         <md-list flex id="collection-list">
             <!-- ARMAS -->
             <div ng-show="showing==='all' || showing==='weapon'">
-                <md-subheader class="md-no-sticky">{{ 'textWeapons' | translate }}</md-subheader>
+                <md-subheader class="md-no-sticky">{{ 'textWeapons' |
+                    translate }}<span class="tag">{{filteredLW.length}}</span>
+                </md-subheader>
                 <md-list-item class="md-2-line"
-                              ng-repeat="card in collection | filter:isWeapon  | orderBy:'name' track by $index"
+                              ng-repeat="card in collection | filter:isWeapon  | orderBy:'name' as filteredLW track by $index"
                               ng-click="cardClick($event, card)">
                     <div class="tinter" ng-class="card.element"></div>
                     <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
@@ -298,9 +320,11 @@
             </div>
             <!-- VESTIMENTAS -->
             <div ng-show="showing==='all' || showing==='armor'">
-                <md-subheader class="md-no-sticky">{{ 'textArmors' | translate }}</md-subheader>
+                <md-subheader class="md-no-sticky">{{ 'textArmors' |
+                    translate }}<span class="tag">{{filteredLA.length}}</span>
+                </md-subheader>
                 <md-list-item class="md-2-line"
-                              ng-repeat="card in collection | filter:isArmor  | orderBy:'name' track by $index"
+                              ng-repeat="card in collection | filter:isArmor  | orderBy:'name' as filteredLA track by $index"
                               ng-click="cardClick($event, card)">
                     <div class="tinter" ng-class="card.element"></div>
                     <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
@@ -313,9 +337,11 @@
             </div>
             <!-- HABILIDADES -->
             <div ng-show="showing==='all' || showing==='skill'">
-                <md-subheader class="md-no-sticky">{{ 'textSkills' | translate }}</md-subheader>
+                <md-subheader class="md-no-sticky">{{ 'textSkills' |
+                    translate }}<span class="tag">{{filteredLS.length}}</span>
+                </md-subheader>
                 <md-list-item class="md-2-line"
-                              ng-repeat="card in collection | filter:isSkill  | orderBy:'name' track by $index"
+                              ng-repeat="card in collection | filter:isSkill  | orderBy:'name' as filteredLS track by $index"
                               ng-click="cardClick($event, card)">
                     <div class="tinter" ng-class="card.element"></div>
                     <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
@@ -328,9 +354,11 @@
             </div>
             <!-- LUGARES -->
             <div ng-show="showing==='all' || showing==='place'">
-                <md-subheader class="md-no-sticky">{{ 'textPlaces' | translate }}</md-subheader>
+                <md-subheader class="md-no-sticky">{{ 'textPlaces' |
+                    translate }}<span class="tag">{{filteredLP.length}}</span>
+                </md-subheader>
                 <md-list-item class="md-2-line"
-                              ng-repeat="card in collection | filter:isPlace  | orderBy:'name' track by $index"
+                              ng-repeat="card in collection | filter:isPlace  | orderBy:'name' as filteredLP track by $index"
                               ng-click="cardClick($event, card)">
                     <div class="tinter" ng-class="card.element"></div>
                     <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
@@ -348,9 +376,11 @@
             </div>
             <!-- ENCUENTROS -->
             <div ng-show="showing==='all' || showing==='encounter'">
-                <md-subheader class="md-no-sticky">{{ 'textEncounters' | translate }}</md-subheader>
+                <md-subheader class="md-no-sticky">{{ 'textEncounters' |
+                    translate }}<span class="tag">{{filteredLE.length}}</span>
+                </md-subheader>
                 <md-list-item class="md-2-line"
-                              ng-repeat="card in collection | filter:isEncounter  | orderBy:'name' track by $index"
+                              ng-repeat="card in collection | filter:isEncounter  | orderBy:'name' as filteredLE track by $index"
                               ng-click="cardClick($event, card)">
                     <div class="tinter" ng-class="card.element"></div>
                     <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
@@ -363,9 +393,11 @@
             </div>
             <!-- EVENTOS -->
             <div ng-show="showing==='all' || showing==='event'">
-                <md-subheader class="md-no-sticky">{{ 'textEvents' | translate }}</md-subheader>
+                <md-subheader class="md-no-sticky">{{ 'textEvents' |
+                    translate }}<span class="tag">{{filteredLV.length}}</span>
+                </md-subheader>
                 <md-list-item class="md-2-line"
-                              ng-repeat="card in collection | filter:isEvent  | orderBy:'name' track by $index"
+                              ng-repeat="card in collection | filter:isEvent  | orderBy:'name' as filteredLV track by $index"
                               ng-click="cardClick($event, card)">
                     <div class="tinter" ng-class="card.element"></div>
                     <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>

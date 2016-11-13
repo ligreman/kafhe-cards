@@ -6,6 +6,7 @@
             ['$scope', '$rootScope', '$translate', '$mdDialog', 'CONSTANTS', 'API',
                 function ($scope, $rootScope, $translate, $mdDialog, CONSTANTS, API) {
 
+                    $scope.cartasSobre = null;
 
 
                     /*********************************************************************/
@@ -15,6 +16,13 @@
                         API.pack().open({
                             category: category
                         }, function (response) {
+                            // Actualizo usuario
+                            $scope.updateUserObject(response.data.user);
+
+                            // Muestro un pop con las cartas nuevas
+                            $scope.cartasSobre = response.data.extra;
+
+
                         });
                     };
 

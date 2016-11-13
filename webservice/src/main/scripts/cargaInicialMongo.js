@@ -148,7 +148,7 @@ var places = [
     },
     {
         id: '8',
-        name: 'Magi´Reven',
+        name: 'Magi Reven',
         'type': 'place',
         contained_in_packs: [
             {category: 'pack006', frequency: 'C'},

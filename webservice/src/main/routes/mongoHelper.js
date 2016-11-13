@@ -128,7 +128,8 @@ module.exports = function (app) {
                     {_id: 'mycard8', card: '105', level: 1},
                     {_id: 'mycard88', card: '105', level: 1}
                 ],
-                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'pack006'}],
+                packs: [{amount: 10, category: 'general', source: 'Casa la pradera'},
+                    {amount: 5, category: 'pack006', source: 'Casa de manolo'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: [
@@ -158,7 +159,8 @@ module.exports = function (app) {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
                 collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
-                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'pack006'}],
+                packs: [{amount: 10, category: 'general', source: 'Casa la pradera'},
+                    {amount: 5, category: 'pack006', source: 'Casa de manolo'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: [],
@@ -184,7 +186,8 @@ module.exports = function (app) {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
                 collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
-                packs: [{amount: 10, category: 'general'}, {amount: 5, category: 'pack006'}],
+                packs: [{amount: 10, category: 'general', source: 'Casa la pradera'},
+                    {amount: 5, category: 'pack006', source: 'Casa de manolo'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: []

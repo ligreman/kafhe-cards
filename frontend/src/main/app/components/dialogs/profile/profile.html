@@ -1,4 +1,4 @@
-<md-dialog id="profile-dialog" ng-cloak class="md-whiteframe-1dp">
+<md-dialog id="profile-dialog" ng-cloak class="md-whiteframe-1dp dark-footer">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>{{'profileTitle' | translate}}</h2>
@@ -18,15 +18,15 @@
 
             <p>{{'profileChangePassword' | translate}}</p>
 
-                <md-input-container class="md-block">
-                    <label>{{'profilePassword' | translate}}</label>
-                    <input ng-model="user.password" type="password"/>
-                </md-input-container>
+            <md-input-container class="md-block">
+                <label>{{'profilePassword' | translate}}</label>
+                <input ng-model="user.password" type="password"/>
+            </md-input-container>
 
-                <md-input-container class="md-block">
-                    <label>{{'profileRepassword' | translate}}</label>
-                    <input ng-model="user.repassword" type="password"/>
-                </md-input-container>
+            <md-input-container class="md-block">
+                <label>{{'profileRepassword' | translate}}</label>
+                <input ng-model="user.repassword" type="password"/>
+            </md-input-container>
 
             <p>{{'profileAvatar' | translate}}</p>
             <md-grid-list
@@ -41,7 +41,7 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
-        <md-button ng-click="cancel()" type="button" class="md-warn md-hue">
+        <md-button ng-click="cancel()" type="button" class="md-warn md-hue-1">
             {{'textCancel' | translate}}
         </md-button>
 

@@ -9,6 +9,7 @@ md-dialog.dark-footer md-dialog-actions {
 
 .medium-dialog {
     min-width: 50vw;
+    min-height: 50vh;
 }
 
 .big-dialog {
