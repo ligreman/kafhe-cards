@@ -52,15 +52,16 @@
         </div>
     </md-toolbar>
 
-    <md-content flex layout-padding>
+    <md-content flex>
         <!-- COLECCIÓN -->
-        <div id="character-collection" class="y-scroll" ng-hide="viewing === 'talents'">
+        <div id="character-collection" class="y-scroll" ng-hide="viewing === 'talents'" layout-padding>
             <k-collection card-collection="global.user.game.collection"></k-collection>
         </div>
 
         <!-- TALENTOS -->
-        <div id="character-talents" ng-hide="viewing === 'collection'">
-            <k-talents talents="global.gamedata.talents" user-talents="global.user.game.talents"></k-talents>
+        <div id="character-talents" ng-hide="viewing === 'collection'" layout-fill>
+            <k-talents ng-if="global.gamedata.talents && global.user.game.talents"
+                       talents="global.gamedata.talents" user-talents="global.user.game.talents"></k-talents>
         </div>
     </md-content>
 </section>
