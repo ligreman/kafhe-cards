@@ -14,7 +14,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack1",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["2"],
             "capital": "6"
         }
@@ -32,7 +31,6 @@ var places = [{
             "level": "4",
             "pack_reward": "pack2",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["1", "4"],
             "capital": "6"
         }
@@ -50,9 +48,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack3",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["4", "5"],
-            "capital": "6"
+            "capital": "6",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -71,9 +69,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack4",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["3", "5", "2"],
-            "capital": "6"
+            "capital": "6",
+            "subtype": "forest"
         }
     }
 }, {
@@ -92,7 +90,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack5",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["3", "4", "6"],
             "capital": "6"
         }
@@ -113,7 +110,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack6",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["5", "7", "8"],
             "capital": "6"
         }
@@ -131,7 +127,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack7",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["6"],
             "capital": "6"
         }
@@ -149,7 +144,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack8",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["6", "9"],
             "capital": "9"
         }
@@ -173,7 +167,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack9",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["8", "10", "11", "13", "14", "16"],
             "capital": "9"
         }
@@ -191,9 +184,9 @@ var places = [{
             "level": "1",
             "pack_reward": "pack10",
             "type": "zone",
-            "subtype": "lake",
             "adjacent_places": ["9", "14"],
-            "capital": "9"
+            "capital": "9",
+            "subtype": "lake"
         }
     }
 }, {
@@ -212,7 +205,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack11",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["9", "12", "13"],
             "capital": "9"
         }
@@ -230,9 +222,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack12",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["11", "15"],
-            "capital": "9"
+            "capital": "9",
+            "subtype": "forest"
         }
     }
 }, {
@@ -251,7 +243,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack13",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["9", "11", "14", "15", "41"],
             "capital": "9"
         }
@@ -272,7 +263,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack14",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["9", "10", "13"],
             "capital": "9"
         }
@@ -290,7 +280,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack15",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["12", "13"],
             "capital": "9"
         }
@@ -311,7 +300,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack16",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["9", "17", "18", "19"],
             "capital": "19"
         }
@@ -329,9 +317,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack17",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["16"],
-            "capital": "19"
+            "capital": "19",
+            "subtype": "forest"
         }
     }
 }, {
@@ -350,7 +338,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack18",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["16", "19", "21"],
             "capital": "19"
         }
@@ -371,7 +358,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack19",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["16", "18", "20", "30"],
             "capital": "19"
         }
@@ -389,7 +375,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack20",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["19"],
             "capital": "19"
         }
@@ -407,9 +392,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack21",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["18"],
-            "capital": "19"
+            "capital": "19",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -425,7 +410,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack22",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["13", "23"],
             "capital": "9"
         }
@@ -446,9 +430,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack23",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["18", "21", "22", "48"],
-            "capital": "9"
+            "capital": "9",
+            "subtype": "forest"
         }
     }
 }, {
@@ -467,9 +451,9 @@ var places = [{
             "level": "3",
             "pack_reward": "pack24",
             "type": "zone",
-            "subtype": "desert",
             "adjacent_places": ["18", "23", "25", "48"],
-            "capital": "19"
+            "capital": "19",
+            "subtype": "desert"
         }
     }
 }, {
@@ -488,7 +472,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack25",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["24", "28", "29"],
             "capital": "29"
         }
@@ -506,9 +489,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack26",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["25", "27"],
-            "capital": "29"
+            "capital": "29",
+            "subtype": "forest"
         }
     }
 }, {
@@ -524,7 +507,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack27",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["26"],
             "capital": "29"
         }
@@ -542,9 +524,9 @@ var places = [{
             "level": "3",
             "pack_reward": "pack28",
             "type": "zone",
-            "subtype": "swamp",
             "adjacent_places": ["25", "31"],
-            "capital": "29"
+            "capital": "29",
+            "subtype": "swamp"
         }
     }
 }, {
@@ -566,7 +548,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack29",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["25", "30", "31", "32", "34", "35"],
             "capital": "29"
         }
@@ -584,7 +565,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack30",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["19", "29"],
             "capital": "29"
         }
@@ -605,7 +585,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack31",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["28", "29", "32", "40"],
             "capital": "29"
         }
@@ -626,9 +605,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack32",
             "type": "zone",
-            "subtype": "desert",
             "adjacent_places": ["29", "31", "35"],
-            "capital": "29"
+            "capital": "29",
+            "subtype": "desert"
         }
     }
 }, {
@@ -644,7 +623,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack33",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["39"],
             "capital": "29"
         }
@@ -665,7 +643,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack34",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["29", "35", "36"],
             "capital": "29"
         }
@@ -686,9 +663,9 @@ var places = [{
             "level": "3",
             "pack_reward": "pack35",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["29", "32", "34"],
-            "capital": "29"
+            "capital": "29",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -704,9 +681,9 @@ var places = [{
             "level": "3",
             "pack_reward": "pack36",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["34", "37"],
-            "capital": "29"
+            "capital": "29",
+            "subtype": "forest"
         }
     }
 }, {
@@ -722,9 +699,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack37",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["36", "38"],
-            "capital": "29"
+            "capital": "29",
+            "subtype": "forest"
         }
     }
 }, {
@@ -740,7 +717,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack38",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["37"],
             "capital": "29"
         }
@@ -758,9 +734,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack39",
             "type": "zone",
-            "subtype": "swamp",
             "adjacent_places": ["33"],
-            "capital": "29"
+            "capital": "29",
+            "subtype": "swamp"
         }
     }
 }, {
@@ -776,9 +752,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack40",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["31"],
-            "capital": "29"
+            "capital": "29",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -797,7 +773,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack41",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["13", "42", "43"],
             "capital": "45"
         }
@@ -818,7 +793,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack42",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["41", "45", "52"],
             "capital": "45"
         }
@@ -836,7 +810,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack43",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["41", "44"],
             "capital": "45"
         }
@@ -854,7 +827,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack44",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["43", "45"],
             "capital": "45"
         }
@@ -875,7 +847,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack45",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["42", "44", "46", "51"],
             "capital": "45"
         }
@@ -896,7 +867,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack46",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["45", "47", "56", "57"],
             "capital": "45"
         }
@@ -914,9 +884,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack47",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["45"],
-            "capital": "45"
+            "capital": "45",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -935,7 +905,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack48",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["23", "24", "49", "50"],
             "capital": "45"
         }
@@ -953,7 +922,6 @@ var places = [{
             "level": "4",
             "pack_reward": "pack49",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["48", "87"],
             "capital": "45"
         }
@@ -974,7 +942,6 @@ var places = [{
             "level": "4",
             "pack_reward": "pack50",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["48", "51", "54"],
             "capital": "45"
         }
@@ -998,7 +965,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack51",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["45", "50", "52", "53", "54", "55"],
             "capital": "45"
         }
@@ -1016,9 +982,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack52",
             "type": "zone",
-            "subtype": "lake",
             "adjacent_places": ["42", "51"],
-            "capital": "45"
+            "capital": "45",
+            "subtype": "lake"
         }
     }
 }, {
@@ -1037,9 +1003,9 @@ var places = [{
             "level": "3",
             "pack_reward": "pack53",
             "type": "zone",
-            "subtype": "lake",
             "adjacent_places": ["51", "54", "55"],
-            "capital": "45"
+            "capital": "45",
+            "subtype": "lake"
         }
     }
 }, {
@@ -1058,9 +1024,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack54",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["50", "51", "53", "55"],
-            "capital": "45"
+            "capital": "45",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -1079,9 +1045,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack55",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["51", "53", "54", "56"],
-            "capital": "56"
+            "capital": "56",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -1100,7 +1066,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack56",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["46", "55", "57", "59", "60"],
             "capital": "56"
         }
@@ -1121,7 +1086,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack57",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["46", "56", "58", "59"],
             "capital": "56"
         }
@@ -1142,7 +1106,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack58",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["57", "59", "63"],
             "capital": "56"
         }
@@ -1163,9 +1126,9 @@ var places = [{
             "level": "3",
             "pack_reward": "pack59",
             "type": "zone",
-            "subtype": "swamp",
             "adjacent_places": ["56", "57", "58", "60", "63"],
-            "capital": "56"
+            "capital": "56",
+            "subtype": "swamp"
         }
     }
 }, {
@@ -1184,9 +1147,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack60",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["56", "59", "61", "62"],
-            "capital": "56"
+            "capital": "56",
+            "subtype": "forest"
         }
     }
 }, {
@@ -1202,7 +1165,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack61",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["60", "62"],
             "capital": "56"
         }
@@ -1223,9 +1185,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack62",
             "type": "zone",
-            "subtype": "swamp",
             "adjacent_places": ["60", "61", "68", "69"],
-            "capital": "56"
+            "capital": "56",
+            "subtype": "swamp"
         }
     }
 }, {
@@ -1244,7 +1206,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack63",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["58", "59", "64"],
             "capital": "56"
         }
@@ -1265,7 +1226,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack64",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["63", "65", "67"],
             "capital": "56"
         }
@@ -1283,9 +1243,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack65",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["67", "66"],
-            "capital": "56"
+            "capital": "56",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -1301,7 +1261,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack66",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["65"],
             "capital": "56"
         }
@@ -1322,7 +1281,6 @@ var places = [{
             "level": "4",
             "pack_reward": "pack67",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["64", "65", "68"],
             "capital": "56"
         }
@@ -1343,7 +1301,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack68",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["67", "62", "69"],
             "capital": "56"
         }
@@ -1364,9 +1321,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack69",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["62", "68", "70"],
-            "capital": "70"
+            "capital": "70",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -1385,7 +1342,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack70",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["69", "71", "72", "73"],
             "capital": "70"
         }
@@ -1403,9 +1359,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack71",
             "type": "zone",
-            "subtype": "desert",
             "adjacent_places": ["70"],
-            "capital": "70"
+            "capital": "70",
+            "subtype": "desert"
         }
     }
 }, {
@@ -1421,7 +1377,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack72",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["70", "79"],
             "capital": "70"
         }
@@ -1442,7 +1397,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack73",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["70", "74", "75"],
             "capital": "76"
         }
@@ -1460,7 +1414,6 @@ var places = [{
             "level": "4",
             "pack_reward": "pack74",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["73"],
             "capital": "76"
         }
@@ -1481,9 +1434,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack75",
             "type": "zone",
-            "subtype": "lake",
             "adjacent_places": ["73", "76", "77", "78"],
-            "capital": "76"
+            "capital": "76",
+            "subtype": "lake"
         }
     }
 }, {
@@ -1502,7 +1455,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack76",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["75", "77", "78"],
             "capital": "76"
         }
@@ -1520,7 +1472,6 @@ var places = [{
             "level": "3",
             "pack_reward": "pack77",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["75", "76"],
             "capital": "76"
         }
@@ -1538,7 +1489,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack78",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["75", "76"],
             "capital": "76"
         }
@@ -1559,9 +1509,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack79",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["72", "80", "81"],
-            "capital": "81"
+            "capital": "81",
+            "subtype": "forest"
         }
     }
 }, {
@@ -1580,9 +1530,9 @@ var places = [{
             "level": "2",
             "pack_reward": "pack80",
             "type": "zone",
-            "subtype": "lake",
             "adjacent_places": ["79", "81", "82", "83"],
-            "capital": "81"
+            "capital": "81",
+            "subtype": "lake"
         }
     }
 }, {
@@ -1601,7 +1551,6 @@ var places = [{
             "level": "1",
             "pack_reward": "pack81",
             "type": "capital",
-            "subtype": null,
             "adjacent_places": ["79", "80", "82", "85"],
             "capital": "81"
         }
@@ -1622,7 +1571,6 @@ var places = [{
             "level": "2",
             "pack_reward": "pack82",
             "type": "town",
-            "subtype": null,
             "adjacent_places": ["80", "81", "83", "84"],
             "capital": "81"
         }
@@ -1643,9 +1591,9 @@ var places = [{
             "level": "3",
             "pack_reward": "pack83",
             "type": "zone",
-            "subtype": "mountain",
             "adjacent_places": ["80", "82", "84"],
-            "capital": "81"
+            "capital": "81",
+            "subtype": "mountain"
         }
     }
 }, {
@@ -1664,9 +1612,9 @@ var places = [{
             "level": "3",
             "pack_reward": "pack84",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["82", "83", "86"],
-            "capital": "81"
+            "capital": "81",
+            "subtype": "forest"
         }
     }
 }, {
@@ -1682,9 +1630,9 @@ var places = [{
             "level": "4",
             "pack_reward": "pack85",
             "type": "zone",
-            "subtype": "forest",
             "adjacent_places": ["81", "86"],
-            "capital": "81"
+            "capital": "81",
+            "subtype": "forest"
         }
     }
 }, {
@@ -1700,7 +1648,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack86",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["84", "85"],
             "capital": "81"
         }
@@ -1718,7 +1665,6 @@ var places = [{
             "level": "5",
             "pack_reward": "pack87",
             "type": "dungeon",
-            "subtype": null,
             "adjacent_places": ["49"],
             "capital": "45"
         }

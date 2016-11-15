@@ -11,15 +11,18 @@ var fecha = new Date(),
 var mongoose = require('mongoose');
 var mongoHost = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/kafhe';
 mongoose.connect(mongoHost, {});
+mongoose.Promise = require('q').Promise;
+
+require('../models/createModels')(mongoose);
 
 var config = require('../modules/config'),
     gameDao = require('../modules/dao/gameDao'),
     userDao = require('../modules/dao/userDao'),
-    events = require('events'),
+    // events = require('events'),
     Q = require('q');
 
 //Gestor de eventos
-var eventEmitter = new events.EventEmitter();
+// var eventEmitter = new events.EventEmitter();
 
 // Esto se ejecutará a la 1 de la mañana
 // hora = 1;
@@ -64,6 +67,9 @@ var eventEmitter = new events.EventEmitter();
 
  */
 
+dia = 1;
+hora = 1;
+
 
 switch (dia) {
     /**
@@ -79,6 +85,7 @@ switch (dia) {
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.weekend, config.GAME_STATUS.planning),
                 userDao.usersDailyReset('all')
             ]).spread(function (result) {
+                console.log(result);
                 console.log('Partidas en estado weekend después del fin de semana se ponen en estado planning.');
                 console.log('Jugadores de todos los grupos reseteados (daily).');
                 salir();

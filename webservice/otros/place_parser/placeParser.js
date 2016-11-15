@@ -58,8 +58,7 @@ lineReader.on('line', function (line) {
 
     contained.push({category: 'pack' + trozos[0], frequency: 'C'});
 
-
-    places.push({
+    var entrada = {
         "id": trozos[0],
         "name": trozos[1],
         "type": "place",
@@ -72,12 +71,17 @@ lineReader.on('line', function (line) {
                 "level": trozos[6],
                 "pack_reward": "pack" + trozos[0],
                 "type": type,
-                "subtype": subtype,
                 "adjacent_places": ady,
                 "capital": trozos[13]
             }
         }
-    });
+    };
+
+    if (subtype) {
+        entrada.data.place["subtype"] = subtype;
+    }
+
+    places.push(entrada);
 });
 
 lineReader.on('close', function () {

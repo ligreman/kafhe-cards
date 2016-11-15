@@ -51,7 +51,7 @@ module.exports = function (app) {
 
         // Busco al jugador y las cartas
         Q.all([
-            models.Card.find({}).exec()
+            models.Card.find().exec()
         ]).spread(function (cards) {
             // Las cartas han de ser las mismas y mismo nivel
             var dbCards = TAFFY(cards);

@@ -39,7 +39,7 @@ module.exports = function (app) {
     adminRouter.get('/user/all', function (req, res, next) {
         // Saco la lista de jugadores de todo Kafhe
         models.User
-            .find({})
+            .find()
             .select('username alias game.afk game.gamedata')
             .populate('game.gamedata')
             .exec(function (error, playerList) {

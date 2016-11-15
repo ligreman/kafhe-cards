@@ -236,8 +236,8 @@ module.exports = function (app) {
 
         // Lanzo las dos consultas a Mongo
         Q.all([
-            models.Meal.find({}).exec(),
-            models.Drink.find({}).exec()
+            models.Meal.find().exec(),
+            models.Drink.find().exec()
         ]).spread(answer);
     });
 

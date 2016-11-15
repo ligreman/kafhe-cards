@@ -30,7 +30,7 @@ var usersDailyReset = function (group) {
 
     Q.all([
         models.User.find(condition).exec(),
-        models.Card.find({}).exec()
+        models.Card.find().exec()
     ]).spread(function (users, cards) {
         var promises = [];
 
@@ -73,6 +73,7 @@ var usersDailyReset = function (group) {
             user.game.journal = [];
 
             // Doy recompensas
+            // TODO cambiar las recompensas para no usar campo reward sino que cada sobre es una entrada en packs
             if (user.game.rewards.packs.length > 0) {
                 user.game.packs = user.game.packs.concat(user.game.rewards.packs);
             }
@@ -85,6 +86,7 @@ var usersDailyReset = function (group) {
 
             // Limpio recompensas
             user.game.rewards = {packs: [], tostolares: 0, fame: 0};
+            promises.push(user.save());
         });
 
         Q.allSettled(promises).then(function (results) {
