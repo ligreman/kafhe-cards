@@ -40,6 +40,7 @@ var config = require('../modules/config'),
 
  + Al cerrar el game (lanzar el desayuno):
  - Sube de rank de toda la gente
+ - Se da punto de talento a toda la gente
  - Sube times de toda la gente
  - Al llamador se aplica el reset por llamar
 
@@ -50,7 +51,7 @@ var config = require('../modules/config'),
  - packs =[]
  - collection =[]
  - unlocked =[]
- - talents =[]
+ - talents =[resetear]
  - Añadir a unlocked las capitales
 
  + Reseteo entre desayunos de usuario si se ha llamado:

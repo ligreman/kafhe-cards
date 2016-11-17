@@ -73,9 +73,28 @@ var usersDailyReset = function (group) {
             user.game.journal = [];
 
             // Doy recompensas
-            // TODO cambiar las recompensas para no usar campo reward sino que cada sobre es una entrada en packs
             if (user.game.rewards.packs.length > 0) {
-                user.game.packs = user.game.packs.concat(user.game.rewards.packs);
+                // Añado cada pack
+                user.game.rewards.packs.forEach(function (reward) {
+                    // Busco dónde añadirlo o si tengo que crear uno nuevo
+                    var encontrado = false;
+                    user.game.packs.forEach(function (miPack) {
+                        if (miPack.category === reward.category) {
+                            // Añado
+                            miPack.amount++;
+                            encontrado = true;
+                        }
+                    });
+
+                    // Si no tenía ninguno de ese tipo, pues añado el primero
+                    if (!encontrado) {
+                        user.game.packs.push({
+                            amount: 1,
+                            category: reward.category,
+                            source: reward.source
+                        });
+                    }
+                });
             }
             if (user.game.rewards.fame > 0) {
                 user.game.fame += user.game.rewards.fame;
@@ -135,7 +154,7 @@ var usersAFK = function (group, status) {
     return deferred.promise;
 };
 
-/** Reseteo entre desayunos de usuario:
+/** Reseteo entre desayunos de todos usuarios (si se ha llamado):
  - Borro todas las de schedule.
  - Borra el journal
  - Borra rewards

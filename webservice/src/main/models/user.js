@@ -23,7 +23,8 @@ module.exports = function (mongoose) {
             talents: {
                 combat: [String],
                 exploration: [String],
-                survival: [String]
+                survival: [String],
+                points: {type: Number, default: 0}
             },
             packs: [{
                 amount: {type: Number, default: 0},
@@ -72,8 +73,8 @@ module.exports = function (mongoose) {
             }],
             rewards: {
                 packs: [{
-                    amount: {type: Number, default: 0},
-                    category: {type: String, default: 0}
+                    category: {type: String, default: 0},
+                    source: {type: String, default: ''}
                 }],
                 tostolates: {type: Number, default: 0},
                 fame: {type: Number, default: 0}

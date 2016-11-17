@@ -190,10 +190,17 @@ function fnLaunchBreakfast(idGame) {
                 user.game.collection = [];
                 // Reseteo unlocked a sólo las capitales
                 user.game.unlocked = capitalsIds;
-                user.game.talents = [];
+                user.game.talents = [{
+                    combat: [],
+                    exploration: [],
+                    survival: [],
+                    points: 0
+                }];
             } else {
                 // No llamador, sube de rango
                 user.game.rank = user.game.rank + 1;
+                // Punto de talento
+                user.game.talents.points++;
             }
 
             // Todos Los jugadores se resetean para el nuevo desayuno
