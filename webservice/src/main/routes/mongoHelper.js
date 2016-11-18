@@ -67,8 +67,8 @@ module.exports = function (app) {
             branch: 'exploration', cards: ['skill02'], required: ['talent01']
         },
         {
-            id: 'talent03', name: 'Talento 3', description: 'Er talento 3', level: 2,
-            branch: 'exploration', cards: ['skill03'], required: ['talent01', 'talent02']
+            id: 'talent03', name: 'Talento 3', description: 'Er talento 3', level: 1,
+            branch: 'exploration', cards: ['skill03'], required: ['talent01']
         },
         {
             id: 'talent04', name: 'Talento 4', description: 'Er talento 4', level: 0,
@@ -114,7 +114,7 @@ module.exports = function (app) {
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
-                unlocked: ['1', '2', '4'],
+                unlocked: ['1', '2', '4'], talents: {points: 5, survival: [], exploration: ['talent01'], combat: []},
                 collection: [
                     {_id: 'mycard1', card: '1', level: 1},
                     {_id: 'mycard11', card: '1', level: 1},

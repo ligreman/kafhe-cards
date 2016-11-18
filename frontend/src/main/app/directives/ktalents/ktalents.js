@@ -9,11 +9,6 @@
                         var $this = this;
 
                         // Genero los arrays de talentos de las 3 ramas, por nivel
-                        var gameTalents = {
-                            combat: {},
-                            exploration: {},
-                            survival: {}
-                        };
                         var nodes = new vis.DataSet([
                             {id: 'combat', label: 'combat', initialNode: true, level: -1, group: 'initialNode'},
                             {id: 'exploration', label: 'exploration', initialNode: true, level: -1, group: 'initialNode'},
@@ -23,13 +18,25 @@
                             }
                         ]), edges = new vis.DataSet();
 
-                        $this.talents = KCommon.objToArray($this.talents);
+                        $this.talentsArray = KCommon.objToArray($this.talents);
 
-                        $this.talents.forEach(function (talent) {
+                        $this.userTotalTalents = $this.userTalents.survival.concat($this.userTalents.exploration, $this.userTalents.combat);
+
+                        $this.talentsArray.forEach(function (talent) {
+                            // Grupo o estado del nodo
+                            var grupo = 'disabled';
+                            if ($this.userTotalTalents.indexOf(talent.id) !== -1) {
+                                // Lo tengo ya
+                                grupo = 'adquired';
+                            } else if (isAdquirable($this.talents[talent.id], $this.userTotalTalents)) {
+                                grupo = 'adquirable';
+                            }
+
+                            // Creo el nodo
                             nodes.add({
                                 id: talent.id,
                                 // label: talent.name,
-                                // group: 'initial',
+                                group: grupo,
                                 shape: 'image',
                                 image: 'assets/img/talents/' + talent.id + '.png',
                                 shapeProperties: {
@@ -52,7 +59,7 @@
                             // Si el talento este no tiene required ninguno, es que es inicial,
                             // lo asocio al nodo "label" que describe la rama talentos
                             if (talent.required.length <= 0) {
-                                edges.add({from: talent.id, to: talent.branch});
+                                edges.add({from: talent.branch, to: talent.id});
                             }
                         });
 
@@ -100,21 +107,58 @@
                             interaction: {
                                 dragNodes: false,
                                 hover: true,
+                                // hoverConnectedEdges: false,
                                 selectable: false
                             },
                             physics: {
-                                enabled: false
+                                enabled: true
+                            },
+                            edges: {
+                                /*arrows: {
+                                 to: {enabled: true, type: 'circle'}
+                                 },*/
+                                hoverWidth: 0,
+                                width: 3
+                            },
+                            nodes: {
+                                font: {
+                                    face: 'Noto Sans'
+                                }
                             },
                             groups: {
                                 useDefaultGroups: false,
                                 initialNode: {
                                     borderWidth: 3,
                                     color: {
-                                        border: 'yellow',
-                                        background: 'red'
-                                    },
-                                    font: {
-                                        face: 'Noto Sans'
+                                        border: 'green',
+                                        background: 'red',
+                                        hover: {
+                                            border: 'green'
+                                        }
+                                    }
+                                },
+                                disabled: {
+                                    color: {
+                                        border: 'black',
+                                        hover: {
+                                            border: 'black'
+                                        }
+                                    }
+                                },
+                                adquirable: {
+                                    color: {
+                                        border: 'grey',
+                                        hover: {
+                                            border: 'yellow'
+                                        }
+                                    }
+                                },
+                                adquired: {
+                                    color: {
+                                        border: 'green',
+                                        hover: {
+                                            border: 'green'
+                                        }
                                     }
                                 }
                             }
@@ -139,6 +183,21 @@
                         /** FUNCIONES **/
                         function fnTalentClick(event, talent) {
 
+                        }
+
+                        /**
+                         * Mira a ver si puedo adquirir el talento, ya que cumplo todos los requisitos
+                         */
+                        function isAdquirable(talent, userTalents) {
+                            // Miro si todos los requisitos del talento están adquiridos
+                            var noCumple = false;
+                            talent.required.forEach(function (requisito) {
+                                if (userTalents.indexOf(requisito) === -1) {
+                                    noCumple = true;
+                                }
+                            });
+
+                            return !noCumple;
                         }
 
 
