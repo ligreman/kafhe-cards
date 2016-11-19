@@ -148,8 +148,8 @@ module.exports = function (app) {
                     {_id: 'mycard8', card: '105', level: 1},
                     {_id: 'mycard88', card: '105', level: 1}
                 ],
-                packs: [{amount: 10, category: 'general', source: 'Casa la pradera'},
-                    {amount: 5, category: 'pack006', source: 'Casa de manolo'}],
+                packs: [{amount: 10, category: 'pack1', source: 'Casa la pradera'},
+                    {amount: 5, category: 'pack6', source: 'Casa de manolo'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
                 notifications: [

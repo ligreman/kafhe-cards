@@ -27,11 +27,11 @@ md-grid-list.card-list md-grid-tile figure:hover {
 md-grid-list.card-list md-grid-tile figure img {
     max-height: 100%;
     width: auto;
-    filter: grayscale(100%);
+    /*filter: grayscale(100%);*/
 }
 
 md-grid-list.card-list md-grid-tile figure:hover img {
-    filter: none;
+    filter: sepia(100%);
 }
 
 md-grid-list md-grid-tile md-grid-tile-footer {
