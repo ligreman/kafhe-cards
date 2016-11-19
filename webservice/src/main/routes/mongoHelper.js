@@ -59,6 +59,14 @@ module.exports = function (app) {
             branch: 'combat', cards: ['skill01'], required: []
         },
         {
+            id: 'talent05', name: 'Talento 5', description: 'Er talento 5', level: 1,
+            branch: 'combat', cards: [], required: ['talent00']
+        },
+        {
+            id: 'talent06', name: 'Talento 6', description: 'Er talento 6', level: 1,
+            branch: 'combat', cards: [], required: ['talent00']
+        },
+        {
             id: 'talent01', name: 'Talento 1', description: 'Er talento 1', level: 0,
             branch: 'exploration', cards: [], required: []
         },
@@ -73,6 +81,14 @@ module.exports = function (app) {
         {
             id: 'talent04', name: 'Talento 4', description: 'Er talento 4', level: 0,
             branch: 'survival', cards: [], required: []
+        },
+        {
+            id: 'talent07', name: 'Talento 7', description: 'Er talento 7', level: 1,
+            branch: 'survival', cards: [], required: ['talent04']
+        },
+        {
+            id: 'talent08', name: 'Talento 8', description: 'Er talento 8', level: 1,
+            branch: 'survival', cards: [], required: ['talent04']
         }
     ];
 

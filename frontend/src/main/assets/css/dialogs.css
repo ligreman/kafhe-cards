@@ -30,3 +30,8 @@ md-dialog.dark-footer md-dialog-actions {
     font-weight: bold;
     height: 100%;
 }
+
+.tooltip-block-quote {
+    padding: 10px;
+    border-top: 1px solid #000;
+}

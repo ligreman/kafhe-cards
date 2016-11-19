@@ -55,6 +55,12 @@
             'textPacksAmount': 'Tienes',
             'textPacksOpen': 'Abrir',
 
+            // TALENTOS
+            'combat': 'combate',
+            'exploration': 'exploración',
+            'survival': 'supervivencia',
+
+
             // TIPOS
             'bladed': 'Cortante',
             'blunt': 'Contundente',
