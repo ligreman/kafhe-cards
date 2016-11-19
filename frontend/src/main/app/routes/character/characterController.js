@@ -10,6 +10,7 @@
                 $scope.toggle = fnToggle;
                 $scope.cardLevelUpDialog = fnCardLevelUpDialog;
                 $scope.openPackageDialog = fnOpenPackageDialog;
+                $scope.updateUser = fnUpdateUser;
 
                 // Actualizo los datos del juego si hace falta
                 $scope.updateGameData();
@@ -48,6 +49,12 @@
                     });
                 }
 
+                /**
+                 * Pasarela para la directiva para acceder al update user
+                 */
+                function fnUpdateUser(data) {
+                    $scope.updateUserObject(data);
+                }
 
             }]);
 })();

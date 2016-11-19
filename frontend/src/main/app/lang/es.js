@@ -145,6 +145,9 @@
             'selectCardTitle': '¿Asignar esta carta?',
             'selectCardContent': 'Confirma que quieres asignar la carta "{{card}}" al hueco seleccionado.',
 
+            // Avisos
+            'textNoMoreTalentPoints': 'No tienes puntos de talento disponibles',
+
             // ERRORES - GENERAL
             'errGenericException': 'Ocurrió un error desconocido',
             'errServerException': 'El servidor no responde',

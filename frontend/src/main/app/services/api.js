@@ -126,8 +126,7 @@
                 var access_token = $cookies.get(CONFIG.sessionCookieName);
 
                 return $resource(CONFIG.webServiceUrl + 'character/:endpoint', {endpoint: ''}, {
-
-                    // Obtener la información del usuario actual y su partida
+                    // Asigna una carta a un jugador
                     schedule: {
                         method: 'POST',
                         headers: {
@@ -136,6 +135,18 @@
                         },
                         params: {
                             endpoint: 'schedule'
+                        }
+                    },
+
+                    // Asigna un talento
+                    talent: {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + access_token,
+                            'Content-Type': 'application/json'
+                        },
+                        params: {
+                            endpoint: 'talent'
                         }
                     }
                 });

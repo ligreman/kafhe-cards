@@ -4,11 +4,11 @@
     var app = angular.module('kafhe.directives');
 
     app.directive('kTalents', function () {
-        var controller = ['$scope', 'CONSTANTS', '$mdDialog', '$timeout', '$log', 'KCommon', '$translate',
-            function ($scope, CONSTANTS, $mdDialog, $timeout, $log, KCommon, $translate) {
+        var controller = ['$scope', 'CONSTANTS', '$mdDialog', '$timeout', '$log', 'KCommon', '$translate', 'API',
+            function ($scope, CONSTANTS, $mdDialog, $timeout, $log, KCommon, $translate, API) {
                 // Variables
                 var $this = this;
-                $scope.talentClick = fnTalentClick;
+                $this.talentClick = fnTalentClick;
 
                 // Genero los arrays de talentos de las 3 ramas, por nivel
                 $this.nodes = new vis.DataSet([
@@ -190,17 +190,42 @@
                 $scope.network.on('doubleClick', function (data) {
                     if (data.nodes.length === 1) {
                         var nodo = $this.nodes.get(data.nodes[0]);
-                        console.log(nodo);
+
                         // Si no es nodo inicial, pregunto si quieres adquirilo, si tienes puntos
-                        if (!nodo.initialNode && ($scope.points > 0) && nodo.group === 'adquirable') {
-                            console.log("Puedo cogerlo");
+                        if ($scope.points > 0) {
+                            if (!nodo.initialNode && nodo.group === 'adquirable') {
+                                $this.talentClick($this.talents[nodo.id], nodo, nodo.event);
+                            }
+                        } else {
+                            $this.growlNotification('waning', 'textNoMoreTalentPoints');
                         }
                     }
                 });
 
                 /** FUNCIONES **/
-                function fnTalentClick(event, talent) {
+                function fnTalentClick(talent, nodo, event) {
+                    var confirm = $mdDialog.confirm()
+                        .title($translate.instant('textOrderNoItoTitle'))
+                        .content($translate.instant('textOrderNoItoContent'))
+                        .ok($translate.instant('textContinue'))
+                        .cancel($translate.instant('textCancel'))
+                        .targetEvent(event);
 
+                    $mdDialog.show(confirm).then(function () {
+                        // OK, asigno el talento
+                        API.character().talent({
+                            talent: talent.id
+                        }, function (response) {
+                            if (response) {
+                                $this.callback(response.data.user);
+                                // Actualizo las variables "locales"
+                                $scope.points--;
+                                nodo.group = 'adquired';
+                                $this.nodes.update(nodo);
+                            }
+                        });
+                    }, function () {
+                    });
                 }
 
                 /**
@@ -241,7 +266,9 @@
             scope: {},
             bindToController: {
                 talents: '=',
-                userTalents: '='
+                userTalents: '=',
+                callback: '=',
+                growlNotification: '='
             },
             controller: controller,
             controllerAs: 'kt'

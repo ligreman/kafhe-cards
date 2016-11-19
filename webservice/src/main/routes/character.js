@@ -137,6 +137,69 @@ module.exports = function (app) {
         });
     });
 
+    /**
+     * POST /character/talent
+     * Asigna un talento al jugador
+     * Params: talent: id del talento
+     */
+    characterRouter.post('/talent', function (req, res, next) {
+        var params = req.body,
+            myself = req.user;
+
+        // Busco al jugador y las cartas
+        Q.all([
+            models.Talent.find().exec()
+        ]).spread(function (talents) {
+            // Vienen todos los parámetros
+            if (!params.talent) {
+                console.tag('CHARACTER-TALENT').error('Faltan parámetros obligatorios en la petición');
+                responseUtils.responseError(res, 400, 'errParamsNotFound');
+                return;
+            }
+
+            // Cojo el talento en sí
+            var collection = TAFFY(talents);
+            var talent = collection({id: {like: params.talent}}).first();
+
+            if (!talent) {
+                console.tag('CHARACTER-TALENT').error('No existe ese talento');
+                responseUtils.responseError(res, 400, 'errTalentDontExists');
+                return;
+            }
+
+            // Debo poder coger ese talento
+            // ¿tengo puntos?
+            if (myself.game.talents.points <= 0) {
+                console.tag('CHARACTER-TALENT').error('No tienes puntos de talento disponibles');
+                responseUtils.responseError(res, 400, 'errCharacterNoTalentPoints');
+                return;
+            }
+
+            // Cumplo los requisitos del talento?
+            var talentosUsuario = myself.game.talents.combat.concat(myself.game.talents.exploration, myself.game.talents.survival);
+
+            talent.required.forEach(function (requisito) {
+                if (talentosUsuario.indexOf(requisito) === -1) {
+                    console.tag('CHARACTER-TALENT').error('No cumples los requisitos para coger este talento');
+                    responseUtils.responseError(res, 400, 'errCharacterNoTalentRequirementsMet');
+                    return;
+                }
+            });
+
+            // Parece que todo va bien así que adelante
+            // Resto un punto de talento
+            myself.game.talents.points--;
+
+            // Me otorgo el talento
+            myself.game.talents[talent.branch].push(talent.id);
+
+            // Si el talento desbloquea alguna skill, la meto en unlocked
+            myself.game.unlocked = myself.game.unlocked.concat(talent.skills);
+
+            responseUtils.saveUserAndResponse(res, myself, req.authInfo.access_token);
+        });
+    });
+
     // Asigno los router a sus rutas
     app.use('/api/character', characterRouter);
 };

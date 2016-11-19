@@ -22,6 +22,9 @@ errCharacterTalentDependencyFail - Ya tenías alguno de los talentos o no cumple
 errCharacterWrongGroup - El jugador destino de la acción no pertenece a tu grupo
 errCharacterDontHaveCard - No tienes esa carta en tu colección
 errCharacterNoSpaceSchedule - No puedes asignar más cartas de ese tipo al jugador
+errTalentDontExists - No existe ese talento
+errCharacterNoTalentPoints - No tienes puntos de talento disponibles
+errCharacterNoTalentRequirementsMet - No cumples los requisitos para coger este talento
 
 errCardWrong - La carta no es correcta
 errCollectionDontHaveCards - No tienes las cartas en tu colección

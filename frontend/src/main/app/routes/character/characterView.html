@@ -60,7 +60,8 @@
 
         <!-- TALENTOS -->
         <div id="character-talents" ng-hide="viewing === 'collection'" layout-fill>
-            <k-talents ng-if="global.gamedata.talents && global.user.game.talents"
+            <k-talents ng-if="global.gamedata.talents && global.user.game.talents" callback="updateUser"
+                       growl-notification="growlNotification"
                        talents="global.gamedata.talents" user-talents="global.user.game.talents"></k-talents>
         </div>
     </md-content>
