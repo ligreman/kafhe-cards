@@ -6,6 +6,7 @@ module.exports = function (app) {
     var express = require('express'),
         passport = require('passport'),
         utils = require('../modules/utils'),
+        gameUtils = require('../modules/gameUtils'),
         config = require('../modules/config'),
         responseUtils = require('../modules/responseUtils'),
         gameRouter = express.Router(),
@@ -30,7 +31,7 @@ module.exports = function (app) {
         //Proceso y devuelvo los resultados
         var answer = function (cards, talents, meals, drinks) {
             if (!cards || !talents || !meals || !drinks) {
-                console.tag('MONGO').error(err);
+                console.tag('MONGO').error('Error al recuperar los datos');
                 utils.error(res, 400, 'errGameDataNotFound');
                 return;
             }
@@ -59,20 +60,78 @@ module.exports = function (app) {
     });
 
     /**
+     * GET /game/stats
+     * Obtiene estadísticas de la partida
+     */
+    gameRouter.get('/stats', function (req, res, next) {
+        var user = req.user;
+
+        //Proceso y devuelvo los resultados
+        var answer = function (probabilitiesData) {
+            if (!probabilitiesData) {
+                console.tag('MONGO').error('Error al recuperar las estadísticas');
+                utils.error(res, 400, 'errGameStatsNotFound');
+                return;
+            }
+
+            var users = probabilitiesData.users;
+
+            // Calculo el ranking de usuarios según su rank y fama
+            var ranking = [];
+            var byRank = users.slice(0);
+            byRank.sort(function (a, b) {
+                return b.game.rank - a.game.rank;
+            });
+            byRank.forEach(function (r) {
+                ranking.push({
+                    name: r.alias,
+                    rank: r.game.rank,
+                    leader: r.leader
+                });
+            });
+
+            // Ranking segun fama
+            var fame = [];
+            var byFame = users.slice(0);
+            byFame.sort(function (a, b) {
+                return b.game.fame - a.game.fame;
+            });
+            byFame.forEach(function (r) {
+                fame.push({
+                    name: r.alias,
+                    fame: r.game.fame,
+                    leader: r.leader
+                });
+            });
+
+            responseUtils.responseJson(res, {
+                "probabilities": probabilitiesData.probabilities,
+                "ranking": ranking,
+                "fame": fame
+            }, req.authInfo.access_token);
+        };
+
+        // Lanzo las dos consultas a Mongo
+        Q.all([
+            gameUtils.calculateUsersProbabilities(user.game.gamedata._id)
+        ]).spread(answer);
+    });
+
+    /**
      * GET /game/version
      * Devuelve la versión de juego
      */
     gameRouter.get('/version', function (req, res, next) {
         models.System
             .findOne()
-            .exec(function (error, system) {
+            .exec(function (error, sistema) {
                 if (error) {
                     console.tag('MONGO').error(error);
                     utils.error(res, 400, 'errRetrievingSystemData');
                     return;
                 }
 
-                responseUtils.responseJson(res, {"version": system.version}, req.authInfo.access_token);
+                responseUtils.responseJson(res, {"version": sistema.version}, req.authInfo.access_token);
             });
     });
 

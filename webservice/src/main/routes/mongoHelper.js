@@ -177,7 +177,7 @@ module.exports = function (app) {
             avatar: '1',
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
-                rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
+                rank: 1, tostolares: 100000, fame: 49, afk: false, last_activity: date.getTime(),
                 collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
                 packs: [{amount: 10, category: 'general', source: 'Casa la pradera'},
                     {amount: 5, category: 'pack006', source: 'Casa de manolo'}],
@@ -204,7 +204,7 @@ module.exports = function (app) {
             avatar: '2',
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
-                rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
+                rank: 4, tostolares: 100000, fame: 87, afk: false, last_activity: date.getTime(),
                 collection: [{_id: 'mycard1', card: '1', level: 1}, {_id: 'mycard2', card: '2', level: 1}],
                 packs: [{amount: 10, category: 'general', source: 'Casa la pradera'},
                     {amount: 5, category: 'pack006', source: 'Casa de manolo'}],

@@ -4,7 +4,6 @@ var console = process.console,
     mongoose = require('mongoose'),
     Q = require('q'),
     utils = require('./utils'),
-    gameUtils = require('./gameUtils'),
     cardDao = require('./dao/cardDao'),
     modelos = require('../models/models')(mongoose);
 
@@ -16,27 +15,38 @@ var calculateUsersProbabilities = fnCalculateUsersProbabilities,
 
 function fnCalculateUsersProbabilities(idGame) {
     var defer = Q.defer();
-
+    console.log("ID: " + idGame);
     // Saco los usuarios
     modelos.User.find({"game.gamedata": idGame}, function (err, users) {
+        console.log("Devuelv");
         //Preparo un array con las probabilidades de cada uno de los usuarios
         var probabilidadesRango = calculateProbabilitiesByRank(users);
         if (probabilidadesRango === null) return null;
+        console.log("2");
+        console.log(probabilidadesRango);
 
         //Los diferenciales
         var diffs = calculateFameDifferentials(users);
-        if (diffs === null) return probabilidadesRango;
+        console.log(diffs);
+        if (diffs === null) {
+            // Esto puede pasar si nadie ha metido el desayuno
+            defer.resolve({probabilities: probabilidadesRango, users: users});
+            return;
+        }
+        console.log("3");
 
         //El máximo diferencial, tomados en valores absolutos
         var maximoDiff = diffs.reduce(function (total, num) {
             total = (Math.abs(num) > total) ? Math.abs(num) : total;
             return total;
         }, 0);
+        console.log("4");
 
         //Calculo la variación de probabilidad de cada usuario
         var brutes = [];
         var maxVariation = CONSTANTS.max_variacion_probabilidad_fama;
         diffs.forEach(function (differential, userId) {
+            console.log("5");
             //Primero la relación de cada usuario con el máximo de probabilidad que puede variar
             var relationWithMaxVariation = 0;
             if (maximoDiff > 0) {
@@ -49,21 +59,26 @@ function fnCalculateUsersProbabilities(idGame) {
             //Probabilidad variada
             brutes[userId] = Math.max(0, probabilidadesRango[userId] - ( probabilidadesRango[userId] * porcVariation / 100 ));
         });
+        console.log("6");
 
         // Sumo los valores en bruto
         var sumaBrutes = brutes.reduce(function (total, num) {
             return total + num;
         }, 0);
+        console.log("7");
 
         //La probabilidad final (neta)
         var nets = [];
         brutes.forEach(function (brute, userId) {
             nets[userId] = Math.round(brute / sumaBrutes * 100);
         });
+        console.log("8");
 
         if (nets.length === 0) {
+            console.log("9");
             defer.reject();
         } else {
+            console.log("10");
             defer.resolve({probabilities: nets, users: users});
         }
     });
@@ -79,14 +94,14 @@ function fnCalculateProbabilitiesByRank(users) {
     // Por cada usuario
     users.forEach(function (user) {
         var proporcion = user.times / (user.calls + 1);
-        var valor = (xProporcion * proporcion) + (Math.pow(user.game.level, 2) * xRango);
+        var valor = (xProporcion * proporcion) + (Math.pow(user.game.rank, 2) * xRango);
         xSuma += valor;
-        valores[user._id] = valor;
+        valores[user._id.toString()] = valor;
     });
 
     // Calculo el valor final
     users.forEach(function (user) {
-        finales[user._id] = ((valores[user._id] / xSuma) * 100).toPrecision(4);
+        finales[user._id.toString()] = ((valores[user._id.toString()] / xSuma) * 100).toPrecision(4);
     });
 
     return finales;
@@ -94,12 +109,14 @@ function fnCalculateProbabilitiesByRank(users) {
 
 function fnCalculateFameDifferentials(users) {
     var fames = [], differentials = [];
-
+    //TODO usar objetos en vez de arrays... que parece que no funciona si no
+    console.log("333333");
     //La fama en bruto
     users.forEach(function (user) {
         // Si ha metido el desayuno le tengo en cuenta
         if (user.game.order.meal !== null || user.game.order.drink !== null) {
-            fames[user._id] = user.game.fame;
+            var id = user._id.toString();
+            fames[id] = user.game.fame;
         }
     });
 
@@ -112,7 +129,7 @@ function fnCalculateFameDifferentials(users) {
 
         users.forEach(function (user) {
             if (user.game.order.meal !== null || user.game.order.drink !== null) {
-                differentials[user._id] = fames[user._id] - fameMedia;
+                differentials[user._id.toString()] = fames[user._id.toString()] - fameMedia;
             }
         });
     }
@@ -182,7 +199,7 @@ function fnLaunchBreakfast(idGame) {
         // Una vez lo sé procedo a gestionar el cierre del desayuno
         var promesas = [];
         users.forEach(function (user) {
-            if (user._id === caller) {
+            if (user._id.toString() === caller) {
                 // Llamador
                 user.game.rank = 1;
                 user.calls = user.calls + 1;

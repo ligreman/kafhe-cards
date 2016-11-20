@@ -147,6 +147,7 @@
             // INTERFAZ - Colección
             'selectCardTitle': '¿Asignar esta carta?',
             'selectCardContent': 'Confirma que quieres asignar la carta "{{card}}" al hueco seleccionado.',
+            'textNoUpgradeableCards': 'No hay cartas que puedan mejorarse',
 
             // Avisos
             'textNoMoreTalentPoints': 'No tienes puntos de talento disponibles',

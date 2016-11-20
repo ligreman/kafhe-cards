@@ -5,6 +5,7 @@ errMongoSave - Error al salvar un objeto en Mongo
 errLogout - Error al salir
 errParamsNotFound - Faltan parámetros obligatorios en la petición
 
+errGameStatsNotFound - Error al recuperar las estadísticas
 errGameDataNotFound - Error al recuperar los datos del sistema
 errGameStatusNotAllowed - No se puede realizar esta acción en esta fase de la partida
 
