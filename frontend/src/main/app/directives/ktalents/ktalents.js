@@ -33,10 +33,11 @@
 
                 $this.talentsArray.forEach(function (talent) {
                     // Grupo o estado del nodo
-                    var grupo = 'disabled';
+                    var grupo = 'disabled', bw = '_bw';
                     if ($this.userTotalTalents.indexOf(talent.id) !== -1) {
                         // Lo tengo ya
                         grupo = 'adquired';
+                        bw = '';
                     } else if (isAdquirable($this.talents[talent.id], $this.userTotalTalents)) {
                         grupo = 'adquirable';
                     }
@@ -47,9 +48,8 @@
                         // label: talent.name,
                         group: grupo,
                         shape: 'image',
-                        image: 'assets/img/talents/' + talent.id + '.png',
+                        image: 'assets/img/talents/' + talent.id + bw + '.png',
                         shapeProperties: {
-                            // borderDashes: true, //[dash length, gap length]
                             useBorderWithImage: true
                         },
                         borderWidth: 3,
@@ -57,6 +57,7 @@
                         title: generateTitle(talent),
                         level: talent.level,
                         data: {
+                            name: talent.name,
                             branch: talent.branch,
                             description: talent.description,
                             skills: talent.skills,
@@ -103,9 +104,6 @@
                         enabled: false
                     },
                     edges: {
-                        /*arrows: {
-                         to: {enabled: true, type: 'circle'}
-                         },*/
                         hoverWidth: 0,
                         selectionWidth: 0,
                         width: 3
@@ -114,16 +112,10 @@
                         labelHighlightBold: false,
                         color: {
                             background: '#000000',
-                            hover: {
-                                background: '#000000'
-                            },
-                            highlight: {
-                                background: '#000000'
-                            }
+                            hover: {background: '#000000'},
+                            highlight: {background: '#000000'}
                         },
-                        font: {
-                            face: 'Noto Sans'
-                        }
+                        font: {face: 'Noto Sans'}
                     },
                     groups: {
                         useDefaultGroups: false,
@@ -132,52 +124,31 @@
                             color: {
                                 background: '#303030',
                                 border: '#4CAF50',
-                                hover: {
-                                    border: '#4CAF50',
-                                    background: '#303030'
-                                },
-                                highlight: {
-                                    border: '#4CAF50',
-                                    background: '#303030'
-                                }
+                                hover: {border: '#4CAF50', background: '#303030'},
+                                highlight: {border: '#4CAF50', background: '#303030'}
                             },
                             shape: 'box',
-                            font: {
-                                color: '#F5F5F5',
-                                size: 24
-                            }
+                            font: {color: '#F5F5F5', size: 24}
                         },
                         disabled: {
                             color: {
                                 border: '#000000',
-                                hover: {
-                                    border: '#000000'
-                                },
-                                highlight: {
-                                    border: '#000000'
-                                }
+                                hover: {border: '#000000'},
+                                highlight: {border: '#000000'}
                             }
                         },
                         adquirable: {
                             color: {
                                 border: '#9E9E9E',
-                                hover: {
-                                    border: '#FDD835'
-                                },
-                                highlight: {
-                                    border: '#FDD835'
-                                }
+                                hover: {border: '#FDD835'},
+                                highlight: {border: '#FDD835'}
                             }
                         },
                         adquired: {
                             color: {
                                 border: '#4CAF50',
-                                hover: {
-                                    border: '#4CAF50'
-                                },
-                                highlight: {
-                                    border: '#4CAF50'
-                                }
+                                hover: {border: '#4CAF50'},
+                                highlight: {border: '#4CAF50'}
                             }
                         }
                     }
@@ -205,8 +176,8 @@
                 /** FUNCIONES **/
                 function fnTalentClick(talent, nodo, event) {
                     var confirm = $mdDialog.confirm()
-                        .title($translate.instant('textOrderNoItoTitle'))
-                        .content($translate.instant('textOrderNoItoContent'))
+                        .title($translate.instant('textTalentAddTitle'))
+                        .content($translate.instant('textTalentAdd', {name: nodo.data.name}))
                         .ok($translate.instant('textContinue'))
                         .cancel($translate.instant('textCancel'))
                         .targetEvent(event);
@@ -221,6 +192,7 @@
                                 // Actualizo las variables "locales"
                                 $scope.points--;
                                 nodo.group = 'adquired';
+                                nodo.image = 'assets/img/talents/' + nodo.id + '.png';
                                 $this.nodes.update(nodo);
                             }
                         });

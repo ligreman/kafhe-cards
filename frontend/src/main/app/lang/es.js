@@ -140,6 +140,9 @@
             'textTargets': 'Nº de objetivos',
             'textCost': 'Coste en puntos de tueste',
             'textExecute': 'Ejecutar habilidad',
+            'textTalentPoints': 'Puntos disponibles',
+            'textTalentAddTitle': 'Adquirir talento',
+            'textTalentAdd': 'Confirma que quieres adquirir este talento: {{name}}',
 
             // INTERFAZ - Colección
             'selectCardTitle': '¿Asignar esta carta?',
