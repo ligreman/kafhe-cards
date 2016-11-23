@@ -23,6 +23,17 @@ module.exports = function (mongoose) {
                 subtype: {type: String, enum: ['forest', 'mountain', 'lake', 'desert', 'swamp']},
                 adjacent_places: [String],
                 capital: String
+            },
+            weapon: {
+                alias: String,
+                'type': {type: String, enum: ['bladed', 'piercing', 'blunt']}
+            },
+            armor: {
+                alias: String,
+                'type': {type: String, enum: ['mail', 'scale', 'padded']}
+            },
+            skill: {
+                uses: Number
             }
         }
     }, {versionKey: false});

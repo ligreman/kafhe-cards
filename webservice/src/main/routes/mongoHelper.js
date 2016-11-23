@@ -12,7 +12,8 @@ module.exports = function (app) {
         utils = require('../modules/utils'),
         models = require('../models/models')(mongoose),
         fakery = require('mongoose-fakery'),
-        carga = require('../scripts/cargaInicialMongo'),
+        cargaInicialCartas = require('../scripts/cargaInicialMongo/cards'),
+        cargaInicialTalentos = require('../scripts/cargaInicialMongo/talents'),
         q = require('q');
 
     var finalizado = 0;
@@ -51,7 +52,7 @@ module.exports = function (app) {
         }
     ];
 
-    cards = cards.concat(carga.places);
+    cards = cards.concat(cargaInicialCartas.places);
 
     var talents = [
         {
@@ -91,6 +92,9 @@ module.exports = function (app) {
             branch: 'survival', cards: [], required: ['talent04']
         }
     ];
+
+    var talents = cargaInicialTalentos;
+
 
     var date = new Date();
     var userId = new mongoose.Types.ObjectId;

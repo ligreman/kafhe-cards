@@ -51,7 +51,6 @@ module.exports = function (app) {
         Q.all([
             models.Card.find().exec()
         ]).spread(function (cardDB) {
-            console.log("entro");
             var categories = cardUtils.cardCategories(cardDB);
 
             // La categoría está entre las posibles
@@ -68,8 +67,7 @@ module.exports = function (app) {
                 responseUtils.responseError(res, 400, 'errPacksErrorOpeningPack');
                 return;
             }
-            console.log("CARTAS que han salido");
-            console.log(newCards);
+
             var newCardInfo = [];
             // Guardo las nuevas cartas en la colección
             newCards.forEach(function (carta) {
@@ -109,11 +107,9 @@ module.exports = function (app) {
 
             // Guardo el usuario y devuelvo los datos de las cartas nuevas
             responseUtils.saveUserAndResponse(res, user, req.authInfo.access_token, newCardInfo);
-        })
-            .fail(function (err) {
-                console.log("ERRRRR");
-                console.log(err);
-            });
+        }).fail(function (err) {
+            console.tag('PACK-OPEN').error(err);
+        });
     });
 
     // Asigno los router a sus rutas

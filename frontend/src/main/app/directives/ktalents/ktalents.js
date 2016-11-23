@@ -33,13 +33,14 @@
 
                 $this.talentsArray.forEach(function (talent) {
                     // Grupo o estado del nodo
-                    var grupo = 'disabled', bw = '_bw';
+                    var grupo = 'disabled', img = 'block';
                     if ($this.userTotalTalents.indexOf(talent.id) !== -1) {
                         // Lo tengo ya
                         grupo = 'adquired';
-                        bw = '';
+                        img = talent.id;
                     } else if (isAdquirable($this.talents[talent.id], $this.userTotalTalents)) {
                         grupo = 'adquirable';
+                        img = talent.id + '_bw'
                     }
 
                     // Creo el nodo
@@ -48,7 +49,7 @@
                         // label: talent.name,
                         group: grupo,
                         shape: 'image',
-                        image: 'assets/img/talents/' + talent.id + bw + '.png',
+                        image: 'assets/img/talents/' + img + '.png',
                         shapeProperties: {
                             useBorderWithImage: true
                         },

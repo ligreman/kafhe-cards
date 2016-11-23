@@ -22,7 +22,10 @@ var places = [{
     "id": "2",
     "name": "Numanaktra",
     "type": "place",
-    "contained_in_packs": [{"category": "pack1", "frequency": "C"}, {"category": "pack4", "frequency": "C"}, {"category": "pack2", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack1", "frequency": "C"}, {
+        "category": "pack4",
+        "frequency": "C"
+    }, {"category": "pack2", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-55.9",
@@ -39,7 +42,10 @@ var places = [{
     "id": "3",
     "name": "Montañas Astralt",
     "type": "place",
-    "contained_in_packs": [{"category": "pack4", "frequency": "C"}, {"category": "pack5", "frequency": "C"}, {"category": "pack3", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack4", "frequency": "C"}, {
+        "category": "pack5",
+        "frequency": "C"
+    }, {"category": "pack3", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-47.96",
@@ -135,7 +141,10 @@ var places = [{
     "id": "8",
     "name": "Magi Reven",
     "type": "place",
-    "contained_in_packs": [{"category": "pack6", "frequency": "C"}, {"category": "pack9", "frequency": "C"}, {"category": "pack8", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack6", "frequency": "C"}, {
+        "category": "pack9",
+        "frequency": "C"
+    }, {"category": "pack8", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-48.79",
@@ -155,7 +164,10 @@ var places = [{
     "contained_in_packs": [{"category": "pack8", "frequency": "C"}, {"category": "pack10", "frequency": "C"}, {
         "category": "pack11",
         "frequency": "C"
-    }, {"category": "pack13", "frequency": "C"}, {"category": "pack14", "frequency": "C"}, {"category": "pack16", "frequency": "C"}, {
+    }, {"category": "pack13", "frequency": "C"}, {"category": "pack14", "frequency": "C"}, {
+        "category": "pack16",
+        "frequency": "C"
+    }, {
         "category": "pack9",
         "frequency": "C"
     }],
@@ -175,7 +187,10 @@ var places = [{
     "id": "10",
     "name": "Lago Vespertilio",
     "type": "place",
-    "contained_in_packs": [{"category": "pack9", "frequency": "C"}, {"category": "pack14", "frequency": "C"}, {"category": "pack10", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack9", "frequency": "C"}, {
+        "category": "pack14",
+        "frequency": "C"
+    }, {"category": "pack10", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-51.82",
@@ -213,7 +228,10 @@ var places = [{
     "id": "12",
     "name": "Bosque Kálirin",
     "type": "place",
-    "contained_in_packs": [{"category": "pack11", "frequency": "C"}, {"category": "pack15", "frequency": "C"}, {"category": "pack12", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack11", "frequency": "C"}, {
+        "category": "pack15",
+        "frequency": "C"
+    }, {"category": "pack12", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-46.91",
@@ -234,7 +252,10 @@ var places = [{
     "contained_in_packs": [{"category": "pack9", "frequency": "C"}, {"category": "pack11", "frequency": "C"}, {
         "category": "pack14",
         "frequency": "C"
-    }, {"category": "pack15", "frequency": "C"}, {"category": "pack41", "frequency": "C"}, {"category": "pack13", "frequency": "C"}],
+    }, {"category": "pack15", "frequency": "C"}, {"category": "pack41", "frequency": "C"}, {
+        "category": "pack13",
+        "frequency": "C"
+    }],
     "data": {
         "place": {
             "lat": "-51.12",
@@ -271,7 +292,10 @@ var places = [{
     "id": "15",
     "name": "Avark",
     "type": "place",
-    "contained_in_packs": [{"category": "pack12", "frequency": "C"}, {"category": "pack13", "frequency": "C"}, {"category": "pack15", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack12", "frequency": "C"}, {
+        "category": "pack13",
+        "frequency": "C"
+    }, {"category": "pack15", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-48.52",
@@ -401,7 +425,10 @@ var places = [{
     "id": "22",
     "name": "Templo de la Luna",
     "type": "place",
-    "contained_in_packs": [{"category": "pack13", "frequency": "C"}, {"category": "pack23", "frequency": "C"}, {"category": "pack22", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack13", "frequency": "C"}, {
+        "category": "pack23",
+        "frequency": "C"
+    }, {"category": "pack22", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-53.67",
@@ -480,7 +507,10 @@ var places = [{
     "id": "26",
     "name": "Selva de Nori",
     "type": "place",
-    "contained_in_packs": [{"category": "pack25", "frequency": "C"}, {"category": "pack27", "frequency": "C"}, {"category": "pack26", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack25", "frequency": "C"}, {
+        "category": "pack27",
+        "frequency": "C"
+    }, {"category": "pack26", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-66.4",
@@ -515,7 +545,10 @@ var places = [{
     "id": "28",
     "name": "Pantano de Nork",
     "type": "place",
-    "contained_in_packs": [{"category": "pack25", "frequency": "C"}, {"category": "pack31", "frequency": "C"}, {"category": "pack28", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack25", "frequency": "C"}, {
+        "category": "pack31",
+        "frequency": "C"
+    }, {"category": "pack28", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-70.78",
@@ -536,7 +569,10 @@ var places = [{
     "contained_in_packs": [{"category": "pack25", "frequency": "C"}, {"category": "pack30", "frequency": "C"}, {
         "category": "pack31",
         "frequency": "C"
-    }, {"category": "pack32", "frequency": "C"}, {"category": "pack34", "frequency": "C"}, {"category": "pack35", "frequency": "C"}, {
+    }, {"category": "pack32", "frequency": "C"}, {"category": "pack34", "frequency": "C"}, {
+        "category": "pack35",
+        "frequency": "C"
+    }, {
         "category": "pack29",
         "frequency": "C"
     }],
@@ -556,7 +592,10 @@ var places = [{
     "id": "30",
     "name": "Yunkadur",
     "type": "place",
-    "contained_in_packs": [{"category": "pack19", "frequency": "C"}, {"category": "pack29", "frequency": "C"}, {"category": "pack30", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack19", "frequency": "C"}, {
+        "category": "pack29",
+        "frequency": "C"
+    }, {"category": "pack30", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-68.99",
@@ -672,7 +711,10 @@ var places = [{
     "id": "36",
     "name": "Bosque solitario",
     "type": "place",
-    "contained_in_packs": [{"category": "pack34", "frequency": "C"}, {"category": "pack37", "frequency": "C"}, {"category": "pack36", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack34", "frequency": "C"}, {
+        "category": "pack37",
+        "frequency": "C"
+    }, {"category": "pack36", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-73.75",
@@ -690,7 +732,10 @@ var places = [{
     "id": "37",
     "name": "Bosque de la Luna Creciente",
     "type": "place",
-    "contained_in_packs": [{"category": "pack36", "frequency": "C"}, {"category": "pack38", "frequency": "C"}, {"category": "pack37", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack36", "frequency": "C"}, {
+        "category": "pack38",
+        "frequency": "C"
+    }, {"category": "pack37", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-74.36",
@@ -801,7 +846,10 @@ var places = [{
     "id": "43",
     "name": "Rívelar",
     "type": "place",
-    "contained_in_packs": [{"category": "pack41", "frequency": "C"}, {"category": "pack44", "frequency": "C"}, {"category": "pack43", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack41", "frequency": "C"}, {
+        "category": "pack44",
+        "frequency": "C"
+    }, {"category": "pack43", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-45.35",
@@ -818,7 +866,10 @@ var places = [{
     "id": "44",
     "name": "Rádagar",
     "type": "place",
-    "contained_in_packs": [{"category": "pack43", "frequency": "C"}, {"category": "pack45", "frequency": "C"}, {"category": "pack44", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack43", "frequency": "C"}, {
+        "category": "pack45",
+        "frequency": "C"
+    }, {"category": "pack44", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-44.76",
@@ -913,7 +964,10 @@ var places = [{
     "id": "49",
     "name": "Fárlowin",
     "type": "place",
-    "contained_in_packs": [{"category": "pack48", "frequency": "C"}, {"category": "pack87", "frequency": "C"}, {"category": "pack49", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack48", "frequency": "C"}, {
+        "category": "pack87",
+        "frequency": "C"
+    }, {"category": "pack49", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-59.27",
@@ -953,7 +1007,10 @@ var places = [{
     "contained_in_packs": [{"category": "pack45", "frequency": "C"}, {"category": "pack50", "frequency": "C"}, {
         "category": "pack52",
         "frequency": "C"
-    }, {"category": "pack53", "frequency": "C"}, {"category": "pack54", "frequency": "C"}, {"category": "pack55", "frequency": "C"}, {
+    }, {"category": "pack53", "frequency": "C"}, {"category": "pack54", "frequency": "C"}, {
+        "category": "pack55",
+        "frequency": "C"
+    }, {
         "category": "pack51",
         "frequency": "C"
     }],
@@ -973,7 +1030,10 @@ var places = [{
     "id": "52",
     "name": "Cataratas de Diacleronte",
     "type": "place",
-    "contained_in_packs": [{"category": "pack42", "frequency": "C"}, {"category": "pack51", "frequency": "C"}, {"category": "pack52", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack42", "frequency": "C"}, {
+        "category": "pack51",
+        "frequency": "C"
+    }, {"category": "pack52", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-51.56",
@@ -1057,7 +1117,10 @@ var places = [{
     "contained_in_packs": [{"category": "pack46", "frequency": "C"}, {"category": "pack55", "frequency": "C"}, {
         "category": "pack57",
         "frequency": "C"
-    }, {"category": "pack59", "frequency": "C"}, {"category": "pack60", "frequency": "C"}, {"category": "pack56", "frequency": "C"}],
+    }, {"category": "pack59", "frequency": "C"}, {"category": "pack60", "frequency": "C"}, {
+        "category": "pack56",
+        "frequency": "C"
+    }],
     "data": {
         "place": {
             "lat": "-52.54",
@@ -1117,7 +1180,10 @@ var places = [{
     "contained_in_packs": [{"category": "pack56", "frequency": "C"}, {"category": "pack57", "frequency": "C"}, {
         "category": "pack58",
         "frequency": "C"
-    }, {"category": "pack60", "frequency": "C"}, {"category": "pack63", "frequency": "C"}, {"category": "pack59", "frequency": "C"}],
+    }, {"category": "pack60", "frequency": "C"}, {"category": "pack63", "frequency": "C"}, {
+        "category": "pack59",
+        "frequency": "C"
+    }],
     "data": {
         "place": {
             "lat": "-48.27",
@@ -1156,7 +1222,10 @@ var places = [{
     "id": "61",
     "name": "La Hundida Ciudad de Esplendor",
     "type": "place",
-    "contained_in_packs": [{"category": "pack60", "frequency": "C"}, {"category": "pack62", "frequency": "C"}, {"category": "pack61", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack60", "frequency": "C"}, {
+        "category": "pack62",
+        "frequency": "C"
+    }, {"category": "pack61", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-59.96",
@@ -1234,7 +1303,10 @@ var places = [{
     "id": "65",
     "name": "Montañas Brasmort",
     "type": "place",
-    "contained_in_packs": [{"category": "pack67", "frequency": "C"}, {"category": "pack66", "frequency": "C"}, {"category": "pack65", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack67", "frequency": "C"}, {
+        "category": "pack66",
+        "frequency": "C"
+    }, {"category": "pack65", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-49.64",
@@ -1368,7 +1440,10 @@ var places = [{
     "id": "72",
     "name": "Templo de Áershin",
     "type": "place",
-    "contained_in_packs": [{"category": "pack70", "frequency": "C"}, {"category": "pack79", "frequency": "C"}, {"category": "pack72", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack70", "frequency": "C"}, {
+        "category": "pack79",
+        "frequency": "C"
+    }, {"category": "pack72", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-65.37",
@@ -1463,7 +1538,10 @@ var places = [{
     "id": "77",
     "name": "Sunamerasu",
     "type": "place",
-    "contained_in_packs": [{"category": "pack75", "frequency": "C"}, {"category": "pack76", "frequency": "C"}, {"category": "pack77", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack75", "frequency": "C"}, {
+        "category": "pack76",
+        "frequency": "C"
+    }, {"category": "pack77", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-71.6",
@@ -1480,7 +1558,10 @@ var places = [{
     "id": "78",
     "name": "Asanagui",
     "type": "place",
-    "contained_in_packs": [{"category": "pack75", "frequency": "C"}, {"category": "pack76", "frequency": "C"}, {"category": "pack78", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack75", "frequency": "C"}, {
+        "category": "pack76",
+        "frequency": "C"
+    }, {"category": "pack78", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-70.5",
@@ -1621,7 +1702,10 @@ var places = [{
     "id": "85",
     "name": "Abacrist",
     "type": "place",
-    "contained_in_packs": [{"category": "pack81", "frequency": "C"}, {"category": "pack86", "frequency": "C"}, {"category": "pack85", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack81", "frequency": "C"}, {
+        "category": "pack86",
+        "frequency": "C"
+    }, {"category": "pack85", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-75.29",
@@ -1639,7 +1723,10 @@ var places = [{
     "id": "86",
     "name": "Gran Árbol Édensil",
     "type": "place",
-    "contained_in_packs": [{"category": "pack84", "frequency": "C"}, {"category": "pack85", "frequency": "C"}, {"category": "pack86", "frequency": "C"}],
+    "contained_in_packs": [{"category": "pack84", "frequency": "C"}, {
+        "category": "pack85",
+        "frequency": "C"
+    }, {"category": "pack86", "frequency": "C"}],
     "data": {
         "place": {
             "lat": "-74.01",
