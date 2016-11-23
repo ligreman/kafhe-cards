@@ -4,8 +4,8 @@
     var app = angular.module('kafhe.directives');
 
     app.directive('kTalents', function () {
-        var controller = ['$scope', 'CONSTANTS', '$mdDialog', '$timeout', '$log', 'KCommon', '$translate', 'API',
-            function ($scope, CONSTANTS, $mdDialog, $timeout, $log, KCommon, $translate, API) {
+        var controller = ['$scope', 'CONSTANTS', '$mdDialog', '$timeout', '$log', 'KCommon', '$translate', 'API', '$window',
+            function ($scope, CONSTANTS, $mdDialog, $timeout, $log, KCommon, $translate, API, $window) {
                 // Variables
                 var $this = this;
                 $this.talentClick = fnTalentClick;
@@ -192,9 +192,11 @@
                                 $this.callback(response.data.user);
                                 // Actualizo las variables "locales"
                                 $scope.points--;
-                                nodo.group = 'adquired';
-                                nodo.image = 'assets/img/talents/' + nodo.id + '.png';
-                                $this.nodes.update(nodo);
+                                // nodo.group = 'adquired';
+                                // nodo.image = 'assets/img/talents/' + nodo.id + '.png';
+                                // $this.nodes.update(nodo);
+                                // $scope.network.redraw();
+                                $window.location.reload();
                             }
                         });
                     }, function () {
