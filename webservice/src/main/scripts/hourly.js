@@ -158,8 +158,7 @@ switch (dia) {
      * VIERNES
      *  - A la 1:00am cierro los juegos anteriores (estado explore) y pongo las partidas en resolution
      *
-     *  - Si se lanza el desayuno, se pone en estado cerrado (cerrar desayuno). Reseteo de todos los jugadores por desayuno finalizado,
-     *      y reseteo del caller.
+     *  - Si se lanza el desayuno, se pone en estado cerrado (cerrar desayuno).
      *
      *  - A las 15:00 pongo las cerradas en weekend, si tienen el repeat. Limpio el caller y log.
      *    Pongo las que sigan en resolution (no se han lanzado) en modo weekend para jugar la semana siguiente.
@@ -183,7 +182,8 @@ switch (dia) {
         // 15:00 PM
         if (hora === 15) {
             Q.all([
-                gameDao.gameBreakfastReset()
+                gameDao.gameBreakfastReset(),
+                userDao.usersBreakfastReset('all')
                 // gameDao.gameUpdateAllByStatus(config.GAME_STATUS.resolution, config.GAME_STATUS.weekend)
             ]).spread(function (result) {
                 console.log('Partidas finalizadas y no lanzadas puestas a weekend para la semana que viene.');

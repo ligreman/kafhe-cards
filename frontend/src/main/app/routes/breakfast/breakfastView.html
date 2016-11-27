@@ -2,66 +2,132 @@
     <md-content layout="column" layout-fill>
         <div flex="5"></div>
 
-        <div layout="row" layout-align="center end" layout-padding flex="none">
-            <md-checkbox class="md-headline text-bold md-accent md-hue-3" ng-model="selection.ito">
-                Desayuno ITO
-            </md-checkbox>
-        </div>
-
-        <div layout="row" layout-align="center center" flex="noshrink">
-            <div flex-gt-md="25" flex="15"></div>
-            <div layout-gt-sm="row" layout="column"
-                 layout-align-gt-sm="center center" layout-align="center start" flex>
-
-                <div flex="grow" layout="row" layout-align="end stretch">
-                    <h2 class="text-center">Comida</h2>
-                    <md-radio-group ng-model="selection.meal" layout-padding>
-                        <md-radio-button class="md-accent md-hue-3"
-                                         ng-repeat="meal in global.gamedata.meals | toArray | filter: itoSelected | orderBy: 'name'"
-                                         value="{{meal.id}}">
-                            {{meal.name}}
-                        </md-radio-button>
-                    </md-radio-group>
+        <div layout="column" layout-gt-sm="row">
+            <!-- HACER PEDIDO -->
+            <div flex="75"
+                 ng-if="global.gamedata.status === gameStatuses.planning || global.gamedata.status === gameStatuses.explore || global.gamedata.status === gameStatuses.resolution">
+                <div layout="row" layout-align="center end" layout-padding flex="none">
+                    <md-checkbox class="md-headline text-bold md-accent md-hue-3" ng-model="selection.ito">
+                        Desayuno ITO
+                    </md-checkbox>
                 </div>
 
-                <div flex="10"></div>
+                <div layout="row" layout-align="center center" flex="noshrink">
+                    <div flex-gt-md="25" flex="15"></div>
+                    <div layout-gt-sm="row" layout="column"
+                         layout-align-gt-sm="center center" layout-align="center start" flex>
 
-                <div flex="grow" layout="row" layout-align="start stretch">
-                    <h2 class="text-center">Bebida</h2>
-                    <md-radio-group ng-model="selection.drink" layout-padding>
-                        <md-radio-button class="md-accent md-hue-3"
-                                         ng-repeat="drink in global.gamedata.drinks | toArray | filter: itoSelected | orderBy: 'name'"
-                                         value="{{drink.id}}">
-                            {{drink.name}}
-                        </md-radio-button>
-                    </md-radio-group>
+                        <div flex="grow" layout="row" layout-align="end stretch">
+                            <h2 class="text-center">Comida</h2>
+                            <md-radio-group ng-model="selection.meal" layout-padding>
+                                <md-radio-button class="md-accent md-hue-3"
+                                                 ng-repeat="meal in global.gamedata.meals | toArray | filter: itoSelected | orderBy: 'name'"
+                                                 value="{{meal.id}}">
+                                    {{meal.name}}
+                                </md-radio-button>
+                            </md-radio-group>
+                        </div>
+
+                        <div flex="10"></div>
+
+                        <div flex="grow" layout="row" layout-align="start stretch">
+                            <h2 class="text-center">Bebida</h2>
+                            <md-radio-group ng-model="selection.drink" layout-padding>
+                                <md-radio-button class="md-accent md-hue-3"
+                                                 ng-repeat="drink in global.gamedata.drinks | toArray | filter: itoSelected | orderBy: 'name'"
+                                                 value="{{drink.id}}">
+                                    {{drink.name}}
+                                </md-radio-button>
+                            </md-radio-group>
+                        </div>
+                    </div>
+                    <div flex-gt-md="25" flex="15"></div>
+                </div>
+
+                <!-- Botones de pedido -->
+                <div layout-gt-sm="row" layout="column" layout-align="center center" flex="none">
+                    <md-button class="md-primary md-raised" ng-click="btnMakeOrder()">
+                        <md-icon ng-show="!hasOrdered()">free_breakfast</md-icon>
+                        <md-icon ng-show="hasOrdered()">sync</md-icon>
+                        {{ (hasOrdered() ? 'textChangeOrder' : 'textNewOrder') | translate }}
+                    </md-button>
+
+                    <md-button class="md-accent md-hue-1 md-raised" ng-click="btnLastDayOrder()"
+                               ng-show="hasOrderedPreviously()">
+                        <md-icon class="">event</md-icon>
+                        {{ 'textLastDayOrder' | translate }}
+                    </md-button>
+
+                    <md-button class="md-warn md-raised" ng-click="btnRemoveOrder()" ng-show="hasOrdered()">
+                        <md-icon>delete</md-icon>
+                        {{ 'textCancelOrder' | translate }}
+                    </md-button>
                 </div>
             </div>
-            <div flex-gt-md="25" flex="15"></div>
-        </div>
 
-        <!-- Botones de pedido -->
-        <div layout-gt-sm="row" layout="column" layout-align="center center" flex="none">
-            <md-button class="md-primary md-raised" ng-click="btnMakeOrder()">
-                <md-icon ng-show="!hasOrdered()">
-                    free_breakfast
-                </md-icon>
-                <md-icon ng-show="hasOrdered()">
-                    sync
-                </md-icon>
-                {{ (hasOrdered() ? 'textChangeOrder' : 'textNewOrder') | translate }}
-            </md-button>
+            <!-- LISTA PEDIDOS -->
+            <div flex="75" flex-gt-sm="50" flex-offset-gt-sm="25" ng-if="global.gamedata.status === gameStatuses.closed"
+                 layout-padding>
+                <h3 layout="row" layout-align="start center">
+                    <span>{{ 'textPedidos' | translate }}</span>
+                    <md-button class="md-icon-button" aria-label="" ng-click="showOrderDetail()">
+                        <md-icon>receipt</md-icon>
+                        <md-tooltip>{{ 'textOrderDetail' | translate }}</md-tooltip>
+                    </md-button>
+                </h3>
+                <md-list flex>
+                    <md-subheader ng-if="listOrders.itos > 0">
+                        <span class="text-big">Pedidos ITO ({{listOrders.itos}})</span>
+                    </md-subheader>
+                    <md-list-item class="noright" layout-padding
+                                  ng-repeat="(comida, cantidad) in listOrders.itoOrders.meals">
+                        <md-icon class="md-accent md-hue-1 no-margin-right">local_pizza</md-icon>
+                        <p class="text-big">{{ cantidad + 'x ' + comida }}</p>
+                    </md-list-item>
+                    <md-list-item class="noright" layout-padding
+                                  ng-repeat="(bebida, cantidad) in listOrders.itoOrders.drinks">
+                        <md-icon class="md-accent md-hue-1 no-margin-right">local_bar</md-icon>
+                        <p class="text-big">{{ cantidad + 'x ' + bebida }}</p>
+                    </md-list-item>
 
-            <md-button class="md-accent md-hue-1 md-raised" ng-click="btnLastDayOrder()"
-                       ng-show="hasOrderedPreviously()">
-                <md-icon class="">event</md-icon>
-                {{ 'textLastDayOrder' | translate }}
-            </md-button>
+                    <md-subheader ng-if="listOrders.noItos > 0">
+                        <span class="text-big">Pedidos normales ({{listOrders.noItos}})</span>
+                    </md-subheader>
+                    <md-list-item class="noright" layout-padding
+                                  ng-repeat="(comida, cantidad) in listOrders.noItoOrders.meals">
+                        <md-icon class="md-accent md-hue-1 no-margin-right">local_pizza</md-icon>
+                        <p class="text-big">{{ cantidad + 'x ' + comida }}</p>
+                    </md-list-item>
+                    <md-list-item class="noright" layout-padding
+                                  ng-repeat="(bebida, cantidad) in listOrders.noItoOrders.drinks">
+                        <md-icon class="md-accent md-hue-1 no-margin-right">local_bar</md-icon>
+                        <p class="text-big">{{ cantidad + 'x ' + bebida }}</p>
+                    </md-list-item>
+                </md-list>
+            </div>
 
-            <md-button class="md-warn md-raised" ng-click="btnRemoveOrder()" ng-show="hasOrdered()">
-                <md-icon>delete</md-icon>
-                {{ 'textCancelOrder' | translate }}
-            </md-button>
+            <!-- LISTA COMENSALES -->
+            <div flex="25" layout-padding ng-if="global.gamedata.status !== gameStatuses.weekend">
+                <h3 layout="row" layout-align="space-between center">
+                    <span>{{ 'textEaters' | translate }}</span>
+                    <md-button class="md-icon-button" aria-label="" ng-click="refreshListEaters()">
+                        <md-icon>sync</md-icon>
+                        <md-tooltip md-direction="left">{{ 'textRefresh' | translate }}</md-tooltip>
+                    </md-button>
+                </h3>
+                <md-list flex>
+                    <md-list-item class="md-2-line" ng-repeat="eater in listEaters">
+                        <img ng-src="assets/img/avatars/{{ eater.avatar }}.png" class="md-avatar"/>
+                        <div class="md-list-item-text">
+                            <h3>{{ eater.alias }}</h3>
+                        </div>
+                        <md-icon class="md-secondary md-accent md-hue-3" ng-if="eater.breakfast">
+                            free_breakfast
+                            <md-tooltip md-direction="left">{{ 'textOrdered' | translate }}</md-tooltip>
+                        </md-icon>
+                    </md-list-item>
+                </md-list>
+            </div>
         </div>
 
         <div flex="5"></div>

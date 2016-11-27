@@ -54,6 +54,7 @@
             'textPacksSource': 'Sobre de',
             'textPacksAmount': 'Tienes',
             'textPacksOpen': 'Abrir',
+            'textRefresh': 'Refrescar',
 
             // TALENTOS
             'combat': 'combate',
@@ -124,6 +125,10 @@
             'textOrderChanged': 'Desayuno actualizado',
             'textOrderDeleted': 'Pedido del desayuno retirado',
             'textNoLastOrder': 'Omelettus no tiene constancia de que el otro día tomaras desayuno alguno, ¡hereje!',
+            'textPedidos': 'Lista de pedidos',
+            'textEaters': 'Comensales',
+            'textOrdered': 'Ha hecho un pedido',
+            'textOrderDetail': 'Detalle de los pedidos',
 
             // INTERFAZ - EXPLORACION
             'textShopBuyTitle': 'Confirma la compra',

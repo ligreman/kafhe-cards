@@ -174,11 +174,25 @@ var usersBreakfastReset = function (group) {
     }
 
     Q.all([
-        models.User.find(condition).exec()
-    ]).spread(function (users) {
+        models.User.find(condition).exec(),
+        models.Game.find().exec()
+    ]).spread(function (users, games) {
         var promises = [];
 
+        // Lista de usuarios que pertenecen a una partida ya finalizada
+        var usersClosed = [];
+        games.forEach(function (game) {
+            if (game.status === config.GAME_STATUS.closed) {
+                usersClosed = usersClosed.concat(game.players);
+            }
+        });
+
         users.forEach(function (user) {
+            // Si es un usuario de partida cerrada continuo, si no, me lo salto
+            if (usersClosed.indexOf(user._id) !== -1) {
+                return;
+            }
+
             // - Borro todas las de schedule.
             user.game.schedule = {
                 weapon: [], armor: [], skill: [],

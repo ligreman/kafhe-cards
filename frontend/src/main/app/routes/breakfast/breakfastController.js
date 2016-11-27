@@ -4,16 +4,31 @@
     // Controlador de la pantalla de login
     angular.module('kafhe.controllers')
         .controller('BreakfastController',
-            ['$scope', '$mdDialog', '$translate', 'API',
-                function ($scope, $mdDialog, $translate, API) {
+            ['$scope', '$mdDialog', '$translate', 'API', 'CONSTANTS',
+                function ($scope, $mdDialog, $translate, API, CONSTANTS) {
+                    var $this = this;
+
                     $scope.selection = {
                         meal: '',
                         drink: '',
                         ito: false
                     };
+                    $scope.gameStatuses = CONSTANTS.gameStatuses;
 
                     $scope.hasOrdered = fnHasOrdered;
                     $scope.hasOrderedPreviously = fnHasOrderedPreviously;
+
+                    $scope.listEaters = [];
+                    $scope.listOrders = {};
+                    $scope.refreshListEaters = fnListEaters;
+                    $scope.refreshListOrders = fnListOrders;
+
+                    $scope.refreshListEaters();
+                    $scope.refreshListOrders();
+
+                    $scope.showOrderDetail = fnShowOrderDetail;
+
+                    /* FUNCIONES */
 
                     function fnHasOrdered() {
                         if ($scope.global.user && $scope.global.user.game) {
@@ -82,6 +97,8 @@
 
                                     // Mensaje growl de OK
                                     $scope.growlNotification('success', 'textOrderChanged');
+
+                                    $scope.refreshListEaters();
                                 }
                             });
                     }
@@ -100,7 +117,9 @@
                                     meal: '',
                                     drink: '',
                                     ito: false
-                                }
+                                };
+
+                                $scope.refreshListEaters();
                             }
                         });
                     };
@@ -128,6 +147,54 @@
                     $scope.itoSelected = function (element) {
                         return !($scope.selection.ito && !element.ito);
                     };
+
+                    function fnListEaters() {
+                        API.order().status(function (response) {
+                            if (response) {
+                                $scope.listEaters = response.data.players;
+                                console.log(response.data.players);
+                            }
+                        });
+                    }
+
+                    function fnListOrders() {
+                        API.order().list(function (response) {
+                            if (response) {
+                                // Hago las cuentas
+                                var itos = 0, noItos = 0, itoOrders = {meals: {}, drinks: {}},
+                                    noItoOrders = {meals: {}, drinks: {}};
+                                response.data.orders.forEach(function (order) {
+                                    if (!order.meal && !order.drink) {
+                                        return;
+                                    }
+
+                                    if (order.ito) {
+                                        itos++;
+                                        if (order.meal)
+                                            itoOrders.meals[order.meal.name] = itoOrders.meals[order.meal.name] + 1 || 1;
+                                        if (order.drink)
+                                            itoOrders.drinks[order.drink.name] = itoOrders.drinks[order.drink.name] + 1 || 1;
+                                    } else {
+                                        noItos++;
+                                        if (order.meal)
+                                            noItoOrders.meals[order.meal.name] = noItoOrders.meals[order.meal.name] + 1 || 1;
+                                        if (order.drink)
+                                            noItoOrders.drinks[order.drink.name] = noItoOrders.drinks[order.drink.name] + 1 || 1;
+                                    }
+                                });
+
+                                $scope.listOrders = {
+                                    itos: itos,
+                                    noItos: noItos,
+                                    itoOrders: itoOrders,
+                                    noItoOrders: noItoOrders
+                                };
+                            }
+                        });
+                    }
+
+                    function fnShowOrderDetail() {
+                    }
 
                 }]);
 })();

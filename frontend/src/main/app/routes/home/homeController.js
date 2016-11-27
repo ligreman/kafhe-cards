@@ -3,11 +3,12 @@
 
     //Controlador de la pantalla de login
     angular.module('kafhe.controllers').controller('HomeController',
-        ['$scope', 'API', '$mdDialog', '$translate', '$q',
-            function ($scope, API, $mdDialog, $translate, $q) {
+        ['$scope', 'API', '$mdDialog', '$translate', '$q', 'CONSTANTS',
+            function ($scope, API, $mdDialog, $translate, $q, CONSTANTS) {
                 // Variables
                 var $this = this;
                 $scope.updateGameData(fnAfterUpdate);
+                $scope.gameStatuses = CONSTANTS.gameStatuses;
 
                 // Funciones
                 $scope.getNotifications = fnGetNotifications;
@@ -112,6 +113,11 @@
                             names: {
                                 fame: txtFame,
                                 rank: txtRank
+                            },
+                            order: function (d1, d2) {
+                                console.info(d1);
+                                console.info(d2);
+                                return d1.values.value;
                             }
                         },
                         axis: {

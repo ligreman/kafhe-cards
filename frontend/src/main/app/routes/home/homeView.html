@@ -1,24 +1,28 @@
 <md-content flex ng-cloak class="grey scrollbar-content">
     <!-- Durante el fin de semana  -->
-    <div ng-show="global.gamedata.status === 0" layout-padding>
+    <div ng-show="global.gamedata.status === gameStatuses.weekend" layout-padding>
         <p>Evento en fin de semana o cerrado</p>
     </div>
 
     <!-- Durante planificación y exploración muestro estadísticas y log -->
-    <div ng-show="global.gamedata.status === 1 || global.gamedata.status === 2" layout-padding>
-        <div layout-gt-sm="row" layout="column">
-            <div id="chart-probabilities" flex-gt-sm="50"></div>
-            <div id="chart-ranking" flex-gt-sm="50"></div>
+    <div ng-show="global.gamedata.status === gameStatuses.planning || global.gamedata.status === gameStatuses.explore"
+         layout-gt-sm="row" layout="column" layout-padding>
+        <div layout="column" flex-gt-sm="50">
+            <div id="chart-probabilities"></div>
+            <div id="chart-ranking"></div>
+        </div>
+        <div layout="column" flex-gt-sm="50">
+            <p>Log de actividad</p>
         </div>
     </div>
 
     <!-- Durante estado resolution muestro el botón de lanzar -->
-    <div ng-show="global.gamedata.status === 3">
+    <div ng-show="global.gamedata.status === gameStatuses.resolution">
         <p>Evento finalizado, antes de lanzar</p>
     </div>
 
     <!-- Durante estado cerrado muestro el resultado del lanzamiento si hay -->
-    <div ng-show="global.gamedata.status === 4">
+    <div ng-show="global.gamedata.status === gameStatuses.closed">
         <p>Evento finalizado, antes de lanzar</p>
     </div>
 </md-content>
