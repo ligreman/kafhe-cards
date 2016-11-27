@@ -2,135 +2,154 @@
     'use strict';
 
     //Controlador de la pantalla de login
-    angular.module('kafhe.controllers')
-        .controller('HomeController',
-            ['$scope', 'API', '$mdDialog', '$translate',
-                function ($scope, API, $mdDialog, $translate) {
-                    // Variables
-                    $scope.itemList = [];
-                    $scope.updateGameData(fnAfterUpdate);
+    angular.module('kafhe.controllers').controller('HomeController',
+        ['$scope', 'API', '$mdDialog', '$translate', '$q',
+            function ($scope, API, $mdDialog, $translate, $q) {
+                // Variables
+                var $this = this;
+                $scope.updateGameData(fnAfterUpdate);
 
-                    // Funciones
-                    $scope.iconize = fnIconize;
-                    $scope.getShopItems = fnGetShopItems;
-                    $scope.getNotifications = fnGetNotifications;
-                    $scope.confirmBuyItem = fnConfirmBuyItem;
-                    $scope.isMine = fnIsMine;
+                // Funciones
+                $scope.getNotifications = fnGetNotifications;
+                $this.players = {};
+                $this.generateProbabilities = fnGenerateProbabilities;
+                $this.generateRanksAndFame = fnGenerateRanksAndFame;
+                // $this.generateFames = fnGenerateFames;
 
-                    // Actualizamos los datos obligatoriamente por las notificaciones
-                    // $scope.getNotifications();
-                    // $scope.getShopItems();
+                /**
+                 * Una vez he terminado de actualizar los datos
+                 */
+                function fnAfterUpdate() {
+                    // Pido las estadísticas y datos de partida
+                    $q.all([
+                        API.game().stats().$promise,
+                        API.user().list().$promise
+                    ]).then(function (results) {
+                        console.log(results);
+                        if (results[0] && results[1]) {
+                            var stats = results[0].data.probabilities;
+                            var ranks = results[0].data.ranking;
+                            var fames = results[0].data.fame;
 
-                    /**
-                     * Una vez he terminado de actualizar los datos
-                     */
-                    function fnAfterUpdate() {
-                    }
-
-                    /**
-                     * Genera un nombre de icono para el tipo que se le pase
-                     */
-                    function fnIconize(tipo) {
-                        var icon = '';
-                        switch (tipo) {
-                            case 'skill':
-                                icon = 'flash_on';
-                                break;
-                            case 'breakfast':
-                                icon = 'local_dining';
-                                break;
-                            case 'forge':
-                                icon = 'gavel';
-                                break;
-                            case 'furnace':
-                                icon = 'whatshot';
-                                break;
-                            case 'fury':
-                                icon = 'remove_red_eye';
-                                break;
-                            case 'equipment':
-                                icon = 'security';
-                                break;
-                            case 'system':
-                            default:
-                                icon = 'info_outline';
-                        }
-                        return icon;
-                    }
-
-                    /**
-                     * Comprueba si la notificación es algo mío para mostrarla a la derecha del timeline
-                     * @param notification
-                     */
-                    function fnIsMine(notification) {
-                        var mine = false;
-
-                        switch (notification.type) {
-                            case 'equipment':
-                            case 'forge':
-                            case 'furnace':
-                                mine = true;
-                                break;
-                        }
-
-                        return mine;
-                    }
-
-                    /**
-                     * Obtiene las notificaciones
-                     */
-                    function fnGetNotifications() {
-                        API.user()
-                            .me({}, function (response) {
-                                if (response) {
-                                    $scope.updateUserObject(response.data.user);
-                                }
+                            results[1].data.players.forEach(function (user) {
+                                $this.players[user._id] = user.alias;
                             });
+
+                            $this.generateProbabilities(stats);
+                            $this.generateRanksAndFame(ranks, fames);
+                            // $this.generateFames(fames);
+                        }
+                    });
+                }
+
+                function fnGenerateProbabilities(stats) {
+                    var data = [];
+                    for (var ix in stats) {
+                        if (stats.hasOwnProperty(ix)) {
+                            data.push([$this.players[ix], parseFloat(stats[ix])]);
+                        }
                     }
 
-                    /**
-                     * Obtiene los objetos comprables
-                     */
-                    function fnGetShopItems() {
-                        API.shop()
-                            .list({}, function (response) {
-                                if (response) {
-                                    $scope.itemList = response.data.items;
+                    var chart = c3.generate({
+                        bindto: '#chart-probabilities',
+                        data: {
+                            columns: data,
+                            type: 'donut'
+
+                        },
+                        donut: {
+                            title: 'Probabilidades'
+                        },
+                        tooltip: {
+                            format: {
+                                title: function (x) {
+                                    return 'Probabilidad de ser elegido';
+                                },
+                                value: function (value, ratio, id, index) {
+                                    return value + '%';
                                 }
-                            });
-                    }
+                            }
+                        }
+                    });
+                }
 
-                    /**
-                     * Confirma la Compra un objeto
-                     * @param item
-                     */
-                    function fnConfirmBuyItem(item) {
-                        var name = $translate.instant(item.info.key);
-                        var confirm = $mdDialog.confirm()
-                            .title($translate.instant('textShopBuyTitle'))
-                            .content($translate.instant('textShopBuy', {name: name, points: item.info.price}))
-                            .ok($translate.instant('textContinue'))
-                            .cancel($translate.instant('textCancel'))
-                            .targetEvent(event);
+                function fnGenerateRanksAndFame(dataRank, dataFame) {
+                    var txtRank = $translate.instant('rank');
+                    var txtFame = $translate.instant('fame');
 
-                        $mdDialog.show(confirm).then(function () {
-                            // OK, compro
-                            buyItem(item);
+                    var json = [];
+                    dataRank.forEach(function (r) {
+                        // Busco la fama de este tipo
+                        dataFame.forEach(function (f) {
+                            if (f.name === r.name) {
+                                var valor = {
+                                    name: r.name,
+                                    rank: r.rank,
+                                    fame: f.fame
+                                };
+                                json.push(valor);
+                            }
                         });
-                    }
+                    });
 
-                    function buyItem(item) {
-                        // Llamo al API
-                        API.shop()
-                            .buy({item_id: item.info._id}, function (response) {
-                                if (response) {
-                                    //Recargo la tienda
-                                    fnGetShopItems();
+                    var chart = c3.generate({
+                        bindto: '#chart-ranking',
+                        data: {
+                            json: json,
+                            type: 'bar',
+                            keys: {
+                                x: 'name',
+                                value: ['fame', 'rank']
+                            },
+                            axes: {
+                                fame: 'y',
+                                rank: 'y2'
+                            },
+                            colors: {
+                                fame: '#673AB7',
+                                rank: '#2E7D32'
+                            },
+                            names: {
+                                fame: txtFame,
+                                rank: txtRank
+                            }
+                        },
+                        axis: {
+                            x: {
+                                type: 'category'
+                            },
+                            y: {
+                                label: txtFame
+                            },
+                            y2: {
+                                show: true,
+                                label: txtRank
+                            }
+                        }
+                        /*,
+                         title: {
+                         text: 'Fama y rango'
+                         }*/
+                    });
+                }
 
-                                    // Recargo el objeto user con el de la respuesta
-                                    $scope.updateUserObject(response.data.user);
-                                }
-                            });
-                    }
-                }]);
+                function fnGenerateFames(fames) {
+                }
+
+                //TODO la gráfica de fama que sea histórico
+                // TODO histórico de rangos en el tiempo, durante toda la vida de una partida
+
+                /**
+                 * Obtiene las notificaciones
+                 */
+                function fnGetNotifications() {
+                    API.user()
+                        .me({}, function (response) {
+                            if (response) {
+                                $scope.updateUserObject(response.data.user);
+                            }
+                        });
+                }
+
+            }]);
 })();

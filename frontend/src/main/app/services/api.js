@@ -174,6 +174,15 @@
                         params: {
                             endpoint: 'version'
                         }
+                    },
+
+                    // Stats
+                    stats: {
+                        method: 'GET',
+                        headers: {'Authorization': 'Bearer ' + access_token},
+                        params: {
+                            endpoint: 'stats'
+                        }
                     }
                 });
             },

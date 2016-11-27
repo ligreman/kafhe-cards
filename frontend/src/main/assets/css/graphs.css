@@ -1,0 +1,21 @@
+.c3 text {
+    fill: #F5F5F5;
+}
+
+.c3-tooltip th {
+    /*background-color: #2e7d32;*/
+    color: #323232;
+    font-weight: bold;
+}
+
+.c3-tooltip td {
+    background-color: #323232;
+}
+
+.c3 line, .c3 path {
+    stroke: #FFFFFF;
+}
+
+.c3-chart-arc path {
+    stroke: none;
+}
