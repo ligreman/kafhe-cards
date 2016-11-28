@@ -1,0 +1,33 @@
+<md-dialog class="dark-footer">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ 'textOrderDetail' | translate }}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="accept()">
+                <md-icon>clear</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content class="">
+        <div class="md-dialog-content">
+            <div ng-repeat="comensal in comensales track by $index">
+                <h4>{{ comensal.alias }}<span ng-if="comensal.ito"> - ITO</span></h4>
+                <p class="order-detail-p" ng-if="comensal.meal">
+                    <md-icon>local_pizza</md-icon>
+                    {{ comensal.meal.name }}
+                </p>
+                <p class="order-detail-p" ng-if="comensal.drink">
+                    <md-icon>local_bar</md-icon>
+                    {{ comensal.drink.name }}
+                </p>
+            </div>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button type="button" class="md-raised md-primary" ng-click="accept()">
+            {{'textAccept' | translate}}
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

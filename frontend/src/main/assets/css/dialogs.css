@@ -35,3 +35,7 @@ md-dialog.dark-footer md-dialog-actions {
     padding: 10px;
     border-top: 1px solid #000;
 }
+
+.order-detail-p {
+    margin: 0 0 5px 10px;
+}

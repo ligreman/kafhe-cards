@@ -193,7 +193,16 @@
                         });
                     }
 
-                    function fnShowOrderDetail() {
+                    function fnShowOrderDetail(event) {
+                        $mdDialog.show({
+                            controller: 'OrderDetail',
+                            templateUrl: 'app/components/dialogs/orderDetail/order-detail.html',
+                            scope: $scope,
+                            preserveScope: true,
+                            clickOutsideToClose: true,
+                            escapeToClose: true,
+                            targetEvent: event
+                        });
                     }
 
                 }]);
