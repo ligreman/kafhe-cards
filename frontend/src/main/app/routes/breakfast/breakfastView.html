@@ -66,8 +66,12 @@
             </div>
 
             <!-- LISTA PEDIDOS -->
-            <div flex="75" flex-gt-sm="50" flex-offset-gt-sm="25" ng-if="global.gamedata.status === gameStatuses.closed"
-                 layout-padding>
+            <div flex="25" ng-if="global.gamedata.status === gameStatuses.closed" layout-padding>
+                <h3>{{ 'textCall' | translate }}</h3>
+                <p>Cafetería Espiral</p>
+                <p>{{ espiral }}</p>
+            </div>
+            <div flex="50" ng-if="global.gamedata.status === gameStatuses.closed" layout-padding>
                 <h3 layout="row" layout-align="start center">
                     <span>{{ 'textPedidos' | translate }}</span>
                     <md-button class="md-icon-button" aria-label="" ng-click="showOrderDetail($event)">

@@ -55,6 +55,8 @@
             'textPacksAmount': 'Tienes',
             'textPacksOpen': 'Abrir',
             'textRefresh': 'Refrescar',
+            'textSacrifice': 'El público ha elegido sacrificar a',
+            'textCall': 'Llamar a',
 
             // TALENTOS
             'combat': 'combate',

@@ -13,6 +13,7 @@
                         drink: '',
                         ito: false
                     };
+                    $scope.espiral = CONSTANTS.espiralTlfn;
                     $scope.gameStatuses = CONSTANTS.gameStatuses;
 
                     $scope.hasOrdered = fnHasOrdered;

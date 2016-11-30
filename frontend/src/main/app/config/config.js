@@ -23,6 +23,7 @@
             ]
         })
         .constant('CONSTANTS', {
+            espiralTlfn: '987 23 23 23',
             maxAvatarNumber: 52,
             gameStatuses: {
                 weekend: 0,// fin de semana. Se pone así cuando se crea una partida nueva.

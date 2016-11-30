@@ -12,7 +12,8 @@
 
                 // Funciones
                 $scope.getNotifications = fnGetNotifications;
-                $this.players = {};
+                $scope.launchBreakfast = fnLaunchBreakfast;
+                $scope.players = {};
                 $this.generateProbabilities = fnGenerateProbabilities;
                 $this.generateRanksAndFame = fnGenerateRanksAndFame;
                 // $this.generateFames = fnGenerateFames;
@@ -33,8 +34,11 @@
                             var fames = results[0].data.fame;
 
                             results[1].data.players.forEach(function (user) {
-                                $this.players[user._id] = user.alias;
+                                $scope.players[user._id] = user.alias;
                             });
+
+                            console.log($scope.players);
+                            console.info(stats);
 
                             $this.generateProbabilities(stats);
                             $this.generateRanksAndFame(ranks, fames);
@@ -45,12 +49,16 @@
 
                 function fnGenerateProbabilities(stats) {
                     var data = [];
+                    console.log("+++++++++++");
+                    console.log(stats);
                     for (var ix in stats) {
                         if (stats.hasOwnProperty(ix)) {
-                            data.push([$this.players[ix], parseFloat(stats[ix])]);
+                            console.log(ix);
+                            console.log($scope.players);
+                            data.push([$scope.players[ix], parseFloat(stats[ix])]);
                         }
                     }
-
+                    console.log(data);
                     var chart = c3.generate({
                         bindto: '#chart-probabilities',
                         data: {
@@ -100,11 +108,11 @@
                             type: 'bar',
                             keys: {
                                 x: 'name',
-                                value: ['fame', 'rank']
+                                value: ['rank', 'fame']
                             },
                             axes: {
-                                fame: 'y',
-                                rank: 'y2'
+                                fame: 'y2',
+                                rank: 'y'
                             },
                             colors: {
                                 fame: '#673AB7',
@@ -121,6 +129,7 @@
                             }
                         },
                         axis: {
+                            rotated: true,
                             x: {
                                 type: 'category'
                             },
@@ -155,6 +164,9 @@
                                 $scope.updateUserObject(response.data.user);
                             }
                         });
+                }
+
+                function fnLaunchBreakfast() {
                 }
 
             }]);

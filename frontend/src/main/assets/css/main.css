@@ -91,19 +91,19 @@ md-tooltip {
 }
 
 .kafhe-accent {
-    color: #9E9E9E;
+    color: #9E9E9E !important;
 }
 
 .kafhe-accent-hue-1 {
-    color: #FAFAFA;
+    color: #FAFAFA !important;
 }
 
 .kafhe-accent-hue-2 {
-    color: #616161;
+    color: #616161 !important;
 }
 
 .kafhe-accent-hue-3 {
-    color: #FDD835;
+    color: #FDD835 !important;
 }
 
 .kafhe-purple {

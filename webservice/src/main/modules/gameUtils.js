@@ -75,7 +75,7 @@ function fnCalculateUsersProbabilities(idGame) {
         // Pongo alias en vez de ids
         var definitivos = {};
         users.forEach(function (u) {
-            definitivos[u.alias] = nets[u._id];
+            definitivos[u._id] = nets[u._id];
         });
 
         if (Object.keys(definitivos).length === 0) {
