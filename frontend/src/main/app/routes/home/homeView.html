@@ -1,13 +1,15 @@
 <md-content flex ng-cloak class="grey scrollbar-content">
     <!-- Durante el fin de semana  -->
-    <div ng-show="global.gamedata.status === gameStatuses.weekend" layout-padding>
-        <p>Evento en fin de semana o cerrado</p>
+    <div ng-show="global.gamedata.status === gameStatuses.weekend" layout="column"
+         layout-align="center center" layout-fill>
+        <h1 class="text-center">{{'textWeekend' | translate}}</h1>
     </div>
 
     <!-- Durante planificación y exploración muestro estadísticas y log -->
     <div ng-show="global.gamedata.status === gameStatuses.planning || global.gamedata.status === gameStatuses.explore || global.gamedata.status === gameStatuses.resolution"
          layout-gt-sm="row" layout="column" layout-padding>
         <div layout="column" flex-gt-sm="50">
+            <h2>{{'textStats' | translate}}</h2>
             <div id="chart-probabilities"></div>
             <div id="chart-ranking"></div>
         </div>
@@ -21,7 +23,9 @@
                 </md-button>
             </div>
 
-            <div flex>Log de actividad</div>
+            <div flex>
+                <h2>{{'textActivity' | translate}}</h2>
+            </div>
         </div>
     </div>
 
@@ -29,7 +33,7 @@
     <!-- Durante estado cerrado muestro el resultado del lanzamiento si hay -->
     <div ng-show="global.gamedata.status === gameStatuses.closed" layout="column" layout-align="center center"
          layout-fill>
-        <h1>{{'textSacrifice' | translate}} <em>{{ players[global.gamedata.caller] }}</em></h1>
+        <h1 class="text-center">{{'textSacrifice' | translate}} <em>{{ players[global.gamedata.caller] }}</em></h1>
         <div ng-if="global.gamedata.caller === global.user._id">
             <md-button class="md-raised md-accent md-hue-1" aria-label="" ng-click="goToPage('breakfast')">
                 <md-icon>room_service</md-icon>

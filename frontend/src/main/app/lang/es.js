@@ -57,6 +57,9 @@
             'textRefresh': 'Refrescar',
             'textSacrifice': 'El público ha elegido sacrificar a',
             'textCall': 'Llamar a',
+            'textWeekend': 'Tomaos el merecido descanso, hasta el lunes...',
+            'textStats': 'Clasificación',
+            'textActivity': 'Últimas noticias',
 
             // TALENTOS
             'combat': 'combate',
