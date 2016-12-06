@@ -102,8 +102,12 @@
                 <md-tooltip>{{ 'tostolares' | translate }}</md-tooltip>
             </p>
             <p class="text-center" flex>
-                <md-icon class="vertical-bottom kafhe-accent-hue-2">timer</md-icon>
-                Tiempo de juegos
+                <md-icon class="vertical-bottom kafhe-primary-hue-1">timer</md-icon>
+                <span ng-if="global.gamedata.status === gameStatuses.weekend">{{ 'textWeekend' | translate }}</span>
+                <span ng-if="global.gamedata.status === gameStatuses.planning">{{ convertDate(timePlanning) }}</span>
+                <span ng-if="global.gamedata.status === gameStatuses.explore">{{ convertDate(timeExplore) }}</span>
+                <span ng-if="global.gamedata.status === gameStatuses.resolution">{{ 'textSort' | translate }}</span>
+                <span ng-if="global.gamedata.status === gameStatuses.closed">{{ 'textEnd' | translate }}</span>
             </p>
         </div>
     </md-toolbar>
