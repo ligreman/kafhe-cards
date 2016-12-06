@@ -1,6 +1,7 @@
 'use strict';
 
 var console = process.console,
+    extend = require('util')._extend,
     mongoose = require('mongoose'),
     Q = require('q'),
     utils = require('./utils'),
@@ -244,7 +245,9 @@ function fnLaunchBreakfast(idGame) {
             user.game.notifications = [];
 
             // - Order pasa a last order, y order se limpia
-            user.game.last_order = utils.cloneObject(user.game.order);
+            if (user.game.order.meal || user.game.drink) {
+                user.game.last_order = extend({}, user.game.order);
+            }
             user.game.order = {meal: null, drink: null, ito: false};
 
             promesas.push(user.save());

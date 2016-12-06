@@ -104,7 +104,7 @@ module.exports = function (app) {
     var game = [{
         _id: new mongoose.Types.ObjectId,
         repeat: true,
-        status: 2,
+        status: 4,
         caller: null,
         players: [userId, userId2, userId3]
         /*notifications: [{
@@ -134,7 +134,7 @@ module.exports = function (app) {
             game: {
                 gamedata: game[0]._id, //{type: mongoose.Schema.Types.ObjectId, ref: 'Game'}
                 rank: 2, tostolares: 100000, fame: 100, afk: false, last_activity: date.getTime(),
-                unlocked: ['1', '2', '4'], talents: {points: 5, survival: [], exploration: ['talent01'], combat: []},
+                unlocked: ['5', '6', '7'], talents: {points: 5, survival: [], exploration: ['talent01'], combat: []},
                 collection: [
                     {_id: 'mycard1', card: '1', level: 1},
                     {_id: 'mycard11', card: '1', level: 1},
@@ -156,6 +156,10 @@ module.exports = function (app) {
                     {amount: 5, category: 'pack6', source: 'Casa de manolo'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
+                rewards: {
+                    tostolares: 25,
+                    fame: 25
+                },
                 notifications: [
                     {
                         message: 'nForgeWeapon#' + JSON.stringify({"name": "Arma de todos los tiempos"}),

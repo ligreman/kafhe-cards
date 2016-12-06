@@ -40,9 +40,9 @@
 
                     $scope.checkSelect = function (playerId) {
                         // Si no lo tengo ya en el array de targets lo añado, si no lo quito
-                        var position = $scope.targetsSelected.indexOf(playerId);
+                        var position = $scope.targetsSelected.indexOf(playerId.toString());
                         if (position === -1) {
-                            $scope.targetsSelected.push(playerId);
+                            $scope.targetsSelected.push(playerId.toString());
                         } else {
                             $scope.targetsSelected.splice(position, 1);
                         }

@@ -76,7 +76,7 @@ module.exports = function (mongoose) {
                     category: {type: String, default: 0},
                     source: {type: String, default: ''}
                 }],
-                tostolates: {type: Number, default: 0},
+                tostolares: {type: Number, default: 0},
                 fame: {type: Number, default: 0}
             },
             afk: {type: Boolean, default: false},

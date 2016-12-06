@@ -68,8 +68,8 @@ var config = require('../modules/config'),
 
  */
 
-dia = 1;
-hora = 1;
+dia = 5;
+hora = 15;
 
 
 switch (dia) {
@@ -100,6 +100,7 @@ switch (dia) {
             Q.all([
                 userDao.usersAFK('all', false)
             ]).spread(function (result) {
+                console.log(result);
                 console.log('Jugadores de todos los grupos afk=false.');
                 salir();
             }).fail(function (error) {
@@ -112,6 +113,7 @@ switch (dia) {
             Q.all([
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
             ]).spread(function (result) {
+                console.log(result);
                 console.log('Partidas en estado planning del lunes se ponen en estado explore.');
                 salir();
             }).fail(function (error) {
@@ -134,6 +136,7 @@ switch (dia) {
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.planning),
                 userDao.usersDailyReset('all')
             ]).spread(function (result) {
+                console.log(result);
                 console.log('Partidas en estado explore pasan a estado planning en la madrugada.');
                 console.log('Jugadores de todos los grupos reseteados (daily).');
                 salir();
@@ -147,6 +150,7 @@ switch (dia) {
             Q.all([
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
             ]).spread(function (result) {
+                console.log(result);
                 console.log('Partidas en estado planning se ponen en estado explore.');
                 salir();
             }).fail(function (error) {
@@ -172,7 +176,9 @@ switch (dia) {
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.resolution),
                 userDao.usersDailyReset('all')
             ]).spread(function (result) {
+                console.log(result);
                 console.log('Partidas en estado explore pasan a estado resolution para el viernes.');
+                console.log('Jugadores de todos los grupos reseteados (daily).');
                 salir();
             }).fail(function (error) {
                 console.error(error);
@@ -181,13 +187,24 @@ switch (dia) {
 
         // 15:00 PM
         if (hora === 15) {
+            // Respetar el orden de ejecución
             Q.all([
-                gameDao.gameBreakfastReset(),
                 userDao.usersBreakfastReset('all')
-                // gameDao.gameUpdateAllByStatus(config.GAME_STATUS.resolution, config.GAME_STATUS.weekend)
             ]).spread(function (result) {
-                console.log('Partidas finalizadas y no lanzadas puestas a weekend para la semana que viene.');
-                salir();
+                console.log(result);
+                console.log('Jugadores de todos los grupos de partidas finalizadas reseteados (breakfast).');
+
+                Q.all([
+                    gameDao.gameBreakfastReset(),
+                    gameDao.gameUpdateAllByStatus(config.GAME_STATUS.resolution, config.GAME_STATUS.weekend)
+                ]).spread(function (result) {
+                    console.log(result);
+                    console.log('Partidas finalizadas: reseteadas y puestas a weekend para la semana que viene.');
+                    console.log('Partidas no lanzadas: puestas a weekend para la semana que viene.');
+                    salir();
+                }).fail(function (error) {
+                    console.error(error);
+                });
             }).fail(function (error) {
                 console.error(error);
             });

@@ -895,7 +895,7 @@ definitions:
                   $ref: '#/definitions/NotificationList'
           level:
             type: integer
-          tostolates:
+          tostolares:
             type: integer
           stats:
             type: object
