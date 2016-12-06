@@ -161,9 +161,8 @@ function fnCalculateFameDifferentials(users) {
  + Reseteo entre desayunos de usuario si se ha llamado:
  - Borro todas las de schedule.
  - fame =0
- - Borra el journal
+ - Borra el journal y notificaciones
  - Borra rewards
- - Borra notifications de user
  - Order pasa a last order, y order se limpia
  */
 function fnLaunchBreakfast(idGame) {
@@ -241,8 +240,6 @@ function fnLaunchBreakfast(idGame) {
                 tostolares: 0,
                 fame: 0
             };
-            // - Borra notifications de user
-            user.game.notifications = [];
 
             // - Order pasa a last order, y order se limpia
             if (user.game.order.meal || user.game.drink) {

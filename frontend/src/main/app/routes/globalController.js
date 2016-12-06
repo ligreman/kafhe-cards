@@ -182,9 +182,9 @@
                          var degrees = $scope.Math.round(90 - proporcion);
                          $scope.global.print.reputationDegreeStyle = {"transform": "rotate(" + degrees + "deg)"};*/
 
-                        // Las notificaciones, tanto de la partida como del jugador
+                        // Las notificaciones de la partida
                         var notifications = user.game.notifications;
-                        // notifications = notifications.concat(user.game.gamedata.notifications);
+
                         // Ahora tengo que ordenar las notificaciones por fecha
                         notifications.sort(function (a, b) {
                             if (a.timestamp > b.timestamp) {

@@ -69,7 +69,7 @@ module.exports = function (mongoose) {
             journal: [{
                 date: Number,
                 place: String,
-                log: [String]
+                notifications: [notificationSchema]
             }],
             rewards: {
                 packs: [{
@@ -90,8 +90,7 @@ module.exports = function (mongoose) {
                 meal: {type: mongoose.Schema.Types.ObjectId, ref: 'Meal', default: null},
                 drink: {type: mongoose.Schema.Types.ObjectId, ref: 'Drink', default: null},
                 ito: {type: Boolean, default: false}
-            },
-            notifications: [notificationSchema]
+            }
         }
     }, {versionKey: false});
 

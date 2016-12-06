@@ -56,9 +56,8 @@ var config = require('../modules/config'),
 
  + Reseteo entre desayunos de usuario si se ha llamado:
  - Borro todas las de schedule.
- - Borra el journal
+ - Borra el journal y notification
  - Borra rewards
- - Borra notifications de user
  - Order pasa a last order, y order se limpia
 
  + Reseteo entre desayunos de game tanto si se ha llamado como si no:

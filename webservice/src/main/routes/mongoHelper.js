@@ -106,21 +106,22 @@ module.exports = function (app) {
         repeat: true,
         status: 4,
         caller: null,
-        players: [userId, userId2, userId3]
-        /*notifications: [{
-         message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
-         type: 'fury', timestamp: date.getTime() + 10000
-         }, {
-         message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
-         type: 'system', timestamp: date.getTime() + 1000
-         }, {
-         message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
-         type: 'breakfast', timestamp: date.getTime() + 100
-         }, {
-         message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
-         type: 'system', timestamp: date.getTime() + 10
-         }
-         ]*/
+        players: [userId, userId2, userId3],
+        notifications: [
+            {
+                message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
+                type: 'fury', timestamp: date.getTime() + 10000
+            }, {
+                message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
+                type: 'system', timestamp: date.getTime() + 1000
+            }, {
+                message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
+                type: 'breakfast', timestamp: date.getTime() + 100
+            }, {
+                message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
+                type: 'system', timestamp: date.getTime() + 10
+            }
+        ]
     }];
 
 
@@ -160,20 +161,23 @@ module.exports = function (app) {
                     tostolares: 25,
                     fame: 25
                 },
-                notifications: [
-                    {
-                        message: 'nForgeWeapon#' + JSON.stringify({"name": "Arma de todos los tiempos"}),
-                        type: 'system', timestamp: date.getTime() + 10500
-                    }, {
-                        message: 'nEquipDestroyArmor#' + JSON.stringify({"name": "Armadura caca", "tostem": "fuego"}),
-                        type: 'skill', timestamp: date.getTime() + 1500
-                    }
-                ],
                 journal: [
-                    {date: 1477929730018, place: '3', log: ['Log 1', 'Log 2']},
-                    {date: 1477929740018, place: '2', log: ['Log 12', 'Log 22']},
-                    {date: 1477929750018, place: '4', log: ['Log 13', 'Log 23']},
-                    {date: 1477929760018, place: '5', log: ['Log 14', 'Log 24']}
+                    {
+                        date: 1477929730018, place: '3', notifications: [
+                        {
+                            message: 'nForgeWeapon#' + JSON.stringify({"name": "Arma de todos los tiempos"}),
+                            type: 'system', timestamp: date.getTime() + 10500
+                        }, {
+                            message: 'nEquipDestroyArmor#' + JSON.stringify({
+                                "name": "Armadura caca",
+                                "tostem": "fuego"
+                            }),
+                            type: 'skill', timestamp: date.getTime() + 1500
+                        }]
+                    },
+                    {date: 1477929740018, place: '2', notifications: []},
+                    {date: 1477929750018, place: '4', notifications: []},
+                    {date: 1477929760018, place: '5', notifications: []}
                 ]
             }
         },
@@ -191,16 +195,15 @@ module.exports = function (app) {
                     {amount: 5, category: 'pack6', source: 'Casa de manolo'}],
                 order: {meal: null, drink: null, ito: true},
                 last_order: {meal: null, drink: null, ito: false},
-                notifications: [],
                 schedule: {
                     encounter: [{player: userId, card: '5', level: 1}, {player: userId2, card: '5', level: 1}],
                     place: [{card: '3', level: 2}]
                 },
                 journal: [
-                    {date: 1477929730018, place: '3', log: ['Log 1', 'Log 2']},
-                    {date: 1477929740018, place: '2', log: ['Log 12', 'Log 22']},
-                    {date: 1477929750018, place: '6', log: ['Log 13', 'Log 23']},
-                    {date: 1477929760018, place: '5', log: ['Log 14', 'Log 24']}
+                    {date: 1477929730018, place: '3', notifications: []},
+                    {date: 1477929740018, place: '2', notifications: []},
+                    {date: 1477929750018, place: '6', notifications: []},
+                    {date: 1477929760018, place: '5', notifications: []}
                 ]
             }
         },
@@ -217,8 +220,7 @@ module.exports = function (app) {
                 packs: [{amount: 10, category: 'pack3', source: 'Casa la pradera'},
                     {amount: 5, category: 'pack6', source: 'Casa de manolo'}],
                 order: {meal: null, drink: null, ito: true},
-                last_order: {meal: null, drink: null, ito: false},
-                notifications: []
+                last_order: {meal: null, drink: null, ito: false}
             }
         }
     ];
