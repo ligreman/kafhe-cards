@@ -91,23 +91,34 @@
     <!-- SUBHEADER -->
     <md-toolbar class="custom-mini-toolbar md-hue-2">
         <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-            <p class="text-center" flex-gt-xs="auto" flex="nogrow">
+            <p class="text-center" flex-gt-xs="auto" flex="25">
                 <md-icon class="vertical-bottom kafhe-purple">whatshot</md-icon>
                 {{ global.user.game.fame }}
                 <md-tooltip>{{ 'fame' | translate }}</md-tooltip>
             </p>
-            <p class="text-center" flex-gt-xs="auto" flex="nogrow">
+            <p class="text-center" flex-gt-xs="auto" flex="35">
                 <md-icon class="vertical-bottom kafhe-accent-hue-3">format_strikethrough</md-icon>
                 {{ global.user.game.tostolares }}
                 <md-tooltip>{{ 'tostolares' | translate }}</md-tooltip>
             </p>
-            <p class="text-center" flex>
-                <md-icon class="vertical-bottom kafhe-primary-hue-1">timer</md-icon>
+            <p class="text-center" flex="40">
+                <md-icon class="vertical-bottom kafhe-primary-hue-1"
+                         ng-if="global.gamedata.status === gameStatuses.planning">timer
+                </md-icon>
+                <md-icon class="vertical-bottom kafhe-primary-hue-1"
+                         ng-if="global.gamedata.status === gameStatuses.explore">explore
+                </md-icon>
                 <span ng-if="global.gamedata.status === gameStatuses.weekend">{{ 'textWeekend' | translate }}</span>
                 <span ng-if="global.gamedata.status === gameStatuses.planning">{{ convertDate(timePlanning) }}</span>
                 <span ng-if="global.gamedata.status === gameStatuses.explore">{{ convertDate(timeExplore) }}</span>
                 <span ng-if="global.gamedata.status === gameStatuses.resolution">{{ 'textSort' | translate }}</span>
                 <span ng-if="global.gamedata.status === gameStatuses.closed">{{ 'textEnd' | translate }}</span>
+                <md-tooltip ng-if="global.gamedata.status === gameStatuses.planning" md-delay="1000">
+                    {{ 'textWaiting' | translate }}
+                </md-tooltip>
+                <md-tooltip ng-if="global.gamedata.status === gameStatuses.explore" md-delay="1000">
+                    {{ 'textGames' | translate }}
+                </md-tooltip>
             </p>
         </div>
     </md-toolbar>

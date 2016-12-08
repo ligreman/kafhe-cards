@@ -5,26 +5,26 @@
         <h1 class="text-center">{{'textWeekendMessage' | translate}}</h1>
     </div>
 
+    <!-- Durante estado resolution muestro el botón de lanzar -->
+    <div ng-show="global.gamedata.status === gameStatuses.resolution" flex="none" layout="row"
+         layout-align="center center" layout-padding layout-margin>
+        <md-button class="md-raised md-warn text-big" aria-label="" ng-click="launchBreakfast()">
+            <md-icon>style</md-icon>
+            ¡Iniciar la votación!
+        </md-button>
+    </div>
+
     <!-- Durante planificación y exploración muestro estadísticas y log -->
     <div ng-show="global.gamedata.status === gameStatuses.planning || global.gamedata.status === gameStatuses.explore || global.gamedata.status === gameStatuses.resolution"
          layout-gt-sm="row" layout="column" layout-padding>
         <div layout="column" flex-gt-sm="50">
-            <h2>{{'textStats' | translate}}</h2>
-            <div id="chart-probabilities"></div>
-            <div id="chart-ranking"></div>
+            <h2 class="text-center">{{'textStats' | translate}}</h2>
+            <div class="margin-top-20" id="chart-probabilities"></div>
+            <div class="margin-top-20" id="chart-ranking"></div>
         </div>
         <div layout="column" flex-gt-sm="50">
-            <!-- Durante estado resolution muestro el botón de lanzar -->
-            <div ng-show="global.gamedata.status === gameStatuses.resolution" flex="none" layout="row"
-                 layout-align="center center" layout-padding layout-margin>
-                <md-button class="md-raised md-warn text-big" aria-label="" ng-click="launchBreakfast()">
-                    <md-icon>style</md-icon>
-                    ¡Iniciar la votación!
-                </md-button>
-            </div>
-
             <div flex>
-                <h2>{{'textActivity' | translate}}</h2>
+                <h2 class="text-center">{{'textActivity' | translate}}</h2>
                 <ul class="cbp_tmtimeline">
                     <li>
                         <div class="cbp_tmtime">

@@ -40,9 +40,13 @@ body {
 
 #main-container {
     z-index: 10;
-    background: #424242;
+    background: #303030;
     overflow: auto;
     color: #f5f5f5;
+}
+
+md-sidenav, md-sidenav md-content {
+    background: #303030;
 }
 
 .align-stretch {

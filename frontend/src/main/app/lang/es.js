@@ -58,11 +58,13 @@
             'textSacrifice': 'El público ha elegido sacrificar a',
             'textCall': 'Llamar a',
             'textWeekendMessage': 'Tomaos el merecido descanso, hasta el lunes...',
-            'textStats': 'Clasificación',
+            'textStats': 'Clasificación actual',
             'textActivity': 'Últimas noticias',
-            'textSort': 'Sorteo',
+            'textSort': 'Votaciones',
             'textEnd': 'Finalizado',
             'textWeekend': 'Fin de semana',
+            'textWaiting': 'Esperando al inicio de los juegos',
+            'textGames': 'Juegos en progreso',
 
             // TALENTOS
             'combat': 'combate',

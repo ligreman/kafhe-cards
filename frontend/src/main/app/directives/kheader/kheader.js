@@ -23,18 +23,14 @@
 
                     // Tiempo
                     var ahora = new Date();
-                    console.log("Ahora:");
-                    console.log(ahora);
                     // Fecha de inicio de los juegos
                     var dest = new Date();
-                    dest.setHours(19, 0, 0);
-                    console.log(dest);
+                    dest.setHours(11, 0, 0);
 
                     $this.intervalPlanning = null;
                     $this.intervalExplore = null;
                     // Tiempo hasta inicio
                     $scope.timePlanning = dest.getTime() - ahora.getTime();
-                    console.log($scope.timePlanning);
 
                     if (!$this.intervalPlanning) {
                         $this.intervalPlanning = $interval(function () {
@@ -42,6 +38,7 @@
 
                             if ($scope.timePlanning <= 0) {
                                 $interval.cancel($this.intervalPlanning);
+                                $scope.timePlanning = 0;
                             }
                         }, 1000);
                     }
@@ -123,15 +120,15 @@
                     }
 
                     function fnConvertDate(time) {
+                        if (time === 0) {
+                            return '--:--:--';
+                        }
+
                         // quito milisegundos
                         time = Math.floor(time / 1000);
-                        console.log(time);
 
                         var minutos = Math.floor(time / 60);
                         var segundos = Math.floor(time % 60);
-
-                        console.log("Minutos " + minutos);
-                        console.log("Segundo " + segundos);
 
                         // Horas
                         var horas = 0;
