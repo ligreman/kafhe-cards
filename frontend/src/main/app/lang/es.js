@@ -65,6 +65,7 @@
             'textWeekend': 'Fin de semana',
             'textWaiting': 'Esperando al inicio de los juegos',
             'textGames': 'Juegos en progreso',
+            'textLaunch': '¡Iniciar la votación!',
 
             // TALENTOS
             'combat': 'combate',

@@ -104,22 +104,22 @@ module.exports = function (app) {
     var game = [{
         _id: new mongoose.Types.ObjectId,
         repeat: true,
-        status: 4,
+        status: 2,
         caller: null,
         players: [userId, userId2, userId3],
         notifications: [
             {
-                message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
-                type: 'fury', timestamp: date.getTime() + 10000
+                message: 'nFuryModeGame', params: JSON.stringify({"name": "Pepito"}),
+                source: 'Manolo', type: 'skill', timestamp: date.getTime() + 40000
             }, {
-                message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
-                type: 'system', timestamp: date.getTime() + 1000
+                message: 'nFuryModeGame', params: JSON.stringify({"name": "Pepito2"}),
+                source: 'Manolo2', type: 'system', timestamp: date.getTime() + 30000
             }, {
-                message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
-                type: 'breakfast', timestamp: date.getTime() + 100
+                message: 'nFuryModeGame', params: JSON.stringify({"name": "Pepito3"}),
+                source: 'Manolo3', type: 'skill', timestamp: date.getTime() + 20000
             }, {
-                message: 'nFuryModeGame#' + JSON.stringify({"name": "Pepito"}),
-                type: 'system', timestamp: date.getTime() + 10
+                message: 'nFuryModeGame', params: JSON.stringify({"name": "Pepito4"}),
+                source: 'Manolo4', type: 'system', timestamp: date.getTime() + 10000
             }
         ]
     }];
@@ -165,14 +165,11 @@ module.exports = function (app) {
                     {
                         date: 1477929730018, place: '3', notifications: [
                         {
-                            message: 'nForgeWeapon#' + JSON.stringify({"name": "Arma de todos los tiempos"}),
-                            type: 'system', timestamp: date.getTime() + 10500
+                            message: 'nFuryModeGame', params: JSON.stringify({"name": "Pepito4"}),
+                            source: 'Manolo2', type: 'system', timestamp: date.getTime() + 20000
                         }, {
-                            message: 'nEquipDestroyArmor#' + JSON.stringify({
-                                "name": "Armadura caca",
-                                "tostem": "fuego"
-                            }),
-                            type: 'skill', timestamp: date.getTime() + 1500
+                            message: 'nFuryModeGame', params: JSON.stringify({"name": "Pepito"}),
+                            source: 'Manolo', type: 'system', timestamp: date.getTime()
                         }]
                     },
                     {date: 1477929740018, place: '2', notifications: []},

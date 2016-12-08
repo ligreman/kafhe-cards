@@ -170,8 +170,6 @@
                         $scope.global.gamedata.status = user.game.gamedata.status;
                         $scope.global.gamedata.caller = user.game.gamedata.caller;
                         $scope.global.gamedata.repeat = user.game.gamedata.repeat;
-                        user.game.gamedata = null;
-
 
                         /*var cantidad = user.game.stats.reputation % CONFIG.constReputationToToastProportion;
                          // Lo paso de (0 a config) a un valor 0-100%
@@ -183,31 +181,68 @@
                          $scope.global.print.reputationDegreeStyle = {"transform": "rotate(" + degrees + "deg)"};*/
 
                         // Las notificaciones de la partida
-                        var notifications = user.game.notifications;
-
-                        // Ahora tengo que ordenar las notificaciones por fecha
-                        notifications.sort(function (a, b) {
-                            if (a.timestamp > b.timestamp) {
-                                return -1;
-                            } else if (a.timestamp < b.timestamp) {
-                                return 1;
-                            } else {
-                                return 0;
-                            }
-                        });
-
-                        // Creo de nuevo el array de notificaciones globales
                         $scope.global.notifications = [];
-                        notifications.forEach(function (notif) {
-                            var data = notif.message.split('#');
+                        var notifications = user.game.gamedata.notifications;
 
-                            $scope.global.notifications.push({
-                                type: notif.type,
-                                timestamp: notif.timestamp,
-                                key: data[0],
-                                params: data[1]
+                        if (notifications.length > 0) {
+                            // Ahora tengo que ordenar las notificaciones por fecha
+                            notifications.sort(function (a, b) {
+                                if (a.timestamp > b.timestamp) {
+                                    return -1;
+                                } else if (a.timestamp < b.timestamp) {
+                                    return 1;
+                                } else {
+                                    return 0;
+                                }
                             });
-                        });
+
+                            // Creo de nuevo el array de notificaciones globales
+                            notifications.forEach(function (notif) {
+                                $scope.global.notifications.push({
+                                    type: notif.type,
+                                    timestamp: notif.timestamp,
+                                    message: notif.message,
+                                    source: notif.source,
+                                    params: JSON.parse(notif.params)
+                                });
+                            });
+                        }
+
+                        // Notificaciones del usuario
+                        $scope.global.user.notifications = [];
+                        notifications = user.game.journal;
+
+                        if (notifications.length > 0) {
+                            var userNotifications = [];
+
+                            notifications.forEach(function (journal) {
+                                userNotifications = userNotifications.concat(journal.notifications);
+                            });
+
+                            // Ahora tengo que ordenar las notificaciones por fecha
+                            userNotifications.sort(function (a, b) {
+                                if (a.timestamp > b.timestamp) {
+                                    return -1;
+                                } else if (a.timestamp < b.timestamp) {
+                                    return 1;
+                                } else {
+                                    return 0;
+                                }
+                            });
+
+                            // Creo de nuevo el array de notificaciones globales
+                            userNotifications.forEach(function (notif) {
+                                $scope.global.user.notifications.push({
+                                    type: notif.type,
+                                    timestamp: notif.timestamp,
+                                    message: notif.message,
+                                    source: notif.source,
+                                    params: JSON.parse(notif.params)
+                                });
+                            });
+                        }
+
+                        user.game.gamedata = null;
                     }
 
                     /**

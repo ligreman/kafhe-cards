@@ -10,7 +10,7 @@
          layout-align="center center" layout-padding layout-margin>
         <md-button class="md-raised md-warn text-big" aria-label="" ng-click="launchBreakfast()">
             <md-icon>style</md-icon>
-            ¡Iniciar la votación!
+            {{ 'textLaunch' | translate }}
         </md-button>
     </div>
 
@@ -26,20 +26,18 @@
             <div flex>
                 <h2 class="text-center">{{'textActivity' | translate}}</h2>
                 <ul class="cbp_tmtimeline">
-                    <li>
+                    <li ng-repeat="notif in global.notifications track by $index">
                         <div class="cbp_tmtime">
-                            <span>4/10/13</span> <span>18:30</span>
+                            <span>{{ notif.timestamp | date:'dd/MM/yy' }}</span> <span>{{ notif.timestamp | date:'HH:mm' }}</span>
                         </div>
                         <div class="cbp_tmicon">
-                            <!--<md-icon>android</md-icon>-->
-                            <img src="assets/img/talents/t001.png"/>
+                            <img ng-src="assets/img/talents/{{ getNotificationIcon(notif.type) }}.png"/>
                         </div>
-                        <div class="cbp_tmlabel">
-                            <h3>Antoñete</h3>
-                            <p>Winter purslane...</p>
+                        <div class="cbp_tmlabel" ng-class="notif.type">
+                            <h3>{{ notif.source }}</h3>
+                            <p>{{ notif.message | translate:notif.params }}</p>
                         </div>
                     </li>
-
                 </ul>
             </div>
         </div>

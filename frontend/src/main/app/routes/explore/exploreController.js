@@ -66,7 +66,11 @@
                                 // center: [51.505, -0.09],
                                 maxBounds: [[5, -180], [-81, 65]],
                                 layers: [mapaBase, players],
-                                zoomControl: false
+                                zoomControl: false,
+                                fullscreenControl: true,
+                                fullscreenControlOptions: {
+                                    position: 'bottomleft'
+                                }
                                 // sleep: false
                                 /*sleep: true,
                                  sleepTime: 750,
