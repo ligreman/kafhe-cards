@@ -266,12 +266,25 @@
                                 enemy = false;
                             }
 
+                            // HTML
+                            var html = '<strong>' + user.alias + '</strong>';
+                            html += '<p class="no-margin">' + $translate.instant('rank') + ': ' + user.game.rank + '</p>';
+
+                            var extra = [];
+                            if (user.leader) {
+                                extra.push($translate.instant('textLeader'));
+                            }
+                            if (user.game.afk) {
+                                extra.push('AFK');
+                            }
+                            html += '<p class="no-margin text-italic">' + extra.join(' - ') + '</p>';
+
                             marker = L.marker([carta.data.place.lat, carta.data.place.long], {
                                 icon: $this.generatePlayerIcon(user.avatar, enemy),
                                 title: user.alias + ' está en ' + carta.name,
                                 opacity: 0.9,
                                 zIndexOffset: 90
-                            }).bindPopup("I am a green leaf.");
+                            }).bindPopup(html);
 
                             markers.push(marker);
                         });

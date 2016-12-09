@@ -71,6 +71,7 @@
             'textLevel': 'Nivel',
             'textRegion': 'Región',
             'textDisconnect': 'Desconectar',
+            'textLeader': 'Líder',
 
             // TALENTOS
             'combat': 'combate',
