@@ -89,7 +89,12 @@
 
                             // var baseMaps = {"Jare": mapaBase};
                             // Control de capas
-                            var overlayMaps = {"Cities": cities, "Players": players};
+                            var a = $translate.instant('textCities'),
+                                b = $translate.instant('textPlayers');
+
+                            var overlayMaps = {};
+                            overlayMaps[a] = cities;
+                            overlayMaps[b] = players;
                             L.control.layers({}, overlayMaps).setPosition('bottomright').addTo(map);
 
                             //add zoom control with your options
@@ -141,7 +146,6 @@
                                 var dbRuta = TAFFY($scope.global.user.game.journal);
                                 var rutaSeguida = dbRuta().order('date asec').get();
                                 rutaSeguida.forEach(function (punto) {
-                                    console.log(punto);
                                     var carta = $scope.global.gamedata.cards[punto.place];
                                     ruta.push([carta.data.place.lat, carta.data.place.long]);
                                 });
@@ -204,12 +208,17 @@
                                 tipo += '-' + card.data.place.subtype;
                             }
 
+                            // HTML
+                            var html = '<strong>' + card.name + '</strong>';
+                            html += '<p class="no-margin">' + $translate.instant('textLevel') + ': ' + card.data.place.level + '</p>';
+                            html += '<p class="no-margin">' + $translate.instant('textRegion') + ': ' + card.data.place.region + '</p>';
+
                             marker = L.marker([card.data.place.lat, card.data.place.long], {
                                 icon: $this.generatePlaceIcon(tipo),
                                 title: card.name,
                                 opacity: 0.9,
                                 zIndexOffset: 100
-                            }).bindPopup(card.data.place.lat + ' // ' + card.data.place.long);
+                            }).bindPopup(html);
 
                             markers.push(marker);
                         });

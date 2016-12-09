@@ -66,12 +66,29 @@
             'textWaiting': 'Esperando al inicio de los juegos',
             'textGames': 'Juegos en progreso',
             'textLaunch': '¡Iniciar la votación!',
+            'textCities': 'Ciudades',
+            'textPlayers': 'Jugadores',
+            'textLevel': 'Nivel',
+            'textRegion': 'Región',
+            'textDisconnect': 'Desconectar',
 
             // TALENTOS
             'combat': 'combate',
             'exploration': 'exploración',
             'survival': 'supervivencia',
 
+            // Notificaciones
+            'notification-system': 'Palabra de Kafhe',
+            'notification-explore': 'Exploración',
+            'notification-move': 'Movimiento',
+            'notification-combat': 'Combate',
+            'notification-victory': 'Victoria',
+            'notification-defeat': 'Derrota',
+            'notification-reward': 'Recompensa',
+            'notification-encounter': 'Encuentro',
+            'notification-adversity': 'Evento',
+            'notification-announcement': 'Anuncio',
+            'notification-skill': 'Habilidad',
 
             // TIPOS
             'bladed': 'Cortante',

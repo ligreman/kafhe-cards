@@ -134,7 +134,7 @@
                 }
 
                 function fnGetNotificationIcon(type) {
-                    return 't001';
+                    return type;
                 }
 
             }]);

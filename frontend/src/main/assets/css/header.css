@@ -4,10 +4,7 @@ header .md-toolbar-tools {
 
 header .logotipo {
     padding: 5px;
-    /*min-width: 24px;*/
-    background-image: url(../img/k256.png);
-    background-position: center center;
-    background-repeat: no-repeat;
+    background: url(../img/k256.png) no-repeat center center;
     background-size: contain;
     height: 100%;
 }
@@ -73,9 +70,7 @@ header .button.active {
 #login-form .logotipo {
     height: 15vh;
     width: 100%;
-    background-image: url(../img/k256-cut.png);
-    background-position: center bottom;
-    background-repeat: no-repeat;
+    background: url(../img/k256-cut.png) no-repeat center bottom;
     background-size: contain;
 }
 

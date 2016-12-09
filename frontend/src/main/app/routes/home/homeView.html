@@ -31,7 +31,10 @@
                             <span>{{ notif.timestamp | date:'dd/MM/yy' }}</span> <span>{{ notif.timestamp | date:'HH:mm' }}</span>
                         </div>
                         <div class="cbp_tmicon">
-                            <img ng-src="assets/img/talents/{{ getNotificationIcon(notif.type) }}.png"/>
+                            <img ng-src="assets/img/notification/{{ getNotificationIcon(notif.type) }}.png"/>
+                            <md-tooltip md-delay="700" md-direction="bottom">
+                                {{ 'notification-' + notif.type | translate }}
+                            </md-tooltip>
                         </div>
                         <div class="cbp_tmlabel" ng-class="notif.type">
                             <h3>{{ notif.source }}</h3>

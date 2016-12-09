@@ -72,7 +72,7 @@
                                 </p>
                                 <p class="kafhe-white text-bold" flex>{{ global.user.username }}</p>
                                 <p class="kafhe-white text-bold" flex="none">{{ global.user.game.rank }}
-                                    <md-tooltip md-direction="left" md-delay="700">Rango</md-tooltip>
+                                    <md-tooltip md-direction="left" md-delay="700">{{ 'rank' | translate }}</md-tooltip>
                                 </p>
                             </div>
                         </md-menu-item>
@@ -93,7 +93,7 @@
                                     <p class="kafhe-white" flex>{{ 'headerLogout' | translate }}</p>
                                     <md-icon md-menu-align-target class="md-accent md-hue-1">exit_to_app</md-icon>
                                 </div>
-                                <md-tooltip md-delay="1000">Desconectar</md-tooltip>
+                                <md-tooltip md-delay="1000">{{ 'textDisconnect' | translate }}</md-tooltip>
                             </md-button>
                         </md-menu-item>
                     </md-menu-content>
