@@ -78,3 +78,12 @@ header .button.active {
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+.menu-icon {
+    width: 48px;
+    opacity: .9;
+}
+
+.menu-icon.small-icon {
+    width: 36px;
+}

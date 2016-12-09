@@ -6,7 +6,9 @@
             <div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-class="{'active': isCurrentPage('home')}" ng-click="goToPage('home')">
                 <span>
-                    <md-icon ng-class="{ 'small-icon': isSmallScreen() }">bubble_chart</md-icon>
+                    <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">bubble_chart</md-icon>-->
+                    <img class="menu-icon" ng-class="{ 'small-icon': isSmallScreen() }"
+                         src="assets/img/menu/games.png"/>
                     <span class="btn-text" hide show-gt-sm> {{ 'menuGames' | translate }}</span>
                 </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuGames' | translate }}</md-tooltip>
@@ -15,7 +17,9 @@
                  ng-if="global.gamedata.status === gameStatuses.planning"
                  ng-class="{'active': isCurrentPage('planning')}" ng-click="goToPage('planning')">
                 <span>
-                    <md-icon ng-class="{ 'small-icon': isSmallScreen() }">hourglass_empty</md-icon>
+                    <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">hourglass_empty</md-icon>-->
+                    <img class="menu-icon" ng-class="{ 'small-icon': isSmallScreen() }"
+                         src="assets/img/menu/preparation.png"/>
                     <span class="btn-text" hide show-gt-sm> {{ 'menuPlanning' | translate }}</span>
                 </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuPlanning' | translate }}</md-tooltip>
@@ -24,21 +28,31 @@
                  ng-if="global.gamedata.status === gameStatuses.explore"
                  ng-class="{'active': isCurrentPage('explore')}" ng-click="goToPage('explore')">
                 <span>
-                    <md-icon ng-class="{ 'small-icon': isSmallScreen() }">explore</md-icon>
+                    <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">explore</md-icon>-->
+                    <img class="menu-icon" ng-class="{ 'small-icon': isSmallScreen() }"
+                         src="assets/img/menu/exploration.png"/>
                     <span class="btn-text" hide show-gt-sm> {{ 'menuExplore' | translate }}</span>
                 </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuExplore' | translate }}</md-tooltip>
             </div>
             <div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-class="{'active': isCurrentPage('character')}" ng-click="goToPage('character')">
-                <span><md-icon ng-class="{ 'small-icon': isSmallScreen() }">directions_run</md-icon>
-                    <span class="btn-text" hide show-gt-sm> {{ 'menuCharacter' | translate }}</span></span>
+                <span>
+                    <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">directions_run</md-icon>-->
+                    <img class="menu-icon" ng-class="{ 'small-icon': isSmallScreen() }"
+                         src="assets/img/menu/character.png"/>
+                    <span class="btn-text" hide show-gt-sm> {{ 'menuCharacter' | translate }}</span>
+                </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuCharacter' | translate }}</md-tooltip>
             </div>
             <div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-class="{'active': isCurrentPage('breakfast')}" ng-click="goToPage('breakfast')">
-                <span><md-icon ng-class="{ 'small-icon': isSmallScreen() }">local_cafe</md-icon>
-                    <span class="btn-text" hide show-gt-sm> {{ 'menuBreakfast' | translate }}</span></span>
+                <span>
+                    <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">local_cafe</md-icon>-->
+                    <img class="menu-icon" ng-class="{ 'small-icon': isSmallScreen() }"
+                         src="assets/img/menu/breakfast.png"/>
+                    <span class="btn-text" hide show-gt-sm> {{ 'menuBreakfast' | translate }}</span>
+                </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuBreakfast' | translate }}</md-tooltip>
             </div>
 
