@@ -30,6 +30,7 @@ var gameUpdateAllByStatus = function (oldStatus, newStatus) {
  * Reseteo de game entre desayunos
  * Borra notifications de game
  * Borra caller
+ * Aumenta times
  * Estado a weekend si está cerrado y repeat true; o si está en resolution
  */
 var gameBreakfastReset = function () {
@@ -46,9 +47,9 @@ var gameBreakfastReset = function () {
             ]
         };
 
-    //TODO de momento no borro notificaciones
+
     models.Game.update(condition, {
-            $set: {"status": config.GAME_STATUS.weekend, "caller": null},
+            $set: {"status": config.GAME_STATUS.weekend, "caller": null, "notifications": []},
             $inc: {"times": 1}
         }, {multi: true},
         function (error, numAffected) {

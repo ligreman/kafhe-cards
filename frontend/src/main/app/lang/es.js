@@ -21,6 +21,7 @@
             'textSave': 'Guardar',
             'textAccept': 'Aceptar',
             'textClose': 'Cerrar',
+            'textBuyPacks': 'Comprar sobres',
             'textAssignCard': 'Asignar carta',
             'textContinue': 'Continuar',
             'textYes': 'Sí',

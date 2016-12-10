@@ -30,8 +30,11 @@
         </div>
     </md-dialog-content>
 
-    <md-dialog-actions layout="row">
-        <md-button type="button" class="md-raised md-primary" ng-click="accept()" layout-fill>
+    <md-dialog-actions layout="row" layout-align="space-around center">
+        <md-button type="button" class="md-raised md-accent" ng-click="">
+            {{'textBuyPacks' | translate}}
+        </md-button>
+        <md-button type="button" class="md-raised md-primary" ng-click="accept()">
             {{'textClose' | translate}}
         </md-button>
     </md-dialog-actions>
