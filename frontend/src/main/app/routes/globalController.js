@@ -351,12 +351,7 @@
                                 cards: [],
                                 talents: []
                             },
-                            print: {},
-                            skills: [],
-                            equipment: {},
-                            inventory: {},
                             notifications: [],
-                            navigation: {},
                             loaded: false
                         };
                     }

@@ -73,9 +73,11 @@
             'textRegion': 'Región',
             'textDisconnect': 'Desconectar',
             'textLeader': 'Líder',
+            'textLeaderGroup': 'Líder de grupo',
             'textCostTalent': 'Puntos requeridos',
             'textNoMoneyToFusion': 'No tienes suficientes tostólares',
             'textLevelUpCard': 'Subir a nivel',
+            'textCallTimes': 'Has participado {{times}} veces y llamado {{calls}}',
 
             // TALENTOS
             'combat': 'combate',

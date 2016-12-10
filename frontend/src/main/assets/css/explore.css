@@ -143,6 +143,10 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
     width: 100%;
 }
 
+.schedule-card-holder.summary {
+    opacity: 1;
+}
+
 /** MAPA **/
 #map-container {
     /*padding-top: 40px;*/

@@ -72,8 +72,32 @@
             </div>
         </md-toolbar>
         <md-content layout="column" layout-padding ng-controller="RightCtrl">
-            <div class="md-whiteframe-1dp kafhe-background-white" layout-margin>
-                <p class="character-name">{{ global.character.name }}</p>
+            <div layout="row">
+                <div flex="none">
+                    <img ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
+                </div>
+
+                <div flex layout-padding>
+                    <h2 class="text-center">{{ global.user.alias }}</h2>
+                    <p>
+                        {{'rank'|translate}} {{global.user.game.rank}}
+                        <span ng-if="global.user.leader"> - {{'textLeaderGroup' | translate}}</span>
+                    </p>
+                    <p>{{ 'textCallTimes' | translate:{calls:global.user.calls, times:global.user.times} }}</p>
+                </div>
+            </div>
+
+            <h3>Equipo</h3>
+            <div layout="row" layout-align="space-between center">
+                <div flex class="schedule-card-holder summary" layout-align="center center" layout="column">
+                    <img ng-src="assets/img/cards/{{global.user.game.schedule.weapon[0].card}}.jpg"/>
+                </div>
+                <div flex class="schedule-card-holder summary" layout-align="center center" layout="column">
+                    <img ng-src="assets/img/cards/{{global.user.game.schedule.weapon[0].card}}.jpg"/>
+                </div>
+                <div flex class="schedule-card-holder summary" layout-align="center center" layout="column">
+                    <img ng-src="assets/img/cards/{{global.user.game.schedule.weapon[0].card}}.jpg"/>
+                </div>
             </div>
         </md-content>
     </md-sidenav>
