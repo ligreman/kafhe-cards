@@ -61,7 +61,7 @@ module.exports = function (app) {
         },
         {
             id: 'talent05', name: 'Talento 5', description: 'Er talento 5', level: 1,
-            branch: 'combat', cards: [], required: ['talent00']
+            branch: 'combat', cards: [], required: ['talent00'], cost: 2
         },
         {
             id: 'talent06', name: 'Talento 6', description: 'Er talento 6', level: 1,

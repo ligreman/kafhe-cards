@@ -49,6 +49,22 @@ module.exports = function (app) {
             return;
         }
 
+        // Debo tener dinero para fusionarlas
+        var nivel = Math.max(cardAInCollection.level, cardBInCollection.level);
+        if (nivel === 1 || nivel === 2) {
+            if (user.game.tostolares < config.DEFAULTS.cost.card_fusion_cost[nivel]) {
+                console.tag('CHARACTER-SCHEDULE').error('No puedes fusionar esas cartas porque no tienes suficientes tostólares');
+                responseUtils.responseError(res, 400, 'errNoTostolares');
+                return;
+            }
+        } else {
+            // El nivel no es correcto
+            console.tag('CHARACTER-SCHEDULE').error('No puedes fusionar esas cartas, porque la carta o su nivel no coinciden');
+            responseUtils.responseError(res, 400, 'errCollectionCardsCantFuse');
+            return;
+        }
+
+
         // Busco al jugador y las cartas
         Q.all([
             models.Card.find().exec()
@@ -58,13 +74,13 @@ module.exports = function (app) {
             var cardAInDB = dbCards({id: cardAInCollection.card}).first();
             var cardBInDB = dbCards({id: cardBInCollection.card}).first();
 
-            if (cardAInDB.id !== cardBInDB.id || cardAInCollection.level !== cardBInCollection.level) {
+            if ((cardAInDB.id !== cardBInDB.id) || (cardAInCollection.level !== cardBInCollection.level)) {
                 console.tag('CHARACTER-SCHEDULE').error('No puedes fusionar esas cartas, porque la carta o su nivel no coinciden');
                 responseUtils.responseError(res, 400, 'errCollectionCardsCantFuse');
                 return;
             }
 
-            // Las cartas no han de poder subir de nivel (no son de nivel máximo ya)
+            // Las cartas han de poder subir de nivel (no son de nivel máximo ya)
             if (cardAInCollection.level >= config.DEFAULTS.collection.card_max_level || cardBInCollection.level >= config.DEFAULTS.collection.card_max_level) {
                 console.tag('CHARACTER-SCHEDULE').error('No puedes fusionar esas cartas porque no pueden subir más de nivel');
                 responseUtils.responseError(res, 400, 'errCollectionCardsCantLevelUp');
@@ -88,6 +104,9 @@ module.exports = function (app) {
             });
             // Guardo la nueva colección
             user.game.collection = newCollection;
+
+            // Dinero
+            user.game.tostolares -= config.DEFAULTS.cost.card_fusion_cost[cardAInCollection.level];
 
             // A mí y termino
             responseUtils.saveUserAndResponse(res, user, req.authInfo.access_token);

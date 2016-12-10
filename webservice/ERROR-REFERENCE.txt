@@ -36,7 +36,7 @@ errPacksNotFound - No tienes sobres de ese tipo
 errPacksErrorOpeningPack - Error al abrir el sobre
 errPackCategoryNotFound - No existe esa categoría de sobres
 
-errWeaponNoMoney - No tienes dinero para comprar
+errNoTostolares - No tienes tostólares suficientes
 
 errRetrievingSystemData - Error al obtener los datos del sistema
 

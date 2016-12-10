@@ -38,7 +38,8 @@ module.exports = function (app) {
 
             // Ahora genero el objeto con datos de system que serán constantes predefinidas del juego
             var system = {
-                maxCardLevel: config.DEFAULTS.collection.card_max_level
+                maxCardLevel: config.DEFAULTS.collection.card_max_level,
+                costs: config.DEFAULTS.cost
             };
 
             responseUtils.responseJson(res, {

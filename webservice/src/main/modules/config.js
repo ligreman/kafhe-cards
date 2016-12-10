@@ -18,6 +18,14 @@ var DEFAULTS = {
     max_variacion_probabilidad_fama: 35, //Porcentaje máximo de probabilidad que se puede ganar o perder por la fama
     fame_to_tostolares_conversion: 100, // 100 de fame = 1 tostólar,
 
+    // Costes
+    cost: {
+        card_fusion_cost: {
+            1: 500,
+            2: 1000
+        }
+    },
+
     // Personajes
     character: {
         stats_starting_value: 5,

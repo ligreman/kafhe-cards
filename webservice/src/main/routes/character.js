@@ -169,7 +169,7 @@ module.exports = function (app) {
 
             // Debo poder coger ese talento
             // ¿tengo puntos?
-            if (myself.game.talents.points <= 0) {
+            if (myself.game.talents.points < talent.cost) {
                 console.tag('CHARACTER-TALENT').error('No tienes puntos de talento disponibles');
                 responseUtils.responseError(res, 400, 'errCharacterNoTalentPoints');
                 return;
