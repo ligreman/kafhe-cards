@@ -11,6 +11,7 @@ module.exports = function (mongoose) {
         status: {type: Number, default: 0},
         caller: {type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null},
         players: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+        times: {type: Number, default: 0},
         notifications: [notificationSchema]
     }, {versionKey: false});
 

@@ -47,7 +47,10 @@ var gameBreakfastReset = function () {
         };
 
     //TODO de momento no borro notificaciones
-    models.Game.update(condition, {$set: {"status": config.GAME_STATUS.weekend, "caller": null}}, {multi: true},
+    models.Game.update(condition, {
+            $set: {"status": config.GAME_STATUS.weekend, "caller": null},
+            $inc: {"times": 1}
+        }, {multi: true},
         function (error, numAffected) {
             if (error) {
                 deferred.reject(error);
