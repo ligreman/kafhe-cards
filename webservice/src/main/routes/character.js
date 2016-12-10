@@ -187,8 +187,8 @@ module.exports = function (app) {
             });
 
             // Parece que todo va bien así que adelante
-            // Resto un punto de talento
-            myself.game.talents.points--;
+            // Resto puntos de talento
+            myself.game.talents.points -= talent.cost;
 
             // Me otorgo el talento
             myself.game.talents[talent.branch].push(talent.id);

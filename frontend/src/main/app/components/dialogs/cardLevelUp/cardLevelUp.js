@@ -39,6 +39,8 @@
                     };
 
                     $scope.cancel = function () {
+                        $scope.selected = null;
+                        $scope.levelSelected = null;
                         $mdDialog.hide();
                     };
 
@@ -77,6 +79,7 @@
 
                     function fnCardClick(event, card) {
                         $scope.selected = card.id;
+                        $scope.levelSelected = card.level;
                     }
 
                     function fnCardClass(card) {

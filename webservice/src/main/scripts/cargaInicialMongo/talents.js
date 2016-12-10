@@ -18,6 +18,7 @@ module.exports = [
         "branch": "combat",
         "skills": [],
         "level": 1,
+        "cost": 2,
         "required": ['t001']
     },
     {

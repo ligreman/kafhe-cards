@@ -61,6 +61,7 @@
                             name: talent.name,
                             branch: talent.branch,
                             description: talent.description,
+                            cost: talent.cost,
                             skills: talent.skills,
                         }
                     });
@@ -227,8 +228,13 @@
 
                     html += '<div>' +
                         '<p class="text-bold text-center">' + talent.name + '</p>' +
-                        '<p class="tooltip-block-quote">' + talent.description + '</p>' +
-                        '</div>';
+                        '<p class="tooltip-block-quote">' + talent.description + '</p>';
+
+                    if (talent.cost > 1) {
+                        html += '<p class="tooltip-block-p">' + $translate.instant('textCostTalent') + ': ' + talent.cost + '</p>';
+                    }
+
+                    html += '</div>';
 
                     return html;
                 }

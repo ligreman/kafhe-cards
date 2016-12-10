@@ -8,28 +8,38 @@
             </md-button>
         </div>
     </md-toolbar>
-    <md-dialog-content layout="row" layout-padding>
-        <div flex="5" ng-if="!isSmallScreen()" ng-if="candidates.length > 0"></div>
-        <md-grid-list flex class="card-list" md-row-height="2:3" md-gutter="8px" md-gutter-gt-sm="16px"
-                      md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-lg="6" md-cols-gt-lg="8"
-                      ng-if="candidates.length > 0">
-            <md-grid-tile ng-repeat="card in candidates track by $index" class="card-tile-lvlup"
-                          md-rowspan="1" md-colspan="1" ng-class="cardClass(card)" ng-click="cardClick($event, card)">
-                <md-grid-tile-header>Subir a nivel {{ roman[card.level+1] }}</md-grid-tile-header>
-                <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
-                <div class="card-level">{{ roman[card.level] }}</div>
-                <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
-                <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
+    <md-dialog-content layout-padding>
+        <p ng-if="global.user.game.tostolares < global.system.costs.card_fusion_cost[levelSelected]"
+           flex class="text-center">
+            {{'textNoMoneyToFusion' | translate}}</p>
         <p ng-if="candidates.length === 0" flex class="text-center">{{'textNoUpgradeableCards' | translate}}</p>
+
+        <div ng-if="candidates.length > 0" layout="row">
+            <div flex="5" ng-if="!isSmallScreen()"></div>
+            <md-grid-list flex class="card-list" md-row-height="2:3" md-gutter="8px" md-gutter-gt-sm="16px"
+                          md-cols-xs="2" md-cols-sm="3" md-cols-md="4" md-cols-lg="6" md-cols-gt-lg="8">
+                <md-grid-tile ng-repeat="card in candidates track by $index" class="card-tile-lvlup"
+                              md-rowspan="1" md-colspan="1" ng-class="cardClass(card)"
+                              ng-click="cardClick($event, card)">
+                    <md-grid-tile-header>
+                        <p>{{ 'textLevelUpCard' | translate }} {{ roman[card.level+1] }}</p>
+                        <p>{{ global.system.costs.card_fusion_cost[levelSelected] }} {{'tostolares' | translate}}</p>
+                    </md-grid-tile-header>
+                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
+                    <div class="card-level">{{ roman[card.level] }}</div>
+                    <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
+                    <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
+                </md-grid-tile>
+            </md-grid-list>
+        </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row" layout-align="space-around center">
         <md-button ng-click="cancel()" type="button" class="md-warn md-hue-1">
             {{'textCancel' | translate}}
         </md-button>
-        <md-button type="button" class="md-raised md-primary" ng-click="accept()" ng-disabled="!selected">
+        <md-button type="button" class="md-raised md-primary" ng-click="accept()"
+                   ng-disabled="!selected || (global.user.game.tostolares < global.system.costs.card_fusion_cost[levelSelected])">
             {{'textLevelUp' | translate}}
         </md-button>
     </md-dialog-actions>
