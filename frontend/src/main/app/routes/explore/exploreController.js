@@ -315,6 +315,22 @@
                 }])
         .controller('LeftCtrl', ['$scope', '$log', function ($scope, $log) {
         }])
-        .controller('RightCtrl', ['$scope', '$log', function ($scope, $log) {
+        .controller('RightCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+            $scope.showCardDialog = fnShowCardDialog;
+
+            function fnShowCardDialog(event, card) {
+                $mdDialog.show({
+                    controller: 'ShowCard',
+                    templateUrl: 'app/components/dialogs/showCard/show-card.html',
+                    scope: $scope,
+                    preserveScope: true,
+                    clickOutsideToClose: true,
+                    escapeToClose: true,
+                    locals: {
+                        card: card
+                    },
+                    targetEvent: event
+                });
+            }
         }]);
 })();

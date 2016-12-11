@@ -170,6 +170,9 @@
                         ng-click="cardClick($event, card)">
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level">{{ roman[card.level] }}</div>
+                    <!--<div class="card-level-medal" ng-class="level-{{card.level}}">-->
+                    <!--<span></span>-->
+                    <!--</div>-->
                     <img ng-src="assets/img/cards/{{card.id}}.jpg"/>
                     <md-grid-tile-footer>{{ card.name | limitTo: 30 }}</md-grid-tile-footer>
                 </md-grid-tile>

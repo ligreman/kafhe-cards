@@ -89,15 +89,10 @@
 
             <h3>Equipo</h3>
             <div layout="row" layout-align="space-between center">
-                <div flex class="schedule-card-holder summary" layout-align="center center" layout="column">
-                    <img ng-src="assets/img/cards/{{global.user.game.schedule.weapon[0].card}}.jpg"/>
-                </div>
-                <div flex class="schedule-card-holder summary" layout-align="center center" layout="column">
-                    <img ng-src="assets/img/cards/{{global.user.game.schedule.weapon[0].card}}.jpg"/>
-                </div>
-                <div flex class="schedule-card-holder summary" layout-align="center center" layout="column">
-                    <img ng-src="assets/img/cards/{{global.user.game.schedule.weapon[0].card}}.jpg"/>
-                </div>
+                <!--<img ng-src="assets/img/cards/{{global.user.game.schedule.weapon[0].card}}.jpg"/>-->
+                <img ng-src="assets/img/cardtype/weapon.png"/>
+                <p>{{ global.gamedata.cards[global.user.game.schedule.weapon[0].card].name }}</p>
+                <md-tooltip>Arma</md-tooltip>
             </div>
         </md-content>
     </md-sidenav>
