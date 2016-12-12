@@ -14,7 +14,7 @@
                     $scope.isSkill = fnIsSkill;
                     $scope.isEncounter = fnIsEncounter;
                     $scope.isEvent = fnIsEvent;
-
+                    console.info(card);
                     /*********************************************************************/
                     /*********************** FUNCIONES ***********************************/
 

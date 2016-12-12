@@ -189,7 +189,11 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
 }
 
 .character-equipment img {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50px;
+}
+
+.small-avatar {
+    width: 64px;
 }

@@ -315,23 +315,40 @@
                 }])
         .controller('LeftCtrl', ['$scope', '$log', function ($scope, $log) {
         }])
-        .controller('RightCtrl', ['$scope', '$mdDialog', 'CONSTANTS', function ($scope, $mdDialog, CONSTANTS) {
-            $scope.showCardDialog = fnShowCardDialog;
-            $scope.roman = CONSTANTS.roman;
+        .controller('RightCtrl', ['$scope', '$mdDialog', 'CONSTANTS', 'KGame',
+            function ($scope, $mdDialog, CONSTANTS, KGame) {
+                $scope.showCardDialog = fnShowCardDialog;
+                $scope.cardTypeImage = KGame.cardTypeImage;
+                $scope.roman = CONSTANTS.roman;
+                $scope.getNumber = fnGetNumber;
 
-            function fnShowCardDialog(event, card) {
-                $mdDialog.show({
-                    controller: 'ShowCard',
-                    templateUrl: 'app/components/dialogs/showCard/show-card.html',
-                    scope: $scope,
-                    preserveScope: true,
-                    clickOutsideToClose: true,
-                    escapeToClose: true,
-                    locals: {
-                        card: card
-                    },
-                    targetEvent: event
-                });
-            }
-        }]);
+                function fnGetNumber(num) {
+                    if (num > 0) {
+                        return new Array(num);
+                    } else {
+                        return [];
+                    }
+                }
+
+                function fnShowCardDialog(event, card, level) {
+                    card.level = level;
+
+                    if (card.type === CONSTANTS.cardTypes.place) {
+                        card.data['place']['level'] = level;
+                    }
+
+                    $mdDialog.show({
+                        controller: 'ShowCard',
+                        templateUrl: 'app/components/dialogs/showCard/show-card.html',
+                        scope: $scope,
+                        preserveScope: true,
+                        clickOutsideToClose: true,
+                        escapeToClose: true,
+                        locals: {
+                            card: card
+                        },
+                        targetEvent: event
+                    });
+                }
+            }]);
 })();

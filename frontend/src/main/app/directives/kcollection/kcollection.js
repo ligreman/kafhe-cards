@@ -74,7 +74,11 @@
                 }
 
                 function fnGetNumber(num) {
-                    return new Array(num);
+                    if (num > 0) {
+                        return new Array(num);
+                    } else {
+                        return [];
+                    }
                 }
 
                 function fnCardClick(event, card) {

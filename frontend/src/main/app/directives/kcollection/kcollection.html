@@ -91,7 +91,7 @@
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level-place" layout="column" layout-align="center center">
                         <md-icon class="md-accent md-hue-3"
-                                 ng-repeat="i in getNumber(card.data.place.level)  | orderBy:'name' track by $index">
+                                 ng-repeat="i in getNumber(card.data.place.level) track by $index">
                             star
                         </md-icon>
                     </div>
@@ -235,7 +235,7 @@
                     <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
                     <div class="card-level-place" layout="column" layout-align="center center">
                         <md-icon class="md-accent md-hue-3"
-                                 ng-repeat="i in getNumber(card.data.place.level)  | orderBy:'name' track by $index">
+                                 ng-repeat="i in getNumber(card.data.place.level) track by $index">
                             star
                         </md-icon>
                     </div>
@@ -369,7 +369,7 @@
                         <h3>{{ card.name }}</h3>
                         <p>
                             <md-icon class="md-accent md-hue-3"
-                                     ng-repeat="i in getNumber(card.data.place.level)  | orderBy:'name' track by $index">
+                                     ng-repeat="i in getNumber(card.data.place.level) track by $index">
                                 star
                             </md-icon>
                         </p>

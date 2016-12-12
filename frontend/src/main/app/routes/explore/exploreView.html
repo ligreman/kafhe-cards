@@ -74,7 +74,8 @@
         <md-content layout="column" layout-padding ng-controller="RightCtrl">
             <div layout="row">
                 <div flex="none">
-                    <img ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
+                    <img ng-class="{'small-avatar':isSmallScreen()}"
+                         ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
                 </div>
 
                 <div flex layout-padding>
@@ -89,53 +90,92 @@
 
             <!-- EQUIPAMIENTO -->
             <h3>{{'textPlanningTeam'|translate}}</h3>
-            <div layout="row" layout-align="start center" class="character-equipment"
-                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.weapon[0].card])">
-                <img flex="none" ng-src="assets/img/cardtype/weapon.png"/>
-                <p>{{ global.gamedata.cards[global.user.game.schedule.weapon[0].card].name }} - {{ roman[global.user.game.schedule.weapon[0].level] }}</p>
+            <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                 ng-if="global.user.game.schedule.weapon.length>0"
+                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.weapon[0].card], global.user.game.schedule.weapon[0].level)">
+                <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/weapon.png"/>
+                <p class="text-bold text-big">
+                    {{ global.gamedata.cards[global.user.game.schedule.weapon[0].card].name }} {{
+                    roman[global.user.game.schedule.weapon[0].level] }}</p>
                 <md-tooltip>{{'textWeapon'|translate}}</md-tooltip>
             </div>
-            <div layout="row" layout-align="start center" class="character-equipment"
-                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.armor[0].card])">
-                <img flex="none" ng-src="assets/img/cardtype/armor.png"/>
-                <p>{{ global.gamedata.cards[global.user.game.schedule.armor[0].card].name }} - {{ roman[global.user.game.schedule.armor[0].level] }}</p>
+            <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                 ng-if="global.user.game.schedule.armor.length>0"
+                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.armor[0].card], global.user.game.schedule.armor[0].level)">
+                <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/armor.png"/>
+                <p class="text-bold text-big">
+                    {{ global.gamedata.cards[global.user.game.schedule.armor[0].card].name }} {{
+                    roman[global.user.game.schedule.armor[0].level] }}</p>
                 <md-tooltip>{{'textArmor'|translate}}</md-tooltip>
             </div>
-            <div layout="row" layout-align="start center" class="character-equipment"
-                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.place[0].card])">
-                <img flex="none" ng-src="assets/img/cardtype/compass.png"/>
-                <p>{{ global.gamedata.cards[global.user.game.schedule.place[0].card].name }} - {{ roman[global.user.game.schedule.place[0].level] }}</p>
+            <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                 ng-if="global.user.game.schedule.place.length>0"
+                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.place[0].card], global.user.game.schedule.place[0].level)">
+                <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/compass.png"/>
+                <p class="text-bold text-big">
+                    {{ global.gamedata.cards[global.user.game.schedule.place[0].card].name }}</p>
+                <p>
+                    <md-icon class="md-accent md-hue-3"
+                             ng-repeat="i in getNumber(global.user.game.schedule.place[0].level) track by $index">
+                        star
+                    </md-icon>
+                </p>
                 <md-tooltip>{{'textPlace'|translate}}</md-tooltip>
             </div>
 
             <!-- HABILIDADES -->
-            <h3>{{'textSkills'|translate}}</h3>
-            <div layout="row" layout-align="start center" class="character-equipment"
-                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[0].card])">
-                <img flex="none" ng-src="assets/img/cardtype/skill.png"/>
-                <p flex ng-class="{'strike': (global.gamedata.cards[global.user.game.schedule.skill[0].card].uses <= 0)}">
-                    {{ global.gamedata.cards[global.user.game.schedule.skill[0].card].name }} - {{ roman[global.user.game.schedule.skill[0].level] }}
-                </p>
-                <p flex="none">{{ 'textUses' | translate}}: {{global.gamedata.cards[global.user.game.schedule.skill[0].card].uses}}</p>
-                <md-tooltip>{{ 'textWeapon' | translate }}</md-tooltip>
-            </div>
-            <div layout="row" layout-align="start center" class="character-equipment"
-                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[1].card])">
-                <img flex="none" ng-src="assets/img/cardtype/skill.png"/>
-                <p flex ng-class="{'strike': (global.gamedata.cards[global.user.game.schedule.skill[1].card].uses <= 0)}">
-                    {{ global.gamedata.cards[global.user.game.schedule.skill[1].card].name }} - {{ roman[global.user.game.schedule.skill[1].level] }}
-                </p>
-                <p flex="none">{{ 'textUses' | translate}}: {{global.gamedata.cards[global.user.game.schedule.skill[1].card].uses}}</p>
-                <md-tooltip>{{ 'textWeapon' | translate }}</md-tooltip>
-            </div>
-            <div layout="row" layout-align="start center" class="character-equipment"
-                 ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[2].card])">
-                <img flex="none" ng-src="assets/img/cardtype/skill.png"/>
-                <p flex ng-class="{'strike': (global.gamedata.cards[global.user.game.schedule.skill[2].card].uses <= 0)}">
-                    {{ global.gamedata.cards[global.user.game.schedule.skill[2].card].name }} - {{ roman[global.user.game.schedule.skill[2].level] }}
-                </p>
-                <p flex="none">{{ 'textUses' | translate}}: {{global.gamedata.cards[global.user.game.schedule.skill[2].card].uses}}</p>
-                <md-tooltip>{{ 'textWeapon' | translate }}</md-tooltip>
+            <div ng-if="global.user.game.schedule.skill.length > 0">
+                <h3>{{'textSkills'|translate}}</h3>
+                <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                     ng-if="global.user.game.schedule.skill[0]"
+                     ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[0].card], global.user.game.schedule.skill[0].level)">
+                    <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/skill.png"/>
+                    <p class="text-bold text-big" flex
+                       ng-class="{'strike': (global.gamedata.cards[global.user.game.schedule.skill[0].card].uses <= 0)}">
+                        {{ global.gamedata.cards[global.user.game.schedule.skill[0].card].name }} {{
+                        roman[global.user.game.schedule.skill[0].level] }}
+                    </p>
+                    <p flex="none" ng-if="!isSmallScreen()">{{ 'textUses' | translate}}:
+                        {{global.gamedata.cards[global.user.game.schedule.skill[0].card].uses}}</p>
+                    <p flex="none" ng-if="isSmallScreen()">
+                        x{{global.gamedata.cards[global.user.game.schedule.skill[0].card].uses}}
+                    </p>
+                    <md-tooltip>{{ 'textSkill' | translate }}</md-tooltip>
+                </div>
+                <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                     ng-if="global.user.game.schedule.skill[1]"
+                     ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[1].card], global.user.game.schedule.skill[1].level)">
+                    <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/skill.png"/>
+                    <p class="text-bold text-big" flex
+                       ng-class="{'strike': (global.gamedata.cards[global.user.game.schedule.skill[1].card].uses <= 0)}">
+                        {{ global.gamedata.cards[global.user.game.schedule.skill[1].card].name }} {{
+                        roman[global.user.game.schedule.skill[1].level] }}
+                    </p>
+                    <p flex="none" ng-if="!isSmallScreen()">{{ 'textUses' | translate}}:
+                        {{global.gamedata.cards[global.user.game.schedule.skill[1].card].uses}}</p>
+                    <p flex="none" ng-if="isSmallScreen()">
+                        x{{global.gamedata.cards[global.user.game.schedule.skill[1].card].uses}}
+                    </p>
+                    <md-tooltip>{{ 'textSkill' | translate }}</md-tooltip>
+                </div>
+                <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                     ng-if="global.user.game.schedule.skill[2]"
+                     ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[2].card], global.user.game.schedule.skill[2].level)">
+                    <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/skill.png"/>
+                    <p class="text-bold text-big" flex
+                       ng-class="{'strike': (global.gamedata.cards[global.user.game.schedule.skill[2].card].uses <= 0)}">
+                        {{ global.gamedata.cards[global.user.game.schedule.skill[2].card].name }} {{
+                        roman[global.user.game.schedule.skill[2].level] }}
+                    </p>
+                    <p flex="none" ng-if="!isSmallScreen()">
+                        {{ 'textUses' | translate}}: {{
+                        global.gamedata.cards[global.user.game.schedule.skill[2].card].uses}}
+                    </p>
+                    <p flex="none" ng-if="isSmallScreen()">
+                        x{{global.gamedata.cards[global.user.game.schedule.skill[2].card].uses}}
+                    </p>
+                    <md-tooltip>{{ 'textSkill' | translate }}</md-tooltip>
+                </div>
             </div>
         </md-content>
     </md-sidenav>
