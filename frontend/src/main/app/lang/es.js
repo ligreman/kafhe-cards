@@ -78,6 +78,7 @@
             'textNoMoneyToFusion': 'No tienes suficientes tostólares',
             'textLevelUpCard': 'Subir a nivel',
             'textCallTimes': 'Has participado {{times}} veces y llamado {{calls}}',
+            'textIsIn': 'esta en',
 
             // TALENTOS
             'combat': 'combate',

@@ -281,7 +281,7 @@
 
                             marker = L.marker([carta.data.place.lat, carta.data.place.long], {
                                 icon: $this.generatePlayerIcon(user.avatar, enemy),
-                                title: user.alias + ' está en ' + carta.name,
+                                title: user.alias + ' ' + $translate.instant('textIsIn') + ' ' + carta.name,
                                 opacity: 0.9,
                                 zIndexOffset: 90
                             }).bindPopup(html);
@@ -315,8 +315,9 @@
                 }])
         .controller('LeftCtrl', ['$scope', '$log', function ($scope, $log) {
         }])
-        .controller('RightCtrl', ['$scope', '$mdDialog', function ($scope, $mdDialog) {
+        .controller('RightCtrl', ['$scope', '$mdDialog', 'CONSTANTS', function ($scope, $mdDialog, CONSTANTS) {
             $scope.showCardDialog = fnShowCardDialog;
+            $scope.roman = CONSTANTS.roman;
 
             function fnShowCardDialog(event, card) {
                 $mdDialog.show({

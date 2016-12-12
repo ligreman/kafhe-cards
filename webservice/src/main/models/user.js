@@ -49,7 +49,7 @@ module.exports = function (mongoose) {
                 skill: [{
                     card: {type: String, default: null},
                     level: Number,
-                    used: {type: Boolean, default: false}
+                    uses: {type: Number, default: 0}
                 }],
                 place: [{
                     card: {type: String, default: null},

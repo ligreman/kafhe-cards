@@ -182,3 +182,14 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+.character-equipment:hover {
+    cursor: pointer;
+    background: #525252;
+}
+
+.character-equipment img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+}
