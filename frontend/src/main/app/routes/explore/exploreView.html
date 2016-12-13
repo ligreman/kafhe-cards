@@ -89,9 +89,11 @@
             </div>
 
             <!-- EQUIPAMIENTO -->
-            <h3>{{'textPlanningTeam'|translate}}</h3>
+            <h3 ng-hide="global.user.game.schedule.weapon.length===0 && global.user.game.schedule.armor.length===0 && global.user.game.schedule.place.length===0">
+                {{'textPlanningTeam'|translate}}
+            </h3>
             <div layout="row" layout-align="start center" class="character-equipment" layout-margin
-                 ng-if="global.user.game.schedule.weapon.length>0"
+                 ng-if="global.user.game.schedule.weapon.length > 0"
                  ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.weapon[0].card], global.user.game.schedule.weapon[0].level)">
                 <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/weapon.png"/>
                 <p class="text-bold text-big">
@@ -100,7 +102,7 @@
                 <md-tooltip>{{'textWeapon'|translate}}</md-tooltip>
             </div>
             <div layout="row" layout-align="start center" class="character-equipment" layout-margin
-                 ng-if="global.user.game.schedule.armor.length>0"
+                 ng-if="global.user.game.schedule.armor.length > 0"
                  ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.armor[0].card], global.user.game.schedule.armor[0].level)">
                 <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/armor.png"/>
                 <p class="text-bold text-big">
@@ -109,7 +111,7 @@
                 <md-tooltip>{{'textArmor'|translate}}</md-tooltip>
             </div>
             <div layout="row" layout-align="start center" class="character-equipment" layout-margin
-                 ng-if="global.user.game.schedule.place.length>0"
+                 ng-if="global.user.game.schedule.place.length > 0"
                  ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.place[0].card], global.user.game.schedule.place[0].level)">
                 <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/compass.png"/>
                 <p class="text-bold text-big">

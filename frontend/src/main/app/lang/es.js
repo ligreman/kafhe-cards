@@ -79,6 +79,7 @@
             'textLevelUpCard': 'Subir a nivel',
             'textCallTimes': 'Has participado {{times}} veces y llamado {{calls}}',
             'textIsIn': 'esta en',
+            'textCallAndSeeOrder': 'Ver los pedidos y llamar',
 
             // TALENTOS
             'combat': 'combate',

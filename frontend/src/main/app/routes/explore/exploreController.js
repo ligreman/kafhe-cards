@@ -138,7 +138,7 @@
                              zIndexOffset: 100
                              }).addTo(map).bindPopup("I am a green leaf.");*/
 
-                            var marker = L.marker([-51.82, -105.21]).addTo(map);
+                            // var marker = L.marker([-51.82, -105.21]).addTo(map);
 
                             // Mi ruta seguida
                             var ruta = [];
@@ -239,7 +239,7 @@
                                 shadowSize: [41, 41], // size of the shadow
                                 iconAnchor: [12, 40], // point of the icon which will correspond to marker's location
                                 shadowAnchor: [12, 41],  // the same for the shadow
-                                popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+                                popupAnchor: [0, -45] // point from which the popup should open relative to the iconAnchor
                             }
                         });
 
@@ -252,7 +252,6 @@
                     function fnGetPlayerMarkers() {
                         var marker, markers = [];
                         $this.users.forEach(function (user) {
-
                             if (!user.game.schedule.place || user.game.schedule.place.length === 0) {
                                 return;
                             }
@@ -285,7 +284,7 @@
                                 opacity: 0.9,
                                 zIndexOffset: 90
                             }).bindPopup(html);
-
+                            console.log(marker);
                             markers.push(marker);
                         });
 

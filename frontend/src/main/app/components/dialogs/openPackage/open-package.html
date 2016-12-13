@@ -17,7 +17,7 @@
                     <h3>{{'textPacksSource' | translate}} {{ pack.source }}</h3>
                     <p>{{'textPacksAmount' | translate}} {{ pack.amount }}</p>
                 </div>
-                <md-button class="md-secondary md-primary md-hue-2" ng-click="open(pack.category)" aria-label="">
+                <md-button class="md-secondary md-primary md-hue-1" ng-click="open(pack.category)" aria-label="">
                     {{'textPacksOpen' | translate}}
                 </md-button>
             </md-list-item>
@@ -31,9 +31,10 @@
     </md-dialog-content>
 
     <md-dialog-actions layout="row" layout-align="space-around center">
-        <md-button type="button" class="md-raised md-accent" ng-click="">
+        <md-button type="button" class="md-raised md-accent md-hue-1" ng-click="">
             {{'textBuyPacks' | translate}}
         </md-button>
+
         <md-button type="button" class="md-raised md-primary" ng-click="accept()">
             {{'textClose' | translate}}
         </md-button>

@@ -3,8 +3,8 @@
 
     //Controlador de la pantalla de login
     angular.module('kafhe.controllers').controller('HomeController',
-        ['$scope', 'API', '$translate', '$q', 'CONSTANTS',
-            function ($scope, API, $translate, $q, CONSTANTS) {
+        ['$scope', 'API', '$translate', '$q', 'CONSTANTS', '$window',
+            function ($scope, API, $translate, $q, CONSTANTS, $window) {
                 // Variables
                 var $this = this;
                 $scope.players = {};
@@ -130,7 +130,12 @@
                 }
 
                 function fnLaunchBreakfast() {
-                    // TODO
+                    API.game().launchBreakfast({}, function (response) {
+                        if (response) {
+                            // Refrescamos la página porque ha cambiado el estado
+                            $window.location.reload();
+                        }
+                    });
                 }
 
                 function fnGetNotificationIcon(type) {
