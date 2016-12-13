@@ -183,6 +183,15 @@
                         params: {
                             endpoint: 'stats'
                         }
+                    },
+
+                    // Launch breakfast
+                    launchbreakfast: {
+                        method: 'GET',
+                        headers: {'Authorization': 'Bearer ' + access_token},
+                        params: {
+                            endpoint: 'launchbreakfast'
+                        }
                     }
                 });
             },

@@ -37,7 +37,9 @@ errPacksErrorOpeningPack - Error al abrir el sobre
 errPackCategoryNotFound - No existe esa categoría de sobres
 
 errNoTostolares - No tienes tostólares suficientes
-
+errNoLeader - No eres líder de grupo para lanzar el desayuno
+errNoCaller - No se ha podido elegir llamador
+errSaveCaller - Error salvando datos al elegir llamador
 errRetrievingSystemData - Error al obtener los datos del sistema
 
 --------------------------
