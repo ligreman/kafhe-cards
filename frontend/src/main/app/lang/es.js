@@ -80,6 +80,8 @@
             'textCallTimes': 'Has participado {{times}} veces y llamado {{calls}}',
             'textIsIn': 'esta en',
             'textCallAndSeeOrder': 'Ver los pedidos y llamar',
+            'textSeeImg': 'Ver como imágenes',
+            'textSeeList': 'Ver como lista',
 
             // TALENTOS
             'combat': 'combate',
