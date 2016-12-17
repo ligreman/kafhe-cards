@@ -119,6 +119,7 @@
                         scope: $scope,
                         preserveScope: true,
                         clickOutsideToClose: true,
+                        fullscreen: true,
                         escapeToClose: true,
                         locals: {
                             card: card

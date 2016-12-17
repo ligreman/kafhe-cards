@@ -56,7 +56,7 @@
             'textPacksAmount': 'Tienes',
             'textPacksOpen': 'Abrir',
             'textRefresh': 'Refrescar',
-            'textSacrifice': 'El público ha elegido sacrificar a',
+            'textSacrifice': 'El público ha decidido que le toca pringar a...',
             'textCall': 'Llamar a',
             'textWeekendMessage': 'Tomaos el merecido descanso, hasta el lunes...',
             'textStats': 'Clasificación actual',
@@ -82,6 +82,9 @@
             'textCallAndSeeOrder': 'Ver los pedidos y llamar',
             'textSeeImg': 'Ver como imágenes',
             'textSeeList': 'Ver como lista',
+            'textLaunchDialogTitle': '¿Iniciar la votación?',
+            'textLaunchDialogContent': 'Dar paso a la votación para elegir al perdedor de estos juegos del Kafhe',
+            'textStartVoting': 'Iniciar votación',
 
             // TALENTOS
             'combat': 'combate',

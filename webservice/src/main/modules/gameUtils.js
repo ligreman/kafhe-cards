@@ -11,9 +11,7 @@ var console = process.console,
 
 var calculateUsersProbabilities = fnCalculateUsersProbabilities,
     calculateProbabilitiesByRank = fnCalculateProbabilitiesByRank,
-    calculateFameDifferentials = fnCalculateFameDifferentials,
-    launchBreakfast = fnLaunchBreakfast;
-
+    calculateFameDifferentials = fnCalculateFameDifferentials;
 
 function fnCalculateUsersProbabilities(idGame) {
     var defer = Q.defer();

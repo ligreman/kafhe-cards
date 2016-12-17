@@ -179,7 +179,7 @@
                 function fnTalentClick(talent, nodo, event) {
                     var confirm = $mdDialog.confirm()
                         .title($translate.instant('textTalentAddTitle'))
-                        .content($translate.instant('textTalentAdd', {name: nodo.data.name}))
+                        .textContent($translate.instant('textTalentAdd', {name: nodo.data.name}))
                         .ok($translate.instant('textContinue'))
                         .cancel($translate.instant('textCancel'))
                         .targetEvent(event);

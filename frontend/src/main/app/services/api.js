@@ -186,7 +186,7 @@
                     },
 
                     // Launch breakfast
-                    launchbreakfast: {
+                    launchBreakfast: {
                         method: 'GET',
                         headers: {'Authorization': 'Bearer ' + access_token},
                         params: {

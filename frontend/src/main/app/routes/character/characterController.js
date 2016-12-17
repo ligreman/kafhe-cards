@@ -31,6 +31,7 @@
                         preserveScope: true,
                         clickOutsideToClose: true,
                         escapeToClose: true,
+                        fullscreen: true,
                         locals: {},
                         targetEvent: event
                     });
@@ -44,6 +45,7 @@
                         preserveScope: true,
                         clickOutsideToClose: true,
                         escapeToClose: true,
+                        fullscreen: true,
                         locals: {},
                         targetEvent: event
                     });

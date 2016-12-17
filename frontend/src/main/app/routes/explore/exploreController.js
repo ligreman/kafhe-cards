@@ -343,6 +343,7 @@
                         preserveScope: true,
                         clickOutsideToClose: true,
                         escapeToClose: true,
+                        fullscreen: true,
                         locals: {
                             card: card
                         },

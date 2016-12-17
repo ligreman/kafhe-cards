@@ -66,7 +66,7 @@
                             // Si no es ITO pediré confirmación
                             var confirm = $mdDialog.confirm()
                                 .title($translate.instant('textOrderNoItoTitle'))
-                                .content($translate.instant('textOrderNoItoContent'))
+                                .textContent($translate.instant('textOrderNoItoContent'))
                                 .ok($translate.instant('textContinue'))
                                 .cancel($translate.instant('textCancel'))
                                 .targetEvent(event);
@@ -201,6 +201,7 @@
                             scope: $scope,
                             preserveScope: true,
                             clickOutsideToClose: true,
+                            fullscreen: true,
                             escapeToClose: true,
                             targetEvent: event
                         });

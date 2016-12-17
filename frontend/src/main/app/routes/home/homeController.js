@@ -3,8 +3,8 @@
 
     //Controlador de la pantalla de login
     angular.module('kafhe.controllers').controller('HomeController',
-        ['$scope', 'API', '$translate', '$q', 'CONSTANTS', '$window',
-            function ($scope, API, $translate, $q, CONSTANTS, $window) {
+        ['$scope', 'API', '$translate', '$q', 'CONSTANTS', '$window', '$mdDialog',
+            function ($scope, API, $translate, $q, CONSTANTS, $window, $mdDialog) {
                 // Variables
                 var $this = this;
                 $scope.players = {};
@@ -130,11 +130,22 @@
                 }
 
                 function fnLaunchBreakfast() {
-                    API.game().launchBreakfast({}, function (response) {
-                        if (response) {
-                            // Refrescamos la página porque ha cambiado el estado
-                            $window.location.reload();
-                        }
+                    // Pido confirmación del lanzado
+                    var confirm = $mdDialog.confirm()
+                        .title($translate.instant('textLaunchDialogTitle'))
+                        .textContent($translate.instant('textLaunchDialogContent'))
+                        .ok($translate.instant('textStartVoting'))
+                        .cancel($translate.instant('textCancel'))
+                        .targetEvent(event);
+
+                    $mdDialog.show(confirm).then(function () {
+                        // OK, envío el pedido
+                        API.game().launchBreakfast({}, function (response) {
+                            if (response) {
+                                // Refrescamos la página porque ha cambiado el estado de la partida
+                                $window.location.reload();
+                            }
+                        });
                     });
                 }
 

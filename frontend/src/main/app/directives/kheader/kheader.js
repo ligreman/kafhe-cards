@@ -77,6 +77,7 @@
                             scope: $scope,
                             preserveScope: true,
                             clickOutsideToClose: true,
+                            fullscreen: true,
                             escapeToClose: true,
                             targetEvent: $event
                         }).then(function (result) {

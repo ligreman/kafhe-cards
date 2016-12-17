@@ -176,27 +176,43 @@ module.exports = function (app) {
 
         Q.all([
             gameUtils.calculateUsersProbabilities(idGame),
-            cardDao.getCards('capital', true),
+            cardDao.getPlaceCards('capital', true),
             models.Game.findById(idGame).exec()
         ]).spread(function (result, capitalsIds, game) {
+            console.log("Obtengo de BBDD");
+            console.log(result);
+            // console.log(capitalsIds);
+            // console.log(game);
+            console.log('--------------------------------');
+
             var probs = result.probabilities;
             var users = result.users;
 
             // Lanzo el "dado" de 100 caras 1 vez
             var tirada = utils.rollDice(1, 100);
 
+            console.log("La tirada:" + tirada);
+
             var anterior = 0;
-            probs.forEach(function (valor, userId) {
-                if (valor == 0) {
-                    return;
-                }
+            for (var userId in probs) {
+                if (probs.hasOwnProperty(userId)) {
+                    var valor = probs[userId];
+                    console.log("Miro probab de " + userId + " que es " + valor);
+                    valor = parseInt(valor);
 
-                if (((anterior + 1) <= tirada) && (tirada <= (anterior + valor))) {
-                    caller = userId;
-                }
+                    if (valor == 0) {
+                        return;
+                    }
 
-                anterior += valor;
-            });
+                    if (((anterior + 1) <= tirada) && (tirada <= (anterior + valor))) {
+                        caller = userId;
+                    }
+
+                    anterior += valor;
+                }
+            }
+
+            console.log("Le toca llamar a " + caller);
 
             if (!caller) {
                 console.tag('GAME-LAUNCH').error('No se ha podido elegir llamador');
@@ -260,6 +276,8 @@ module.exports = function (app) {
                 promesas.push(user.save());
             });
 
+            console.log("he terminado con los usuarios");
+
             // Cambio el game de status y pongo el caller
             game.status = config.GAME_STATUS.closed;
             game.caller = caller;
@@ -267,9 +285,13 @@ module.exports = function (app) {
             game.times = game.times + 1;
             promesas.push(game.save());
 
+            console.log("termino con el game");
+
             Q.allSettled(promesas).then(function (results) {
                 var resultado = true, razon = '';
                 results.forEach(function (result) {
+                    console.log("Promesas cumplidas");
+                    console.log(result);
                     if (result.state !== "fulfilled") {
                         resultado = result.value;
                         razon = result.reason;
@@ -281,7 +303,8 @@ module.exports = function (app) {
                     utils.error(res, 400, 'errSaveCaller');
                     return;
                 }
-
+                console.log("Respondo");
+                console.log(llamador);
                 responseUtils.responseJson(res, {
                     "caller": {
                         id: llamador._id,
