@@ -50,9 +50,10 @@
     <!-- Durante estado cerrado muestro el resultado del lanzamiento si hay -->
     <div ng-show="global.gamedata.status === gameStatuses.closed" layout="column" layout-align="center center"
          layout-fill>
-        <h1 class="text-center">{{'textSacrifice' | translate}} <em>{{ players[global.gamedata.caller] }}</em></h1>
+        <!--<h1 class="text-center">{{'textSacrifice' | translate}} <em>{{ players[global.gamedata.caller] }}</em></h1>-->
+        <h1 class="text-center" id="resultCaller"></h1>
         <div ng-if="global.gamedata.caller === global.user._id">
-            <md-button class="md-raised md-accent md-hue-1" aria-label="" ng-click="goToPage('breakfast')">
+            <md-button ng-show="callerMe" class="md-raised md-accent md-hue-1" aria-label="" ng-click="goToPage('breakfast')">
                 <md-icon>room_service</md-icon>
                 {{'textCallAndSeeOrder' | translate}}
             </md-button>

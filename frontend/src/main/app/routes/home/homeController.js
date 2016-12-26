@@ -9,6 +9,7 @@
                 var $this = this;
                 $scope.players = {};
                 $scope.gameStatuses = CONSTANTS.gameStatuses;
+                $scope.callerMe = false;
 
                 // Funciones
                 $scope.getNotifications = fnGetNotifications;
@@ -23,24 +24,54 @@
                  * Una vez he terminado de actualizar los datos
                  */
                 function fnAfterUpdate() {
-                    // Pido las estadísticas y datos de partida
-                    $q.all([
-                        API.game().stats().$promise,
-                        API.user().list().$promise
-                    ]).then(function (results) {
-                        if (results[0] && results[1]) {
-                            var stats = results[0].data.probabilities;
-                            var ranks = results[0].data.ranking;
-                            var fames = results[0].data.fame;
+                    // Pido las estadísticas y datos de partida si el estado no es cerrado
+                    if ($scope.global.gamedata.status === CONSTANTS.gameStatuses.planning ||
+                        $scope.global.gamedata.status === CONSTANTS.gameStatuses.explore ||
+                        $scope.global.gamedata.status === CONSTANTS.gameStatuses.resolution) {
+                        $q.all([
+                            API.game().stats().$promise,
+                            API.user().list().$promise
+                        ]).then(function (results) {
+                            if (results[0] && results[1]) {
+                                var stats = results[0].data.probabilities;
+                                var ranks = results[0].data.ranking;
+                                var fames = results[0].data.fame;
 
-                            results[1].data.players.forEach(function (user) {
-                                $scope.players[user._id] = user.alias;
-                            });
+                                results[1].data.players.forEach(function (user) {
+                                    $scope.players[user._id] = user.alias;
+                                });
 
-                            $this.generateProbabilities(stats);
-                            $this.generateRanksAndFame(ranks, fames);
-                        }
-                    });
+                                $this.generateProbabilities(stats);
+                                $this.generateRanksAndFame(ranks, fames);
+                            }
+                        });
+                    }
+
+                    // Si está cerrado muestro el resultado
+                    if ($scope.global.gamedata.status === CONSTANTS.gameStatuses.closed) {
+                        $q.all([
+                            API.user().list().$promise
+                        ]).then(function (results) {
+                            if (results[0]) {
+                                results[0].data.players.forEach(function (user) {
+                                    $scope.players[user._id] = user.alias;
+                                });
+
+                                var txt1 = $translate.instant('textSacrifice');
+                                var txt2 = $scope.players[$scope.global.gamedata.caller];
+
+                                $("#resultCaller").typed({
+                                    // Waits 1000ms after typing "First"
+                                    strings: [txt1 + ' ^2000<br><br>' + txt2],
+                                    typeSpeed: 100,
+                                    showCursor: false,
+                                    callback: function () {
+                                        $scope.callerMe = true;
+                                    }
+                                });
+                            }
+                        });
+                    }
                 }
 
                 function fnGenerateProbabilities(stats) {
