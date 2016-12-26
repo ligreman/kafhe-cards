@@ -9,6 +9,10 @@
     commonModule.factory('KCommon', [
         function () {
             function objToArray(obj) {
+                if (!obj) {
+                    return null;
+                }
+
                 return Object.keys(obj).map(function (key) {
                     return obj[key];
                 });
