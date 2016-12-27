@@ -288,7 +288,7 @@ module.exports = function (grunt) {
         // Concurrent tasks
         concurrent: {
             dev: {
-                tasks: ['karma:dev', 'watch'],
+                tasks: ['watch'],
                 options: {logConcurrentOutput: true}
             },
             devphp: {
