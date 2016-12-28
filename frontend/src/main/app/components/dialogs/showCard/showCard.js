@@ -3,11 +3,12 @@
 
     angular.module('kafhe.controllers')
         .controller('ShowCard',
-            ['$scope', '$rootScope', '$translate', '$mdDialog', 'card', 'CONSTANTS',
-                function ($scope, $rootScope, $translate, $mdDialog, card, CONSTANTS) {
+            ['$scope', '$rootScope', '$translate', '$mdDialog', 'card', 'CONSTANTS', 'KGame',
+                function ($scope, $rootScope, $translate, $mdDialog, card, CONSTANTS, KGame) {
 
                     $scope.roman = CONSTANTS.roman;
                     $scope.card = card;
+                    $scope.cardTextType = KGame.cardTextType;
                     $scope.isPlace = fnIsPlace;
                     $scope.isWeapon = fnIsWeapon;
                     $scope.isArmor = fnIsArmor;

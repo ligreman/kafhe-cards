@@ -77,10 +77,30 @@
                     return tipo;
                 };
 
+                /**
+                 * Obtiene el texto para traducciones a partir de una carta y su tipo
+                 * @param card
+                 */
+                var cardTextType = function (card) {
+                    var texto = '';
+                    if (card.type === CONSTANTS.cardTypes.place) {
+                        texto = card.data.place.type;
+
+                        if (card.data.place.subtype) {
+                            texto += card.data.place.subtype;
+                        }
+                    } else {
+                        texto = card.type;
+                    }
+
+                    return 'text' + texto.capitalizeFirstLetter();
+                };
+
                 //Expongo los métodos del servicio
                 return {
                     getGameData: getGameData,
-                    cardTypeImage: cardTypeImage
+                    cardTypeImage: cardTypeImage,
+                    cardTextType: cardTextType
                 };
             }
         ]);

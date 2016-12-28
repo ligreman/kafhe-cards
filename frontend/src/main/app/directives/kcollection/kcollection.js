@@ -23,6 +23,7 @@
                 $scope.isEncounter = fnIsEncounter;
                 $scope.isEvent = fnIsEvent;
                 $scope.cardTypeImage = KGame.cardTypeImage;
+                $scope.cardTextType = KGame.cardTextType;
                 $scope.getNumber = fnGetNumber;
                 $scope.toggleView = fnToggleView;
 

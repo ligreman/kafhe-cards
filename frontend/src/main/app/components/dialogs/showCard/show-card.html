@@ -27,7 +27,7 @@
             <div flex layout-padding class="card-detail">
                 <p class="text-bold">{{ card.name }}</p>
                 <p class="text-italic">
-                    {{ 'text' + cardTypeImage(card).charAt(0).toUpperCase() + cardTypeImage(card).slice(1) | translate}}
+                    {{ cardTextType(card) | translate}}
                     <span ng-if="card.element !== 'none' && (isWeapon(card) || isArmor(card) || isSkill(card))"> {{ 'cardElementDescription-'+card.element | translate }}</span>
                     <span ng-if="card.element !== 'none' && (isEncounter(card) || isEvent(card))"> {{ 'cardElementOf-'+card.element | translate }}</span>
                     <span ng-if="!isPlace(card)"> {{ 'cardLevelDescription' | translate:{level:roman[card.level]} }}</span>

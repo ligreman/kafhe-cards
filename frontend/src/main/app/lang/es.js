@@ -42,6 +42,7 @@
             'textPlace': 'Lugar',
             'textPlaces': 'Lugares',
             'textTown': 'Ciudad',
+            'textCapital': 'Capital',
             'textDungeon': 'Mazmorra',
             'textZonedesert': 'Desierto',
             'textZoneforest': 'Bosque',
