@@ -34,7 +34,7 @@ module.exports = function (grunt) {
                     then: function (results, done) {
                         if (results['input.webserviceurl']) {
                             var str = results['input.webserviceurl'];
-                            console.log(results);
+                            // console.log(results);
                             if (str.substr(-1) === '/') {
                                 grunt.config.set('input.webserviceurl', str.substr(0, str.length - 1));
                             }
@@ -55,8 +55,10 @@ module.exports = function (grunt) {
                 options: {
                     patterns: [
                         {
-                            match: /(webServiceUrl:[ '"]{1,2})(http:\/\/localhost:8080)(\/['"]{1})/i,
-                            replacement: '$1<%= grunt.config("input.webserviceurl") %>$3'
+                            // match: /(webServiceUrl:[ '"]{1,2})(http:\/\/localhost:8080)(\/['"]{1})/i,
+                            // replacement: '$1<%= grunt.config("input.webserviceurl") %>$3'
+                            match: /webServiceUrl: 'http:\/\/localhost:8080\//,
+                            replacement: 'webServiceUrl: \'<%= grunt.config("input.webserviceurl") %>/'
                         }
                     ]
                 },
@@ -219,7 +221,7 @@ module.exports = function (grunt) {
                 flow: {
                     steps: {
                         //js: ['concat', 'uglify'],
-						js: ['concat'],
+                        js: ['concat'],
                         css: ['concat']
                     },
                     post: {}
@@ -386,6 +388,11 @@ module.exports = function (grunt) {
             'build'
         ]);
     });
+
+    grunt.registerTask('prueba', [
+        'prompt:webservice',
+        'replace:webservice'
+    ]);
 
 
     // Package the dist.
