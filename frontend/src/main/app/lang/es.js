@@ -52,6 +52,8 @@
             'textDifficulty': 'Dificultad',
             'textCardDetail': 'Detalle de la carta',
             'textLevelUp': 'Subir de nivel',
+            'textInventory': 'Inventario',
+            'textPacks': 'Sobres',
             'textPackDetail': 'Sobres de cartas',
             'textPacksSource': 'Sobre de',
             'textPacksAmount': 'Tienes',
@@ -75,6 +77,8 @@
             'textDisconnect': 'Desconectar',
             'textLeader': 'Líder',
             'textLeaderGroup': 'Líder de grupo',
+            'textTalents': 'Talentos',
+            'textCollection': 'Colección de cartas',
             'textCostTalent': 'Puntos requeridos',
             'textNoMoneyToFusion': 'No tienes suficientes tostólares',
             'textLevelUpCard': 'Subir a nivel',
@@ -86,6 +90,7 @@
             'textLaunchDialogTitle': '¿Iniciar la votación?',
             'textLaunchDialogContent': 'Dar paso a la votación para elegir al perdedor de estos juegos del Kafhe',
             'textStartVoting': 'Iniciar votación',
+            'textFuseCards': 'Fusionar cartas',
 
             // TALENTOS
             'combat': 'combate',

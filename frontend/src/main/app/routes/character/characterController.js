@@ -3,8 +3,8 @@
 
     // Controlador de la pantalla de login
     angular.module('kafhe.controllers').controller('CharacterController',
-        ['$scope', '$log', 'KShare', '$mdDialog',
-            function ($scope, $log, KShare, $mdDialog) {
+        ['$scope', '$log', 'KShare', '$mdDialog', '$translate',
+            function ($scope, $log, KShare, $mdDialog, $translate) {
                 $scope.viewing = 'talents';
 
                 $scope.toggle = fnToggle;
@@ -15,12 +15,8 @@
                 // Actualizo los datos del juego si hace falta
                 $scope.updateGameData();
 
-                function fnToggle() {
-                    if ($scope.viewing === 'collection') {
-                        $scope.viewing = 'talents';
-                    } else {
-                        $scope.viewing = 'collection';
-                    }
+                function fnToggle(donde) {
+                    $scope.viewing = donde;
                 }
 
                 function fnCardLevelUpDialog(event) {

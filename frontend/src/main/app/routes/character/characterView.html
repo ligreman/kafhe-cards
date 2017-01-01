@@ -1,61 +1,44 @@
 <section id="character-page" flex ng-class="{ 'wide': !isSmallScreen() }" layout="column">
-    <md-toolbar class="kafhe-background-black" flex="none">
-        <div class="md-toolbar-tools" layout-align="space-around center">
-            <div flex="30" flex-gt-sm="20">
-                <md-button class="md-raissed md-primary md-hue-1" aria-label=""
-                           ng-show="!isSmallScreen() && (viewing === 'collection')"
-                           ng-click="toggle()">
-                    <md-icon>navigate_before</md-icon>
-                    <span>Talentos</span>
-                </md-button>
-                <div ng-show="isSmallScreen() && (viewing === 'collection')" ng-click="toggle()">
-                    <md-icon>navigate_before</md-icon>
-                    <md-icon>device_hub</md-icon>
-                </div>
-            </div>
-
-            <h2 flex="noshrink" class="text-center" ng-show="viewing === 'talents'">
-                <md-icon class="icon-size-inherit" ng-hide="isSmallScreen()">device_hub</md-icon>
-                <span ng-if="!isSmallScreen()">Talentos del personaje</span>
-                <span ng-if="isSmallScreen()">Talentos</span>
-            </h2>
-            <h2 flex="noshrink" class="text-center" ng-show="viewing === 'collection'">
-                <md-icon class="icon-size-inherit" ng-hide="isSmallScreen()">view_comfy</md-icon>
-                <span ng-if="!isSmallScreen()">Colección de cartas</span>
-                <span ng-if="isSmallScreen()">Colección</span>
-            </h2>
-
-            <div flex="40" flex-gt-sm="20" layout="row" layout-align="end center">
-                <md-button class="md-raissed md-primary md-hue-1" aria-label=""
-                           ng-show="!isSmallScreen() && (viewing === 'talents')"
-                           ng-click="toggle()">
-                    <span>Colección</span>
-                    <md-icon>navigate_next</md-icon>
-                </md-button>
-                <div ng-show="isSmallScreen() && (viewing === 'talents')" ng-click="toggle()">
-                    <md-icon>view_comfy</md-icon>
-                    <md-icon>navigate_next</md-icon>
-                </div>
-                <div ng-show="(viewing === 'collection')" layout="row">
-                    <md-button class="md-icon-button md-accent md-hue-3" aria-label=""
-                               ng-click="cardLevelUpDialog($event)">
-                        <md-icon>plus_one</md-icon>
-                        <md-tooltip md-delay="500">Fusionar cartas</md-tooltip>
-                    </md-button>
-                    <md-button class="md-icon-button md-primary md-hue-2" aria-label=""
-                               ng-click="openPackageDialog($event)">
-                        <md-icon>view_carousel</md-icon>
-                        <md-tooltip md-delay="500">Sobres</md-tooltip>
-                    </md-button>
-                </div>
-            </div>
-        </div>
-    </md-toolbar>
+    <md-tabs class="kafhe-char-tabs" md-dynamic-height md-no-pagination
+             md-stretch-tabs="always" md-selected="0">
+        <md-tab id="tab1" ng-click="toggle('talents')">
+            <!--<md-tab-label>{{ getLabel('talents') }}</md-tab-label>-->
+            <md-tab-label>
+                <span><md-icon>device_hub</md-icon></span>
+                <span ng-if="!isSmallScreen()">{{ 'textTalents' | translate }}</span>
+            </md-tab-label>
+        </md-tab>
+        <md-tab id="tab2" ng-click="toggle('collection')">
+            <md-tab-label>
+                <span><md-icon>view_comfy</md-icon></span>
+                <span ng-if="!isSmallScreen()">{{ 'textCollection' | translate }}</span>
+            </md-tab-label>
+        </md-tab>
+        <md-tab id="tab3" ng-click="toggle('inventory')">
+            <md-tab-label>
+                <span><md-icon>work</md-icon></span>
+                <span ng-if="!isSmallScreen()">{{ 'textInventory' | translate }}</span>
+            </md-tab-label>
+        </md-tab>
+    </md-tabs>
 
     <md-content flex>
         <!-- COLECCIÓN -->
-        <div id="character-collection" class="y-scroll" ng-hide="viewing === 'talents'" layout-padding>
-            <k-collection card-collection="global.user.game.collection"></k-collection>
+        <div id="character-collection" class="y-scroll" ng-hide="viewing === 'talents'">
+            <div layout="row" layout-align="end center">
+                <md-button class="md-accent md-hue-3" md-no-ink aria-label=""
+                           ng-click="cardLevelUpDialog($event)">
+                    {{ 'textFuseCards' | translate }}
+                </md-button>
+                <md-button class="md-accent md-hue-3" md-no-ink aria-label=""
+                           ng-click="openPackageDialog($event)">
+                    {{ 'textPacks' | translate }}
+                </md-button>
+            </div>
+            <md-divider></md-divider>
+            <div layout-padding>
+                <k-collection card-collection="global.user.game.collection"></k-collection>
+            </div>
         </div>
 
         <!-- TALENTOS -->

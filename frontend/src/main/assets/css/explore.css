@@ -197,3 +197,17 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
 .small-avatar {
     width: 64px;
 }
+
+.kafhe-char-tabs {
+    background: #000 !important;
+}
+
+.kafhe-char-tabs md-tab-item.md-active {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.kafhe-char-tabs md-ink-bar {
+    background: #4CAF50;
+    height: 5px;
+}
