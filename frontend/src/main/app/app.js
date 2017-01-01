@@ -111,10 +111,10 @@
                 'hue-3': '500'
             });
     }]);
+
+
+    // COMMON
+    String.prototype.capitalizeFirstLetter = function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
 })();
-
-
-// COMMON
-String.prototype.capitalizeFirstLetter = function () {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}

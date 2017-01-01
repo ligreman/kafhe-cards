@@ -218,7 +218,8 @@ module.exports = function (grunt) {
                 dest: '<%= config.dist %>',
                 flow: {
                     steps: {
-                        js: ['concat', 'uglify'],
+                        //js: ['concat', 'uglify'],
+						js: ['concat'],
                         css: ['concat']
                     },
                     post: {}
@@ -367,7 +368,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concat:generated',
         //'cssmin:generated',
-        'uglify:generated',
+        //'uglify:generated',
         'usemin',
         'cleanempty',
         'clean:end',

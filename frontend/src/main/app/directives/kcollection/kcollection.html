@@ -235,7 +235,10 @@
                         ng-repeat="card in collection | filter:isPlace | orderBy:'name' as filteredFP track by $index"
                         md-rowspan="1" md-colspan="1" ng-class="card.element"
                         ng-click="cardClick($event, card)">
-                    <div class="card-type"><img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/></div>
+                    <div class="card-type">
+                        <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png"/>
+                        <md-tooltip md-direction="top" md-delay="700">{{ cardTextType(card) | translate }}</md-tooltip>
+                    </div>
                     <div class="card-level-place" layout="column" layout-align="center center">
                         <md-icon class="md-accent md-hue-3"
                                  ng-repeat="i in getNumber(card.data.place.level) track by $index">
@@ -366,7 +369,9 @@
                 <md-list-item class="md-2-line"
                               ng-repeat="card in collection | filter:isPlace  | orderBy:'name' as filteredLP track by $index"
                               ng-click="cardClick($event, card)">
-                    <div class="tinter" ng-class="card.element"></div>
+                    <div class="tinter" ng-class="card.element">
+                        <md-tooltip md-direction="top" md-delay="700">{{ cardTextType(card) | translate }}</md-tooltip>
+                    </div>
                     <img ng-src="assets/img/cardtype/{{cardTypeImage(card)}}.png" class="md-avatar" alt=""/>
                     <div class="md-list-item-text">
                         <h3>{{ card.name }}</h3>
