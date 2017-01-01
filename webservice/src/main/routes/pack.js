@@ -79,6 +79,7 @@ module.exports = function (app) {
 
                 //Info a devolver
                 newCardInfo.push({
+                    "card": carta.id,
                     "type": carta.type,
                     "data": carta.data,
                     "effects": carta.effects,

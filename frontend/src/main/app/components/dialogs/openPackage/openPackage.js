@@ -6,7 +6,7 @@
             ['$scope', '$rootScope', '$translate', '$mdDialog', 'CONSTANTS', 'API',
                 function ($scope, $rootScope, $translate, $mdDialog, CONSTANTS, API) {
 
-                    $scope.cartasSobre = null;
+                    $scope.cartasSobre = [];
 
 
                     /*********************************************************************/

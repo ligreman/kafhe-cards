@@ -23,9 +23,15 @@
             </md-list-item>
         </md-list>
 
-        <div ng-show="cartasSobre" layout="row">
-            <div ng-repeat="card in cartasSobre track by $index">
-                <p>{{card.name}}</p>
+        <div ng-show="cartasSobre" layout="row" layout-padding>
+            <p ng-if="cartasSobre.length === 0">No tienes sobres</p>
+            <p ng-if="cartasSobre.length > 0">Cartas nuevas</p>
+            <div ng-repeat="card in cartasSobre track by $index" flex>
+                <div flex class="schedule-card-holder filled" layout-align="center center" layout="column"
+                     ng-class="card.element">
+                    <img ng-src="assets/img/cards/{{card.card}}.jpg"/>
+                    <span>{{card.name}}</span>
+                </div>
             </div>
         </div>
     </md-dialog-content>
