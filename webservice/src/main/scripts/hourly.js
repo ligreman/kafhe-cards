@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 'use strict';
 
 // Hora en España
@@ -7,17 +9,25 @@ var fecha = new Date(),
     hora = fecha.getHours(), //0-23
     dia = fecha.getDay(); //0-6 siendo 0 domingo
 
-// var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0\\development\\webservice\\';
+var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0_cards\\development\\webservice\\';
+basePath += 'src/main/';
+
+// var isOpenshift = process.env.OPENSHIFT_REPO_DIR;
+// var basePath = '';
+// if (isOpenshift !== undefined || isOpenshift !== null) {
+// basePath='';
+// }
+
 var mongoose = require('mongoose');
 var mongoHost = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/kafhe';
 mongoose.connect(mongoHost, {});
 mongoose.Promise = require('q').Promise;
 
-require('../models/createModels')(mongoose);
+require(basePath + 'models/createModels')(mongoose);
 
-var config = require('../modules/config'),
-    gameDao = require('../modules/dao/gameDao'),
-    userDao = require('../modules/dao/userDao'),
+var config = require(basePath + 'modules/config'),
+    gameDao = require(basePath + 'modules/dao/gameDao'),
+    userDao = require(basePath + 'modules/dao/userDao'),
     // events = require('events'),
     Q = require('q');
 
@@ -67,8 +77,8 @@ var config = require('../modules/config'),
 
  */
 
-dia = 5;
-hora = 15;
+// dia = 5;
+// hora = 15;
 
 
 switch (dia) {
@@ -81,6 +91,7 @@ switch (dia) {
     case 1:
         // 1:00 AM
         if (hora === 1) {
+            console.log('LUNES - 1AM');
             Q.all([
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.weekend, config.GAME_STATUS.planning),
                 userDao.usersDailyReset('all')
@@ -96,6 +107,7 @@ switch (dia) {
 
         // 8:00 AM
         if (hora === 8) {
+            console.log('LUNES - 8AM');
             Q.all([
                 userDao.usersAFK('all', false)
             ]).spread(function (result) {
@@ -109,6 +121,7 @@ switch (dia) {
 
         // 11:00 AM
         if (hora === 11) {
+            console.log('LUNES - 11AM');
             Q.all([
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
             ]).spread(function (result) {
@@ -127,10 +140,14 @@ switch (dia) {
      *  - A las 11:00am inicio los segundos juegos de la semana, pongo el estado en explore
      */
     case 2:
+        console.log('MARTES');
     case 3:
+        console.log('MIÉRCOLES');
     case 4:
+        console.log('JUEVES');
         // 1:00 AM
         if (hora === 1) {
+            console.log('1AM');
             Q.all([
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.planning),
                 userDao.usersDailyReset('all')
@@ -146,6 +163,7 @@ switch (dia) {
 
         // 11:00 AM
         if (hora === 11) {
+            console.log('11AM');
             Q.all([
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
             ]).spread(function (result) {
@@ -171,6 +189,7 @@ switch (dia) {
     case 5:
         // 1:00 AM
         if (hora === 1) {
+            console.log('VIERNES - 1AM');
             Q.all([
                 gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.resolution),
                 userDao.usersDailyReset('all')
@@ -186,6 +205,7 @@ switch (dia) {
 
         // 15:00 PM
         if (hora === 15) {
+            console.log('VIERNES - 15PM');
             // Respetar el orden de ejecución
             Q.all([
                 userDao.usersBreakfastReset('all')

@@ -5,7 +5,11 @@ module.exports = function (mongoose) {
         message: String,
         params: String,
         source: String,
-        'type': {type: String, enum: ['system', 'skill'], required: true}, // combat, exploration,
+        'type': {
+            type: String,
+            enum: ['system', 'explore', 'encounter', 'defeat', 'move', 'combat', 'victory', 'skill', 'reward', 'adversity'],
+            required: true
+        },
         timestamp: Number
     }, {versionKey: false});
 

@@ -14,7 +14,7 @@
             <md-list-item class="md-2-line" ng-repeat="pack in global.user.game.packs track by $index">
                 <md-icon>stay_current_portrait</md-icon>
                 <div class="md-list-item-text" layout="column">
-                    <h3>{{'textPacksSource' | translate}} {{ pack.source }}</h3>
+                    <h3>{{ pack.source }}</h3>
                     <p>{{'textPacksAmount' | translate}} {{ pack.amount }}</p>
                 </div>
                 <md-button class="md-secondary md-primary md-hue-1" ng-click="open(pack.category)" aria-label="">

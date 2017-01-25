@@ -26,14 +26,57 @@ module.exports = function (mongoose) {
             },
             weapon: {
                 alias: String,
-                'type': {type: String, enum: ['bladed', 'piercing', 'blunt']}
+                'type': {type: String, enum: ['bladed', 'piercing', 'blunt']},
+                stats: {
+                    1: {attack: Number, damage: Number, special: String, description: String},
+                    2: {attack: Number, damage: Number, special: String, description: String},
+                    3: {attack: Number, damage: Number, special: String, description: String}
+                }
             },
             armor: {
                 alias: String,
-                'type': {type: String, enum: ['mail', 'scale', 'padded']}
+                'type': {type: String, enum: ['mail', 'scale', 'padded']},
+                stats: {
+                    1: {parry: Number, defense: Number, speed: Number, special: String, description: String},
+                    2: {parry: Number, defense: Number, speed: Number, special: String, description: String},
+                    3: {parry: Number, defense: Number, speed: Number, special: String, description: String}
+                }
             },
             skill: {
-                uses: Number
+                uses: Number,
+                target: {type: String, enum: ['self', 'enemy']},
+                stats: {
+                    1: {
+                        attack: Number,
+                        damage: Number,
+                        parry: Number,
+                        defense: Number,
+                        speed: Number,
+                        life: Number,
+                        special: String,
+                        description: String
+                    },
+                    2: {
+                        attack: Number,
+                        damage: Number,
+                        parry: Number,
+                        defense: Number,
+                        speed: Number,
+                        life: Number,
+                        special: String,
+                        description: String
+                    },
+                    3: {
+                        attack: Number,
+                        damage: Number,
+                        parry: Number,
+                        defense: Number,
+                        speed: Number,
+                        life: Number,
+                        special: String,
+                        description: String
+                    }
+                }
             }
         }
     }, {versionKey: false});

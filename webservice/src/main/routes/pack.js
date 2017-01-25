@@ -71,11 +71,27 @@ module.exports = function (app) {
             var newCardInfo = [];
             // Guardo las nuevas cartas en la colección
             newCards.forEach(function (carta) {
-                user.game.collection.push({
-                    _id: utils.generateId(),
-                    level: 1,
-                    card: carta.id
-                });
+                var addToCollection = true;
+
+                // Añado a la lista de desbloqueadas la carta, si no la tenía ya
+                if (user.game.unlocked.indexOf(carta.id) !== -1) {
+                    // Si además de tenerla en desbloqueada es un lugar, no la añadiré a la colección
+                    // así evito duplicar los lugares
+                    if (carta.type === CONSTANTS.cardTypes.place) {
+                        addToCollection = false;
+                    }
+                } else {
+                    // No la tenía en desbloqueadas así que la añado
+                    user.game.unlocked.push(carta.id);
+                }
+
+                if (addToCollection) {
+                    user.game.collection.push({
+                        _id: utils.generateId(),
+                        level: 1,
+                        card: carta.id
+                    });
+                }
 
                 //Info a devolver
                 newCardInfo.push({

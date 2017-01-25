@@ -46,6 +46,7 @@
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuCharacter' | translate }}</md-tooltip>
             </div>
             <div flex layout-fill layout="row" layout-align="center center" class="button"
+                 ng-if="global.gamedata.status !== gameStatuses.weekend"
                  ng-class="{'active': isCurrentPage('breakfast')}" ng-click="goToPage('breakfast')">
                 <span>
                     <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">local_cafe</md-icon>-->
@@ -58,22 +59,25 @@
 
             <div flex="nogrow" layout="row" layout-align="center center">
                 <md-menu md-position-mode="target-right target">
-                    <md-button aria-label="Open demo menu" class="md-icon-button custom-avatar-button"
-                               ng-class="{ 'kafhe-border-yellow': isUserLeader() }"
-                               ng-click="$mdOpenMenu($event)">
-                        <img ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
-                    </md-button>
+                    <div>
+                        <md-button aria-label="Open demo menu" class="md-icon-button custom-avatar-button"
+                                   ng-class="{ 'kafhe-border-yellow': isUserLeader() }"
+                                   ng-click="$mdOpenMenu($event)">
+                            <img ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
+                        </md-button>
+                        <p class="kafhe-white text-bold bubble-yellow">{{ global.user.game.rank }}
+                            <md-tooltip md-direction="left" md-delay="700">{{ 'rank' | translate }}</md-tooltip>
+                        </p>
+                    </div>
 
                     <md-menu-content width="4" class="kafhe-background-primary-hue-3 no-padding">
                         <md-menu-item>
                             <div layout="row" layout-align="space-around center">
                                 <p flex="15" ng-if="global.user.leader">
                                     <md-icon class="md-accent md-hue-3">school</md-icon>
+                                    <md-tooltip>{{ 'textLeaderGroup' | translate}}</md-tooltip>
                                 </p>
                                 <p class="kafhe-white text-bold" flex>{{ global.user.username }}</p>
-                                <p class="kafhe-white text-bold" flex="none">{{ global.user.game.rank }}
-                                    <md-tooltip md-direction="left" md-delay="700">{{ 'rank' | translate }}</md-tooltip>
-                                </p>
                             </div>
                         </md-menu-item>
                         <md-divider></md-divider>

@@ -82,3 +82,15 @@ header .button.active {
 .menu-icon.small-icon {
     width: 36px;
 }
+
+.bubble-yellow {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    border: 1px solid #FDD835;
+    border-radius: 50px;
+    background: #FDD835;
+    color: #000000;
+    font-size: 0.7rem;
+    padding: 1px 4px;
+}
