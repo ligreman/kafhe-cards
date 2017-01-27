@@ -10,12 +10,14 @@ module.exports = function (app) {
         config = require('../modules/config'),
         utils = require('../modules/utils'),
         crypto = require('crypto'),
+        Q = require('q'),
         mongoose = require('mongoose'),
         models = require('../models/models')(mongoose);
 
     //**************** USER ROUTER **********************
     //Middleware para estas rutas
     adminRouter.use(bodyParser.json());
+    // Todas las peticiones
     adminRouter.use(passport.authenticate('basic', {
         session: false
         //failureRedirect: '/error/session'
@@ -220,6 +222,38 @@ module.exports = function (app) {
         }
     });
 
+    /*
+     TEST ENDPOINTS
+     */
+    adminRouter.get('/test/stats/:idgame', function (req, res, next) {
+        var game = req.params.idgame;
+
+        // Saco la lista de jugadores
+        Q.all([
+            models.Card.find({}).exec(),
+            models.Talent.find({}).exec()
+        ]).spread(function (cardDB, talentDB) {
+            var userUtils = require('../modules/userUtils');
+
+            // Por cada usuario saco sus stats de este grupo
+            Q.all([
+                userUtils.getUsersStats(game, cardDB, talentDB)
+            ]).spread(function (statsByUser) {
+                console.log("RESPONDERE");
+                res.json({
+                    "data": statsByUser,
+                    "result": true,
+                    "error": ""
+                });
+            });
+        }, function (error) {
+            console.tag('MONGO').error(error);
+            res.json({
+                "result": false,
+                "error": "FALLO EN MONGOL"
+            });
+        });
+    });
 
     // Asigno los router a sus rutas
     app.use('/api/admin', adminRouter);

@@ -7,7 +7,7 @@ module.exports = function (mongoose) {
         source: String,
         'type': {
             type: String,
-            enum: ['system', 'explore', 'encounter', 'defeat', 'move', 'combat', 'victory', 'skill', 'reward', 'adversity'],
+            enum: ['system', 'explore', 'encounter', 'defeat', 'move', 'combat', 'victory', 'skill', 'reward', 'event'],
             required: true
         },
         timestamp: Number

@@ -43,8 +43,17 @@ module.exports = function (app) {
 
     var cards = [
         {
-            id: '100', name: 'Pistola', 'type': 'weapon', element: 'fire', effects: [], description: 'Es una pistola',
-            contained_in_packs: [{category: 'place1', frequency: 50}]
+            id: '100', name: 'Pistola', 'type': 'weapon', element: 'fire', effects: [],
+            contained_in_packs: [{category: 'place1', frequency: 50}],
+            data: {
+                weapon: {
+                    stats: {
+                        1: {description: 'Es una pistola 1'},
+                        2: {description: 'Es una pistola 2'},
+                        3: {description: 'Es una pistola 3'}
+                    }
+                }
+            }
         },
         {
             id: '105', name: 'Encuentro', 'type': 'encounter', element: 'fire', effects: [],

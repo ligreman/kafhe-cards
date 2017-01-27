@@ -32,13 +32,18 @@
                     <span ng-if="card.element !== 'none' && (isEncounter(card) || isEvent(card))"> {{ 'cardElementOf-'+card.element | translate }}</span>
                     <span ng-if="!isPlace(card)"> {{ 'cardLevelDescription' | translate:{level:roman[card.level]} }}</span>
                 </p>
+
                 <p ng-if="isPlace(card)">
                     {{'textDifficulty' | translate}}:
                     <md-icon class="md-accent md-hue-3"
                              ng-repeat="i in getNumber(card.data.place.level) track by $index">star
                     </md-icon>
                 </p>
-                <p>{{ card.description }}</p>
+                <p ng-if="isPlace(card)">{{ card.data[card.type].description }}</p>
+
+                <div ng-if="!isPlace(card)">
+                    <p>{{ card.data[card.type].stats[card.level].description }}</p>
+                </div>
             </div>
         </div>
     </md-dialog-content>

@@ -107,7 +107,7 @@ var getCapitals = function (cards, onlyIds) {
 };
 
 /**
- * Busca una lista de ids de cartas en el global de todas las cartas
+ * Busca una lista cartas a partir de sus ids, en el global de todas las cartas
  * @param cards
  * @param cardIds
  */

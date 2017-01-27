@@ -106,7 +106,7 @@
             'notification-defeat': 'Derrota',
             'notification-reward': 'Recompensa',
             'notification-encounter': 'Encuentro',
-            'notification-adversity': 'Evento',
+            'notification-event': 'Adversidad',
             'notification-announcement': 'Anuncio',
             'notification-skill': 'Habilidad',
 

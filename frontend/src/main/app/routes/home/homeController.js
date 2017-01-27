@@ -130,7 +130,7 @@
                         data: {
                             json: json, type: 'bar',
                             keys: {x: 'name', value: ['rank', 'fame']},
-                            axes: {fame: 'y2', rank: 'y'},
+                            axes: {fame: 'y', rank: 'y2'},
                             colors: {fame: '#673AB7', rank: '#2E7D32'},
                             names: {fame: txtFame, rank: txtRank},
                             order: function (d1, d2) {

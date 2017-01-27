@@ -100,7 +100,6 @@ module.exports = function (app) {
                     "data": carta.data,
                     "effects": carta.effects,
                     "element": carta.element,
-                    "description": carta.description,
                     "name": carta.name
                 });
             });

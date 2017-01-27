@@ -1,10 +1,21 @@
 'use strict';
 
 module.exports = function (mongoose) {
+    var StatsSchema = mongoose.Schema({
+        combat: {type: Number, default: 0},
+        endurance: {type: Number, default: 0},
+        skill: {type: Number, default: 0},
+        reflexes: {type: Number, default: 0},
+        luck: {type: Number, default: 0},
+        vigor: {type: Number, default: 0},
+        health: {type: Number, default: 0}, // Si te cura o hace daño
+        special: {type: String, default: ''},
+        description: {type: String, default: ''}
+    }, {versionKey: false});
+
     var CardSchema = mongoose.Schema({
         id: {type: String, index: true},
         name: {type: String, default: ''},
-        description: {type: String, default: ''},
         'type': {type: String, enum: ['weapon', 'armor', 'skill', 'place', 'encounter', 'event'], required: true},
         contained_in_packs: [{
             category: String,
@@ -14,6 +25,7 @@ module.exports = function (mongoose) {
         effects: [String],
         data: {
             place: {
+                description: {type: String, default: ''},
                 lat: Number,
                 long: Number,
                 region: String,
@@ -27,56 +39,23 @@ module.exports = function (mongoose) {
             weapon: {
                 alias: String,
                 'type': {type: String, enum: ['bladed', 'piercing', 'blunt']},
-                stats: {
-                    1: {attack: Number, damage: Number, special: String, description: String},
-                    2: {attack: Number, damage: Number, special: String, description: String},
-                    3: {attack: Number, damage: Number, special: String, description: String}
-                }
+                stats: {1: StatsSchema, 2: StatsSchema, 3: StatsSchema}
             },
             armor: {
                 alias: String,
                 'type': {type: String, enum: ['mail', 'scale', 'padded']},
-                stats: {
-                    1: {parry: Number, defense: Number, speed: Number, special: String, description: String},
-                    2: {parry: Number, defense: Number, speed: Number, special: String, description: String},
-                    3: {parry: Number, defense: Number, speed: Number, special: String, description: String}
-                }
+                stats: {1: StatsSchema, 2: StatsSchema, 3: StatsSchema}
             },
             skill: {
                 uses: Number,
                 target: {type: String, enum: ['self', 'enemy']},
-                stats: {
-                    1: {
-                        attack: Number,
-                        damage: Number,
-                        parry: Number,
-                        defense: Number,
-                        speed: Number,
-                        life: Number,
-                        special: String,
-                        description: String
-                    },
-                    2: {
-                        attack: Number,
-                        damage: Number,
-                        parry: Number,
-                        defense: Number,
-                        speed: Number,
-                        life: Number,
-                        special: String,
-                        description: String
-                    },
-                    3: {
-                        attack: Number,
-                        damage: Number,
-                        parry: Number,
-                        defense: Number,
-                        speed: Number,
-                        life: Number,
-                        special: String,
-                        description: String
-                    }
-                }
+                stats: {1: StatsSchema, 2: StatsSchema, 3: StatsSchema}
+            },
+            encounter: {
+                stats: {1: StatsSchema, 2: StatsSchema, 3: StatsSchema}
+            },
+            event: {
+                stats: {1: StatsSchema, 2: StatsSchema, 3: StatsSchema}
             }
         }
     }, {versionKey: false});

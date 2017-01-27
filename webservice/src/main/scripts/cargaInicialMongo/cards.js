@@ -8,6 +8,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack2", "frequency": "C"}, {"category": "pack1", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-45.75",
             "long": "-163.04",
             "region": "Bárat",
@@ -28,6 +29,7 @@ var places = [{
     }, {"category": "pack2", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-55.9",
             "long": "-154.47",
             "region": "Windamar",
@@ -48,6 +50,7 @@ var places = [{
     }, {"category": "pack3", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-47.96",
             "long": "-141.77",
             "region": "Bárat",
@@ -69,6 +72,7 @@ var places = [{
     }, {"category": "pack4", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-50.25",
             "long": "-138.49",
             "region": "Bárat",
@@ -90,6 +94,7 @@ var places = [{
     }, {"category": "pack5", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-45.98",
             "long": "-137.04",
             "region": "Bárat",
@@ -110,6 +115,7 @@ var places = [{
     }, {"category": "pack6", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-47.04",
             "long": "-129.46",
             "region": "Bárat",
@@ -127,6 +133,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack6", "frequency": "C"}, {"category": "pack7", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-48.34",
             "long": "-129.99",
             "region": "Bárat",
@@ -147,6 +154,7 @@ var places = [{
     }, {"category": "pack8", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-48.79",
             "long": "-121.79",
             "region": "Orgoth",
@@ -173,6 +181,7 @@ var places = [{
     }],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-49.85",
             "long": "-107.2",
             "region": "Orgoth",
@@ -193,6 +202,7 @@ var places = [{
     }, {"category": "pack10", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-51.82",
             "long": "-105.21",
             "region": "Orgoth",
@@ -214,6 +224,7 @@ var places = [{
     }, {"category": "pack11", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-49.05",
             "long": "-103.16",
             "region": "Orgoth",
@@ -234,6 +245,7 @@ var places = [{
     }, {"category": "pack12", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-46.91",
             "long": "-102.85",
             "region": "Orgoth",
@@ -258,6 +270,7 @@ var places = [{
     }],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-51.12",
             "long": "-97.91",
             "region": "Orgoth",
@@ -278,6 +291,7 @@ var places = [{
     }, {"category": "pack14", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-52.27",
             "long": "-100.88",
             "region": "Orgoth",
@@ -298,6 +312,7 @@ var places = [{
     }, {"category": "pack15", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-48.52",
             "long": "-96.61",
             "region": "Orgoth",
@@ -318,6 +333,7 @@ var places = [{
     }, {"category": "pack19", "frequency": "C"}, {"category": "pack16", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-56.52",
             "long": "-106.26",
             "region": "Orgoth",
@@ -335,6 +351,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack16", "frequency": "C"}, {"category": "pack17", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-55.27",
             "long": "-110.28",
             "region": "Orgoth",
@@ -356,6 +373,7 @@ var places = [{
     }, {"category": "pack18", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-59.42",
             "long": "-104.59",
             "region": "Orgoth",
@@ -376,6 +394,7 @@ var places = [{
     }, {"category": "pack30", "frequency": "C"}, {"category": "pack19", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-60.63",
             "long": "-111.18",
             "region": "Orgoth",
@@ -393,6 +412,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack19", "frequency": "C"}, {"category": "pack20", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-58.47",
             "long": "-121.51",
             "region": "Scala",
@@ -410,6 +430,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack18", "frequency": "C"}, {"category": "pack21", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-57.54",
             "long": "-100.02",
             "region": "Orgoth",
@@ -431,6 +452,7 @@ var places = [{
     }, {"category": "pack22", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-53.67",
             "long": "-90.4",
             "region": "Orgoth",
@@ -451,6 +473,7 @@ var places = [{
     }, {"category": "pack48", "frequency": "C"}, {"category": "pack23", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-56.88",
             "long": "-88.9",
             "region": "Orgoth",
@@ -472,6 +495,7 @@ var places = [{
     }, {"category": "pack48", "frequency": "C"}, {"category": "pack24", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-61.18",
             "long": "-95.45",
             "region": "Orgoth",
@@ -493,6 +517,7 @@ var places = [{
     }, {"category": "pack25", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-65.96",
             "long": "-103.05",
             "region": "Orgoth",
@@ -513,6 +538,7 @@ var places = [{
     }, {"category": "pack26", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-66.4",
             "long": "-89.74",
             "region": "Orgoth",
@@ -531,6 +557,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack26", "frequency": "C"}, {"category": "pack27", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-65.2",
             "long": "-74.97",
             "region": "Orgoth",
@@ -551,6 +578,7 @@ var places = [{
     }, {"category": "pack28", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-70.78",
             "long": "-100.15",
             "region": "Orgoth",
@@ -578,6 +606,7 @@ var places = [{
     }],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-70.14",
             "long": "-119.16",
             "region": "Orgoth",
@@ -598,6 +627,7 @@ var places = [{
     }, {"category": "pack30", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-68.99",
             "long": "-118.63",
             "region": "Orgoth",
@@ -618,6 +648,7 @@ var places = [{
     }, {"category": "pack40", "frequency": "C"}, {"category": "pack31", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-71.94",
             "long": "-99.45",
             "region": "Orgoth",
@@ -638,6 +669,7 @@ var places = [{
     }, {"category": "pack32", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-72.81",
             "long": "-107.4",
             "region": "Orgoth",
@@ -656,6 +688,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack39", "frequency": "C"}, {"category": "pack33", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-76.91",
             "long": "-115.0",
             "region": "Orgoth",
@@ -676,6 +709,7 @@ var places = [{
     }, {"category": "pack34", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-70.96",
             "long": "-120.26",
             "region": "Orgoth",
@@ -696,6 +730,7 @@ var places = [{
     }, {"category": "pack35", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-71.28",
             "long": "-114.17",
             "region": "Orgoth",
@@ -717,6 +752,7 @@ var places = [{
     }, {"category": "pack36", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-73.75",
             "long": "-122.43",
             "region": "Orgoth",
@@ -738,6 +774,7 @@ var places = [{
     }, {"category": "pack37", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-74.36",
             "long": "-118.43",
             "region": "Orgoth",
@@ -756,6 +793,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack37", "frequency": "C"}, {"category": "pack38", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-75.52",
             "long": "-142.91",
             "region": "Orgoth",
@@ -773,6 +811,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack33", "frequency": "C"}, {"category": "pack39", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-75.74",
             "long": "-106.83",
             "region": "Orgoth",
@@ -791,6 +830,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack31", "frequency": "C"}, {"category": "pack40", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-73.22",
             "long": "-93.25",
             "region": "Orgoth",
@@ -812,6 +852,7 @@ var places = [{
     }, {"category": "pack41", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-45.54",
             "long": "-90.46",
             "region": "Lúthinar",
@@ -832,6 +873,7 @@ var places = [{
     }, {"category": "pack42", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-48.39",
             "long": "-82.68",
             "region": "Lúthinar",
@@ -852,6 +894,7 @@ var places = [{
     }, {"category": "pack43", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-45.35",
             "long": "-84.64",
             "region": "Lúthinar",
@@ -872,6 +915,7 @@ var places = [{
     }, {"category": "pack44", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-44.76",
             "long": "-79.39",
             "region": "Lúthinar",
@@ -892,6 +936,7 @@ var places = [{
     }, {"category": "pack51", "frequency": "C"}, {"category": "pack45", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-45.64",
             "long": "-75.96",
             "region": "Lúthinar",
@@ -912,6 +957,7 @@ var places = [{
     }, {"category": "pack57", "frequency": "C"}, {"category": "pack46", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-44.96",
             "long": "-66.2",
             "region": "Lúthinar",
@@ -929,6 +975,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack45", "frequency": "C"}, {"category": "pack47", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-46.27",
             "long": "-61.98",
             "region": "Lúthinar",
@@ -950,6 +997,7 @@ var places = [{
     }, {"category": "pack50", "frequency": "C"}, {"category": "pack48", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-57.04",
             "long": "-83.39",
             "region": "Lúthinar",
@@ -970,6 +1018,7 @@ var places = [{
     }, {"category": "pack49", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-59.27",
             "long": "-79.63",
             "region": "Lúthinar",
@@ -990,6 +1039,7 @@ var places = [{
     }, {"category": "pack50", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-54.53",
             "long": "-79.65",
             "region": "Lúthinar",
@@ -1016,6 +1066,7 @@ var places = [{
     }],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-51.59",
             "long": "-74.55",
             "region": "Lúthinar",
@@ -1036,6 +1087,7 @@ var places = [{
     }, {"category": "pack52", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-51.56",
             "long": "-77.5",
             "region": "Lúthinar",
@@ -1057,6 +1109,7 @@ var places = [{
     }, {"category": "pack53", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-51.55",
             "long": "-71.15",
             "region": "Lúthinar",
@@ -1078,6 +1131,7 @@ var places = [{
     }, {"category": "pack55", "frequency": "C"}, {"category": "pack54", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-53.62",
             "long": "-68.47",
             "region": "Lúthinar",
@@ -1099,6 +1153,7 @@ var places = [{
     }, {"category": "pack56", "frequency": "C"}, {"category": "pack55", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-50.09",
             "long": "-61.41",
             "region": "Lúthinar",
@@ -1123,6 +1178,7 @@ var places = [{
     }],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-52.54",
             "long": "-54.67",
             "region": "Lúthinar",
@@ -1143,6 +1199,7 @@ var places = [{
     }, {"category": "pack59", "frequency": "C"}, {"category": "pack57", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-45.58",
             "long": "-46.89",
             "region": "Lúthinar",
@@ -1163,6 +1220,7 @@ var places = [{
     }, {"category": "pack58", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-45.51",
             "long": "-38.5",
             "region": "Lúthinar",
@@ -1186,6 +1244,7 @@ var places = [{
     }],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-48.27",
             "long": "-40.1",
             "region": "Lúthinar",
@@ -1207,6 +1266,7 @@ var places = [{
     }, {"category": "pack62", "frequency": "C"}, {"category": "pack60", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-55.44",
             "long": "-42.52",
             "region": "Lúthinar",
@@ -1228,6 +1288,7 @@ var places = [{
     }, {"category": "pack61", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-59.96",
             "long": "-42.78",
             "region": "Lúthinar",
@@ -1248,6 +1309,7 @@ var places = [{
     }, {"category": "pack69", "frequency": "C"}, {"category": "pack62", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-59.82",
             "long": "-32.85",
             "region": "Lúthinar",
@@ -1269,6 +1331,7 @@ var places = [{
     }, {"category": "pack63", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-42.03",
             "long": "-30.67",
             "region": "Bóscorth",
@@ -1289,6 +1352,7 @@ var places = [{
     }, {"category": "pack64", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-47.25",
             "long": "-14.5",
             "region": "Bóscorth",
@@ -1309,6 +1373,7 @@ var places = [{
     }, {"category": "pack65", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-49.64",
             "long": "-1.71",
             "region": "Bóscorth",
@@ -1327,6 +1392,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack65", "frequency": "C"}, {"category": "pack66", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-46.86",
             "long": "9.32",
             "region": "Bóscorth",
@@ -1347,6 +1413,7 @@ var places = [{
     }, {"category": "pack67", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-54.24",
             "long": "-15.25",
             "region": "Bóscorth",
@@ -1367,6 +1434,7 @@ var places = [{
     }, {"category": "pack68", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-58.9",
             "long": "-19.25",
             "region": "Bóscorth",
@@ -1387,6 +1455,7 @@ var places = [{
     }, {"category": "pack69", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-62.59",
             "long": "-43.24",
             "region": "Shakra",
@@ -1408,6 +1477,7 @@ var places = [{
     }, {"category": "pack73", "frequency": "C"}, {"category": "pack70", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-64.54",
             "long": "-47.57",
             "region": "Shakra",
@@ -1425,6 +1495,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack70", "frequency": "C"}, {"category": "pack71", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-64.01",
             "long": "-37.31",
             "region": "Shakra",
@@ -1446,6 +1517,7 @@ var places = [{
     }, {"category": "pack72", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-65.37",
             "long": "-33.49",
             "region": "Shakra",
@@ -1466,6 +1538,7 @@ var places = [{
     }, {"category": "pack73", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-67.47",
             "long": "-69.43",
             "region": "Sunzhau",
@@ -1483,6 +1556,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack73", "frequency": "C"}, {"category": "pack74", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-69.05",
             "long": "-63.44",
             "region": "Sunzhau",
@@ -1503,6 +1577,7 @@ var places = [{
     }, {"category": "pack78", "frequency": "C"}, {"category": "pack75", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-69.89",
             "long": "-69.87",
             "region": "Sunzhau",
@@ -1524,6 +1599,7 @@ var places = [{
     }, {"category": "pack76", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-70.99",
             "long": "-69.39",
             "region": "Sunzhau",
@@ -1544,6 +1620,7 @@ var places = [{
     }, {"category": "pack77", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-71.6",
             "long": "-60.97",
             "region": "Sunzhau",
@@ -1564,6 +1641,7 @@ var places = [{
     }, {"category": "pack78", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-70.5",
             "long": "-76.68",
             "region": "Sunzhau",
@@ -1584,6 +1662,7 @@ var places = [{
     }, {"category": "pack79", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-70.52",
             "long": "-31.64",
             "region": "Ábalar",
@@ -1605,6 +1684,7 @@ var places = [{
     }, {"category": "pack83", "frequency": "C"}, {"category": "pack80", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-70.86",
             "long": "-23.07",
             "region": "Ábalar",
@@ -1626,6 +1706,7 @@ var places = [{
     }, {"category": "pack85", "frequency": "C"}, {"category": "pack81", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-71.82",
             "long": "-26.59",
             "region": "Ábalar",
@@ -1646,6 +1727,7 @@ var places = [{
     }, {"category": "pack84", "frequency": "C"}, {"category": "pack82", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-71.5",
             "long": "-18.24",
             "region": "Ábalar",
@@ -1666,6 +1748,7 @@ var places = [{
     }, {"category": "pack83", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-70.58",
             "long": "-12.08",
             "region": "Ábalar",
@@ -1687,6 +1770,7 @@ var places = [{
     }, {"category": "pack84", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-72.82",
             "long": "-7.47",
             "region": "Ábalar",
@@ -1708,6 +1792,7 @@ var places = [{
     }, {"category": "pack85", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-75.29",
             "long": "-23.38",
             "region": "Ábalar",
@@ -1729,6 +1814,7 @@ var places = [{
     }, {"category": "pack86", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-74.01",
             "long": "-0.83",
             "region": "Ábalar",
@@ -1746,6 +1832,7 @@ var places = [{
     "contained_in_packs": [{"category": "pack49", "frequency": "C"}, {"category": "pack87", "frequency": "C"}],
     "data": {
         "place": {
+            "description": "Lugarcete en algún lugar",
             "lat": "-59.4",
             "long": "-68.86",
             "region": "Lúthinar",
