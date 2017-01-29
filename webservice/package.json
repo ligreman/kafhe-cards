@@ -2,9 +2,9 @@
     "name": "kafhe4-api",
     "version": "1.0.0",
     "description": "Kafhe 4.0.",
-    "main": "src/main/app.js",
+    "main": "app.js",
     "scripts": {
-        "start": "node --use_strict src/main/app.js"
+        "start": "node app.js"
     },
     "private": true,
     "dependencies": {

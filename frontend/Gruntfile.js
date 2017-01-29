@@ -298,6 +298,15 @@ module.exports = function (grunt) {
                 tasks: ['php:dev', 'watch'],
                 options: {logConcurrentOutput: true}
             }
+        },
+
+        uglify: {
+            pro: {
+                files: {
+                    '<%= config.dist %>/js/scripts.js': ['<%= config.dist %>/js/scripts.js'],
+                    // '<%= config.dist %>/js/vendor.js': ['<%= config.dist %>/js/vendor.js'],
+                }
+            }
         }
     });
 
@@ -314,18 +323,6 @@ module.exports = function (grunt) {
             'clean:server',
             'connect:livereload',
             'concurrent:dev'
-        ]);
-    });
-
-    // Starts a PHP server without livereload
-    grunt.registerTask('dev-php', 'use --allow-remote for remote access', function () {
-        if (grunt.option('allow-remote')) {
-            grunt.config.set('php.dev.options.hostname', '0.0.0.0');
-        }
-
-        grunt.task.run([
-            'clean:server',
-            'concurrent:devphp'
         ]);
     });
 
@@ -356,12 +353,6 @@ module.exports = function (grunt) {
         ]);
     });
 
-    // TEST
-    grunt.registerTask('test', [
-        'prompt:webservice',
-        'replace:webservice'
-    ]);
-
     // simple build task
     grunt.registerTask('build', [
         'clean:dist',
@@ -372,26 +363,15 @@ module.exports = function (grunt) {
         //'cssmin:generated',
         //'uglify:generated',
         'usemin',
+        'uglify:pro',
         'cleanempty',
         'clean:end',
         'prompt:webservice',
         'replace:webservice'
     ]);
 
-    // build tasks specific for PHP
-    grunt.registerTask('build-php', '', function () {
-        //Changes the html source files for php ones
-        grunt.config.set('useminPrepare.html', '<%= config.app %>/index.php');
-        grunt.config.set('usemin.html', ['<%= config.dist %>/{,*/}*.php']);
-
-        grunt.task.run([
-            'build'
-        ]);
-    });
-
     grunt.registerTask('prueba', [
-        'prompt:webservice',
-        'replace:webservice'
+        'uglify:pro'
     ]);
 
 

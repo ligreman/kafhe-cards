@@ -12,12 +12,6 @@ var fecha = new Date(),
 var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0_cards\\development\\webservice\\';
 basePath += 'src/main/';
 
-// var isOpenshift = process.env.OPENSHIFT_REPO_DIR;
-// var basePath = '';
-// if (isOpenshift !== undefined || isOpenshift !== null) {
-// basePath='';
-// }
-
 var mongoose = require('mongoose');
 var mongoHost = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/kafhe';
 mongoose.connect(mongoHost, {});
@@ -91,46 +85,17 @@ switch (dia) {
     case 1:
         // 1:00 AM
         if (hora === 1) {
-            console.log('LUNES - 1AM');
-            Q.all([
-                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.weekend, config.GAME_STATUS.planning),
-                userDao.usersDailyReset('all')
-            ]).spread(function (result) {
-                console.log(result);
-                console.log('Partidas en estado weekend después del fin de semana se ponen en estado planning.');
-                console.log('Jugadores de todos los grupos reseteados (daily).');
-                salir();
-            }).fail(function (error) {
-                console.error(error);
-            });
+
         }
 
         // 8:00 AM
         if (hora === 8) {
-            console.log('LUNES - 8AM');
-            Q.all([
-                userDao.usersAFK('all', false)
-            ]).spread(function (result) {
-                console.log(result);
-                console.log('Jugadores de todos los grupos afk=false.');
-                salir();
-            }).fail(function (error) {
-                console.error(error);
-            });
+
         }
 
         // 11:00 AM
         if (hora === 11) {
-            console.log('LUNES - 11AM');
-            Q.all([
-                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
-            ]).spread(function (result) {
-                console.log(result);
-                console.log('Partidas en estado planning del lunes se ponen en estado explore.');
-                salir();
-            }).fail(function (error) {
-                console.error(error);
-            });
+
         }
         break;
 

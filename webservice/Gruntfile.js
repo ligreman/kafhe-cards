@@ -151,7 +151,11 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true, cwd: '<%= config.app %>/',
-                        src: ['**/*', '!logs/**/*'], dest: '<%= config.targetDist %>/src/main/'
+                        src: ['**/*', '!logs/**/*'], dest: '<%= config.targetDist %>/'
+                    },
+                    {
+                        expand: true, cwd: '.openshift/',
+                        src: ['**/*'], dest: '<%= config.targetDist %>/.openshift/'
                     },
                     {
                         src: ['package.json'], dest: '<%= config.targetDist %>/'
