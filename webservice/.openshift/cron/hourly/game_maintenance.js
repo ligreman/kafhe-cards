@@ -9,8 +9,8 @@ var fecha = new Date(),
     hora = fecha.getHours(), //0-23
     dia = fecha.getDay(); //0-6 siendo 0 domingo
 
-var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0_cards\\development\\webservice\\';
-basePath += 'src/main/';
+var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0_cards\\development\\webservice\\src\\main';
+basePath += '/';
 
 
 var mongoose = require('mongoose');

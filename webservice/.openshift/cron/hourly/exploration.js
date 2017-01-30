@@ -9,8 +9,8 @@ var fecha = new Date(),
     hora = fecha.getHours(), //0-23
     dia = fecha.getDay(); //0-6 siendo 0 domingo
 
-var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0_cards\\development\\webservice\\';
-basePath += 'src/main/';
+var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0_cards\\development\\webservice\\src\\main';
+basePath += '/';
 
 var mongoose = require('mongoose');
 var mongoHost = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/kafhe';
@@ -85,16 +85,19 @@ switch (dia) {
     case 1:
         // 1:00 AM
         if (hora === 1) {
+            console.log('1AM');
 
         }
 
         // 8:00 AM
         if (hora === 8) {
+            console.log('8AM');
 
         }
 
         // 11:00 AM
         if (hora === 11) {
+            console.log('11AM');
 
         }
         break;
@@ -113,31 +116,13 @@ switch (dia) {
         // 1:00 AM
         if (hora === 1) {
             console.log('1AM');
-            Q.all([
-                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.planning),
-                userDao.usersDailyReset('all')
-            ]).spread(function (result) {
-                console.log(result);
-                console.log('Partidas en estado explore pasan a estado planning en la madrugada.');
-                console.log('Jugadores de todos los grupos reseteados (daily).');
-                salir();
-            }).fail(function (error) {
-                console.error(error);
-            });
+
         }
 
         // 11:00 AM
         if (hora === 11) {
             console.log('11AM');
-            Q.all([
-                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.planning, config.GAME_STATUS.explore)
-            ]).spread(function (result) {
-                console.log(result);
-                console.log('Partidas en estado planning se ponen en estado explore.');
-                salir();
-            }).fail(function (error) {
-                console.error(error);
-            });
+
         }
         break;
     /**
@@ -155,43 +140,13 @@ switch (dia) {
         // 1:00 AM
         if (hora === 1) {
             console.log('VIERNES - 1AM');
-            Q.all([
-                gameDao.gameUpdateAllByStatus(config.GAME_STATUS.explore, config.GAME_STATUS.resolution),
-                userDao.usersDailyReset('all')
-            ]).spread(function (result) {
-                console.log(result);
-                console.log('Partidas en estado explore pasan a estado resolution para el viernes.');
-                console.log('Jugadores de todos los grupos reseteados (daily).');
-                salir();
-            }).fail(function (error) {
-                console.error(error);
-            });
+
         }
 
         // 15:00 PM
         if (hora === 15) {
             console.log('VIERNES - 15PM');
-            // Respetar el orden de ejecución
-            Q.all([
-                userDao.usersBreakfastReset('all')
-            ]).spread(function (result) {
-                console.log(result);
-                console.log('Jugadores de todos los grupos de partidas finalizadas reseteados (breakfast).');
 
-                Q.all([
-                    gameDao.gameBreakfastReset(),
-                    gameDao.gameUpdateAllByStatus(config.GAME_STATUS.resolution, config.GAME_STATUS.weekend)
-                ]).spread(function (result) {
-                    console.log(result);
-                    console.log('Partidas finalizadas: reseteadas y puestas a weekend para la semana que viene.');
-                    console.log('Partidas no lanzadas: puestas a weekend para la semana que viene.');
-                    salir();
-                }).fail(function (error) {
-                    console.error(error);
-                });
-            }).fail(function (error) {
-                console.error(error);
-            });
         }
         break;
     default:
