@@ -180,7 +180,7 @@ module.exports = function (app) {
             models.Game.findById(idGame).exec()
         ]).spread(function (result, capitalsIds, game) {
             console.log("Obtengo de BBDD");
-            console.log(result);
+            // console.log(result);
             // console.log(capitalsIds);
             // console.log(game);
             console.log('--------------------------------');
@@ -223,7 +223,10 @@ module.exports = function (app) {
             // Una vez lo sé procedo a gestionar el cierre del desayuno
             var promesas = [], llamador = null;
             users.forEach(function (user) {
-                if (user._id === caller) {
+                console.log("Cierre de desayuno de " + user._id + " siendo llamador " + caller);
+                console.log(user._id.toString());
+                console.log(caller);
+                if (user._id.toString() === caller) {
                     llamador = user;
 
                     // Llamador
@@ -232,15 +235,20 @@ module.exports = function (app) {
                     user.game.packs = [];
                     user.game.collection = [];
 
+                    console.log("Cierre 1A");
+
                     // Reseteo unlocked a sólo las capitales
                     user.game.unlocked = capitalsIds;
-                    user.game.talents = [{
+                    user.game.talents = {
                         combat: [],
                         exploration: [],
                         survival: [],
                         points: 0
-                    }];
+                    };
+                    console.log("Cierre 2A");
                 } else {
+                    console.log("Cierre 1B");
+
                     // No llamador, sube de rango
                     user.game.rank = user.game.rank + 1;
                     // Punto de talento
@@ -251,6 +259,8 @@ module.exports = function (app) {
                 user.times = user.times + 1;
                 user.fame = 0;
 
+                console.log("Cierre 3");
+
                 // - Borro todas las de schedule.
                 user.game.schedule = {
                     weapon: [], armor: [], skill: [],
@@ -260,6 +270,8 @@ module.exports = function (app) {
                 // - Borra el journal
                 user.game.journal = [];
 
+                console.log("Cierre 4");
+
                 // - Borra rewards
                 user.game.rewards = {
                     packs: [],
@@ -267,12 +279,19 @@ module.exports = function (app) {
                     fame: 0
                 };
 
+                console.log("Cierre 5");
+
                 // - Order pasa a last order, y order se limpia
-                if (user.game.order.meal || user.game.drink) {
-                    user.game.last_order = extend({}, user.game.order);
+                if (user.game.order.meal || user.game.order.drink) {
+                    user.game.last_order = {
+                        meal: user.game.order.meal,
+                        drink: user.game.order.drink,
+                        ito: user.game.order.ito
+                    };
                 }
                 user.game.order = {meal: null, drink: null, ito: false};
 
+                console.log("Meto al usuario en la lista de promises: " + user._id);
                 promesas.push(user.save());
             });
 
@@ -291,9 +310,9 @@ module.exports = function (app) {
                 var resultado = true, razon = '';
                 results.forEach(function (result) {
                     console.log("Promesas cumplidas");
-                    console.log(result);
+                    // console.log(result);
                     if (result.state !== "fulfilled") {
-                        resultado = result.value;
+                        resultado = false;
                         razon = result.reason;
                     }
                 });
@@ -307,7 +326,7 @@ module.exports = function (app) {
                 console.log(llamador);
                 responseUtils.responseJson(res, {
                     "caller": {
-                        id: llamador._id,
+                        id: llamador._id.toString(),
                         alias: llamador.alias,
                         avatar: llamador.avatar
                     }
