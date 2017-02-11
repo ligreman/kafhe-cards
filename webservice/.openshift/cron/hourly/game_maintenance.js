@@ -47,7 +47,7 @@ var weekActions = [
 var existsLockFile = fs.existsSync(lockFile);
 
 if (!existsLockFile) {
-    fs.writeSync(lockFile, '');
+    fs.writeFileSync(lockFile, '');
 }
 
 // Leo el fichero
