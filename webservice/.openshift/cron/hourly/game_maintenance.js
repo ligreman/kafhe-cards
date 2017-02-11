@@ -57,7 +57,8 @@ var actionsToDo = [];
 var ahora = dia + '#' + hora;
 var ahoraAction = weekActions.indexOf(ahora);
 
-if (lastActionMade !== '' && ahoraAction !== -1) {
+// Si hay lastaction, ahoraAction y no son la misma
+if ((lastActionMade !== '') && (ahoraAction !== -1) && (lastActionMade !== ahoraAction)) {
     lastActionMade = parseInt(lastActionMade);
 
     // Compruebo qué dia y hora es la última ejecución que he realizado
