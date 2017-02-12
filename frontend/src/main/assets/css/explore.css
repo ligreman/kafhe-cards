@@ -231,3 +231,32 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
     font-weight: bold;
     font-size: 0.7rem;
 }
+
+.stars-title {
+    margin-right: 5px;
+    font-size: 0.8rem;
+}
+
+.square {
+    border: 1px solid #2e7d32;
+    width: 10px;
+    height: 10px;
+    margin-right: 2px;
+}
+
+.square.filled {
+    background: #4caf50;
+}
+
+.leaflet-popup-content-wrapper {
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.leaflet-popup-content {
+    margin: 10px 10px 5px 10px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+    padding-top: 2px;
+}

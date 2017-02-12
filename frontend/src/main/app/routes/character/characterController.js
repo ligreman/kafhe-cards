@@ -15,17 +15,21 @@
                 $scope.openPackageDialog = fnOpenPackageDialog;
                 $scope.updateUser = fnUpdateUser;
                 $this.drawStats = fnDrawStats;
+                $this.updateStats = fnUpdateStats;
 
                 // Actualizo los datos del juego si hace falta
                 $scope.updateGameData();
+                $this.updateStats();
 
-                // Pido al api los datos del jugador
-                API.character().stats(function (response) {
-                    if (response && response.data) {
-                        $this.drawStats(response.data);
-                        $scope.statsCollected = response.data;
-                    }
-                });
+                function fnUpdateStats() {
+                    // Pido al api los datos del jugador
+                    API.character().stats(function (response) {
+                        if (response && response.data) {
+                            $this.drawStats(response.data);
+                            $scope.statsCollected = response.data;
+                        }
+                    });
+                }
 
 
                 function fnDrawStats(stats) {
@@ -69,10 +73,12 @@
                         //Will expect that data is in %'s
                         RadarChart.draw("#chart-stats", d, mycfg);
 
+                        d3.selectAll("#chart-stats text").style("fill", "#FFF");
                         d3.selectAll("#chart-stats text.legend").style("fill", "rgba(0,0,0,0)");
                         d3.selectAll("#chart-stats g.axis text").style("fill", "#FFF");
                         d3.selectAll("#chart-stats polygon, #chart-stats polygon").style("fill", "#2E7D32").style("stroke", "#2E7D32");
                         d3.selectAll("#chart-stats circle").style("fill", "#2E7D32");
+                        d3.selectAll("#chart-stats title").remove();
 
                         // La graph de barras
                         var barras = c3.generate({
@@ -163,6 +169,7 @@
                  */
                 function fnUpdateUser(data) {
                     $scope.updateUserObject(data);
+                    $this.updateStats();
                 }
 
             }]);

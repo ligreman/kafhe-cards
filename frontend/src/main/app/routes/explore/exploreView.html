@@ -80,7 +80,51 @@
 
                 <div flex layout-padding>
                     <h2 class="text-center">{{ global.user.alias }}</h2>
-                    <p>Stats, current health...</p>
+                    <div class="no-padding" layout="row" layout-align="start center">
+                        <span class="stars-title">{{'stat-health'|translate}}</span>
+                        <md-progress-linear md-mode="determinate"
+                                            value="{{global.user.game.current_health*100/stats.health}}">
+                        </md-progress-linear>
+                    </div>
+                    <div layout="row" class="no-padding" layout-align="space-around center">
+                        <div layout="row" layout-align="end center" flex>
+                            <p class="stars-title">{{'stat-combat' | translate}}</p>
+                            <div class="square" ng-repeat="i in [1,2,3,4,5]"
+                                 ng-class="{ 'filled': i<=stats.combat }"></div>
+                        </div>
+                        <div layout="row" layout-align="end center" flex>
+                            <p class="stars-title">{{'stat-endurance' | translate}}</p>
+                            <div class="square" ng-repeat="i in [1,2,3,4,5]"
+                                 ng-class="{ 'filled': i<=stats.endurance }"></div>
+                        </div>
+                        <div flex="5" ng-if="!isSmallScreen()"></div>
+                    </div>
+                    <div layout="row" class="no-padding" layout-align="space-around center">
+                        <div layout="row" layout-align="end center" flex>
+                            <p class="stars-title">{{'stat-skill' | translate}}</p>
+                            <div class="square" ng-repeat="i in [1,2,3,4,5]"
+                                 ng-class="{ 'filled': i<=stats.skill }"></div>
+                        </div>
+                        <div layout="row" layout-align="end center" flex>
+                            <p class="stars-title">{{'stat-reflexes' | translate}}</p>
+                            <div class="square" ng-repeat="i in [1,2,3,4,5]"
+                                 ng-class="{ 'filled': i<=stats.reflexes }"></div>
+                        </div>
+                        <div flex="5" ng-if="!isSmallScreen()"></div>
+                    </div>
+                    <div layout="row" class="no-padding" layout-align="space-around center">
+                        <div layout="row" layout-align="end center" flex>
+                            <p class="stars-title">{{'stat-luck' | translate}}</p>
+                            <div class="square" ng-repeat="i in [1,2,3,4,5]"
+                                 ng-class="{ 'filled': i<=stats.luck }"></div>
+                        </div>
+                        <div layout="row" layout-align="end center" flex>
+                            <p class="stars-title">{{'stat-vigor' | translate}}</p>
+                            <div class="square" ng-repeat="i in [1,2,3,4,5]"
+                                 ng-class="{ 'filled': i<=stats.vigor }"></div>
+                        </div>
+                        <div flex="5" ng-if="!isSmallScreen()"></div>
+                    </div>
                 </div>
             </div>
 
@@ -88,7 +132,7 @@
             <h3 ng-hide="global.user.game.schedule.weapon.length===0 && global.user.game.schedule.armor.length===0 && global.user.game.schedule.place.length===0">
                 {{'textPlanningTeam'|translate}}
             </h3>
-            <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+            <div layout="row" layout-align="start center" class="character-equipment no-padding" layout-margin
                  ng-if="global.user.game.schedule.weapon.length > 0"
                  ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.weapon[0].card], global.user.game.schedule.weapon[0].level)">
                 <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/weapon.png"/>
@@ -97,7 +141,7 @@
                     roman[global.user.game.schedule.weapon[0].level] }}</p>
                 <md-tooltip>{{'textWeapon'|translate}}</md-tooltip>
             </div>
-            <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+            <div layout="row" layout-align="start center" class="character-equipment no-padding" layout-margin
                  ng-if="global.user.game.schedule.armor.length > 0"
                  ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.armor[0].card], global.user.game.schedule.armor[0].level)">
                 <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/armor.png"/>
@@ -106,7 +150,7 @@
                     roman[global.user.game.schedule.armor[0].level] }}</p>
                 <md-tooltip>{{'textArmor'|translate}}</md-tooltip>
             </div>
-            <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+            <div layout="row" layout-align="start center" class="character-equipment no-padding" layout-margin
                  ng-if="global.user.game.schedule.place.length > 0"
                  ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.place[0].card], global.user.game.schedule.place[0].level)">
                 <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/compass.png"/>
@@ -124,7 +168,7 @@
             <!-- HABILIDADES -->
             <div ng-if="global.user.game.schedule.skill.length > 0">
                 <h3>{{'textSkills'|translate}}</h3>
-                <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                <div layout="row" layout-align="start center" class="character-equipment no-padding" layout-margin
                      ng-if="global.user.game.schedule.skill[0]"
                      ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[0].card], global.user.game.schedule.skill[0].level)">
                     <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/skill.png"/>
@@ -140,7 +184,7 @@
                     </p>
                     <md-tooltip>{{ 'textSkill' | translate }}</md-tooltip>
                 </div>
-                <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                <div layout="row" layout-align="start center" class="character-equipment no-padding" layout-margin
                      ng-if="global.user.game.schedule.skill[1]"
                      ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[1].card], global.user.game.schedule.skill[1].level)">
                     <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/skill.png"/>
@@ -156,7 +200,7 @@
                     </p>
                     <md-tooltip>{{ 'textSkill' | translate }}</md-tooltip>
                 </div>
-                <div layout="row" layout-align="start center" class="character-equipment" layout-margin
+                <div layout="row" layout-align="start center" class="character-equipment no-padding" layout-margin
                      ng-if="global.user.game.schedule.skill[2]"
                      ng-click="showCardDialog($event, global.gamedata.cards[global.user.game.schedule.skill[2].card], global.user.game.schedule.skill[2].level)">
                     <img class="margin-right-20" flex="none" ng-src="assets/img/cardtype/skill.png"/>

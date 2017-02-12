@@ -27,6 +27,38 @@
                                 updateDone();
                             }
                         });
+
+                        // Saco los stats también
+                        API.character().stats(function (response) {
+                            if (response && response.data) {
+                                $scope.stats = {
+                                    combat: convertToStars(response.data.combat),
+                                    endurance: convertToStars(response.data.endurance),
+                                    skill: convertToStars(response.data.skill),
+                                    reflexes: convertToStars(response.data.reflexes),
+                                    luck: convertToStars(response.data.luck),
+                                    vigor: convertToStars(response.data.vigor),
+                                    health: response.data.health
+                                };
+                            }
+                        });
+                    }
+
+                    function convertToStars(value) {
+                        var stars = 5;
+                        if (value <= 35) {
+                            stars = 4;
+                        }
+                        if (value <= 27) {
+                            stars = 3;
+                        }
+                        if (value <= 18) {
+                            stars = 2;
+                        }
+                        if (value <= 9) {
+                            stars = 1;
+                        }
+                        return stars;
                     }
 
                     function updateDone() {
