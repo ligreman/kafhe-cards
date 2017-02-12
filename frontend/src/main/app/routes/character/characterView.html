@@ -31,18 +31,22 @@
         <!-- PERSONAJE -->
         <div ng-if="viewing === 'character'">
             <div layout="row" layout-align="space-around center" layout-padding>
-                <div class="relative" layout="row" layout-align="start center">
-                    <img class="small-avatar"
-                         ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
-                    <md-icon ng-if="global.user.leader"
-                             class="birrete md-accent md-hue-3 material-icons">school
-                    </md-icon>
-                    <h2 class="margin-left-10">{{ global.user.alias }}</h2>
+                <div layout="row">
+                    <div class="relative" layout="row" layout-align="start center">
+                        <img class="small-avatar"
+                             ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
+                        <md-icon ng-if="global.user.leader"
+                                 class="birrete md-accent md-hue-3 material-icons">school
+                        </md-icon>
+                    </div>
+                    <div>
+                        <h2 class="margin-left-10">{{ global.user.alias }}</h2>
+                        <p class="text-right">
+                            <md-icon class="md-warn">favorite</md-icon>
+                            {{ 'stat-health' | translate }}: {{ statsCollected.health }}
+                        </p>
+                    </div>
                 </div>
-                <p>
-                    <md-icon class="md-warn">favorite</md-icon>
-                    {{ 'stat-health' | translate }}: {{ statsCollected.health }}
-                </p>
                 <p>{{ 'textCallTimes' | translate:{calls:global.user.calls, times:global.user.times} }}</p>
             </div>
             <div layout="column" layout-gt-sm="row">

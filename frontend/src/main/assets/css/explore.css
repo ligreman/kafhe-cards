@@ -215,6 +215,6 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
 
 .birrete {
     position: absolute;
-    top: 0;
-    left: 30px;
+    top: -10px;
+    left: 20px;
 }
