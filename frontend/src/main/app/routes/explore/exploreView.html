@@ -6,7 +6,7 @@
                 md-is-locked-open="!isSmallScreen()">
         <md-toolbar class="md-primary md-hue-3">
             <div class="md-toolbar-tools">
-                <h2>Actividad</h2>
+                <h2>{{ 'textCharActivity' | translate }}</h2>
                 <span flex></span>
                 <md-button ng-click="close('left')" class="md-icon-button" ng-hide="!isSmallScreen()" flex="none">
                     <md-icon>clear</md-icon>
@@ -80,11 +80,7 @@
 
                 <div flex layout-padding>
                     <h2 class="text-center">{{ global.user.alias }}</h2>
-                    <p>
-                        {{'rank'|translate}} {{global.user.game.rank}}
-                        <span ng-if="global.user.leader"> - {{'textLeaderGroup' | translate}}</span>
-                    </p>
-                    <p>{{ 'textCallTimes' | translate:{calls:global.user.calls, times:global.user.times} }}</p>
+                    <p>Stats, current health...</p>
                 </div>
             </div>
 

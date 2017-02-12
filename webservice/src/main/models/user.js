@@ -20,6 +20,7 @@ module.exports = function (mongoose) {
             rank: {type: Number, default: 1},
             tostolares: {type: Number, default: 0},
             fame: {type: Number, default: 0},
+            current_health: {type: Number, default: 0},
             talents: {
                 combat: [String],
                 exploration: [String],

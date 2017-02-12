@@ -30,6 +30,7 @@
             'rank': 'Rango',
             'tostolares': 'Tostólares',
             'textCharacter': 'Personaje',
+            'textCharActivity': 'Actividad',
             'textWeapon': 'Arma',
             'textWeapons': 'Armas',
             'textArmor': 'Vestimenta',
