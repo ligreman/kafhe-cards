@@ -196,6 +196,7 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
 
 .small-avatar {
     width: 64px;
+    height: 64px;
 }
 
 .kafhe-char-tabs {
@@ -210,4 +211,10 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
 .kafhe-char-tabs md-ink-bar {
     background: #4CAF50;
     height: 5px;
+}
+
+.birrete {
+    position: absolute;
+    top: 0;
+    left: 30px;
 }

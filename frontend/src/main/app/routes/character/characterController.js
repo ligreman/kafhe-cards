@@ -32,10 +32,13 @@
                     $timeout(function () {
                         // Calculo el ancho y alto del sitio donde voy a pintar
                         var lienzo = $document[0].getElementById('lienzo');
+                        var lienzoChart = $document[0].getElementById('chart-stats');
 
                         var w, h;
-                        w = h = Math.min(lienzo.clientWidth, lienzo.clientHeight) - 150;
+                        w = h = Math.min(lienzoChart.clientWidth, lienzo.clientHeight) - 150;
 
+                        console.log(lienzoChart.clientWidth);
+                        console.log(lienzo.clientHeight);
                         //Data
                         var d = [[]];
 
@@ -74,6 +77,10 @@
                         // La graph de barras
                         var barras = c3.generate({
                             bindto: '#chart-bars',
+                            size: {
+                                width: w + 120,
+                                height: h + 70
+                            },
                             data: {
                                 columns: [
                                     [

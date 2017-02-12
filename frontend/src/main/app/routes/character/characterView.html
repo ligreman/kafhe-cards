@@ -30,16 +30,25 @@
     <md-content id="lienzo" flex>
         <!-- PERSONAJE -->
         <div ng-if="viewing === 'character'">
-            <div>
-                <p>{{ global.user.alias }}</p>
+            <div layout="row" layout-align="space-around center" layout-padding>
+                <div class="relative" layout="row" layout-align="start center">
+                    <img class="small-avatar"
+                         ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
+                    <md-icon ng-if="global.user.leader"
+                             class="birrete md-accent md-hue-3 material-icons">school
+                    </md-icon>
+                    <h2 class="margin-left-10">{{ global.user.alias }}</h2>
+                </div>
                 <p>
                     <md-icon class="md-warn">favorite</md-icon>
-                    {{ statsCollected.health }}
+                    {{ 'stat-health' | translate }}: {{ statsCollected.health }}
                 </p>
+                <p>{{ 'textCallTimes' | translate:{calls:global.user.calls, times:global.user.times} }}</p>
             </div>
-            <div id="chart-stats"></div>
-            <div id="chart-bars"></div>
-
+            <div layout="column" layout-gt-sm="row">
+                <div flex id="chart-stats"></div>
+                <div flex id="chart-bars"></div>
+            </div>
         </div>
 
         <!-- COLECCIÓN -->

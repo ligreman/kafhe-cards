@@ -73,6 +73,10 @@ md-sidenav, md-sidenav md-content {
     padding: 0 !important;
 }
 
+.margin-left-10 {
+    margin-left: 10px;
+}
+
 .margin-right-20 {
     margin-right: 20px;
 }

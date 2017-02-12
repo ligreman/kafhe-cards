@@ -83,7 +83,7 @@
             'textCostTalent': 'Puntos requeridos',
             'textNoMoneyToFusion': 'No tienes suficientes tostólares',
             'textLevelUpCard': 'Subir a nivel',
-            'textCallTimes': 'Has participado {{times}} veces y llamado {{calls}}',
+            'textCallTimes': 'Has perdido en {{calls}} de los {{times}} juegos en que participaste',
             'textIsIn': 'esta en',
             'textCallAndSeeOrder': 'Ver los pedidos y llamar',
             'textSeeImg': 'Ver como imágenes',
