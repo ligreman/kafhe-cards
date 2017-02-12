@@ -6,6 +6,7 @@ module.exports = function (app) {
     var express = require('express'),
         passport = require('passport'),
         responseUtils = require('../modules/responseUtils'),
+        userUtils = require('../modules/userUtils'),
         bodyParser = require('body-parser'),
         config = require('../modules/config'),
         characterRouter = express.Router(),
@@ -197,6 +198,25 @@ module.exports = function (app) {
             myself.game.unlocked = myself.game.unlocked.concat(talent.skills);
 
             responseUtils.saveUserAndResponse(res, myself, req.authInfo.access_token);
+        });
+    });
+
+    /**
+     * GET /character/stats
+     * Obtiene los stats del personaje del usuario activo
+     */
+    characterRouter.get('/stats', function (req, res, next) {
+        var myself = req.user;
+
+        // Obtengo los stats
+        Q.all([
+            models.Card.find().exec(),
+            models.Talent.find().exec()
+        ]).spread(function (cardDB, talentDB) {
+            // Obtengo los stats
+            var stats = userUtils.getUserStats(myself, cardDB, talentDB);
+
+            responseUtils.responseJson(res, stats, req.authInfo.access_token);
         });
     });
 

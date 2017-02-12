@@ -1,8 +1,13 @@
 <section id="character-page" flex ng-class="{ 'wide': !isSmallScreen() }" layout="column">
     <md-tabs class="kafhe-char-tabs" md-dynamic-height md-no-pagination
              md-stretch-tabs="always" md-selected="0">
+        <md-tab id="tab0" ng-click="toggle('character')">
+            <md-tab-label>
+                <span><md-icon>face</md-icon></span>
+                <span ng-if="!isSmallScreen()">{{ 'textCharacter' | translate }}</span>
+            </md-tab-label>
+        </md-tab>
         <md-tab id="tab1" ng-click="toggle('talents')">
-            <!--<md-tab-label>{{ getLabel('talents') }}</md-tab-label>-->
             <md-tab-label>
                 <span><md-icon>device_hub</md-icon></span>
                 <span ng-if="!isSmallScreen()">{{ 'textTalents' | translate }}</span>
@@ -14,17 +19,31 @@
                 <span ng-if="!isSmallScreen()">{{ 'textCollection' | translate }}</span>
             </md-tab-label>
         </md-tab>
-        <md-tab id="tab3" ng-click="toggle('inventory')">
+        <!--<md-tab id="tab3" ng-click="toggle('inventory')">
             <md-tab-label>
                 <span><md-icon>work</md-icon></span>
                 <span ng-if="!isSmallScreen()">{{ 'textInventory' | translate }}</span>
             </md-tab-label>
-        </md-tab>
+        </md-tab>-->
     </md-tabs>
 
-    <md-content flex>
+    <md-content id="lienzo" flex>
+        <!-- PERSONAJE -->
+        <div ng-if="viewing === 'character'">
+            <div>
+                <p>{{ global.user.alias }}</p>
+                <p>
+                    <md-icon class="md-warn">favorite</md-icon>
+                    {{ statsCollected.health }}
+                </p>
+            </div>
+            <div id="chart-stats"></div>
+            <div id="chart-bars"></div>
+
+        </div>
+
         <!-- COLECCIÓN -->
-        <div id="character-collection" class="y-scroll" ng-hide="viewing === 'talents'">
+        <div id="character-collection" class="y-scroll" ng-if="viewing === 'collection'">
             <div layout="row" layout-align="end center">
                 <md-button class="md-accent md-hue-3" md-no-ink aria-label=""
                            ng-click="cardLevelUpDialog($event)">
@@ -42,7 +61,7 @@
         </div>
 
         <!-- TALENTOS -->
-        <div id="character-talents" ng-hide="viewing === 'collection'" layout-fill>
+        <div id="character-talents" ng-if="viewing === 'talents'" layout-fill>
             <k-talents ng-if="global.gamedata.talents && global.user.game.talents" callback="updateUser"
                        growl-notification="growlNotification"
                        talents="global.gamedata.talents" user-talents="global.user.game.talents"></k-talents>

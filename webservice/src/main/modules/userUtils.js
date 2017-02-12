@@ -28,7 +28,8 @@ function fnGetUserStats(user, cardDB, talentDB) {
         defense: 0,
         critic: 0,
         evade: 0,
-        health: 0
+        health: 0,
+        ambush: 0
     };
 
     console.log("stats iniciales del usuario según rango");
@@ -91,6 +92,7 @@ function fnGetUserStats(user, cardDB, talentDB) {
     stats.critic = Math.floor(stats.skill * 1 / 2);
     stats.evade = Math.floor(stats.luck * 1 / 2);
     stats.health = stats.vigor * 5;
+    stats.ambush = Math.floor(stats.reflexes * 1 / 2);
 
     console.log("Despues de hacer los cálculos para los stats secundarios");
     console.log(stats);

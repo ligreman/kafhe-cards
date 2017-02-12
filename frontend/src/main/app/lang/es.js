@@ -29,6 +29,7 @@
             'fame': 'Fama',
             'rank': 'Rango',
             'tostolares': 'Tostólares',
+            'textCharacter': 'Personaje',
             'textWeapon': 'Arma',
             'textWeapons': 'Armas',
             'textArmor': 'Vestimenta',
@@ -91,6 +92,22 @@
             'textLaunchDialogContent': 'Dar paso a la votación para elegir al perdedor de estos juegos del Kafhe',
             'textStartVoting': 'Iniciar votación',
             'textFuseCards': 'Fusionar cartas',
+
+            // STATS
+            'stat-combat': 'Combate',
+            'stat-endurance': 'Fortaleza',
+            'stat-skill': 'Habilidad',
+            'stat-reflexes': 'Reflejos',
+            'stat-luck': 'Suerte',
+            'stat-vigor': 'Vigor',
+            'stat-attack': 'Ataque',
+            'stat-parry': 'Bloqueo',
+            'stat-damage': 'Daño',
+            'stat-defense': 'Defensa',
+            'stat-critic': 'Crítico',
+            'stat-evade': 'Esquiva',
+            'stat-health': 'Vida',
+            'stat-ambush': 'Emboscar',
 
             // TALENTOS
             'combat': 'combate',

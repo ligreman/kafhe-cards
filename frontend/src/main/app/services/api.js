@@ -148,6 +148,18 @@
                         params: {
                             endpoint: 'talent'
                         }
+                    },
+
+                    // Obtiene los stats
+                    stats: {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': 'Bearer ' + access_token,
+                            'Content-Type': 'application/json'
+                        },
+                        params: {
+                            endpoint: 'stats'
+                        }
                     }
                 });
             },
