@@ -218,3 +218,16 @@ md-card md-card-header md-card-avatar + md-card-header-text .md-title.big-title 
     top: -10px;
     left: 20px;
 }
+
+.char-rank {
+    font-size: 0.7rem;
+    font-weight: bold;
+    border-radius: 10px;
+    border-bottom: 2px solid;
+    text-align: center;
+}
+
+.char-afk {
+    font-weight: bold;
+    font-size: 0.7rem;
+}

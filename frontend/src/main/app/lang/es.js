@@ -92,6 +92,7 @@
             'textLaunchDialogContent': 'Dar paso a la votación para elegir al perdedor de estos juegos del Kafhe',
             'textStartVoting': 'Iniciar votación',
             'textFuseCards': 'Fusionar cartas',
+            'textAFKExplanation': 'El personaje está dormido por inactividad',
 
             // STATS
             'stat-combat': 'Combate',

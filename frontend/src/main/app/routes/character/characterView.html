@@ -32,23 +32,27 @@
         <div ng-if="viewing === 'character'">
             <div layout="column" layout-gt-sm="row" layout-align="center center"
                  layout-align-gt-sm="space-around center" layout-padding>
-                <div layout="row" flex>
-                    <div class="relative" layout="row" layout-align="start center">
+                <div layout="row">
+                    <div class="relative">
                         <img class="small-avatar"
                              ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
                         <md-icon ng-if="global.user.leader"
                                  class="birrete md-accent md-hue-3 material-icons">school
                         </md-icon>
+                        <p class="char-afk text-center" ng-if="!global.user.game.afk">
+                            <span>AFK</span>
+                            <md-tooltip md-delay="700">{{ 'textAFKExplanation' | translate }}</md-tooltip>
+                        </p>
                     </div>
-                    <div>
-                        <h2 class="margin-left-10">{{ global.user.alias }}</h2>
+                    <div class="margin-left-10">
+                        <h2>{{ global.user.alias }}</h2>
                         <p class="text-right">
                             <md-icon class="md-warn">favorite</md-icon>
                             {{ 'stat-health' | translate }}: {{ statsCollected.health }}
                         </p>
                     </div>
                 </div>
-                <p flex class="text-center">{{ 'textCallTimes' | translate:{calls:global.user.calls,
+                <p class="text-center">{{ 'textCallTimes' | translate:{calls:global.user.calls,
                     times:global.user.times} }}</p>
             </div>
             <div layout="column" layout-gt-sm="row">
