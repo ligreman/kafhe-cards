@@ -68,7 +68,8 @@
 
                         d3.selectAll("#chart-stats text.legend").style("fill", "rgba(0,0,0,0)");
                         d3.selectAll("#chart-stats g.axis text").style("fill", "#FFF");
-                        d3.selectAll("#chart-stats path").style("fill", "red");
+                        d3.selectAll("#chart-stats polygon, #chart-stats polygon").style("fill", "#2E7D32").style("stroke", "#2E7D32");
+                        d3.selectAll("#chart-stats circle").style("fill", "#2E7D32");
 
                         // La graph de barras
                         var barras = c3.generate({
