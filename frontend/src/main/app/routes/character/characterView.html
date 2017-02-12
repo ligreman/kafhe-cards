@@ -30,8 +30,9 @@
     <md-content id="lienzo" flex>
         <!-- PERSONAJE -->
         <div ng-if="viewing === 'character'">
-            <div layout="row" layout-align="space-around center" layout-padding>
-                <div layout="row">
+            <div layout="column" layout-gt-sm="row" layout-align="center center"
+                 layout-align-gt-sm="space-around center" layout-padding>
+                <div layout="row" flex>
                     <div class="relative" layout="row" layout-align="start center">
                         <img class="small-avatar"
                              ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
@@ -47,7 +48,8 @@
                         </p>
                     </div>
                 </div>
-                <p>{{ 'textCallTimes' | translate:{calls:global.user.calls, times:global.user.times} }}</p>
+                <p flex class="text-center">{{ 'textCallTimes' | translate:{calls:global.user.calls,
+                    times:global.user.times} }}</p>
             </div>
             <div layout="column" layout-gt-sm="row">
                 <div flex id="chart-stats"></div>
