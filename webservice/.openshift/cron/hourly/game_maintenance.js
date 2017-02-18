@@ -30,18 +30,19 @@ var config = require(basePath + 'modules/config'),
 
 // Array de acciones durante la semana
 var weekActions = [
-    '1#1', // 0
-    '1#8',
-    '1#11',
-    '2#1',
-    '2#11',
-    '3#1',
-    '3#11',
-    '4#1',
-    '4#11',
-    '5#1',
-    '5#15' // 11
+    '1#1',  //0 - Partidas weekend -> planning. Reinicio diario usuarios.
+    '1#8',  //1 - Usuarios des-afk
+    '1#11', //2 - Partidas planning -> explore
+    '2#1',  //3 - Partidas explore -> planning. Reinicio diario usuarios.
+    '2#11', //4 - Partidas planning -> explore
+    '3#1',  //5 - Partidas explore -> planning. Reinicio diario usuarios.
+    '3#11', //6 - Partidas planning -> explore
+    '4#1',  //7 - Partidas explore -> planning. Reinicio diario usuarios.
+    '4#11', //8 - Partidas planning -> explore
+    '5#1',  //9 - Partidas explore -> resolution. Reinicio diario usuarios.
+    '5#15'  //10 - Reseteo desayuno usuarios + partida. Partidas resolution -> weekend
 ];
+
 
 // Compruebo el fichero de lock
 var existsLockFile = fs.existsSync(lockFile);
@@ -57,64 +58,114 @@ var actionsToDo = [];
 var ahora = dia + '#' + hora;
 var ahoraAction = weekActions.indexOf(ahora);
 
+// Parseo
+lastActionMade = parseInt(lastActionMade);
+
 // Si hay lastaction, ahoraAction y no son la misma
-if ((lastActionMade !== '') && (ahoraAction !== -1) && (lastActionMade !== ahoraAction)) {
-    lastActionMade = parseInt(lastActionMade);
-
-    // Compruebo qué dia y hora es la última ejecución que he realizado
-    // Si está a -1, hago como si es la última
-    var previousAction = ahoraAction - 1;
-    if (previousAction < 0) {
-        previousAction = 11;
+if (!isNaN(lastActionMade) && (ahoraAction !== -1)) {
+    // Si ahora y last son la misma no tengo que hacer nada, ya estoy en ese estado
+    if (lastActionMade === ahoraAction) {
+        console.log('Ahora y Last actions son la misma');
+        salir();
     }
 
-    // Voy a ver si la acción anterior a la actual es la última realizada
-    if (previousAction !== lastActionMade) {
-        // Me he colado acciones, tendré que recuperar estado
-        do {
-            lastActionMade++;
-            // Si me voy a pasar de largo
-            if (lastActionMade >= weekActions.length) {
-                lastActionMade = 0;
-            }
-
-            actionsToDo.push(weekActions[lastActionMade]);
-        } while (lastActionMade !== previousAction);
+    // Si ahora = last+1 es el flujo normal, así que ejecuto ahora
+    if (ahoraAction === (lastActionMade + 1)) {
+        console.log('Ahora = Last+1; flujo normal');
+        actionsToDo.push(weekActions[ahoraAction]);
+    } else {
+        // No es flujo normal y tengo que recuperar
+        var accionesRecuperar = calculateActionsToDo(lastActionMade, ahoraAction);
+        actionsToDo = actionsToDo.concat(accionesRecuperar);
     }
+
+    /*// Compruebo qué dia y hora es la última ejecución que he realizado
+     // Si está a -1, hago como si es la última
+     var previousAction = ahoraAction - 1;
+     if (previousAction < 0) {
+     previousAction = 10;
+     }
+
+     // Voy a ver si la acción anterior a la actual es la última realizada
+     if (previousAction !== lastActionMade) {
+     // Me he colado acciones, tendré que recuperar estado
+     do {
+     lastActionMade++;
+     // Si me voy a pasar de largo
+     if (lastActionMade >= weekActions.length) {
+     lastActionMade = 0;
+     }
+
+     actionsToDo.push(weekActions[lastActionMade]);
+     } while (lastActionMade !== previousAction);
+     }*/
+} else {
+    // Si no hay lastAction, ejecuto la acción actual
+    actionsToDo.push(weekActions[ahoraAction]);
 }
 
 // Sea como sea tengo que ejecutar la acción de ahora, si es que hay acción
-if (ahoraAction !== -1) {
-    actionsToDo.push(weekActions[ahoraAction]);
-}
+/*if (ahoraAction !== -1) {
+ actionsToDo.push(weekActions[ahoraAction]);
+ }*/
+
 
 if (actionsToDo.length > 0) {
     // voy creando promises
     var promises = [];
 
+    // Genero los promises
     actionsToDo.forEach(function (action) {
         var datos = action.split('#');
         promises.push(maintain(datos[0], datos[1]));
     });
 
     if (promises.length > 0) {
-        //Lanzo las promises
-        Q.all(promises).spread(function (result) {
-            console.log('---- FIN ----');
+        //Lanzo las promises secuencialmente
+        launchPromises(promises, lockFile, ahoraAction);
 
-            // Escribo el fichero de lock con la última acción
-            fs.writeFileSync(lockFile, ahoraAction);
+        /*// TODO debería lanzarlas en orden, no todas ahí a lo loco. Van ordenadas
+         //TODO casi mejor establecer un sistema de recuperación, pero que no ejecute todas
+         // dependiendo de lo que falte por hacer y cuál sea el estado destino, hará X o Y
+         Q.all(promises).spread(function (result) {
+         console.log('---- FIN ----');
 
-            salir();
-        }).fail(function (error) {
-            console.error(error);
-            salir();
-        });
+         // Escribo el fichero de lock con la última acción
+         fs.writeFileSync(lockFile, ahoraAction);
+
+         salir();
+         }).fail(function (error) {
+         console.error(error);
+         salir();
+         });*/
     } else {
         salir();
     }
 } else {
     salir();
+}
+
+function launchPromises(arrPromises, lockFile, ahoraAction) {
+    var unaPromise = arrPromises.shift();
+
+    Q.all(unaPromise)
+        .then(function (result) {
+            // Escribo el fichero de lock con la última acción
+            fs.writeFileSync(lockFile, ahoraAction);
+
+            // Si quedan más, lanzo la siguiente
+            if (arrPromises.length > 0) {
+                launchPromises(arrPromises);
+            } else {
+                //Si no hay más, finalizo
+                console.log('---- FIN ----');
+                salir();
+            }
+        })
+        .fail(function (error) {
+            console.error(error);
+            salir();
+        });
 }
 
 //Gestor de eventos
@@ -168,6 +219,13 @@ if (actionsToDo.length > 0) {
 
 function maintain(dia, hora) {
     var deferred = Q.defer();
+
+    dia = parseInt(dia);
+    hora = parseInt(hora);
+
+    if (isNaN(dia) || isNaN(hora)) {
+        deferred.reject(new Error("Dia u hora no son valores válidos"));
+    }
 
     switch (dia) {
         /**
@@ -337,3 +395,274 @@ function salir() {
     process.exit();
 }
 
+
+/**
+ * Genera las acciones a realizar
+ */
+function calculateActionsToDo(lastAction, ahoraAction) {
+    var actions = [];
+
+    switch (lastAction) {
+        case 0:
+            switch (ahoraAction) {
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    actions.push(weekActions[1]);
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 9:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    break;
+                case 10:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 1:
+            switch (ahoraAction) {
+                case 0:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 9:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    break;
+                case 10:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 2:
+            switch (ahoraAction) {
+                case 0:
+                    actions.push(weekActions[3]);
+                    break;
+                case 1:
+                    actions.push(weekActions[3]);
+                    actions.push(weekActions[1]);
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 10:
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 3:
+            switch (ahoraAction) {
+                case 0:
+                case 1:
+                case 2:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 9:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    break;
+                case 10:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 4:
+            switch (ahoraAction) {
+                case 0:
+                    actions.push(weekActions[3]);
+                    break;
+                case 1:
+                    actions.push(weekActions[3]);
+                    actions.push(weekActions[1]);
+                    break;
+                case 2:
+                case 3:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 10:
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 5:
+            switch (ahoraAction) {
+                case 0:
+                case 1:
+                case 7:
+                case 8:
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    actions.push(weekActions[1]);
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 9:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    break;
+                case 10:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 6:
+            switch (ahoraAction) {
+                case 0:
+                    actions.push(weekActions[3]);
+                    break;
+                case 1:
+                    actions.push(weekActions[3]);
+                    actions.push(weekActions[1]);
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 8:
+                case 9:
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 10:
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 7:
+            switch (ahoraAction) {
+                case 0:
+                case 1:
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    actions.push(weekActions[1]);
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 9:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    break;
+                case 10:
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 8:
+            switch (ahoraAction) {
+                case 0:
+                    actions.push(weekActions[3]);
+                    break;
+                case 1:
+                    actions.push(weekActions[3]);
+                    actions.push(weekActions[1]);
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 10:
+                    actions.push(weekActions[9]);
+                    actions.push(weekActions[10]);
+                    break;
+            }
+            break;
+        case 9:
+            switch (ahoraAction) {
+                case 0:
+                    actions.push(weekActions[10]);
+                    actions.push(weekActions[0]);
+                    break;
+                case 1:
+                    actions.push(weekActions[10]);
+                    actions.push(weekActions[0]);
+                    actions.push(weekActions[1]);
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    actions.push(weekActions[10]);
+                    actions.push(weekActions[0]);
+                    actions.push(weekActions[1]);
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+            }
+            break;
+        case 10:
+            switch (ahoraAction) {
+                case 1:
+                    actions.push(weekActions[0]);
+                    actions.push(weekActions[1]);
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    actions.push(weekActions[0]);
+                    actions.push(weekActions[1]);
+                    actions.push(weekActions[ahoraAction]);
+                    break;
+                case 9:
+                    actions.push(weekActions[0]);
+                    actions.push(weekActions[1]);
+                    actions.push(weekActions[8]);
+                    actions.push(weekActions[9]);
+                    break;
+            }
+            break;
+    }
+
+    return actions;
+}
