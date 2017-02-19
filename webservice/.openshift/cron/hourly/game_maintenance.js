@@ -58,6 +58,10 @@ var actionsToDo = [];
 var ahora = dia + '#' + hora;
 var ahoraAction = weekActions.indexOf(ahora);
 
+console.log("Dia - hora: "+dia+" "+hora);
+console.log("Ahora action "+ahoraAction);
+console.log("Last action "+lastActionMade);
+
 // Parseo
 lastActionMade = parseInt(lastActionMade);
 
@@ -75,7 +79,7 @@ if (!isNaN(lastActionMade) && (ahoraAction !== -1)) {
         actionsToDo.push(weekActions[ahoraAction]);
     } else {
         // No es flujo normal y tengo que recuperar
-        var accionesRecuperar = calculateActionsToDo(lastActionMade, ahoraAction);
+        var accionesRecuperar = calculateActionsToDo(lastActionMade, ahoraAction, weekActions);
         actionsToDo = actionsToDo.concat(accionesRecuperar);
     }
 
@@ -99,9 +103,11 @@ if (!isNaN(lastActionMade) && (ahoraAction !== -1)) {
      actionsToDo.push(weekActions[lastActionMade]);
      } while (lastActionMade !== previousAction);
      }*/
-} else {
+} else if(ahoraAction!==-1) {
     // Si no hay lastAction, ejecuto la acción actual
     actionsToDo.push(weekActions[ahoraAction]);
+} else {
+	salir();
 }
 
 // Sea como sea tengo que ejecutar la acción de ahora, si es que hay acción
@@ -399,7 +405,7 @@ function salir() {
 /**
  * Genera las acciones a realizar
  */
-function calculateActionsToDo(lastAction, ahoraAction) {
+function calculateActionsToDo(lastAction, ahoraAction, weekActions) {
     var actions = [];
 
     switch (lastAction) {

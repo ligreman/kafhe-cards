@@ -82,7 +82,7 @@
                     <h2 class="text-center">{{ global.user.alias }}</h2>
                     <div class="no-padding" layout="row" layout-align="start center">
                         <span class="stars-title">{{'stat-health'|translate}}</span>
-                        <md-progress-linear md-mode="determinate"
+                        <md-progress-linear md-mode="determinate" class="md-warn md-hue-2"
                                             value="{{global.user.game.current_health*100/stats.health}}">
                         </md-progress-linear>
                     </div>

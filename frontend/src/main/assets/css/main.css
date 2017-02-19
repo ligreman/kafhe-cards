@@ -274,25 +274,7 @@ timeline-heading h4 {
     border: none;
 }
 
-.stock {
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-.soldout {
-    position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 100%;
-    height: 100%;
-    color: red;
-    transform: rotate(-45deg);
-    font-size: 2.5em;
-}
-
-.dragging {
-    border: 7px solid red;
-    border-color: purple !important;
-    z-index: 999999999;
-    position: absolute;
+.separator {
+    border-bottom: 2px solid #3f3f3f;
+    margin-bottom: 10px;
 }

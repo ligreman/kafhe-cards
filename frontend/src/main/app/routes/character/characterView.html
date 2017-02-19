@@ -30,7 +30,7 @@
     <md-content id="lienzo" flex>
         <!-- PERSONAJE -->
         <div ng-if="viewing === 'character'">
-            <div layout="column" layout-gt-sm="row" layout-align="center center"
+            <div layout="column" layout-gt-sm="row" layout-align="center center" class="separator"
                  layout-align-gt-sm="space-around center" layout-padding>
                 <div layout="row">
                     <div class="relative">
@@ -56,8 +56,14 @@
                     times:global.user.times} }}</p>
             </div>
             <div layout="column" layout-gt-sm="row">
-                <div flex id="chart-stats"></div>
-                <div flex id="chart-bars"></div>
+                <div flex>
+                    <h4 class="text-center">Características</h4>
+                    <div flex id="chart-stats"></div>
+                </div>
+                <div flex>
+                    <h4 class="text-center">Parámetros de combate</h4>
+                    <div flex id="chart-bars"></div>
+                </div>
             </div>
         </div>
 

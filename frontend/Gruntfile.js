@@ -28,7 +28,7 @@ module.exports = function (grunt) {
                             config: 'input.webserviceurl',
                             type: 'input', // list, checkbox, confirm, input, password
                             message: 'URL del webservice',
-                            default: 'http://localhost:8080'
+                            default: 'http://localhost:8080/api'
                         }
                     ],
                     then: function (results, done) {
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
                         {
                             // match: /(webServiceUrl:[ '"]{1,2})(http:\/\/localhost:8080)(\/['"]{1})/i,
                             // replacement: '$1<%= grunt.config("input.webserviceurl") %>$3'
-                            match: /webServiceUrl: 'http:\/\/localhost:8080\//,
+                            match: /webServiceUrl: '[a-z0-9\\:\/]*/,
                             replacement: 'webServiceUrl: \'<%= grunt.config("input.webserviceurl") %>/'
                         }
                     ]
