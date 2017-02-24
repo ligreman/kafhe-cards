@@ -31,6 +31,8 @@ var config = require(basePath + 'modules/config'),
 
 console.log('Inicio gestión de exploración');
 
+salir();
+
 // Obtengo los datos de base de datos: cartas, talentos, juegos + jugadores
 Q.all([
     models.Card.find().exec(),

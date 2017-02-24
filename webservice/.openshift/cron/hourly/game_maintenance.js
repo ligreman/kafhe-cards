@@ -12,7 +12,6 @@ var fecha = new Date(),
 var basePath = process.env.OPENSHIFT_REPO_DIR || 'D:\\Workspace\\www\\kafhe_4.0_cards\\development\\webservice\\src\\main';
 basePath += '/';
 
-
 var mongoose = require('mongoose');
 var mongoHost = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/kafhe';
 mongoose.connect(mongoHost, {});
@@ -58,9 +57,11 @@ var actionsToDo = [];
 var ahora = dia + '#' + hora;
 var ahoraAction = weekActions.indexOf(ahora);
 
-console.log("Dia - hora: "+dia+" "+hora);
-console.log("Ahora action "+ahoraAction);
-console.log("Last action "+lastActionMade);
+console.log("Dia - hora: " + dia + " " + hora);
+console.log("Ahora action " + ahoraAction);
+console.log("Last action " + lastActionMade);
+
+salir();
 
 // Parseo
 lastActionMade = parseInt(lastActionMade);
@@ -103,11 +104,11 @@ if (!isNaN(lastActionMade) && (ahoraAction !== -1)) {
      actionsToDo.push(weekActions[lastActionMade]);
      } while (lastActionMade !== previousAction);
      }*/
-} else if(ahoraAction!==-1) {
+} else if (ahoraAction !== -1) {
     // Si no hay lastAction, ejecuto la acción actual
     actionsToDo.push(weekActions[ahoraAction]);
 } else {
-	salir();
+    salir();
 }
 
 // Sea como sea tengo que ejecutar la acción de ahora, si es que hay acción

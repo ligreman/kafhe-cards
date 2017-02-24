@@ -27,6 +27,11 @@ module.exports = function (app) {
     //Fichero de rutas de error
     require('./error')(app);
 
+    // Estado
+    app.get('/api/', function (req, res) {
+        res.status(200).send('OK');
+    });
+
     //Cualquier otra ruta a la que se acceda, devuelve error
     app.get('/!*', function (req, res) {
         res.status(404).send('Aquí no hay nada ┌∩┐(◣_◢)┌∩┐');
