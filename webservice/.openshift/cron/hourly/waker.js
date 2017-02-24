@@ -1,12 +1,11 @@
+#!/usr/bin/env node
+
+'use strict';
 
 var http = require('http');
-var options = {
-    host: 'http://foroligre.net63.net',
-    port: 80,
-    path: '/waker.php'
-};
+
 var req = http.get('http://foroligre.net63.net/waker.php', function (response) {
-	console.log("Respuesta obtenida");
+    console.log("Respuesta obtenida");
     // handle the response
     var res_data = '';
     response.on('data', function (chunk) {
