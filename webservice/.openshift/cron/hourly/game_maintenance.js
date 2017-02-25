@@ -61,12 +61,10 @@ console.log("Dia - hora: " + dia + " " + hora);
 console.log("Ahora action " + ahoraAction);
 console.log("Last action " + lastActionMade);
 
-salir();
-
 // Parseo
 lastActionMade = parseInt(lastActionMade);
 
-// Si hay lastaction, ahoraAction y no son la misma
+// Si hay lastAction, ahoraAction y no son la misma
 if (!isNaN(lastActionMade) && (ahoraAction !== -1)) {
     // Si ahora y last son la misma no tengo que hacer nada, ya estoy en ese estado
     if (lastActionMade === ahoraAction) {
@@ -83,38 +81,12 @@ if (!isNaN(lastActionMade) && (ahoraAction !== -1)) {
         var accionesRecuperar = calculateActionsToDo(lastActionMade, ahoraAction, weekActions);
         actionsToDo = actionsToDo.concat(accionesRecuperar);
     }
-
-    /*// Compruebo qué dia y hora es la última ejecución que he realizado
-     // Si está a -1, hago como si es la última
-     var previousAction = ahoraAction - 1;
-     if (previousAction < 0) {
-     previousAction = 10;
-     }
-
-     // Voy a ver si la acción anterior a la actual es la última realizada
-     if (previousAction !== lastActionMade) {
-     // Me he colado acciones, tendré que recuperar estado
-     do {
-     lastActionMade++;
-     // Si me voy a pasar de largo
-     if (lastActionMade >= weekActions.length) {
-     lastActionMade = 0;
-     }
-
-     actionsToDo.push(weekActions[lastActionMade]);
-     } while (lastActionMade !== previousAction);
-     }*/
 } else if (ahoraAction !== -1) {
     // Si no hay lastAction, ejecuto la acción actual
     actionsToDo.push(weekActions[ahoraAction]);
 } else {
     salir();
 }
-
-// Sea como sea tengo que ejecutar la acción de ahora, si es que hay acción
-/*if (ahoraAction !== -1) {
- actionsToDo.push(weekActions[ahoraAction]);
- }*/
 
 
 if (actionsToDo.length > 0) {
@@ -123,28 +95,17 @@ if (actionsToDo.length > 0) {
 
     // Genero los promises
     actionsToDo.forEach(function (action) {
-        var datos = action.split('#');
-        promises.push(maintain(datos[0], datos[1]));
+        try {
+            var datos = action.split('#');
+            promises.push(maintain(datos[0], datos[1]));
+        } catch (error) {
+            console.log("Error en la acción a realizar: " + action + ". " + error);
+        }
     });
 
     if (promises.length > 0) {
         //Lanzo las promises secuencialmente
         launchPromises(promises, lockFile, ahoraAction);
-
-        /*// TODO debería lanzarlas en orden, no todas ahí a lo loco. Van ordenadas
-         //TODO casi mejor establecer un sistema de recuperación, pero que no ejecute todas
-         // dependiendo de lo que falte por hacer y cuál sea el estado destino, hará X o Y
-         Q.all(promises).spread(function (result) {
-         console.log('---- FIN ----');
-
-         // Escribo el fichero de lock con la última acción
-         fs.writeFileSync(lockFile, ahoraAction);
-
-         salir();
-         }).fail(function (error) {
-         console.error(error);
-         salir();
-         });*/
     } else {
         salir();
     }

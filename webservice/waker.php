@@ -8,3 +8,4 @@ $str = $date . ' --> ' . $xmlData;
 
 file_put_contents("./data-" . $date, $str);
 
+echo "OK";
