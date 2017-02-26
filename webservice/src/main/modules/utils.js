@@ -6,6 +6,10 @@ var randomInt = function (low, high) {
     return Math.floor(Math.random() * (high - low + 1) + low);
 };
 
+var randomFromArray = function (arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+};
+
 
 /**
  * Tira un dado de X sides un número times de veces
@@ -48,6 +52,7 @@ var generateId = function () {
 //Exporto las funciones de la librería utils para que puedan accederse desde fuera
 module.exports = {
     randomInt: randomInt,
+    randomFromArray: randomFromArray,
     dice100: dice100,
     rollDice: rollDice,
     generateId: generateId

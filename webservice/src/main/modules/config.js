@@ -54,6 +54,27 @@ var DEFAULTS = {
         },
         card_max_level: 3,
         cards_per_pack: 3
+    },
+
+    // Lugares
+    placeTypes: {
+        capital: 'capital',
+        town: 'town',
+        dungeon: 'dungeon',
+        zone: 'zone',
+        forest: 'forest',
+        desert: 'desert',
+        lake: 'lake',
+        swamp: 'swamp',
+        mountain: 'mountain'
+    },
+
+    // Probabilidades de moverse de un lado a otro
+    movementProbabilities: {
+        lower: 10, // ir a lugar de nivel menor
+        same: 50, // ir a lugar de mismo nivel
+        high: 30, // ir a lugar de 1 nivel mayor
+        higher: 10 // ir a lugar de más niveles
     }
 };
 

@@ -24,6 +24,7 @@ var config = require(basePath + 'modules/config'),
     // userDao = require(basePath + 'modules/dao/userDao'),
     // events = require('events'),
     cardUtils = require(basePath + 'modules/cardUtils'),
+    utils = require(basePath + 'modules/utils'),
     TAFFY = require('taffy'),
     models = require(basePath + 'models/models')(mongoose),
     Q = require('q');
@@ -108,37 +109,47 @@ function movement(player, died) {
     // var cardTaffy = TAFFY(cardDB);
 
     // Cojo el último lugar visitado
-    var lastPlace = null;
+    var lastPlace = null, nextPlace = null;
+
     if (player.game.journal.length > 0) {
         var db = TAFFY(player.game.journal);
         lastPlace = db().order("date desc").first();
         lastPlace = lastPlace.place;
     } else {
         // No había visitado nada aún, así que será la carta de schedule
-        lastPlace = player.game.schedule.place.card;
+        nextPlace = player.game.schedule.place.card;
+        lastPlace = false;
     }
 
-    if (!lastPlace) {
+    if (lastPlace === null) {
         return null;
-    } else {
+    } else if (lastPlace !== false) {
+        // Si ya fui a schedule y tengo que buscar otro sitio
         lastPlace = cardUtils.findCard(cardDB, lastPlace);
     }
 
     console.log(lastPlace);
-    var nextPlace = null;
-
-    // Si había muerto, a la capital más cercana del último lugar
-    if (died) {
+    //TODO asegurarse de que cada día se borra el journal
+    if (nextPlace !== null) {
+        // Si ya hay nextPlace establecido es que es el primer movimiento y voy a schedule
+        // no tengo que hacer nada en concreto
+    } else if (died) {
+        // Si había muerto, a la capital más cercana del último lugar
         nextPlace = lastPlace.data.place.capital;
     } else {
         // Si no murió miro a ver a dónde voy, de los lugares adyacentes
         // Cojo los lugares adyacentes
         var adyPlaces = cardUtils.findCards(cardDB, lastPlace.data.place.adjacent_places);
 
+        // Si no hay adyacentes algo falla
+        if (adyPlaces.length === 0) {
+            return null;
+        }
+
         // Agrupo los adyacentes por categorías para decidir a dónde ir
         var lowerLvlPlaces = [], sameLvlPlaces = [], oneHigherLvlPlaces = [], moreHigherLvlPlaces = [], dungeonPlaces = [];
         adyPlaces.forEach(function (ady) {
-            if (ady.data.place.type === CONSTANTS.placeTypes.dungeon) {
+            if (ady.data.place.type === config.DEFAULTS.placeTypes.dungeon) {
                 dungeonPlaces.push(ady);
             } else if (ady.data.place.level < lastPlace.data.place.level) {
                 lowerLvlPlaces.push(ady);
@@ -148,6 +159,35 @@ function movement(player, died) {
                 oneHigherLvlPlaces.push(ady);
             } else if (ady.data.place.level > (lastPlace.data.place.level + 1)) {
                 moreHigherLvlPlaces.push(ady);
+            }
+
+            // A una dungeon no me puedo mover directamente.
+            var dado;
+            while (nextPlace === null) {
+                // Tirada de dado
+                dado = utils.rollDice(1, 100);
+
+                if (dado <= config.DEFAULTS.movementProbabilities.lower) {
+                    // Si hay lugares de este tipo cojo uno
+                    if (lowerLvlPlaces.length > 0) {
+                        nextPlace = utils.randomFromArray(lowerLvlPlaces);
+                    }
+                } else if (dado <= config.DEFAULTS.movementProbabilities.same) {
+                    // Si hay lugares de este tipo cojo uno
+                    if (sameLvlPlaces.length > 0) {
+                        nextPlace = utils.randomFromArray(sameLvlPlaces);
+                    }
+                } else if (dado <= config.DEFAULTS.movementProbabilities.high) {
+                    // Si hay lugares de este tipo cojo uno
+                    if (oneHigherLvlPlaces.length > 0) {
+                        nextPlace = utils.randomFromArray(oneHigherLvlPlaces);
+                    }
+                } else if (dado <= config.DEFAULTS.movementProbabilities.higher) {
+                    // Si hay lugares de este tipo cojo uno
+                    if (moreHigherLvlPlaces.length > 0) {
+                        nextPlace = utils.randomFromArray(moreHigherLvlPlaces);
+                    }
+                }
             }
         });
     }
