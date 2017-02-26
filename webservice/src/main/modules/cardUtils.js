@@ -108,19 +108,31 @@ var getCapitals = function (cards, onlyIds) {
 
 /**
  * Busca una lista cartas a partir de sus ids, en el global de todas las cartas
- * @param cards
+ * @param cardDB Lista de cartas sacada de mongo
  * @param cardIds
  */
-var findCards = function (cards, cardIds) {
-    var cardsTAFFY = TAFFY(cards);
+var findCards = function (cardDB, cardIds) {
+    var cardsTAFFY = TAFFY(cardDB);
     var cartas = cardsTAFFY({'id': cardIds}).get();
 
     return cartas;
 };
 
+/**
+ * Busca 1 carta en concreto
+ * @param cardDB Lista de cartas sacada de mongo
+ * @param id
+ */
+var findCard = function (cardDB, id) {
+    var cardsTAFFY = TAFFY(cardDB);
+    var card = cardsTAFFY({'id': id}).first();
+    return card;
+}
+
 module.exports = {
     openPack: openPack,
     cardCategories: cardCategories,
     getCapitals: getCapitals,
-    findCards: findCards
+    findCards: findCards,
+    findCard: findCard
 };
