@@ -1,7 +1,6 @@
 'use strict';
 
 var console = process.console,
-    extend = require('util')._extend,
     mongoose = require('mongoose'),
     Q = require('q'),
     utils = require('./utils'),

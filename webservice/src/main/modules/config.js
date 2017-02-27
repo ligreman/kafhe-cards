@@ -28,8 +28,9 @@ var DEFAULTS = {
 
     // Personajes
     character: {
-        stats_starting_value: 5,
-        hire_cost: 1000 // Tostólares que cuesta
+        stats_starting_value: 5, //TODO ¿se usa?
+        hire_cost: 1000, // Tostólares que cuesta
+        health_percentage_recovered_per_turn: 25
     },
 
     // Límites de cartas por personaje

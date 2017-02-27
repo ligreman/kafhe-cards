@@ -24,6 +24,7 @@ var config = require(basePath + 'modules/config'),
     // userDao = require(basePath + 'modules/dao/userDao'),
     // events = require('events'),
     cardUtils = require(basePath + 'modules/cardUtils'),
+    userUtils = require(basePath + 'modules/userUtils'),
     utils = require(basePath + 'modules/utils'),
     TAFFY = require('taffy'),
     models = require(basePath + 'models/models')(mongoose),
@@ -68,12 +69,17 @@ Q.all([
         var players = game.players;
 
         players.forEach(function (player) {
-            var died = false;
-
             console.log("PLAYER: " + player.username);
+            var playerStats = userUtils.getUserStats(player, cardDB, talentDB);
+
+            // curamos y comprobamos si murió
+            var healResult = heal(player, playerStats);
+            // Aplico los resultados de curar
+            player.game.current_health = healResult.current_health;
+
             // Movimiento
-            var destino = movement(player, died);
-            console.log(destino);
+            var destinoPlace = movement(player, healResult.died);
+            console.log(destinoPlace);
         });
     });
 
@@ -102,6 +108,28 @@ Q.all([
  * Antes de empezar el turno
  */
 function preTurn() {
+}
+
+function heal(player, playerStats) {
+    var died = false, current_health = 0;
+
+    // Miro si el jugador había muerto
+    if (player.game.current_health <= 0) {
+        died = true;
+
+        // Le recargo la vida
+        current_health = playerStats.health;
+    } else {
+        // Le curo un % de la vida
+        current_health = player.game.current_health + Math.round(playerStats.health * config.DEFAULTS.character.health_percentage_recovered_per_turn / 100);
+        // Si me paso, pongo límite
+        current_health = Math.min(current_health, playerStats.health);
+    }
+
+    return {
+        current_health: current_health,
+        died: died
+    };
 }
 
 function movement(player, died) {
