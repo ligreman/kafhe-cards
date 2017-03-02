@@ -114,15 +114,23 @@ if (actionsToDo.length > 0) {
 }
 
 function launchPromises(arrPromises, lockFile, ahoraAction) {
+    console.log("Saco una promise de la cola");
     var unaPromise = arrPromises.shift();
+
+    console.log("La intento resolver");
 
     Q.all(unaPromise)
         .then(function (result) {
+            console.log("Promise resuelta");
+
             // Escribo el fichero de lock con la última acción
             fs.writeFileSync(lockFile, ahoraAction);
 
+            console.log("Fichero de lock escrito");
+
             // Si quedan más, lanzo la siguiente
             if (arrPromises.length > 0) {
+                console.log("Hay más promises, continuo");
                 launchPromises(arrPromises);
             } else {
                 //Si no hay más, finalizo
@@ -131,6 +139,7 @@ function launchPromises(arrPromises, lockFile, ahoraAction) {
             }
         })
         .fail(function (error) {
+            console.error("Se produjo un error resolviendo la cola de promises");
             console.error(error);
             salir();
         });
