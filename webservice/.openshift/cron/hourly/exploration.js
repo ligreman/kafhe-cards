@@ -48,7 +48,7 @@ var cardDB, talentDB;
 Q.all([
     models.Card.find().exec(),
     models.Talent.find().exec(),
-    models.Game.find().populate('players').exec()
+    models.Game.find({status: config.GAME_STATUS.explore}).populate('players').exec()
 ]).spread(function (_cardDB, _talentDB, games) {
     if (!_cardDB || !_talentDB || !games) {
         console.error("Error recuperando datos de mongo");
@@ -69,6 +69,11 @@ Q.all([
         var players = game.players;
 
         players.forEach(function (player) {
+            // Si el player no está afk
+            if (player.game.afk) {
+                return;
+            }
+
             console.log("PLAYER: " + player.username);
             var playerStats = userUtils.getUserStats(player, cardDB, talentDB);
 
@@ -79,7 +84,11 @@ Q.all([
 
             // Movimiento
             var destinoPlace = movement(player, healResult.died);
+            console.log("Destino");
             console.log(destinoPlace);
+
+            // Exploramos
+            explore(destinoPlace);
         });
     });
 
@@ -144,8 +153,14 @@ function movement(player, died) {
         lastPlace = db().order("date desc").first();
         lastPlace = lastPlace.place;
     } else {
+        if (!player.game.schedule.place.length > 0) {
+            return null;
+        }
+
+        console.log("No habia visitado nada así que voy a schedule: " + player.game.schedule.place[0].card);
+        console.log(player.game.schedule);
         // No había visitado nada aún, así que será la carta de schedule
-        nextPlace = player.game.schedule.place.card;
+        nextPlace = player.game.schedule.place[0].card;
         lastPlace = false;
     }
 
@@ -156,7 +171,7 @@ function movement(player, died) {
         lastPlace = cardUtils.findCard(cardDB, lastPlace);
     }
 
-    console.log(lastPlace);
+    console.log("Ultimo lugar: " + lastPlace);
     //TODO asegurarse de que cada día se borra el journal
     if (nextPlace !== null) {
         // Si ya hay nextPlace establecido es que es el primer movimiento y voy a schedule
@@ -225,6 +240,15 @@ function movement(player, died) {
     console.log(nextPlace);
 
     return nextPlace;
+}
+
+function explore(place) {
+    // 2.- Tirada de explorar
+    // 3.- según nivel del lugar, la tirada puede provocar que no encuentre nada, encontrar algo intrascendente, algo interesante o combate
+    var tirada = utils.rollDice(1, 100);
+    var placeLevel = place.data.place.level;
+
+    console.log("Tirada " + tirada + " -- Lugar lvl " + placeLevel);
 }
 
 function salir() {

@@ -1,7 +1,6 @@
 'use strict';
 
-var console = process.console,
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     Q = require('q'),
     utils = require('./utils'),
     cardUtils = require('./cardUtils'),
