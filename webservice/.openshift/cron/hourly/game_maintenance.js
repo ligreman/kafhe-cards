@@ -222,7 +222,7 @@ function maintain(dia, hora) {
                     console.log(result);
                     console.log('Partidas en estado weekend después del fin de semana se ponen en estado planning.');
                     console.log('Jugadores de todos los grupos reseteados (daily).');
-                    deferred.resolve();
+                    deferred.resolve({});
                 }).fail(function (error) {
                     console.error(error);
                     deferred.reject(new Error(error));
@@ -237,7 +237,7 @@ function maintain(dia, hora) {
                 ]).spread(function (result) {
                     console.log(result);
                     console.log('Jugadores de todos los grupos afk=false.');
-                    deferred.resolve();
+                    deferred.resolve({});
                 }).fail(function (error) {
                     console.error(error);
                     deferred.reject(new Error(error));
@@ -252,7 +252,7 @@ function maintain(dia, hora) {
                 ]).spread(function (result) {
                     console.log(result);
                     console.log('Partidas en estado planning del lunes se ponen en estado explore.');
-                    deferred.resolve();
+                    deferred.resolve({});
                 }).fail(function (error) {
                     console.error(error);
                     deferred.reject(new Error(error));
@@ -281,7 +281,7 @@ function maintain(dia, hora) {
                     console.log(result);
                     console.log('Partidas en estado explore pasan a estado planning en la madrugada.');
                     console.log('Jugadores de todos los grupos reseteados (daily).');
-                    deferred.resolve();
+                    deferred.resolve({});
                 }).fail(function (error) {
                     console.error(error);
                     deferred.reject(new Error(error));
@@ -296,7 +296,7 @@ function maintain(dia, hora) {
                 ]).spread(function (result) {
                     console.log(result);
                     console.log('Partidas en estado planning se ponen en estado explore.');
-                    deferred.resolve();
+                    deferred.resolve({});
                 }).fail(function (error) {
                     console.error(error);
                     deferred.reject(new Error(error));
@@ -325,7 +325,7 @@ function maintain(dia, hora) {
                     console.log(result);
                     console.log('Partidas en estado explore pasan a estado resolution para el viernes.');
                     console.log('Jugadores de todos los grupos reseteados (daily).');
-                    deferred.resolve();
+                    deferred.resolve({});
                 }).fail(function (error) {
                     console.error(error);
                     deferred.reject(new Error(error));
@@ -349,7 +349,7 @@ function maintain(dia, hora) {
                         console.log(result);
                         console.log('Partidas finalizadas: reseteadas y puestas a weekend para la semana que viene.');
                         console.log('Partidas no lanzadas: puestas a weekend para la semana que viene.');
-                        deferred.resolve();
+                        deferred.resolve({});
                     }).fail(function (error) {
                         console.error(error);
                         deferred.reject(new Error(error));
@@ -361,7 +361,7 @@ function maintain(dia, hora) {
             }
             break;
         default:
-            deferred.resolve();
+            deferred.resolve({});
     }
 
     return deferred.promise;
