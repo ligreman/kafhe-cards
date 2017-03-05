@@ -31,6 +31,11 @@ module.exports = function (mongoose) {
                 region: String,
                 level: Number,
                 pack_reward: String,
+                exploration: {
+                    nothing: {type: Number, default: 50},
+                    chest: {type: Number, default: 25},
+                    combat: {type: Number, default: 25}
+                },
                 'type': {type: String, enum: ['town', 'capital', 'zone', 'dungeon']},
                 subtype: {type: String, enum: ['forest', 'mountain', 'lake', 'desert', 'swamp']},
                 adjacent_places: [String],

@@ -88,7 +88,7 @@ Q.all([
             console.log(destinoPlace);
 
             // Exploramos
-            explore(destinoPlace);
+            var resultadoExploracion = explore(destinoPlace, player);
         });
     });
 
@@ -242,13 +242,34 @@ function movement(player, died) {
     return nextPlace;
 }
 
-function explore(place) {
-    // 2.- Tirada de explorar
-    // 3.- según nivel del lugar, la tirada puede provocar que no encuentre nada, encontrar algo intrascendente, algo interesante o combate
+function explore(place, player) {
     var tirada = utils.rollDice(1, 100);
-    var placeLevel = place.data.place.level;
+    var placeExploration = place.data.place.exploration;
+    var date = new Date();
 
-    console.log("Tirada " + tirada + " -- Lugar lvl " + placeLevel);
+    console.log("Tirada " + tirada + " -- Lugar exploration " + placeExploration);
+    // Miro a ver qué pasa
+    var reward = false, combat = false;
+
+    if (tirada <= placeExploration.nothing) {
+        // No pasa nada, texto intrascendente
+        player.game.journal.notifications.push({
+            message: 'String',
+            params: JSON.stringify({"name": "Pepito2"}),
+            source: player.alias,
+            type: 'explore',
+            timestamp: date.getTime()
+        });
+    } else if (tirada <= placeExploration.chest) {
+        reward = true;
+    } else if (tirada <= placeExploration.combat) {
+        combat = true;
+    }
+
+    return {
+        reward: reward,
+        combat: combat
+    };
 }
 
 function salir() {

@@ -137,7 +137,7 @@ function fnGetUsersStats(idGame, cardDB, talentDB) {
     var defer = Q.defer();
 
     var statsByUser = {};
-    console.log("VAmos alla");
+    console.log("Vamos alla");
 
     // Cojo todos los jugadores y calculo sus stats para devolverlos
     modelos.User.find({"game.gamedata": idGame}, function (err, users) {
