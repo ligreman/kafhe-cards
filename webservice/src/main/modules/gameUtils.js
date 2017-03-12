@@ -16,8 +16,19 @@ var calculateUsersProbabilities = fnCalculateUsersProbabilities,
 function fnCalculateUsersProbabilities(idGame) {
     var defer = Q.defer();
 
-    // Saco los usuarios
-    modelos.User.find({"game.gamedata": idGame}, function (err, users) {
+    // Saco los usuarios que han metido desayuno
+    modelos.User.find({
+        $and: [
+            {"game.gamedata": idGame},
+            {
+                $or: [
+                    {"game.order.meal": {$ne: null}},
+                    {"game.order.drink": {$ne: null}}
+                ]
+            }
+        ],
+
+    }, function (err, users) {
         //Preparo un array con las probabilidades de cada uno de los usuarios
         var probabilidadesRango = calculateProbabilitiesByRank(users);
         if (probabilidadesRango === null) return null;
