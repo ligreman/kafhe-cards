@@ -200,7 +200,7 @@ module.exports = function (app) {
                     console.log("Miro probab de " + userId + " que es " + valor);
                     valor = parseInt(valor);
 
-                    if (valor == 0) {
+                    if (valor === 0) {
                         return;
                     }
 

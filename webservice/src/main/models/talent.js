@@ -11,12 +11,9 @@ module.exports = function (mongoose) {
         branch: {type: String, required: true, enum: ['combat', 'exploration', 'survival']},
         skills: [String], // Array de ids de skills que otorga este talento
         stats: {
-            combat: {type: Number, default: 0},
-            endurance: {type: Number, default: 0},
-            skill: {type: Number, default: 0},
-            reflexes: {type: Number, default: 0},
-            luck: {type: Number, default: 0},
-            vigor: {type: Number, default: 0},
+            attack: {type: Number, default: 0},
+            defense: {type: Number, default: 0},
+            speed: {type: Number, default: 0},
             special: {type: String, default: ''},
             description: {type: String, default: ''}
         },
