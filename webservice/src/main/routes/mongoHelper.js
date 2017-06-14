@@ -48,7 +48,7 @@ module.exports = function (app) {
             data: {
                 weapon: {
                     stats: {
-                        1: {description: 'Es una pistola 1'},
+                        1: {description: 'Es una pistola 1', attack: 5, defense: 2},
                         2: {description: 'Es una pistola 2'},
                         3: {description: 'Es una pistola 3'}
                     }
@@ -56,7 +56,7 @@ module.exports = function (app) {
             }
         },
         {
-            id: '105', name: 'Encuentro', 'type': 'encounter', element: 'fire', effects: [],
+            id: '105', name: 'Podercete', 'type': 'skill', element: 'fire', effects: [],
             contained_in_packs: [{category: 'place1', frequency: 50}]
         }
     ];
