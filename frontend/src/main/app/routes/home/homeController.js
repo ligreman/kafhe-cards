@@ -115,49 +115,39 @@
                         }
                     }
 
-                    $timeout(function () {
+                    var chart = c3.generate({
+                        bindto: '#chart-probabilities',
+                        data: {
+                            columns: data,
+                            type: 'donut'
 
-
-                        var element = $('#sidenav-right');
-                        console.log("W: " + element.clientWidth);
-                        var chart = c3.generate({
-                            bindto: '#chart-probabilities',
-                            data: {
-                                columns: data,
-                                type: 'donut'
-
-                            },
-                            donut: {
-                                title: 'Probabilidades'
-                            },
-                            size: {
-                                width: 300
-                            },
-                            tooltip: {
-                                format: {
-                                    title: function (x) {
-                                        return 'Probabilidad de ser elegido';
-                                    },
-                                    value: function (value, ratio, id, index) {
-                                        return value + '%';
-                                    }
+                        },
+                        donut: {
+                            title: 'Probabilidades'
+                        },
+                        size: {
+                            width: 300
+                        },
+                        legend: {
+                            position: 'right'
+                        },
+                        tooltip: {
+                            format: {
+                                title: function (x) {
+                                    return 'Probabilidad de ser elegido';
+                                },
+                                value: function (value, ratio, id, index) {
+                                    return value + '%';
                                 }
                             }
-                        });
-                    }, 2000);
-                    /*// Resize
-                     $timeout(function () {
-                     chart.resize({
-                     height: element.clientWidth,
-                     width: element.clientWidth
-                     });
-                     }, 0);*/
+                        }
+                    });
                 }
 
                 function fnGenerateRanksAndFame(dataRank, dataFame) {
                     var txtRank = $translate.instant('rank');
                     var txtFame = $translate.instant('fame');
-                    return;
+
                     var json = [];
                     dataRank.forEach(function (r) {
                         // Busco la fama de este tipo
@@ -184,6 +174,9 @@
                             order: function (d1, d2) {
                                 return d1.values.value;
                             }
+                        },
+                        size: {
+                            width: 300
                         },
                         axis: {
                             rotated: true,

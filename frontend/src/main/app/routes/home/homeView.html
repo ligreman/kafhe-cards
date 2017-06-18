@@ -86,7 +86,7 @@
     <md-sidenav class="md-sidenav-right md-whiteframe-1dp"
                 ng-show="global.gamedata.status === gameStatuses.planning ||global.gamedata.status === gameStatuses.explore"
                 ng-class="{ 'sidenav-small-screen': isSmallScreen() }"
-                md-component-id="right" id="sidenav-right">
+                md-component-id="right">
         <md-toolbar class="md-primary md-hue-3">
             <div class="md-toolbar-tools">
                 <h2>{{'textStats' | translate}}</h2>
@@ -96,7 +96,7 @@
                 </md-button>
             </div>
         </md-toolbar>
-        <md-content layout="column" layout-padding ng-controller="RightCtrl">
+        <md-content layout="column" layout-padding ng-controller="RightCtrl" layout-align="start center">
             <div class="margin-top-20" id="chart-probabilities"></div>
             <div class="margin-top-20" id="chart-ranking"></div>
         </md-content>
