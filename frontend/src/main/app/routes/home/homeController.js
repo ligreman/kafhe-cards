@@ -175,9 +175,6 @@
                                 return d1.values.value;
                             }
                         },
-                        size: {
-                            width: 300
-                        },
                         axis: {
                             rotated: true,
                             x: {type: 'category'},
