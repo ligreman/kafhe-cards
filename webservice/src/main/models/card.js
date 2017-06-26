@@ -5,6 +5,7 @@ module.exports = function (mongoose) {
         attack: {type: Number, default: 0},
         defense: {type: Number, default: 0},
         speed: {type: Number, default: 0},
+        precision: {type: Number, default: 0},
         health: {type: Number, default: 0}, // Si te cura o hace daño
         special: {type: String, default: ''},
         description: {type: String, default: ''}

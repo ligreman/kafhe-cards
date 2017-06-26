@@ -26,6 +26,7 @@ errCharacterNoSpaceSchedule - No puedes asignar más cartas de ese tipo al jugad
 errTalentDontExists - No existe ese talento
 errCharacterNoTalentPoints - No tienes puntos de talento disponibles
 errCharacterNoTalentRequirementsMet - No cumples los requisitos para coger este talento
+errCharacterOnlyYou - Sólo puedes equipar cartas a tí mismo
 
 errCardWrong - La carta no es correcta
 errCollectionDontHaveCards - No tienes las cartas en tu colección
@@ -35,6 +36,8 @@ errCollectionCardsCantLevelUp - No puedes fusionar esas cartas porque no pueden 
 errPacksNotFound - No tienes sobres de ese tipo
 errPacksErrorOpeningPack - Error al abrir el sobre
 errPackCategoryNotFound - No existe esa categoría de sobres
+
+errPlayerNoExists - El jugador no existe
 
 errNoTostolares - No tienes tostólares suficientes
 errNoLeader - No eres líder de grupo para lanzar el desayuno

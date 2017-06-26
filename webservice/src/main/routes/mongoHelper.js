@@ -57,7 +57,16 @@ module.exports = function (app) {
         },
         {
             id: '105', name: 'Podercete', 'type': 'skill', element: 'fire', effects: [],
-            contained_in_packs: [{category: 'place1', frequency: 50}]
+            contained_in_packs: [{category: 'place1', frequency: 50}],
+            data: {
+                skill: {
+                    stats: {
+                        1: {description: 'Es una skill 1', attack: 5},
+                        2: {description: 'Es una skill 2'},
+                        3: {description: 'Es una skill 3'}
+                    }
+                }
+            }
         }
     ];
 

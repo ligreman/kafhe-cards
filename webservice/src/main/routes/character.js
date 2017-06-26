@@ -36,9 +36,23 @@ module.exports = function (app) {
             models.User.findOne({"username": params.username}).exec(),
             models.Card.find().exec()
         ]).spread(function (player, cards) {
+            // Si no he encontrado al jugador
+            if (player === null) {
+                console.tag('CHARACTER-SCHEDULE').error('El jugador no existe');
+                responseUtils.responseError(res, 400, 'errPlayerNoExists');
+                return;
+            }
+
             var soyYoMismo = false;
             if (player.username === myself.username) {
                 soyYoMismo = true;
+            }
+
+            // Si no soy yo mismo, error, sólo puedo equiparme a mí
+            if (!soyYoMismo) {
+                console.tag('CHARACTER-SCHEDULE').error('Sólo puedes equipar cartas a tí mismo');
+                responseUtils.responseError(res, 400, 'errCharacterOnlyYou');
+                return;
             }
 
             // Vienen todos los parámetros
@@ -194,7 +208,7 @@ module.exports = function (app) {
             // Me otorgo el talento
             myself.game.talents[talent.branch].push(talent.id);
 
-            // Si el talento desbloquea alguna skill, la meto en unlocked
+            // Si el talento desbloquea alguna skill (acceso a una carta), la meto en unlocked
             myself.game.unlocked = myself.game.unlocked.concat(talent.skills);
 
             responseUtils.saveUserAndResponse(res, myself, req.authInfo.access_token);
