@@ -7,69 +7,31 @@ var express = require('express'),
     validator = require('validator'),
     mongoose = require('mongoose'),
     Q = require('q'),
-    morgan = require('morgan');
+    morgan = require('morgan'),
+    scribe = require('scribe-js')();
 
 // Uso los promise de Q
 mongoose.Promise = require('q').Promise;
+// Consola personalizada para scribe
+var console = process.console;
+// Q
+Q.longStackSupport = true;
 
-var serverPort = process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    serverHost = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
+var serverPort = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    serverHost = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
     mongoHost = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/kafhe';
 
-// CORS
-var corsOptions = {
-    //origin: '*',
-    //methods: ['GET', 'POST', 'OPTIONS'],
-    //allowedHeaders: ['Connection', 'Cache-Control', 'Pragma', 'Host', 'Origin', 'Referer', 'Content-Type', 'Accept', 'User-Agent', 'Authorization', 'WWW-Authenticate']
-};
-app.options('*', cors());
-app.use(cors());
+// Configuramos la app para que pueda realizar métodos REST
+app.configure(function () {
+    app.options('*', cors());
+    app.use(cors());
 
+    app.use(morgan('combined'));
 
-/*app.use(function (req, res, next) {
- //res.header("Access-Control-Allow-Origin", "*");
- //res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
- //res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, X-Requested-With, Content-Type, Accept");
- //res.header("Access-Control-Max-Age", "1728000");
- //res.header("Access-Control-Expose-Headers", "Cache-Control, Pragma, Origin, X-Requested-With, Content-Type, Accept");
- if (req.method === 'OPTIONS') {
- res.statusCode = 200;
- return res.end();
- } else {
- return next();
- }
- });*/
-
-
-// LOGS
-var scribe = require('scribe-js')(), //loads Scribe
-    console = process.console;
-app.use(scribe.express.logger()); //Log each request
-// TODO deshabilitar en producción
-app.use('/logs', scribe.webPanel()); //Log web console
-
-// Morgan
-app.use(morgan('combined'));
-
-Q.longStackSupport = true;
-/*
- // With log(...)
- console.log("Hello World!");
- console.info("Hello World!");
- console.error("Hello World!");
- console.warning("Hello World!");
- // Now with an Object
- console.log({hello: "world"});
- //Now with tag
- console.tag("Demo").log("Hello all");
- */
-
-
-//Cargo mis módulos internos
-//var utils = require('./modules/utils');
-
-//Cargo los modelos de Mongo
-//var modelos = require('./models/user');
+    app.use(scribe.express.logger()); //Log each request
+    // TODO deshabilitar en producción
+    app.use('/logs', scribe.webPanel()); //Log web console
+});
 
 //Configuración de la conexión a Mongo
 mongoose.connect(mongoHost, {
@@ -79,46 +41,27 @@ mongoose.connect(mongoHost, {
 
 //Creo los modelos de Mongo. Sólo he de hacerlo una vez
 require('./models/createModels')(mongoose);
-
+// Conexión a mongo
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 mongoose.connection.once('open', function (callback) {
     console.log("Mongo conectado");
 });
+// TODO deshabilitar en pro
 mongoose.set('debug', true);
-
 
 //Cargo las rutas y estrategias
 require('./routes/routes')(app);
 
+// Si no se "queda" en una de las rutas anteriores, devuelvo un 404 siempre
+app.use(function (req, res) {
+    res.status(404).send('Aquí no hay nada ┌∩┐(◣_◢)┌∩┐');
+});
 
-//Configuración de los middleware de la aplicación
-//app.use(bodyParser.urlencoded({extended: false}));
-//app.use(bodyParser.json());
-//app.use(passport.initialize());
-
-
-//Capturo los errores no controlados para devolver un json de error al usuario (esto ha de ser el último .use de todos)
-// TODO mirar esto de los errores si puedo loggearlos, porque esto se los zampa
-/*app.use(function (err, req, res, next) {
- console.error(err);
- var msg = 'SERVER ERROR',
- error;
-
- try {
- console.log(err);
- error = JSON.parse(err);
- console.log(error);
- } catch (error) {
- console.log("E: " + error);
- }
-
- if (error && error.json) {
- console.log("json");
- msg = error.json;
- }
-
- res.status(500).send(msg);
- });*/
+//Si salta alguna excepción rara, saco error en vez de cerrar la aplicación
+process.on('uncaughtException', function (err) {
+    // handle the error safely
+    console.log("ERROR - " + err);
+});
 
 //Controlamos el cierre para desconectar mongo
 process.stdin.resume();//so the program will not close instantly
