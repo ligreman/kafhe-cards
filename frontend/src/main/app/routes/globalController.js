@@ -22,7 +22,7 @@
                     $scope.Math = window.Math;
 
                     // Página actual
-                    $scope.currentPage;
+                    $scope.currentPage = null;
                     // Muestro o no el menú profile
                     $scope.showProfileMenu = false;
 
@@ -263,34 +263,6 @@
                         var donde = ROUTES[page];
                         return ($location.path() === null || $location.path() === donde);
                     }
-
-                    /**
-                     * Devuelve la ruta de una página
-                     */
-                    /*function fnPageRoute(page) {
-                     var route;
-                     switch (page) {
-                     case 'home':
-                     route = ROUTES.home;
-                     break;
-                     case 'breakfast':
-                     route = ROUTES.breakfast;
-                     break;
-                     case 'team':
-                     route = ROUTES.team;
-                     break;
-                     case 'explore':
-                     route = ROUTES.explore;
-                     break;
-                     case 'login':
-                     route = ROUTES.login;
-                     break;
-                     case 'profile':
-                     route = ROUTES.profile;
-                     break;
-                     }
-                     return route;
-                     }*/
 
                     /**
                      * Función de cambio de idioma

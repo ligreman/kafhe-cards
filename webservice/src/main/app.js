@@ -22,16 +22,14 @@ var serverPort = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     mongoHost = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/kafhe';
 
 // Configuramos la app para que pueda realizar métodos REST
-app.configure(function () {
-    app.options('*', cors());
-    app.use(cors());
+app.options('*', cors());
+app.use(cors());
 
-    app.use(morgan('combined'));
+app.use(morgan('combined'));
 
-    app.use(scribe.express.logger()); //Log each request
-    // TODO deshabilitar en producción
-    app.use('/logs', scribe.webPanel()); //Log web console
-});
+app.use(scribe.express.logger()); //Log each request
+// TODO deshabilitar en producción
+app.use('/logs', scribe.webPanel()); //Log web console
 
 //Configuración de la conexión a Mongo
 mongoose.connect(mongoHost, {

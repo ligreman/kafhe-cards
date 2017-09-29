@@ -13,11 +13,11 @@
                 </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuGames' | translate }}</md-tooltip>
             </div>
-            <div flex layout-fill layout="row" layout-align="center center" class="button"
+            <!--<div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-if="global.gamedata.status === gameStatuses.planning"
                  ng-class="{'active': isCurrentPage('planning')}" ng-click="goToPage('planning')">
                 <span>
-                    <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">hourglass_empty</md-icon>-->
+                    &lt;!&ndash;<md-icon ng-class="{ 'small-icon': isSmallScreen() }">hourglass_empty</md-icon>&ndash;&gt;
                     <img class="menu-icon" ng-class="{ 'small-icon': isSmallScreen() }"
                          src="assets/img/menu/preparation.png"/>
                     <span class="btn-text" hide show-gt-sm> {{ 'menuPlanning' | translate }}</span>
@@ -28,7 +28,7 @@
                  ng-if="global.gamedata.status === gameStatuses.explore"
                  ng-class="{'active': isCurrentPage('explore')}" ng-click="goToPage('explore')">
                 <span>
-                    <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">explore</md-icon>-->
+                    &lt;!&ndash;<md-icon ng-class="{ 'small-icon': isSmallScreen() }">explore</md-icon>&ndash;&gt;
                     <img class="menu-icon" ng-class="{ 'small-icon': isSmallScreen() }"
                          src="assets/img/menu/exploration.png"/>
                     <span class="btn-text" hide show-gt-sm> {{ 'menuExplore' | translate }}</span>
@@ -38,13 +38,13 @@
             <div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-class="{'active': isCurrentPage('character')}" ng-click="goToPage('character')">
                 <span>
-                    <!--<md-icon ng-class="{ 'small-icon': isSmallScreen() }">directions_run</md-icon>-->
+                    &lt;!&ndash;<md-icon ng-class="{ 'small-icon': isSmallScreen() }">directions_run</md-icon>&ndash;&gt;
                     <img class="menu-icon" ng-class="{ 'small-icon': isSmallScreen() }"
                          src="assets/img/menu/character.png"/>
                     <span class="btn-text" hide show-gt-sm> {{ 'menuCharacter' | translate }}</span>
                 </span>
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuCharacter' | translate }}</md-tooltip>
-            </div>
+            </div>-->
             <div flex layout-fill layout="row" layout-align="center center" class="button"
                  ng-if="global.gamedata.status !== gameStatuses.weekend"
                  ng-class="{'active': isCurrentPage('breakfast')}" ng-click="goToPage('breakfast')">
@@ -57,10 +57,11 @@
                 <md-tooltip md-delay="1000" hide-gt-sm>{{ 'menuBreakfast' | translate }}</md-tooltip>
             </div>
 
+            <!-- Perfil -->
             <div flex="nogrow" layout="row" layout-align="center center">
                 <md-menu md-position-mode="target-right target">
                     <div>
-                        <md-button aria-label="Open demo menu" class="md-icon-button custom-avatar-button"
+                        <md-button aria-label="" class="md-icon-button custom-avatar-button"
                                    ng-class="{ 'kafhe-border-yellow': isUserLeader() }"
                                    ng-click="$mdOpenMenu($event)">
                             <img ng-src="assets/img/avatars/{{ global.user.avatar }}.png"/>
@@ -107,7 +108,7 @@
     </md-toolbar>
 
     <!-- SUBHEADER -->
-    <md-toolbar class="custom-mini-toolbar md-hue-2">
+    <!--<md-toolbar class="custom-mini-toolbar md-hue-2">
         <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
             <p class="text-center" flex-gt-xs="auto" flex="25">
                 <md-icon class="vertical-bottom kafhe-purple">whatshot</md-icon>
@@ -139,7 +140,7 @@
                 </md-tooltip>
             </p>
         </div>
-    </md-toolbar>
+    </md-toolbar>-->
 
 </header>
 

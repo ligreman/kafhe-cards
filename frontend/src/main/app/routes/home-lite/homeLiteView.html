@@ -1,43 +1,4 @@
 <section id="explore-page" layout="row" flex>
-    <!-- EXPLORACIÓN DIARIA -->
-
-    <!-- PANEL IZQUIERDO -->
-    <md-sidenav class="md-whiteframe-1dp"
-                ng-show="global.gamedata.status === gameStatuses.planning ||global.gamedata.status === gameStatuses.explore"
-                ng-class="{ 'sidenav-small-screen': isSmallScreen() }"
-                md-component-id="left"
-                md-is-locked-open="!isSmallScreen()">
-        <md-toolbar class="md-primary md-hue-3">
-            <div class="md-toolbar-tools">
-                <h2>{{ 'textCharActivity' | translate }}</h2>
-                <span flex></span>
-                <md-button ng-click="close('left')" class="md-icon-button" ng-hide="!isSmallScreen()" flex="none">
-                    <md-icon>clear</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-        <md-content layout-padding ng-controller="LeftCtrl">
-            <ul class="cbp_tmtimeline">
-                <li ng-repeat="notif in global.user.notifications track by $index">
-                    <div class="cbp_tmtime">
-                        <span>{{ notif.timestamp | date:'dd/MM/yy' }}</span>
-                        <span>{{ notif.timestamp | date:'HH:mm' }}</span>
-                    </div>
-                    <div class="cbp_tmicon">
-                        <img ng-src="assets/img/notification/{{ notif.type }}.png"/>
-                        <md-tooltip md-delay="700" md-direction="bottom">
-                            {{ 'notification-' + notif.type | translate }}
-                        </md-tooltip>
-                    </div>
-                    <div class="cbp_tmlabel" ng-class="notif.type">
-                        <h3>{{ notif.source }}</h3>
-                        <p>{{ notif.message | translate:notif.params }}</p>
-                    </div>
-                </li>
-            </ul>
-        </md-content>
-    </md-sidenav>
-
     <!-- CONTENIDO -->
     <md-content flex layout="row" layout-align="center start" ng-cloak
                 ng-show="global.gamedata.status === gameStatuses.planning ||global.gamedata.status === gameStatuses.explore">
@@ -62,27 +23,6 @@
         </div>
     </md-content>
 
-    <!-- PANEL DERECHO -->
-    <md-sidenav class="md-sidenav-right md-whiteframe-1dp"
-                ng-show="global.gamedata.status === gameStatuses.planning ||global.gamedata.status === gameStatuses.explore"
-                ng-class="{ 'sidenav-small-screen': isSmallScreen() }"
-                md-component-id="right">
-        <md-toolbar class="md-primary md-hue-3">
-            <div class="md-toolbar-tools">
-                <h2>{{'textStats' | translate}}</h2>
-                <span flex></span>
-                <md-button ng-click="close('right')" class="md-icon-button" flex="none">
-                    <md-icon>clear</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-        <md-content layout="column" layout-padding ng-controller="RightCtrl" layout-align="start center">
-            <div class="margin-top-20" id="chart-probabilities"></div>
-            <div class="margin-top-20" id="chart-ranking"></div>
-        </md-content>
-    </md-sidenav>
-
-    <!--<md-content flex ng-cloak class="grey scrollbar-content">-->
     <!-- Durante el fin de semana  -->
     <div ng-show="global.gamedata.status === gameStatuses.weekend" layout="column"
          layout-align="center center" layout-fill>
@@ -135,7 +75,7 @@
     <!-- Durante estado cerrado muestro el resultado del lanzamiento si hay -->
     <div ng-show="global.gamedata.status === gameStatuses.closed" layout="column" layout-align="center center"
          layout-fill>
-        <!--<h1 class="text-center">{{'textSacrifice' | translate}} <em>{{ players[global.gamedata.caller] }}</em></h1>-->
+
         <h1 class="text-center" id="resultCaller"></h1>
         <div ng-if="global.gamedata.caller === global.user._id">
             <md-button ng-show="callerMe" class="md-raised md-accent md-hue-1" aria-label=""
@@ -145,7 +85,7 @@
             </md-button>
         </div>
     </div>
-    <!--</md-content>-->
+
 </section>
 
 <script type="text/javascript">

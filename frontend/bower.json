@@ -25,7 +25,8 @@
     "vis": "4.17.0",
     "c3": "0.4.11",
     "angular-dragula": "1.2.8",
-    "leaflet-polylinedecorator": "1.1.0"
+    "leaflet-polylinedecorator": "1.1.0",
+    "typed.js": "2.0.5"
   },
   "resolutions": {
     "angular-translate": "~2.13.1",

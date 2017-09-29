@@ -16,7 +16,7 @@
                     redirectTo: ROUTES.home
                 })
 
-                .when(ROUTES.home, {
+                /*.when(ROUTES.home, {
                     templateUrl: 'app/routes/home/homeView.html',
                     controller: 'HomeController',
                     //Variables adicionales de esta ruta
@@ -24,9 +24,19 @@
                         //Requiere login para acceder
                         loginRequired: true
                     }
+                })*/
+
+                .when(ROUTES.homeLite, {
+                    templateUrl: 'app/routes/home-lite/homeLiteView.html',
+                    controller: 'HomeLiteController',
+                    //Variables adicionales de esta ruta
+                    access: {
+                        //Requiere login para acceder
+                        loginRequired: true
+                    }
                 })
 
-                .when(ROUTES.planning, {
+                /*.when(ROUTES.planning, {
                     templateUrl: 'app/routes/planning/planningView.html',
                     controller: 'PlanningController',
                     access: {
@@ -51,7 +61,7 @@
                         //Requiere login para acceder
                         loginRequired: true
                     }
-                })
+                })*/
 
                 .when(ROUTES.breakfast, {
                     templateUrl: 'app/routes/breakfast/breakfastView.html',
